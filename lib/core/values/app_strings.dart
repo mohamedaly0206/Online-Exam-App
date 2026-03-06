@@ -1,0 +1,69 @@
+class AppStrings {
+  static const String appName = 'Online Exam App';
+  static const String login = 'Login';
+  static const String email = 'Email';
+  static const String hintEmailText = 'Enter your email';
+  static const String password = 'Password';
+  static const String hintPasswordText = 'Enter your password';
+  static const String rememberMe = 'Remember me';
+  static const String forgetPassword = 'Forget Password?';
+  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String signUp = 'Sign up';
+  static const String signUpbutton = 'Signup';
+  static const String userName = 'User name';
+  static const String hintNameText = 'Enter your user name';
+  static const String firstName = 'First name';
+  static const String hintFirstNameText = 'Enter your first name';
+  static const String lastName = 'Last name';
+  static const String hintLastNameText = 'Enter your last name';
+  static const String confirmPassword = 'Confirm password';
+  static const String hintConfirmPasswordText = 'confirm password';
+  static const String phone = 'Phone Number';
+  static const String hintPhoneText = 'Enter phone number';
+  static const String alreadyHaveAccount = 'Already have an account?';
+  static const String enterEmail =
+      'Please enter your email associated to your account';
+  static const String continueButton = 'Continue';
+  static const String emailVerification = 'Email verification';
+  static const String enterCode =
+      'Please enter your code that send to your email address';
+  static const String verifyButton = 'Didn\'t receive code? ';
+  static const String resendButton = 'Resend';
+  static const String resetPassword = 'Reset Password';
+  static const String resetPasswordhint =
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least ';
+  static const String newPassword = 'New Password';
+  static const String profile = 'Profile';
+  static const String editProfile = 'Edit Profile';
+  static const String change = 'Change';
+  static const String updateButton = 'Update';
+  static const String currentPassword = 'Current Password';
+  static const String explore = 'Explore';
+  static const String result = 'Result';
+  static const String survey = 'Survey';
+  static const String search = 'Search';
+  static const String browseBySubject = 'Browse by subject';
+  static const String language = 'Language';
+  static const String math = 'Math';
+  static const String art = 'Art';
+  static const String science = 'Science';
+  static const String highlevel = 'High Level';
+  static const String middlelevel = 'Mid Level';
+  static const String lowlevel = 'Low Level';
+  static const String startButton = 'Start';
+  static const exam = 'Exam';
+  static const String selectAnswer =
+      'Select the correctly punctuated sentence.';
+  static const nextButton = 'Next';
+  static const String backbutton = 'Back';
+  static const String finishButton = 'Finish';
+  static const String timeOut = 'Time out !!';
+  static const String viewScore = 'View score';
+  static const String examScore = 'Exam Score';
+  static const String yourScore = 'Your Score';
+  static const String correct = 'Correct';
+  static const String wrong = 'Wrong';
+  static const String showResultButton = 'Show Results';
+  static const String startAgain = 'Start Again';
+  static const String answers = 'Answers';
+}
