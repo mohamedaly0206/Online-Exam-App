@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/values/assets.gen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      log(Assets.a3dIcons.alarmLightBlue.toString());
     });
   }
 
