@@ -26,18 +26,16 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner:
   flutter_gen_runner:
-  
+  injectable_generator: ^2.12.1
+  retrofit_generator: ^10.2.3
+  json_serializable: ^6.10.0
 
 flutter_gen:
-   output: lib/core/values/
+  output: lib/core/values/
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-  injectable_generator:
-  build_runner:
-  retrofit_generator: ^10.2.3
-  json_serializable: ^6.10.0
 
 flutter:
   uses-material-design: true
@@ -46,7 +44,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/3d_icons/
-    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -73,7 +70,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-  
+
   fonts:
     - family: Inter
       fonts:
