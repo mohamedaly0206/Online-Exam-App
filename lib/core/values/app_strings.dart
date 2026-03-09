@@ -11,16 +11,17 @@ class AppStrings {
   static const String signUp = 'Sign up';
   static const String signUpbutton = 'Signup';
   static const String userName = 'User name';
-  static const String hintNameText = 'Enter your user name';
+  static const String hintUserNameText = 'Enter your user name';
   static const String firstName = 'First name';
-  static const String hintFirstNameText = 'Enter your first name';
+  static const String hintFirstNameText = 'Enter first name';
   static const String lastName = 'Last name';
-  static const String hintLastNameText = 'Enter your last name';
+  static const String hintLastNameText = 'Enter last name';
+  static const String hintPasswordSignUpText = 'Enter password';
   static const String confirmPassword = 'Confirm password';
-  static const String hintConfirmPasswordText = 'confirm password';
+  static const String hintConfirmPasswordText = 'Confirm password';
   static const String phone = 'Phone Number';
   static const String hintPhoneText = 'Enter phone number';
-  static const String alreadyHaveAccount = 'Already have an account?';
+  static const String alreadyHaveAccount = 'Already have an account? ';
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';

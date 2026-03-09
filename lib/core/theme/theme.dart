@@ -36,7 +36,6 @@ class AppTheme {
       onSurface: AppColors.blackColor,
       surfaceContainerHighest: AppColors.lightBlueColor, //surfaceVariant
       onSurfaceVariant: AppColors.secondaryColor,
-
     ),
     // inputDecorationTheme
     inputDecorationTheme: InputDecorationTheme(
@@ -85,6 +84,9 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
         textStyle: AppTextStyles.textStyleRegular16.copyWith(
@@ -120,6 +122,7 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
+      leadingWidth: 24,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
