@@ -7,7 +7,7 @@ abstract class DioModule {
   Dio get dio => Dio(
     BaseOptions(
       baseUrl:
-          '', //AppEndPoints.baseUrl
+          'https://exam.elevateegy.com/api/v1', //AppEndPoints.baseUrl
       connectTimeout: const Duration(
         seconds: 10,
       ),
