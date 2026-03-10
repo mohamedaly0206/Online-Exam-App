@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 void showSnackBar({
   required BuildContext context,
   required String message,
-  required Color color
+  required Color color,
 }) {
-  ScaffoldMessenger.of(context).showSnackBar(
+  ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(
     SnackBar(
       backgroundColor: color,
-      content: Text(
-          message),
+      content: Text(message),
     ),
   );
 }

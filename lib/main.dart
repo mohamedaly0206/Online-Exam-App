@@ -8,7 +8,8 @@ void main() {
   runApp(const OnlineExamApp());
 }
 
-class OnlineExamApp extends StatelessWidget {
+class OnlineExamApp
+    extends StatelessWidget {
   const OnlineExamApp({super.key});
 
   @override
