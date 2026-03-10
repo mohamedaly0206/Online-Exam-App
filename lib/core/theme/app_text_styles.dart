@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   AppTextStyles._();
 
-  //todo: this is a constant and we will move it to AppConstants when we will marge the branches
-  static const String fontFamily = 'Inter';
-
   // SemiBold
   static const textStyleSemiBold20 = TextStyle(
     fontSize: 20,
