@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../domain/models/user_model.dart';
 part 'user_dto.g.dart';
 @JsonSerializable()
 class UserDto {
@@ -32,7 +34,17 @@ class UserDto {
     required this.isVerified,
     required this.createdAt,
   });
+  UserModel toDomain() => UserModel(
+      id: id,
+      username: username,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      role: role,
+      isVerified: isVerified,
 
+  );
   factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
