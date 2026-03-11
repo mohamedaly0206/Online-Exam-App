@@ -42,7 +42,7 @@ class SignUpRequestDto {
       _$SignUpRequestDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$SignUpRequestDtoToJson(this);
-  
+
   factory SignUpRequestDto.fromDomain(SignUpRequestModel model) {
     return SignUpRequestDto(
       username: model.userName,
@@ -51,8 +51,7 @@ class SignUpRequestDto {
       email: model.email,
       password: model.password,
       rePassword: model.confirmPassword,
-      phone: model.phone,
+      phone: model.phoneNumber,
     );
   }
-
 }

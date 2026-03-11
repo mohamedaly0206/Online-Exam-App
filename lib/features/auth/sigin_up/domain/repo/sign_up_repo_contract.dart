@@ -3,5 +3,7 @@ import 'package:online_exam_app/features/auth/sigin_up/domain/models/request/sig
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/response/sign_up_response_model.dart';
 
 abstract class SignUpRepoContract {
-  Future<BaseResponse<SignUpResponseModel>> signUp(SignUpRequestModel signUpRequestModel);
+  Future<BaseResponse<SignUpResponseModel>> signUp(
+    SignUpRequestModel signUpRequestModel,
+  );
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_view_model.dart';
 
 class SignUpName extends StatelessWidget {
-  const SignUpName({
-    super.key,
-  });
+  const SignUpName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,12 @@ class SignUpName extends StatelessWidget {
               label: Text(AppStrings.firstName),
               hintText: AppStrings.hintFirstNameText,
             ),
+            controller: context.read<SignUpViewModel>().firstNameController,
+            validator: (value) =>
+                AppValidators.validateEmptyTextFormField(value),
+                keyboardType: TextInputType.name,
           ),
+          
         ),
         const SizedBox(width: 17),
         Expanded(
@@ -25,11 +31,13 @@ class SignUpName extends StatelessWidget {
               label: Text(AppStrings.lastName),
               hintText: AppStrings.hintLastNameText,
             ),
+            controller: context.read<SignUpViewModel>().lastNameController,
+            validator: (value) =>
+                AppValidators.validateEmptyTextFormField(value),
+                keyboardType: TextInputType.name,
           ),
         ),
       ],
     );
   }
 }
-
-

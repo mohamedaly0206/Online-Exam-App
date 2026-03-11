@@ -7,4 +7,3 @@ class SignUpResponseModel {
 
   SignUpResponseModel({required this.message, required this.token, this.user});
 }
-

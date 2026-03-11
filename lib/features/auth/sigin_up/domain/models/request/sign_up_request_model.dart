@@ -1,11 +1,11 @@
 class SignUpRequestModel {
-  final String userName ;
+  final String userName;
   final String firstName;
   final String lastName;
   final String email;
   final String password;
   final String confirmPassword;
-  final String phone;
+  final String phoneNumber;
 
   SignUpRequestModel({
     required this.userName,
@@ -14,7 +14,6 @@ class SignUpRequestModel {
     required this.email,
     required this.password,
     required this.confirmPassword,
-    required this.phone,
+    required this.phoneNumber,
   });
-
 }
