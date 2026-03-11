@@ -17,7 +17,7 @@ class OnlineExamApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
-      home: const SignUpView(),
+      home:  SignUpView(),
     );
   }
 }
