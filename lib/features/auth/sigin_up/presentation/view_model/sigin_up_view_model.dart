@@ -11,8 +11,8 @@ import 'package:online_exam_app/features/auth/sigin_up/domain/use_cases/sign_up_
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_state.dart';
 
 @injectable
-class SignUpViewModel extends Cubit<SiginUpState> {
-  SignUpViewModel(this._signUpUseCase) : super((SiginUpState()));
+class SignUpViewModel extends Cubit<SignUpState> {
+  SignUpViewModel(this._signUpUseCase) : super((SignUpState()));
   final SignUpUseCase _signUpUseCase;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController userNameController = TextEditingController();
@@ -44,6 +44,11 @@ class SignUpViewModel extends Cubit<SiginUpState> {
           ),
         ),
       );
+      log(
+        'signup success message: ${response.data.message} token: ${response.data.token}, username: ${response.data.user?.userName}, email: ${response.data.user?.email}, phoneNumber: ${response.data.user?.phone}, firstName: ${response.data.user?.firstName}, lastName: ${response.data.user?.lastName}',
+      );
+      clearAllControllers();
+      
     } else if (response is ErrorBaseResponse<SignUpResponseModel>) {
       emit(
         state.copyWith(
@@ -55,5 +60,14 @@ class SignUpViewModel extends Cubit<SiginUpState> {
       );
       log(response.errorMessage);
     }
+  }
+  void clearAllControllers() {
+    userNameController.clear();
+    emailController.clear();
+    phoneNumberController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+    firstNameController.clear();
+    lastNameController.clear();
   }
 }

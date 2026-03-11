@@ -22,6 +22,7 @@ class AppStrings {
   static const String phone = 'Phone Number';
   static const String hintPhoneText = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String signUpSuccessMessage = 'Sign up successfully';
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';
