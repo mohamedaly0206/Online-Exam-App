@@ -18,12 +18,12 @@ class AppValidators {
       return 'Password is required';
     }
 
-    if (password.length < 6) {
-      return 'Password must be at least 6 characters';
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters';
     }
 
     if (!RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").hasMatch(password)) {
-      return 'password must be Min 8 chars, upper, lower, number & symbol';
+      return 'password must contain upper and lowercase, number and symbol';
     }
 
     return null;
