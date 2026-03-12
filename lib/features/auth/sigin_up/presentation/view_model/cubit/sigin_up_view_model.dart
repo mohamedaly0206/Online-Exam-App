@@ -8,11 +8,11 @@ import 'package:online_exam_app/config/security_storage/security_storage_module.
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/request/sign_up_request_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/response/sign_up_response_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/use_cases/sign_up_use_case.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_state.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sigin_up_state.dart';
 
 @injectable
-class SignUpViewModel extends Cubit<SignUpState> {
-  SignUpViewModel(this._signUpUseCase) : super((SignUpState()));
+class SignUpCubit extends Cubit<SignUpState> {
+  SignUpCubit(this._signUpUseCase) : super((SignUpState()));
   final SignUpUseCase _signUpUseCase;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController userNameController = TextEditingController();
@@ -48,7 +48,6 @@ class SignUpViewModel extends Cubit<SignUpState> {
         'signup success message: ${response.data.message} token: ${response.data.token}, username: ${response.data.user?.userName}, email: ${response.data.user?.email}, phoneNumber: ${response.data.user?.phone}, firstName: ${response.data.user?.firstName}, lastName: ${response.data.user?.lastName}',
       );
       clearAllControllers();
-      
     } else if (response is ErrorBaseResponse<SignUpResponseModel>) {
       emit(
         state.copyWith(
@@ -61,6 +60,7 @@ class SignUpViewModel extends Cubit<SignUpState> {
       log(response.errorMessage);
     }
   }
+
   void clearAllControllers() {
     userNameController.clear();
     emailController.clear();

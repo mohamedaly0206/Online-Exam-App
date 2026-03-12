@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/core/models/user_model.dart';
-import 'package:online_exam_app/features/auth/sigin_up/domain/models/response/sign_up_response_model.dart';
+import 'package:online_exam_app/config/models/user_model.dart';
 part 'user_dto.g.dart';
 
 @JsonSerializable()

@@ -4,16 +4,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_view_model.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sigin_up_view_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
-  final SignUpViewModel signUpViewModel = getIt.get<SignUpViewModel>();
+  final SignUpCubit signUpCubit = getIt.get<SignUpCubit>();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SignUpViewModel>(
-      create: (context) => signUpViewModel,
+    return BlocProvider<SignUpCubit>(
+      create: (context) => signUpCubit,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(

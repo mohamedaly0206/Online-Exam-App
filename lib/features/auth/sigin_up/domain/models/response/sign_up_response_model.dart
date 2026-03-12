@@ -1,4 +1,4 @@
-import 'package:online_exam_app/core/models/user_model.dart';
+import 'package:online_exam_app/config/models/user_model.dart';
 
 class SignUpResponseModel {
   final String message;

@@ -24,8 +24,8 @@ import '../../features/auth/sigin_up/domain/repo/sign_up_repo_contract.dart'
     as _i599;
 import '../../features/auth/sigin_up/domain/use_cases/sign_up_use_case.dart'
     as _i1073;
-import '../../features/auth/sigin_up/presentation/view_model/sigin_up_view_model.dart'
-    as _i458;
+import '../../features/auth/sigin_up/presentation/view_model/cubit/sigin_up_view_model.dart'
+    as _i522;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -49,8 +49,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1073.SignUpUseCase>(
       () => _i1073.SignUpUseCase(gh<_i599.SignUpRepoContract>()),
     );
-    gh.factory<_i458.SignUpViewModel>(
-      () => _i458.SignUpViewModel(gh<_i1073.SignUpUseCase>()),
+    gh.factory<_i522.SignUpCubit>(
+      () => _i522.SignUpCubit(gh<_i1073.SignUpUseCase>()),
     );
     return this;
   }

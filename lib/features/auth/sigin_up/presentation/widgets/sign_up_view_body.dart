@@ -3,8 +3,8 @@ import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/request/sign_up_request_model.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_state.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/sigin_up_view_model.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sigin_up_state.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sigin_up_view_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/already_have_an_account.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_name.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_password.dart';
@@ -15,8 +15,8 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<SignUpViewModel>();
-    return BlocListener<SignUpViewModel, SignUpState>(
+    final viewModel = context.read<SignUpCubit>();
+    return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state.signUpState.data != null &&
             state.signUpState.data!.message != '') {
@@ -39,7 +39,7 @@ class SignUpViewBody extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Form(
-            key: context.read<SignUpViewModel>().formKey,
+            key: context.read<SignUpCubit>().formKey,
             child: Column(
               children: [
                 TextFormField(
@@ -81,11 +81,11 @@ class SignUpViewBody extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     if (context
-                        .read<SignUpViewModel>()
+                        .read<SignUpCubit>()
                         .formKey
                         .currentState!
                         .validate()) {
-                      context.read<SignUpViewModel>().signUp(
+                      context.read<SignUpCubit>().signUp(
                         SignUpRequestModel(
                           userName: viewModel.userNameController.text,
                           firstName: viewModel.firstNameController.text,
