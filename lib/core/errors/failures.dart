@@ -58,34 +58,23 @@ class ServerFailure extends Failure {
     int statusCode,
     dynamic response,
   ) {
+
     if (statusCode == 400 ||
         statusCode == 401 ||
         statusCode == 403) {
-      // final editError = response['user'] != null ? response['user'] : null;
-      // final loginError = response['detail'] != null ? response['detail'] : null;
-      // final emailError = response['email'] != null ? response['email'][0] : null;
-      // final changePasswordEmailError = response['detail'] != null ? response['detail'] : null;
-      //
-      // final phoneError = response['phone_number'] != null ? response['phone_number'][0] : null;
-      // String message;
-      // if (emailError != null && phoneError != null) {
-      //   print('email & pass  repeated');
-      //   message = 'Both the email and phone number are already registered.';
-      // } else if (emailError != null) {
-      //   message = emailError;
-      // } else if (phoneError != null) {
-      //   message = phoneError;
-      // }// login handle if wrong email or pass
-      // else if (loginError != null) {
-      //   message = loginError;
-      // } else if(editError != null){
-      //   message = editError['email'];
-      // }else if (changePasswordEmailError != null) {
-      //   message = changePasswordEmailError;
-      // }
+      final String errorMessageRes = response['message'] ?? 'Opps, there was an error';
+      if (errorMessageRes.contains('password')) {
+        return ServerFailure(
+          'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.',
+        );
+      }
+      else if (errorMessageRes.contains('email')) {
+        return ServerFailure('The email address provided is invalid.');
+      }
+
 
       return ServerFailure(
-        'error message status code 400',
+        errorMessageRes,
       );
     } else if (statusCode == 404) {
       return ServerFailure(
