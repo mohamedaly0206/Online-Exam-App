@@ -59,11 +59,16 @@ class ServerFailure extends Failure{
     else if(statusCode == 404){
       return ServerFailure('Opps there was an error, please try again');
     }
+    else if(statusCode == 409){
+      final message=response['message'].toString();
+      return ServerFailure(message);
+      
+    }
     else if (statusCode == 500){
       return ServerFailure('Internal server error, please try again later');
     }
     else{
-      return ServerFailure('Opps there was an error, please try again');
+      return ServerFailure('Opps there was an error, please try again66');
     }
   }
 }
