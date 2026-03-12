@@ -29,6 +29,8 @@ dev_dependencies:
   injectable_generator: ^2.12.1
   retrofit_generator: ^10.2.3
   json_serializable: ^6.10.0
+  flutter_bloc: ^9.1.1
+
 
 flutter_gen:
   output: lib/core/values/

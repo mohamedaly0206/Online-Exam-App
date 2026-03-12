@@ -21,14 +21,10 @@ class LoginRepoImp implements LoginRepoContract {
     final response = await loginRemoteDataSource.login(email: email, password: password);
     switch(response){
       case SuccessBaseResponse<UserDto>():
-        print(response.data.toDomain().phone);
-        print(response.data.toDomain().lastName);
-        print(response.data.email);
       return SuccessBaseResponse<UserModel>(
         data: response.data.toDomain(),
       );
       case ErrorBaseResponse<UserDto>():
-        print(response.errorMessage);
       return ErrorBaseResponse<UserModel>(
         errorMessage: response.errorMessage,
       );
