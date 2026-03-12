@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/login/domain/models/user_model.dart';
 import 'package:online_exam_app/features/auth/login/domain/repo/login_repo_contract.dart';
 import '../../../../../config/base_response/base_response.dart';
+import '../../../../../config/models/user_model.dart';
 @injectable
 class LoginUseCase {
   LoginUseCase(this.loginRepo);

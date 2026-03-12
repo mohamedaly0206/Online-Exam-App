@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_remote_data_source_contract.dart';
-import 'package:online_exam_app/features/auth/login/data/models/responses/user_dto.dart';
+import '../../../../../config/models/dto/user_dto.dart';
 import '../../../../../core/errors/failures.dart';
 import '../login_api_client/login_api_client.dart';
 @Injectable(as: LoginRemoteDataSourceContract)

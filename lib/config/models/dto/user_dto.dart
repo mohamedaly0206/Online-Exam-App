@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../domain/models/user_model.dart';
+import '../user_model.dart';
+
 part 'user_dto.g.dart';
 @JsonSerializable()
 class UserDto {
@@ -36,13 +37,12 @@ class UserDto {
   });
   UserModel toDomain() => UserModel(
       id: id,
-      username: username,
+      userName: username,
       email: email,
       firstName: firstName,
       lastName: lastName,
       phone: phone,
-      role: role,
-      isVerified: isVerified,
+      createdAt: createdAt,
 
   );
   factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);

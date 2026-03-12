@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/auth/login/data/models/responses/user_dto.dart';
+import '../../../../../config/models/dto/user_dto.dart';
 part 'login_response.g.dart';
 @JsonSerializable()
 class LoginResponse {
