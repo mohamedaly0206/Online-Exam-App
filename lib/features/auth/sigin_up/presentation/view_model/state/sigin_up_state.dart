@@ -3,7 +3,7 @@ import 'package:online_exam_app/features/auth/sigin_up/domain/models/response/si
 
 class SignUpState {
   BaseState<SignUpResponseModel> signUpState = BaseState<SignUpResponseModel>(
-    isLoading: true,
+    isLoading: false,
   );
 
   SignUpState({BaseState<SignUpResponseModel>? signUpState}) {

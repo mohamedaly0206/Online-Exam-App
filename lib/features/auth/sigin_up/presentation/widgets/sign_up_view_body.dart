@@ -3,6 +3,7 @@ import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/request/sign_up_request_model.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sigin_up_state.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sigin_up_view_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/already_have_an_account.dart';
@@ -15,21 +16,21 @@ class SignUpViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<SignUpCubit>();
+    final signUpCubit = context.read<SignUpCubit>();
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state.signUpState.data != null &&
             state.signUpState.data!.message != '') {
           showSnackBar(
             context: context,
-            message: state.signUpState.data!.message.toString(),
+            message: AppStrings.signUpSuccessMessage,
             color: Theme.of(context).colorScheme.primary,
           );
           state.signUpState.data!.message == '';
         } else if (state.signUpState.errorMessage != null) {
           showSnackBar(
             context: context,
-            message: AppStrings.signUpSuccessMessage,
+            message: state.signUpState.errorMessage!,
             color: Theme.of(context).colorScheme.error,
           );
           state.signUpState.errorMessage = null;
@@ -43,7 +44,7 @@ class SignUpViewBody extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
-                  controller: viewModel.userNameController,
+                  controller: signUpCubit.userNameController,
                   decoration: const InputDecoration(
                     label: Text(AppStrings.userName),
                     hintText: AppStrings.hintUserNameText,
@@ -56,7 +57,7 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 TextFormField(
-                  controller: viewModel.emailController,
+                  controller: signUpCubit.emailController,
                   decoration: const InputDecoration(
                     label: Text(AppStrings.email),
                     hintText: AppStrings.hintEmailText,
@@ -68,7 +69,7 @@ class SignUpViewBody extends StatelessWidget {
                 SignUpPassword(),
                 const SizedBox(height: 24),
                 TextFormField(
-                  controller: viewModel.phoneNumberController,
+                  controller: signUpCubit.phoneNumberController,
                   decoration: const InputDecoration(
                     label: Text(AppStrings.phone),
                     hintText: AppStrings.hintPhoneText,
@@ -85,21 +86,23 @@ class SignUpViewBody extends StatelessWidget {
                         .formKey
                         .currentState!
                         .validate()) {
-                      context.read<SignUpCubit>().signUp(
-                        SignUpRequestModel(
-                          userName: viewModel.userNameController.text,
-                          firstName: viewModel.firstNameController.text,
-                          lastName: viewModel.lastNameController.text,
-                          email: viewModel.emailController.text,
-                          password: viewModel.passwordController.text,
-                          confirmPassword:
-                              viewModel.confirmPasswordController.text,
-                          phoneNumber: viewModel.phoneNumberController.text,
+                      context.read<SignUpCubit>().handleSignUpIntent(
+                        SubmitSignUp(
+                          requestModel: SignUpRequestModel(
+                            userName: signUpCubit.userNameController.text,
+                            email: signUpCubit.emailController.text,
+                            password: signUpCubit.passwordController.text,
+                            confirmPassword:
+                                signUpCubit.confirmPasswordController.text,
+                            firstName: signUpCubit.firstNameController.text,
+                            lastName: signUpCubit.lastNameController.text,
+                            phoneNumber: signUpCubit.phoneNumberController.text,
+                          ),
                         ),
                       );
                     }
                   },
-                  child: Text(AppStrings.signUpbutton),
+                  child: Text(AppStrings.signUpButton),
                 ),
                 const SizedBox(height: 16),
                 const AlreadyHaveAnAcoount(),
