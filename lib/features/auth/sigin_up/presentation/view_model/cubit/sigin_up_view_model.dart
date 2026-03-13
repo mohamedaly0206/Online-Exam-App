@@ -53,7 +53,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       log(
         'signup success message: ${response.data.message} token: ${response.data.token}, username: ${response.data.user?.userName}, email: ${response.data.user?.email}, phoneNumber: ${response.data.user?.phone}, firstName: ${response.data.user?.firstName}, lastName: ${response.data.user?.lastName}',
       );
-      clearAllControllers();
+      _clearAllControllers();
     } else if (response is ErrorBaseResponse<SignUpResponseModel>) {
       emit(
         state.copyWith(
@@ -67,7 +67,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  void clearAllControllers() {
+  void _clearAllControllers() {
     userNameController.clear();
     emailController.clear();
     phoneNumberController.clear();
