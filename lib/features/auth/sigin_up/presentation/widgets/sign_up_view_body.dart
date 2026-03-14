@@ -17,7 +17,7 @@ class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signUpCubit = context.read<SignUpCubit>();
-    return BlocListener<SignUpCubit, SignUpState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state.signUpState.data != null &&
             state.signUpState.data!.message != '') {
@@ -36,7 +36,7 @@ class SignUpViewBody extends StatelessWidget {
           state.signUpState.errorMessage = null;
         }
       },
-      child: SingleChildScrollView(
+      builder: (context, state) => SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Form(
@@ -102,7 +102,11 @@ class SignUpViewBody extends StatelessWidget {
                       );
                     }
                   },
-                  child: Text(AppStrings.signUpButton),
+                  child: signUpCubit.state.signUpState.isLoading
+                      ?  CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      )
+                      : const Text(AppStrings.signUpButton),
                 ),
                 const SizedBox(height: 16),
                 const AlreadyHaveAnAcoount(),
