@@ -36,6 +36,8 @@ class AppTheme {
       onSurface: AppColors.blackColor,
       surfaceContainerHighest: AppColors.lightBlueColor, //surfaceVariant
       onSurfaceVariant: AppColors.secondaryColor,
+
+      primaryFixed: AppColors.babyBlueColor,
     ),
     // inputDecorationTheme
     inputDecorationTheme: InputDecorationTheme(

@@ -25,6 +25,9 @@ class AppColors {
   static const lightBlueColor = Color(
     0xFFEDEFF3,
   );
+  static const babyBlueColor = Color(
+    0xFFDFE7F7,
+  );
   static const lightGreenColor = Color(
     0xFFCAF9CC,
   );

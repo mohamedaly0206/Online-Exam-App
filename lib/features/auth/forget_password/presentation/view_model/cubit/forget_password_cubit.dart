@@ -72,7 +72,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   void _priviesPage(BuildContext context) {
     courantPageIndex = 0;
-      GoRouter.of(context).pop(); 
+    GoRouter.of(context).pop();
   }
 
   void _nextPage(BuildContext context) {
@@ -80,8 +80,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       courantPageIndex++;
       pageController.animateToPage(
         courantPageIndex,
-        duration: Duration(seconds: 2),
-        curve: Curves.bounceIn,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOutCubicEmphasized,
       );
     } else {
       GoRouter.of(context).pop();
@@ -163,11 +163,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
                 errorMessageParam: response.errorMessage,
               ),
             ),
-          );
-          showSnackBar(
-            context: context,
-            message: response.errorMessage,
-            color: Theme.of(context).colorScheme.error,
           );
           break;
       }
