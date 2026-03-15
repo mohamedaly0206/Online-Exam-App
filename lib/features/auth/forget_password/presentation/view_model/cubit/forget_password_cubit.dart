@@ -10,8 +10,6 @@ import '../../../domain/use_case/forget_password_use_case.dart';
 import '../../../domain/use_case/reset_password_use_case.dart';
 import '../../../domain/use_case/verify_reset_code_use_case.dart';
 import '../../../presentation/view_model/state/forget_password_event.dart';
-import 'package:online_exam_app/features/login_view.dart';
-
 import '../state/forget_password_state.dart';
 
 @injectable
@@ -86,10 +84,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       );
     } else {
       // todo: handel navigation after marge auth feature
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginView()),
-      );
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => LoginView()),
+      // );
     }
   }
 
