@@ -27,10 +27,11 @@ class AppStrings {
   static const String emailVerification = 'Email verification';
   static const String enterCode =
       'Please enter your code that send to your email address';
+  static const String invalidCode = 'Invalid code';
   static const String verifyButton = 'Didn\'t receive code? ';
   static const String resendButton = 'Resend';
   static const String resetPassword = 'Reset Password';
-  static const String resetPasswordhint =
+  static const String resetPasswordHint =
       'Password must not be empty and must contain 6 characters with upper case letter and one number at least ';
   static const String newPassword = 'New Password';
   static const String profile = 'Profile';
@@ -66,4 +67,5 @@ class AppStrings {
   static const String showResultButton = 'Show Results';
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
+  static const String loading = 'Loading';
 }
