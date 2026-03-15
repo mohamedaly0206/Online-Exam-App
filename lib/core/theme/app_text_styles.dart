@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/theme/app_colors.dart';
 
 class AppTextStyles {
   AppTextStyles._();
@@ -56,6 +57,7 @@ class AppTextStyles {
   static const textStyleRegular14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
+    color: AppColors.secondaryColor,
   );
   static const textStyleRegular13 = TextStyle(
     fontSize: 13,
@@ -65,4 +67,37 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.normal,
   );
+
+  static List<TextStyle> otpTextStyle = [
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+    TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: AppColors.whiteColor,
+    ),
+  ];
 }

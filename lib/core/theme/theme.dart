@@ -125,6 +125,8 @@ class AppTheme {
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
         color: AppColors.blackColor,
       ),
+      titleSpacing: 0,
+      leadingWidth: 40,
     ),
     // BottomNavigationBarTheme
     //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
