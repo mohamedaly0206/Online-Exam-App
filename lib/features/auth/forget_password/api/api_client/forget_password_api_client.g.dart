@@ -20,12 +20,15 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ForgetPasswordDTO> forgetPassword(String? email) async {
+  Future<ForgetPasswordDTO> forgetPassword(Map<String, dynamic>? data) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'email': email};
+    final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    if (data != null) {
+      _data.addAll(data!);
+    }
     final _options = _setStreamType<ForgetPasswordDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -48,12 +51,15 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
   }
 
   @override
-  Future<VerifyResetCodeDTO> verifyResetCode(String? resetCode) async {
+  Future<VerifyResetCodeDTO> verifyResetCode(Map<String, dynamic>? data) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'resetCode': resetCode};
+    final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    if (data != null) {
+      _data.addAll(data!);
+    }
     final _options = _setStreamType<VerifyResetCodeDTO>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -76,18 +82,15 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
   }
 
   @override
-  Future<ResetPasswordDTO> resetPassword(
-    String? email,
-    String? newPassword,
-  ) async {
+  Future<ResetPasswordDTO> resetPassword(Map<String, dynamic>? data) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'email': email,
-      r'newPassword': newPassword,
-    };
+    final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    if (data != null) {
+      _data.addAll(data!);
+    }
     final _options = _setStreamType<ResetPasswordDTO>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
