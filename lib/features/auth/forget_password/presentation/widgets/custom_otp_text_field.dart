@@ -7,7 +7,7 @@ import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_state.dart';
 import '../view_model/cubit/forget_password_cubit.dart';
-import '../view_model/state/forget_password_event.dart';
+import '../view_model/intent/forget_password_intent.dart';
 
 class CustomOTPTextField extends StatelessWidget {
   const CustomOTPTextField({super.key, required this.state});
@@ -38,8 +38,8 @@ class CustomOTPTextField extends StatelessWidget {
           fillColor: Theme.of(context).colorScheme.primaryFixed,
 
           onSubmit: (value) {
-            context.read<ForgetPasswordCubit>().doEvent(
-              VerifyResetCodeEvent(context: context, otp: value),
+            context.read<ForgetPasswordCubit>().doIntent(
+              VerifyResetCodeIntent(context: context, otp: value),
             );
           },
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_event.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/intent/forget_password_intent.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_state.dart';
 import '../../../../../core/values/app_strings.dart';
 
@@ -41,8 +41,8 @@ class EnterEmailView extends StatelessWidget {
                 SizedBox(height: 48),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<ForgetPasswordCubit>().doEvent(
-                      EnterEmailEvent(context: context),
+                    context.read<ForgetPasswordCubit>().doIntent(
+                      EnterEmailIntent(context: context),
                     );
                   },
                   child: state.enterEmailState.isLoading

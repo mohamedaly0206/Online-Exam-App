@@ -10,7 +10,7 @@ import '../../../domain/model/verify_reset_code_model.dart';
 import '../../../domain/use_case/forget_password_use_case.dart';
 import '../../../domain/use_case/reset_password_use_case.dart';
 import '../../../domain/use_case/verify_reset_code_use_case.dart';
-import '../../../presentation/view_model/state/forget_password_event.dart';
+import '../intent/forget_password_intent.dart';
 import '../state/forget_password_state.dart';
 
 @injectable
@@ -40,22 +40,22 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final PageController pageController = PageController();
   int courantPageIndex = 0;
 
-  void doEvent(ForgetPasswordEvent event) {
-    switch (event) {
-      case EnterEmailEvent():
-        _enterEmail(event.context);
+  void doIntent(ForgetPasswordIntent intent) {
+    switch (intent) {
+      case EnterEmailIntent():
+        _enterEmail(intent.context);
         break;
-      case VerifyResetCodeEvent():
-        _verifyResetCode(event.context, event.otp);
+      case VerifyResetCodeIntent():
+        _verifyResetCode(intent.context, intent.otp);
         break;
-      case ResetPasswordEvent():
-        _resetPassword(event.context);
+      case ResetPasswordIntent():
+        _resetPassword(intent.context);
         break;
-      case BackToPriviesPageEvent():
-        _priviesPage(event.context);
+      case BackToPriviesPageIntent():
+        _priviesPage(intent.context);
         break;
-      case ResendOTPEvent():
-        _resendOTP(event.context);
+      case ResendOTPIntent():
+        _resendOTP(intent.context);
         break;
     }
   }

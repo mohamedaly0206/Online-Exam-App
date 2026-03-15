@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_event.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/intent/forget_password_intent.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_state.dart';
 
 import '../../../../../core/utilities/functions/show_snack_bar.dart';
@@ -86,8 +86,8 @@ class VerifyResetCodeView extends StatelessWidget {
                         : TextButton(
                             child: Text(AppStrings.resendButton),
                             onPressed: () {
-                              context.read<ForgetPasswordCubit>().doEvent(
-                                ResendOTPEvent(context: context),
+                              context.read<ForgetPasswordCubit>().doIntent(
+                                ResendOTPIntent(context: context),
                               );
                             },
                           ),
