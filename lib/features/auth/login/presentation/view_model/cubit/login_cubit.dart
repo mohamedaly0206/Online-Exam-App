@@ -53,7 +53,6 @@ class LoginCubit extends Cubit<LoginState> {
           ),
         ),
       );
-
     } else if (response is ErrorBaseResponse<UserModel>) {
       emit(
         state.copyWith(

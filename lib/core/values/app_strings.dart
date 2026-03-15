@@ -9,7 +9,7 @@ class AppStrings {
   static const String hintPasswordText = 'Enter your password';
   static const String rememberMe = 'Remember me';
   static const String forgetPassword = 'Forget Password?';
-  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String dontHaveAccount = 'Don\'t have an account? ';
   static const String signUp = 'Sign up';
   static const String signUpButton = 'Signup';
   static const String userName = 'User name';
@@ -25,11 +25,8 @@ class AppStrings {
   static const String hintPhoneText = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signUpSuccessMessage = 'Sign up successfully';
-
   static const String signUpbutton = 'Signup';
-
   static const String hintNameText = 'Enter your user name';
-
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';

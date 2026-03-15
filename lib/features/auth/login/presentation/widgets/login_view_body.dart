@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +38,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             message: AppStrings.loginSuccessfully,
             color: Theme.of(context).primaryColor,
           );
+          GoRouter.of(context).go(AppRouterPaths.kHomePageView);
         } else if (loginState.errorMessage != null &&
             loginState.isLoading == false) {
           showSnackBar(
@@ -71,10 +74,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 TextFormField(
                   obscureText: true,
                   controller: cubit.passwordController,
-                  validator: (value) => AppValidators.validatePassword(value),
+                  validator: (value) => AppValidators.validateEmptyTextFormField(value),
                   decoration: const InputDecoration(
                     labelText: AppStrings.password,
                     hintText: AppStrings.hintPasswordText,
+                    errorMaxLines: 3,
                   ),
                 ),
                 Row(
@@ -99,7 +103,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         ),
                         foregroundColor: Theme.of(context).colorScheme.onSurface,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouterPaths.kForgetPasswordView);
+                      },
                       child: Text(
                         AppStrings.forgetPassword,
                       ),
@@ -119,6 +125,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     }
                   },
                 ),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -127,7 +134,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     TextButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        GoRouter.of(context).push(AppRouterPaths.kSignUpView);
+                      },
                       style: TextButton.styleFrom(
                         textStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           decoration: TextDecoration.underline,

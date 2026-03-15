@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
@@ -71,7 +72,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   void _priviesPage(BuildContext context) {
     courantPageIndex = 0;
-    Navigator.of(context).pop();
+      GoRouter.of(context).pop(); 
   }
 
   void _nextPage(BuildContext context) {
@@ -83,11 +84,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         curve: Curves.bounceIn,
       );
     } else {
-      // todo: handel navigation after marge auth feature
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => LoginView()),
-      // );
+      GoRouter.of(context).pop();
     }
   }
 
