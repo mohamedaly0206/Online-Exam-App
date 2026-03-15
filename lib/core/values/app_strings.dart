@@ -1,6 +1,7 @@
 class AppStrings {
   static const String appName = 'Online Exam App';
   static const String login = 'Login';
+  static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
   static const String tokenKey = 'user_token';
   static const String hintEmailText = 'Enter your email';
@@ -24,6 +25,11 @@ class AppStrings {
   static const String hintPhoneText = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signUpSuccessMessage = 'Sign up successfully';
+
+  static const String signUpbutton = 'Signup';
+
+  static const String hintNameText = 'Enter your user name';
+
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';

@@ -1,4 +1,4 @@
 class ApiParam {
-  static const String getSubjectExams = '/exams?subject=';
-  static const String getAllExamQuestions = '/questions?exam=';
+  static const String getSubjectExams = 'subject=';
+  static const String getAllExamQuestions = 'exam=';
 }
