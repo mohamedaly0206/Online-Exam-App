@@ -60,7 +60,7 @@ import '../../features/auth/sign_up/domain/repo/sign_up_repo_contract.dart'
     as _i599;
 import '../../features/auth/sign_up/domain/use_cases/sign_up_use_case.dart'
     as _i1073;
-import '../../features/auth/sign_up/presentation/view_model/cubit/sigin_up_cubit.dart'
+import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart'
     as _i522;
 import '../dio/dio_module.dart' as _i977;
 
