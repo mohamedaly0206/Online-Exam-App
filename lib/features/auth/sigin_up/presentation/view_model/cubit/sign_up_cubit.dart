@@ -9,7 +9,7 @@ import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/models/response/sign_up_response_model.dart';
 import 'package:online_exam_app/features/auth/sigin_up/domain/use_cases/sign_up_use_case.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/intent/sign_up_intent.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sigin_up_state.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sign_up_state.dart';
 
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {

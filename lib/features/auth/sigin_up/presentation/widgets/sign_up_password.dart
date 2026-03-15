@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sigin_up_view_model.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sign_up_cubit.dart';
 
 class SignUpPassword extends StatelessWidget {
   const SignUpPassword({super.key});
