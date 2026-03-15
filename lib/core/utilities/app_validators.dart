@@ -12,7 +12,6 @@ class AppValidators {
 
     return null;
   }
-
   static String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return 'Password is required';
@@ -43,6 +42,30 @@ class AppValidators {
     if (value == null || value.trim().isEmpty) {
       return 'This field is required';
     }
+    return null;
+  }
+
+  static String? validateName(String? value, String fieldName) {
+    if (value == null || value.trim().isEmpty) {
+      return '$fieldName is required';
+    }
+
+    final trimmedValue = value.trim();
+
+    if (trimmedValue.length < 3) {
+      return '$fieldName length must be at least 3 characters long';
+    }
+
+    final nameRegex = RegExp(r'^[a-zA-Z]+$');
+
+    if (!nameRegex.hasMatch(trimmedValue)) {
+      return '$fieldName must contain letters only';
+    }
+    if (value.contains(' ')) {
+    return '$fieldName cannot contain spaces';
+  }
+
+
     return null;
   }
 
