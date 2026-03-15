@@ -15,8 +15,6 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-
-
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>(); // = bloc provider.of(context)
@@ -94,24 +92,23 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     const Spacer(),
                     TextButton(
                       style: TextButton.styleFrom(
-                        textStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          decoration: TextDecoration.underline,
-                        ),
-                        foregroundColor: Theme.of(context).colorScheme.onSurface,
+                        textStyle: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(decoration: TextDecoration.underline),
+                        foregroundColor: Theme.of(
+                          context,
+                        ).colorScheme.onSurface,
                       ),
                       onPressed: () {},
-                      child: Text(
-                        AppStrings.forgetPassword,
-                      ),
+                      child: Text(AppStrings.forgetPassword),
                     ),
                   ],
                 ),
                 const SizedBox(height: 48),
                 ElevatedButton(
                   child: state.loginState.isLoading
-                      ?  CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  )
+                      ? CircularProgressIndicator(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        )
                       : const Text(AppStrings.login),
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
@@ -127,15 +124,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     TextButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       style: TextButton.styleFrom(
-                        textStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          decoration: TextDecoration.underline,
-                        ),
+                        textStyle: Theme.of(context).textTheme.headlineMedium
+                            ?.copyWith(decoration: TextDecoration.underline),
                       ),
-                      child: Text(
-                        AppStrings.signUp,
-                      ),
+                      child: Text(AppStrings.signUp),
                     ),
                   ],
                 ),
