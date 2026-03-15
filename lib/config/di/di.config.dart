@@ -25,8 +25,8 @@ import '../../features/auth/login/data/repo/login_repo_imp.dart' as _i21;
 import '../../features/auth/login/domain/repo/login_repo_contract.dart'
     as _i844;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
-import '../../features/auth/login/presentation/view_model/cubit/cubit.dart'
-    as _i632;
+import '../../features/auth/login/presentation/view_model/cubit/login_cubit.dart'
+    as _i609;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -56,8 +56,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i844.LoginRepoContract>()),
     );
-    gh.factory<_i632.LoginCubit>(
-      () => _i632.LoginCubit(gh<_i50.LoginUseCase>()),
+    gh.factory<_i609.LoginCubit>(
+      () => _i609.LoginCubit(gh<_i50.LoginUseCase>()),
     );
     return this;
   }

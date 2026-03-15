@@ -63,9 +63,9 @@ class ServerFailure extends Failure {
         statusCode == 401 ||
         statusCode == 403) {
       final String errorMessageRes = response['message'] ?? 'Opps, there was an error';
-      if (errorMessageRes.contains('fails to match the required pattern')) {
+      if (errorMessageRes.contains('required pattern')) {
         return ServerFailure(
-          'Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.',
+          'Invalid email or password',
         );
       }
 

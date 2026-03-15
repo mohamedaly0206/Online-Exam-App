@@ -2,6 +2,7 @@ class AppStrings {
   static const String appName =
       'Online Exam App';
   static const String login = 'Login';
+  static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
   static const String hintEmailText =
       'Enter your email';
