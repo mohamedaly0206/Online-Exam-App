@@ -24,16 +24,15 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSourceContract {
       );
 
       return SuccessBaseResponse<LoginResponse>(data: response);
-    } catch (e) {
-      if (e is DioException) {
-        return ErrorBaseResponse<LoginResponse>(
-          errorMessage: ServerFailure.fromDioException(e).errorMessage,
-        );
-      } else {
-        return ErrorBaseResponse<LoginResponse>(
-          errorMessage: "Something went wrong, please try again later.",
-        );
-      }
+    } on DioException catch (e) {
+      return ErrorBaseResponse<LoginResponse>(
+        errorMessage: ServerFailure.fromDioException(e).errorMessage,
+      );
+    }
+    catch (e) {
+      return ErrorBaseResponse<LoginResponse>(
+        errorMessage: "Something went wrong, please try again later.",
+      );
     }
   }
 }
