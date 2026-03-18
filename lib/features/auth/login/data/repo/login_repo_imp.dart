@@ -30,7 +30,7 @@ class LoginRepoImp implements LoginRepoContract {
         try { // local can throw exception, so there is try-catch
           await loginLocalDataSource.saveToken(response.data.token);
 
-          return SuccessBaseResponse<UserModel>(
+          return SuccessBaseResponse<UserModel>(// send UserDto to (toDomain)
             data: response.data.user.toDomain(),
           );
         } on CacheException catch (e) { // handle local cases

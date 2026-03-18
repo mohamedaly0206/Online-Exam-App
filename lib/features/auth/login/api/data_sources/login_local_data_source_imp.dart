@@ -15,4 +15,15 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
       );
     }
   }
+
+  @override
+  Future<String?> getToken() async{
+    try{
+      return await SecurityStorageModule.getSecuredString('token');
+    }catch(e){
+      throw const CacheException(
+        errorMessage: 'Failed to get data locally, please try again later.',
+      );
+    }
+  }
 }
