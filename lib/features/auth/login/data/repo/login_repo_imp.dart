@@ -18,6 +18,7 @@ class LoginRepoImp implements LoginRepoContract {
   Future<BaseResponse<UserModel>> login({
     required String email,
     required String password,
+    required bool rememberMe,
   }) async {
     final response = await loginRemoteDataSource.login(
       email: email,
@@ -29,6 +30,7 @@ class LoginRepoImp implements LoginRepoContract {
         // try to store token locally
         try { // local can throw exception, so there is try-catch
           await loginLocalDataSource.saveToken(response.data.token);
+          await loginLocalDataSource.saveRememberMe(rememberMe);
 
           return SuccessBaseResponse<UserModel>(// send UserDto to (toDomain)
             data: response.data.user.toDomain(),

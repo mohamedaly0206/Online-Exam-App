@@ -26,4 +26,24 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
       );
     }
   }
+  @override
+  Future<void> saveRememberMe(bool value) {
+    try{
+      return  SecurityStorageModule.setSecuredBool('rememberMe', value);
+    }catch(e){
+      throw const CacheException(
+        errorMessage: 'Failed to save data locally, please try again later.',
+      );
+    }
+  }
+  @override
+  Future<bool> getRememberMe() {
+    try{
+      return  SecurityStorageModule.getSecuredBool('rememberMe');
+    }catch(e){
+      throw const CacheException(
+        errorMessage: 'Failed to save data locally, please try again later.',
+      );
+    }
+  }
 }
