@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
@@ -9,7 +10,7 @@ import '../../../domain/model/verify_reset_code_model.dart';
 import '../../../domain/use_case/forget_password_use_case.dart';
 import '../../../domain/use_case/reset_password_use_case.dart';
 import '../../../domain/use_case/verify_reset_code_use_case.dart';
-import '../../../presentation/view_model/state/forget_password_event.dart';
+import '../intent/forget_password_intent.dart';
 import '../state/forget_password_state.dart';
 
 @injectable
@@ -39,22 +40,22 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final PageController pageController = PageController();
   int courantPageIndex = 0;
 
-  void doEvent(ForgetPasswordEvent event) {
-    switch (event) {
-      case EnterEmailEvent():
-        _enterEmail(event.context);
+  void doIntent(ForgetPasswordIntent intent) {
+    switch (intent) {
+      case EnterEmailIntent():
+        _enterEmail(intent.context);
         break;
-      case VerifyResetCodeEvent():
-        _verifyResetCode(event.context, event.otp);
+      case VerifyResetCodeIntent():
+        _verifyResetCode(intent.context, intent.otp);
         break;
-      case ResetPasswordEvent():
-        _resetPassword(event.context);
+      case ResetPasswordIntent():
+        _resetPassword(intent.context);
         break;
-      case BackToPriviesPageEvent():
-        _priviesPage(event.context);
+      case BackToPriviesPageIntent():
+        _priviesPage(intent.context);
         break;
-      case ResendOTPEvent():
-        _resendOTP(event.context);
+      case ResendOTPIntent():
+        _resendOTP(intent.context);
         break;
     }
   }
@@ -71,7 +72,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   void _priviesPage(BuildContext context) {
     courantPageIndex = 0;
-    Navigator.of(context).pop();
+    GoRouter.of(context).pop();
   }
 
   void _nextPage(BuildContext context) {
@@ -79,15 +80,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       courantPageIndex++;
       pageController.animateToPage(
         courantPageIndex,
-        duration: Duration(seconds: 2),
-        curve: Curves.bounceIn,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOutCubicEmphasized,
       );
     } else {
-      // todo: handel navigation after marge auth feature
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => LoginView()),
-      // );
+      GoRouter.of(context).pop();
     }
   }
 
@@ -166,11 +163,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
                 errorMessageParam: response.errorMessage,
               ),
             ),
-          );
-          showSnackBar(
-            context: context,
-            message: response.errorMessage,
-            color: Theme.of(context).colorScheme.error,
           );
           break;
       }

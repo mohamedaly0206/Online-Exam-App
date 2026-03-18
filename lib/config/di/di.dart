@@ -8,5 +8,6 @@ final getIt = GetIt.instance;
   initializerName: 'init',
   preferRelativeImports: true,
   asExtension: true, // default
+  
 )
 void configureDependencies() => getIt.init();
