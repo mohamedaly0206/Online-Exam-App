@@ -1,4 +1,5 @@
-import 'package:injectable/injectable.dart';
 
-@Injectable()
-class LoginLocalDataSourceContract {}
+
+abstract class LoginLocalDataSourceContract {
+  Future<void> saveToken(String token);
+}

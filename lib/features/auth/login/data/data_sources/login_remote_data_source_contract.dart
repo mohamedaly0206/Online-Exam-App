@@ -1,7 +1,10 @@
+import 'package:online_exam_app/features/auth/login/data/models/login_response.dart';
+
 import '../../../../../config/base_response/base_response.dart';
-import '../../../../../config/models/dto/user_dto.dart';
 
 abstract class LoginRemoteDataSourceContract {
-  Future<BaseResponse<UserDto>> login({required String email, required String password});
-
+  Future<BaseResponse<LoginResponse>> login({
+    required String email,
+    required String password,
+  });
 }
