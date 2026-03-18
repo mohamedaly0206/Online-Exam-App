@@ -6,7 +6,7 @@ import '../../../../../config/models/user_model.dart';
 class LoginUseCase {
   LoginUseCase(this.loginRepo);
   final LoginRepoContract loginRepo;
-  Future<BaseResponse<UserModel>> call({required String email,required String password})async{
-    return loginRepo.login(email: email,password: password);
+  Future<BaseResponse<UserModel>> call({required String email,required String password,required rememberMe})async{
+    return loginRepo.login(email: email,password: password,rememberMe: rememberMe);
   }
 }

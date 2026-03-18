@@ -42,7 +42,7 @@ class LoginCubit extends Cubit<LoginState> {
     log(state.loginState.isLoading.toString());
     final response = await _loginUseCase.call(
       email: emailController.text,
-      password: passwordController.text,
+      password: passwordController.text, rememberMe: rememberMe,
     );
 
     if (response is SuccessBaseResponse<UserModel>) {
