@@ -68,8 +68,6 @@ class ServerFailure extends Failure {
           'Invalid email or password',
         );
       }
-
-
       return ServerFailure(
         errorMessageRes,
       );
