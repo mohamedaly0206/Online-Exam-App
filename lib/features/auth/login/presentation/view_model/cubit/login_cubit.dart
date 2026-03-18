@@ -34,7 +34,8 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> _login(LoginSubmitIntent intent) async {
     emit(
       state.copyWith(
-        loginStateParam: state.loginState.copyWith(isLoadingParam: true),
+        loginStateParam: state.loginState.copyWith(isLoadingParam: true,errorMessageParam: null,
+          dataParam: null,),
       ),
     );
 
