@@ -28,18 +28,20 @@ class LoginRepoImp implements LoginRepoContract {
     switch (response) {
       case SuccessBaseResponse<LoginResponse>():
         // try to store token locally
-        try { // local can throw exception, so there is try-catch
+        try {
+          // local can throw exception, so there is try-catch
           await loginLocalDataSource.saveToken(response.data.token);
           await loginLocalDataSource.saveRememberMe(rememberMe);
 
-          return SuccessBaseResponse<UserModel>(// send UserDto to (toDomain)
+          return SuccessBaseResponse<UserModel>(
+            // send UserDto to (toDomain)
             data: response.data.user.toDomain(),
           );
-        } on CacheException catch (e) { // handle local cases
-          return ErrorBaseResponse<UserModel>(
-            errorMessage: e.errorMessage,
-          );
-        } catch (e) { // handle local cases
+        } on CacheException catch (e) {
+          // handle local cases
+          return ErrorBaseResponse<UserModel>(errorMessage: e.errorMessage);
+        } catch (e) {
+          // handle local cases
           return ErrorBaseResponse<UserModel>(
             errorMessage: "Failed to save data locally",
           );
@@ -49,6 +51,19 @@ class LoginRepoImp implements LoginRepoContract {
         return ErrorBaseResponse<UserModel>(
           errorMessage: response.errorMessage,
         );
+    }
+  }
+
+  @override
+  Future<bool> isUserLoggedIn() async {
+    try {
+      final rememberMe = await loginLocalDataSource.getRememberMe();
+
+      final token = await loginLocalDataSource.getToken();
+
+      return rememberMe && (token != null && token.isNotEmpty);
+    } catch (e) {
+      return false;
     }
   }
 }

@@ -10,7 +10,9 @@ class LoginUseCase {
   Future<BaseResponse<UserModel>> call({
     required String email,
     required String password,
+    required bool rememberMe,
   }) async {
-    return loginRepo.login(email: email, password: password);
+
+    return loginRepo.login(email: email, password: password,rememberMe: rememberMe);
   }
 }

@@ -5,5 +5,8 @@ abstract class LoginRepoContract {
   Future<BaseResponse<UserModel>> login({
     required String email,
     required String password,
+    required bool rememberMe,
   });
+
+  Future<bool> isUserLoggedIn();
 }
