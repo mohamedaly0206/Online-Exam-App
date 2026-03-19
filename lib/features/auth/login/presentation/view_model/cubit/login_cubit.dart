@@ -14,10 +14,12 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginUseCase) : super(LoginState());
 
   final LoginUseCase _loginUseCase;
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool rememberMe = false;
   final formKey = GlobalKey<FormState>();
+
   @override
   Future<void> close() {
     emailController.dispose();
@@ -34,15 +36,19 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> _login(LoginSubmitIntent intent) async {
     emit(
       state.copyWith(
-        loginStateParam: state.loginState.copyWith(isLoadingParam: true,errorMessageParam: null,
-          dataParam: null,),
+        loginStateParam: state.loginState.copyWith(
+          isLoadingParam: true,
+          errorMessageParam: null,
+          dataParam: null,
+        ),
       ),
     );
 
     log(state.loginState.isLoading.toString());
     final response = await _loginUseCase.call(
       email: emailController.text,
-      password: passwordController.text, rememberMe: rememberMe,
+      password: passwordController.text,
+      rememberMe: rememberMe,
     );
 
     if (response is SuccessBaseResponse<UserModel>) {
@@ -54,7 +60,6 @@ class LoginCubit extends Cubit<LoginState> {
           ),
         ),
       );
-
     } else if (response is ErrorBaseResponse<UserModel>) {
       emit(
         state.copyWith(
