@@ -9,7 +9,7 @@ abstract class Failure {
 class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
 
-  static ServerFailure failureHandler(Exception e) {
+  static ServerFailure failureHandler(Object e) {
     if (e is DioException) {
       return ServerFailure.fromDioException(e);
     } else {
@@ -51,25 +51,12 @@ class ServerFailure extends Failure {
       return ServerFailure(errorMessageRes);
     } else if (statusCode == 404) {
       return ServerFailure('Opps there was an error, please try again');
-<<<<<<< HEAD
-    }
-    else if(statusCode == 409){
-      final message=response['message'].toString();
-      return ServerFailure(message);
-      
-    }
-    else if (statusCode == 500){
-      return ServerFailure('Internal server error, please try again later');
-    }
-    else{
-=======
     } else if (statusCode == 409) {
       final message = response['message'].toString();
       return ServerFailure(message);
     } else if (statusCode == 500) {
       return ServerFailure('Internal server error, please try again later');
     } else {
->>>>>>> e81d1bb5b776228d07313e6022e108702f8c529f
       return ServerFailure('Opps there was an error, please try again66');
     }
   }

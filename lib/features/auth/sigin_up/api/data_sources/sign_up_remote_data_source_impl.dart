@@ -19,12 +19,10 @@ class SignUpRemoteDataSourceImpl implements SignUpRemoteDataSourceContract {
     try {
       final response = await signUpApiClient.signUp(signUpRequestDto);
       return SuccessBaseResponse<SignUpResponseDto>(data: response);
-    } on DioException catch (e) {
-      return ErrorBaseResponse<SignUpResponseDto>(
-        errorMessage: ServerFailure.fromDioException(e).errorMessage,
-      );
     } catch (e) {
-      return ErrorBaseResponse<SignUpResponseDto>(errorMessage: e.toString());
+      return ErrorBaseResponse<SignUpResponseDto>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 }
