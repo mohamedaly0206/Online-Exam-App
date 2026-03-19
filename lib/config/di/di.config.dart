@@ -48,8 +48,8 @@ import '../../features/auth/login/data/data_sources/login_remote_data_source_con
 import '../../features/auth/login/data/repo/login_repo_imp.dart' as _i21;
 import '../../features/auth/login/domain/repo/login_repo_contract.dart'
     as _i844;
-import '../../features/auth/login/domain/use_cases/check_user_loggedIn_use_case.dart'
-    as _i443;
+import '../../features/auth/login/domain/use_cases/check_user_loggedin_use_case.dart'
+    as _i484;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/view_model/cubit/login_cubit.dart'
     as _i609;
@@ -106,8 +106,8 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i724.LoginLocalDataSourceContract>(),
       ),
     );
-    gh.factory<_i443.CheckUserLoggedInUseCase>(
-      () => _i443.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
+    gh.factory<_i484.CheckUserLoggedInUseCase>(
+      () => _i484.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
     );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i844.LoginRepoContract>()),

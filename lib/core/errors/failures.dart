@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 
 abstract class Failure {
   final String errorMessage;
@@ -7,6 +8,14 @@ abstract class Failure {
 
 class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
+
+  static ServerFailure failureHandler(Exception e) {
+    if (e is DioException) {
+      return ServerFailure.fromDioException(e);
+    } else {
+      return ServerFailure(AppStrings.errorMessage);
+    }
+  }
 
   factory ServerFailure.fromDioException(DioException exception) {
     switch (exception.type) {

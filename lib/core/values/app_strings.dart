@@ -74,4 +74,8 @@ class AppStrings {
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
   static const String loading = 'Loading';
+  static const String rememberMeKey = 'remember_me_key';
+  static const String errorMessage = 'Something went wrong, please try again later';
+  static const String storeCacheExceptionMessage = 'failed to store data locally, please try again later';
+  static const String getCacheExceptionMessage = 'failed to get data locally, please try again later';
 }

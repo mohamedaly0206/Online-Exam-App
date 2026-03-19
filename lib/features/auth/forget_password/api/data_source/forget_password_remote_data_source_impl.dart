@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
 import 'package:online_exam_app/core/values/api_param.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/forget_password/api/api_client/forget_password_api_client.dart';
 import 'package:online_exam_app/features/auth/forget_password/data/data_source/forget_password_remote_data_source_contract.dart';
 import 'package:online_exam_app/features/auth/forget_password/data/model/forget_password_dto.dart';
@@ -31,7 +32,7 @@ class ForgetPasswordRemoteDataSourceImpl
       );
     } catch (e) {
       return ErrorBaseResponse<ForgetPasswordDTO>(
-        errorMessage: 'unexpected error',
+        errorMessage: AppStrings.errorMessage,
       );
     }
   }
@@ -52,7 +53,7 @@ class ForgetPasswordRemoteDataSourceImpl
         errorMessage: ServerFailure.fromDioException(e).errorMessage,
       );
     } catch (e) {
-      return ErrorBaseResponse(errorMessage: 'unexpected error');
+      return ErrorBaseResponse(errorMessage:  AppStrings.errorMessage);
     }
   }
 
@@ -70,7 +71,7 @@ class ForgetPasswordRemoteDataSourceImpl
         errorMessage: ServerFailure.fromDioException(e).errorMessage,
       );
     } catch (e) {
-      return ErrorBaseResponse<VerifyResetCodeDTO>(errorMessage: 'unexpected error');
+      return ErrorBaseResponse<VerifyResetCodeDTO>(errorMessage:  AppStrings.errorMessage);
     }
   }
 }

@@ -22,7 +22,7 @@ class SignUpName extends StatelessWidget {
             ),
             controller: signUpCubit.firstNameController,
             validator: (value) =>
-                AppValidators.validateName(value, 'First Name'),
+                AppValidators.validateName(value, AppStrings.firstName),
             keyboardType: TextInputType.name,
           ),
         ),
@@ -36,7 +36,7 @@ class SignUpName extends StatelessWidget {
             ),
             controller: signUpCubit.lastNameController,
             validator: (value) =>
-                AppValidators.validateName(value, 'Last Name'),
+                AppValidators.validateName(value, AppStrings.lastName),
             keyboardType: TextInputType.name,
           ),
         ),
