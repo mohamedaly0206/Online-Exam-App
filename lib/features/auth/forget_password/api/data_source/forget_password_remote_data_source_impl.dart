@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
@@ -25,13 +24,9 @@ class ForgetPasswordRemoteDataSourceImpl
         ApiParam.email: email,
       });
       return SuccessBaseResponse<ForgetPasswordDTO>(data: response);
-    } on DioException catch (e) {
-      return ErrorBaseResponse<ForgetPasswordDTO>(
-        errorMessage: ServerFailure.fromDioException(e).errorMessage,
-      );
     } catch (e) {
       return ErrorBaseResponse<ForgetPasswordDTO>(
-        errorMessage: 'unexpected error',
+        errorMessage:ServerFailure.failureHandler(e).errorMessage,
       );
     }
   }
@@ -47,12 +42,8 @@ class ForgetPasswordRemoteDataSourceImpl
         ApiParam.newPassword: newPassword,
       });
       return SuccessBaseResponse<ResetPasswordDTO>(data: response);
-    } on DioException catch (e) {
-      return ErrorBaseResponse(
-        errorMessage: ServerFailure.fromDioException(e).errorMessage,
-      );
-    } catch (e) {
-      return ErrorBaseResponse(errorMessage: 'unexpected error');
+    }  catch (e) {
+      return ErrorBaseResponse( errorMessage:ServerFailure.failureHandler(e).errorMessage,);
     }
   }
 
@@ -65,12 +56,8 @@ class ForgetPasswordRemoteDataSourceImpl
         ApiParam.resetCode: resetCode,
       });
       return SuccessBaseResponse<VerifyResetCodeDTO>(data: response);
-    } on DioException catch (e) {
-      return ErrorBaseResponse<VerifyResetCodeDTO>(
-        errorMessage: ServerFailure.fromDioException(e).errorMessage,
-      );
-    } catch (e) {
-      return ErrorBaseResponse<VerifyResetCodeDTO>(errorMessage: 'unexpected error');
+    }  catch (e) {
+      return ErrorBaseResponse<VerifyResetCodeDTO>(errorMessage:ServerFailure.failureHandler(e).errorMessage,);
     }
   }
 }
