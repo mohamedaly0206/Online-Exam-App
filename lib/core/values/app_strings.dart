@@ -1,26 +1,32 @@
 class AppStrings {
   static const String appName = 'Online Exam App';
   static const String login = 'Login';
+  static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
+  static const String tokenKey = 'user_token';
   static const String hintEmailText = 'Enter your email';
   static const String password = 'Password';
   static const String hintPasswordText = 'Enter your password';
   static const String rememberMe = 'Remember me';
   static const String forgetPassword = 'Forget Password?';
-  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String dontHaveAccount = 'Don\'t have an account? ';
   static const String signUp = 'Sign up';
-  static const String signUpbutton = 'Signup';
+  static const String signUpButton = 'Signup';
   static const String userName = 'User name';
-  static const String hintNameText = 'Enter your user name';
+  static const String hintUserNameText = 'Enter your user name';
   static const String firstName = 'First name';
-  static const String hintFirstNameText = 'Enter your first name';
+  static const String hintFirstNameText = 'Enter first name';
   static const String lastName = 'Last name';
-  static const String hintLastNameText = 'Enter your last name';
+  static const String hintLastNameText = 'Enter last name';
+  static const String hintPasswordSignUpText = 'Enter password';
   static const String confirmPassword = 'Confirm password';
-  static const String hintConfirmPasswordText = 'confirm password';
+  static const String hintConfirmPasswordText = 'Confirm password';
   static const String phone = 'Phone Number';
   static const String hintPhoneText = 'Enter phone number';
-  static const String alreadyHaveAccount = 'Already have an account?';
+  static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String signUpSuccessMessage = 'Sign up successfully';
+  static const String signUpbutton = 'Signup';
+  static const String hintNameText = 'Enter your user name';
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';
@@ -48,15 +54,15 @@ class AppStrings {
   static const String math = 'Math';
   static const String art = 'Art';
   static const String science = 'Science';
-  static const String highlevel = 'High Level';
-  static const String middlelevel = 'Mid Level';
-  static const String lowlevel = 'Low Level';
+  static const String highLevel = 'High Level';
+  static const String middleLevel = 'Mid Level';
+  static const String lowLevel = 'Low Level';
   static const String startButton = 'Start';
   static const exam = 'Exam';
   static const String selectAnswer =
       'Select the correctly punctuated sentence.';
   static const nextButton = 'Next';
-  static const String backbutton = 'Back';
+  static const String backButton = 'Back';
   static const String finishButton = 'Finish';
   static const String timeOut = 'Time out !!';
   static const String viewScore = 'View score';
@@ -68,4 +74,8 @@ class AppStrings {
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
   static const String loading = 'Loading';
+  static const String rememberMeKey = 'remember_me_key';
+  static const String errorMessage = 'Something went wrong, please try again later';
+  static const String storeCacheExceptionMessage = 'failed to store data locally, please try again later';
+  static const String getCacheExceptionMessage = 'failed to get data locally, please try again later';
 }
