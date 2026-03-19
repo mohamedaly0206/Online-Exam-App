@@ -1,6 +1,7 @@
 class AppStrings {
   static const String appName = 'Online Exam App';
   static const String login = 'Login';
+  static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
   static const String tokenKey = 'user_token';
   static const String hintEmailText = 'Enter your email';
@@ -8,7 +9,7 @@ class AppStrings {
   static const String hintPasswordText = 'Enter your password';
   static const String rememberMe = 'Remember me';
   static const String forgetPassword = 'Forget Password?';
-  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String dontHaveAccount = 'Don\'t have an account? ';
   static const String signUp = 'Sign up';
   static const String signUpButton = 'Signup';
   static const String userName = 'User name';
@@ -24,16 +25,22 @@ class AppStrings {
   static const String hintPhoneText = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signUpSuccessMessage = 'Sign up successfully';
+<<<<<<< HEAD
+=======
+  static const String signUpbutton = 'Signup';
+  static const String hintNameText = 'Enter your user name';
+>>>>>>> e81d1bb5b776228d07313e6022e108702f8c529f
   static const String enterEmail =
       'Please enter your email associated to your account';
   static const String continueButton = 'Continue';
   static const String emailVerification = 'Email verification';
   static const String enterCode =
       'Please enter your code that send to your email address';
+  static const String invalidCode = 'Invalid code';
   static const String verifyButton = 'Didn\'t receive code? ';
   static const String resendButton = 'Resend';
   static const String resetPassword = 'Reset Password';
-  static const String resetPasswordhint =
+  static const String resetPasswordHint =
       'Password must not be empty and must contain 6 characters with upper case letter and one number at least ';
   static const String newPassword = 'New Password';
   static const String profile = 'Profile';
@@ -69,4 +76,9 @@ class AppStrings {
   static const String showResultButton = 'Show Results';
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
+  static const String loading = 'Loading';
+  static const String rememberMeKey = 'remember_me_key';
+  static const String errorMessage = 'Something went wrong, please try again later';
+  static const String storeCacheExceptionMessage = 'failed to store data locally, please try again later';
+  static const String getCacheExceptionMessage = 'failed to get data locally, please try again later';
 }
