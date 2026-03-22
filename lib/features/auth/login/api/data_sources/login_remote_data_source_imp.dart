@@ -21,7 +21,7 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSourceContract {
   }) async {
     try {
       final response = await loginApiClient.login(
-        body: {AppStrings.email: email, AppStrings.password: password},
+        body: {AppStrings.emailKey: email, AppStrings.passwordKey: password},
       );
 
       return SuccessBaseResponse<LoginResponse>(data: response);
