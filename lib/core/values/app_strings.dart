@@ -4,6 +4,7 @@ class AppStrings {
   static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
   static const String tokenKey = 'user_token';
+  static const String token = 'token';
   static const String hintEmailText = 'Enter your email';
   static const String password = 'Password';
   static const String hintPasswordText = 'Enter your password';
