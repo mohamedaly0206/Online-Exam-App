@@ -5,13 +5,13 @@ class AppValidators {
     }
 
     final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(email)|| !email.endsWith('@gmail.com')) {
+
+    if (!emailRegex.hasMatch(email)) {
       return 'This Email is not valid';
     }
 
     return null;
   }
-// todo(khalid): check this function it have much that the biasness need
   static String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return 'Password is required';
@@ -21,9 +21,7 @@ class AppValidators {
       return 'Password must be at least 8 characters';
     }
 
-    if (!RegExp(
-      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-    ).hasMatch(password)) {
+    if (!RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").hasMatch(password)) {
       return 'password must contain upper and lowercase, number and symbol';
     }
 
@@ -44,6 +42,30 @@ class AppValidators {
     if (value == null || value.trim().isEmpty) {
       return 'This field is required';
     }
+    return null;
+  }
+
+  static String? validateName(String? value, String fieldName) {
+    if (value == null || value.trim().isEmpty) {
+      return '$fieldName is required';
+    }
+
+    final trimmedValue = value.trim();
+
+    if (trimmedValue.length < 3) {
+      return '$fieldName length must be at least 3 characters long';
+    }
+
+    final nameRegex = RegExp(r'^[a-zA-Z]+$');
+
+    if (!nameRegex.hasMatch(trimmedValue)) {
+      return '$fieldName must contain letters only';
+    }
+    if (value.contains(' ')) {
+    return '$fieldName cannot contain spaces';
+  }
+
+
     return null;
   }
 
