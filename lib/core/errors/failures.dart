@@ -9,7 +9,7 @@ abstract class Failure {
 class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
 
-  static ServerFailure failureHandler(Exception e) {
+  static ServerFailure failureHandler(Object e) {
     if (e is DioException) {
       return ServerFailure.fromDioException(e);
     } else {
