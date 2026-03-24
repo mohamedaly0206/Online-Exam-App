@@ -104,7 +104,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           context,
                         ).colorScheme.onSurface,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(
+                          context,
+                        ).push(AppRouterPaths.kForgetPasswordView);
+                      },
                       child: Text(AppStrings.forgetPassword),
                     ),
                   ],
@@ -131,7 +135,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouterPaths.kSignUpView);
+                      },
                       style: TextButton.styleFrom(
                         textStyle: Theme.of(context).textTheme.headlineMedium
                             ?.copyWith(decoration: TextDecoration.underline),
