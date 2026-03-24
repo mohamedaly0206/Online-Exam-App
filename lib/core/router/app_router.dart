@@ -18,7 +18,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouterPaths.kSignUpView,
-        builder: (context, state) => SignUpView(), 
+        builder: (context, state) => SignUpView(),
       ),
       GoRoute(
         path: AppRouterPaths.kForgetPasswordView,

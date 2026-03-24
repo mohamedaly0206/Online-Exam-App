@@ -26,7 +26,7 @@ class ForgetPasswordRemoteDataSourceImpl
       return SuccessBaseResponse<ForgetPasswordDTO>(data: response);
     } catch (e) {
       return ErrorBaseResponse<ForgetPasswordDTO>(
-        errorMessage:ServerFailure.failureHandler(e).errorMessage,
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
       );
     }
   }
@@ -42,8 +42,10 @@ class ForgetPasswordRemoteDataSourceImpl
         ApiParam.newPassword: newPassword,
       });
       return SuccessBaseResponse<ResetPasswordDTO>(data: response);
-    }  catch (e) {
-      return ErrorBaseResponse( errorMessage:ServerFailure.failureHandler(e).errorMessage,);
+    } catch (e) {
+      return ErrorBaseResponse(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 
@@ -56,8 +58,10 @@ class ForgetPasswordRemoteDataSourceImpl
         ApiParam.resetCode: resetCode,
       });
       return SuccessBaseResponse<VerifyResetCodeDTO>(data: response);
-    }  catch (e) {
-      return ErrorBaseResponse<VerifyResetCodeDTO>(errorMessage:ServerFailure.failureHandler(e).errorMessage,);
+    } catch (e) {
+      return ErrorBaseResponse<VerifyResetCodeDTO>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 }

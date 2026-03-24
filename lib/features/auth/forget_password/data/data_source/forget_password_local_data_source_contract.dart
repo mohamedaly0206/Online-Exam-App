@@ -1,3 +1,1 @@
-abstract class ForgetPasswordLocalDataSourceContract {
-  
-}
+abstract class ForgetPasswordLocalDataSourceContract {}

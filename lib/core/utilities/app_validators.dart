@@ -12,6 +12,7 @@ class AppValidators {
 
     return null;
   }
+
   static String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return 'Password is required';
@@ -21,7 +22,9 @@ class AppValidators {
       return 'Password must be at least 8 characters';
     }
 
-    if (!RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").hasMatch(password)) {
+    if (!RegExp(
+      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+    ).hasMatch(password)) {
       return 'password must contain upper and lowercase, number and symbol';
     }
 
@@ -62,9 +65,8 @@ class AppValidators {
       return '$fieldName must contain letters only';
     }
     if (value.contains(' ')) {
-    return '$fieldName cannot contain spaces';
-  }
-
+      return '$fieldName cannot contain spaces';
+    }
 
     return null;
   }

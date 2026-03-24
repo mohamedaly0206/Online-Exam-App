@@ -13,7 +13,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ForgetPasswordCubit>(
-      create: (context) =>  getIt.get<ForgetPasswordCubit>(),
+      create: (context) => getIt.get<ForgetPasswordCubit>(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppStrings.password),

@@ -1,5 +1,5 @@
 class VerifyResetCodeModel {
-    final String status;
+  final String status;
 
   VerifyResetCodeModel({required this.status});
 }
