@@ -4,14 +4,14 @@ import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/features/auth/sign_up/domain/models/request/sign_up_request_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/state/sign_up_state.dart';
-import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/widgets/already_have_an_account.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/widgets/sign_up_name.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/widgets/sign_up_password.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});
