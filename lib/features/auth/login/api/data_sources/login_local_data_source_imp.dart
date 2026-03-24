@@ -19,30 +19,35 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
   }
 
   @override
-  Future<String?> getToken() async{
-    try{
+  Future<String?> getToken() async {
+    try {
       return await SecurityStorageModule.getSecuredString(AppStrings.token);
-    }catch(e){
+    } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.getCacheExceptionMessage,
       );
     }
   }
+
   @override
   Future<void> saveRememberMe(bool value) {
-    try{
-      return  SecurityStorageModule.setSecuredBool(AppStrings.rememberMeKey, value);
-    }catch(e){
+    try {
+      return SecurityStorageModule.setSecuredBool(
+        AppStrings.rememberMeKey,
+        value,
+      );
+    } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.storeCacheExceptionMessage,
       );
     }
   }
+
   @override
   Future<bool> getRememberMe() {
-    try{
-      return  SecurityStorageModule.getSecuredBool(AppStrings.rememberMeKey);
-    }catch(e){
+    try {
+      return SecurityStorageModule.getSecuredBool(AppStrings.rememberMeKey);
+    } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.getCacheExceptionMessage,
       );

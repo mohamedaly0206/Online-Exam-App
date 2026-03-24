@@ -13,7 +13,10 @@ class LoginUseCase {
     required String password,
     required bool rememberMe,
   }) async {
-
-    return loginRepo.login(email: email, password: password,rememberMe: rememberMe);
+    return loginRepo.login(
+      email: email,
+      password: password,
+      rememberMe: rememberMe,
+    );
   }
 }

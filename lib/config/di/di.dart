@@ -9,5 +9,4 @@ final getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: true, // default
 )
-void configureDependencies() =>
-    getIt.init();
+void configureDependencies() => getIt.init();

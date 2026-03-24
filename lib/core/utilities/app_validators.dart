@@ -23,8 +23,8 @@ class AppValidators {
     }
 
     if (!RegExp(
-        r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
-        .hasMatch(password)) {
+      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+    ).hasMatch(password)) {
       return 'password must contain upper and lowercase, number and symbol';
     }
 
@@ -42,18 +42,14 @@ class AppValidators {
   }
 
   static String? validateEmptyTextFormField(String? value) {
-    if (value == null || value
-        .trim()
-        .isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return 'This field is required';
     }
     return null;
   }
 
   static String? validateName(String? value, String fieldName) {
-    if (value == null || value
-        .trim()
-        .isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return '$fieldName is required';
     }
 
@@ -71,7 +67,6 @@ class AppValidators {
     if (value.contains(' ')) {
       return '$fieldName cannot contain spaces';
     }
-
 
     return null;
   }

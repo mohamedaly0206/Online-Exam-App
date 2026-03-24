@@ -7,10 +7,5 @@ void showSnackBar({
 }) {
   ScaffoldMessenger.of(
     context,
-  ).showSnackBar(
-    SnackBar(
-      backgroundColor: color,
-      content: Text(message),
-    ),
-  );
+  ).showSnackBar(SnackBar(backgroundColor: color, content: Text(message)));
 }
