@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+
+import '../../../../../core/router/router_paths.dart';
 import '../view_model/cubit/login_cubit.dart';
 import '../view_model/intent/login_intent.dart';
 import '../view_model/state/login_state.dart';
@@ -17,7 +18,6 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>(); // = bloc provider.of(context)
