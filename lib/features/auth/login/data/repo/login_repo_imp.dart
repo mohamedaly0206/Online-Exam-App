@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/auth/login/data/data_sources/login_loca
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_remote_data_source_contract.dart';
 import 'package:online_exam_app/features/auth/login/data/models/login_response.dart';
 
-import '../../../../../config/models/user_model.dart';
+import '../../../../../config/models/user_model/user_model.dart';
 import '../../../../../core/errors/failures.dart';
 import '../../domain/repo/login_repo_contract.dart';
 

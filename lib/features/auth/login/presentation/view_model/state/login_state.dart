@@ -1,5 +1,5 @@
 import '../../../../../../config/base_state/base_state.dart';
-import '../../../../../../config/models/user_model.dart';
+import '../../../../../../config/models/user_model/user_model.dart';
 
 class LoginState {
   final BaseState<UserModel> loginState;
