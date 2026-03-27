@@ -84,4 +84,12 @@ class AppStrings {
       'failed to store data locally, please try again later';
   static const String getCacheExceptionMessage =
       'failed to get data locally, please try again later';
+  static const String question = 'Question';
+  static const String minutes = 'Minutes';
+  static const String timeRange = 'From: 1.00  To: 6.00';
+  static const String instructions = 'Instructions';
+  static const String examInstructions =
+      '''1- Read each question thoroughly before answering.
+2- Manage your time wisely.
+3- Once you submit the exam, you cannot retake it.''';
 }

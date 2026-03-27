@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/config/models/metadata/metadata_model.dart';
 import 'package:online_exam_app/features/exams/data/model/exam_model_dto.dart';
+
+import '../../../../config/models/metadata_model/metadata_model.dart';
 
 part 'get_exams_response.g.dart';
 
