@@ -12,4 +12,5 @@ class ApiEndpoints {
   static const String resetPassword = '$baseUrl/auth/resetPassword';
   static const String getLoggedUserInfo = '$baseUrl/auth/profileData';
   static const String editProfile = '$baseUrl/auth/editProfile';
+  static const String getAllExams ="$baseUrl/exams";
 }

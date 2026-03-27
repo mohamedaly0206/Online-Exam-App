@@ -1,6 +1,5 @@
-import 'package:online_exam_app/core/values/constants.dart';
-
 class ApiParam {
+  static const String token='token';
   static const String getSubjectExams = 'subject';
   static const String getAllExamQuestions = 'exam';
   static const String email = 'email';
