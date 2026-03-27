@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/exams/data/data_source/exams_local_data_source_contract.dart';
 import 'package:online_exam_app/features/exams/domain/repo/exams_repo_contract.dart';
@@ -6,6 +7,7 @@ import '../../domain/model/exams_model.dart';
 import '../data_source/exams_remote_data_source_contract.dart';
 import '../model/exam_model_dto.dart';
 
+@Singleton(as: ExamsRepoContract)
 class ExamsRepoImpl extends ExamsRepoContract {
   ExamsRepoImpl({
     required this.examsRemoteDataSourceContract,
