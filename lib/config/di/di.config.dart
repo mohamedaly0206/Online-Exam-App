@@ -66,6 +66,8 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_case.dart'
     as _i45;
 import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart'
     as _i667;
+import '../../features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart'
+    as _i764;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -76,6 +78,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
+    gh.factory<_i764.ExamsQuestionsCubit>(() => _i764.ExamsQuestionsCubit());
     gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.lazySingleton<_i187.ForgetPasswordLocalDataSourceContract>(
       () => _i428.ForgetPasswordLocalDataSourceImpl(),

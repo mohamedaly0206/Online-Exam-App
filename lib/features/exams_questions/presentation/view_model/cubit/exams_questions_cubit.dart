@@ -1,7 +1,48 @@
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 part '../states/exams_questions_state.dart';
 
+@injectable
 class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
-  ExamsQuestionsCubit() : super(ExamsQuestionsInitial());
+  ExamsQuestionsCubit() : super(ExamsQuestionsState());
+  Timer? timer;
+
+  void handleExamsQuestionsIntent(ExamsQuestionsIntent intent) {
+    switch (intent) {
+      case GetExamsQuestionsIntent():
+        break;
+      case StartTimerIntent():
+        _countDownTimer();
+        break;
+      case NextQuestionIntent():
+        _nextQuestion();
+        break;
+      case PreviousQuestionIntent():
+        _previousQuestion();
+        break;
+      case SubmitQuestionIntent():
+        break;
+    }
+  }
+
+  void _countDownTimer() {
+    const oneSec = Duration(seconds: 1);
+    timer = Timer.periodic(oneSec, (timer) {
+      if (state.remainingSeconds == 0) {
+        timer.cancel();
+      } else {
+        emit(state.copyWith(remainingSeconds: state.remainingSeconds - 1));
+      }
+    });
+  }
+
+  void _nextQuestion() {
+    emit(state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1));
+  }
+
+  void _previousQuestion() {
+    emit(state.copyWith(currentQuestionIndex: state.currentQuestionIndex - 1));
+  }
 }
