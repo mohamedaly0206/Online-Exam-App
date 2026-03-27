@@ -10,12 +10,12 @@ class AnswerPercentage extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CircularPercentageIndicator(
-          answers: 18,
+          answers: 28,
           isCorrectAnswer: true,
           totalAnswers: 30,
         ),
         CircularPercentageIndicator(
-          answers: 12,
+          answers: 2,
           isCorrectAnswer: false,
           totalAnswers: 30,
         ),

@@ -7,6 +7,16 @@ class ExamQuestion extends StatelessWidget {
   final bool isSingleAnswer = true;
   @override
   Widget build(BuildContext context) {
-    return isSingleAnswer ? SingleAnswerQuestion() : MultipleAnswerQuestion();
+    return Column(
+      children: [
+        Text(
+          'Select the correctly punctuated sentence.',
+          style: Theme.of(context).textTheme.titleMedium,
+          maxLines: 3,
+        ),
+        SizedBox(height: 24),
+        isSingleAnswer ? SingleAnswerQuestion() : MultipleAnswerQuestion(),
+      ],
+    );
   }
 }

@@ -8,12 +8,6 @@ class MultipleAnswerQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          'Select the correctly punctuated sentence.',
-          style: Theme.of(context).textTheme.titleMedium,
-          maxLines: 3,
-        ),
-        SizedBox(height: 24),
         ListView.builder(
           shrinkWrap: true,
           itemCount: 4,
