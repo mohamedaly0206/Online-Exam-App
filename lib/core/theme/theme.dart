@@ -70,6 +70,7 @@ class AppTheme {
         foregroundColor: AppColors.whiteColor,
         textStyle: AppTextStyles.textStyleMedium16,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        side: BorderSide(color: AppColors.primaryColor),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -120,6 +121,8 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
+      titleSpacing: 8,
+      leadingWidth: 22,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
@@ -134,6 +137,14 @@ class AppTheme {
       unselectedItemColor: AppColors.placeHolderColor,
       selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
       unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+    ),
+
+    checkboxTheme: CheckboxThemeData(
+      side: BorderSide(color: AppColors.primaryColor, width: 2),
+    ),
+
+    radioTheme: RadioThemeData(
+      side: BorderSide(color: AppColors.primaryColor, width: 2),
     ),
   );
 }

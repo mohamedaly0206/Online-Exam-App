@@ -72,7 +72,7 @@ class AppStrings {
   static const String examScore = 'Exam Score';
   static const String yourScore = 'Your Score';
   static const String correct = 'Correct';
-  static const String wrong = 'Wrong';
+  static const String inCorrect = 'Incorrect';
   static const String showResultButton = 'Show Results';
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
