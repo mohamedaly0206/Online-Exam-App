@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/config/models/dto/user_dto.dart';
+import 'package:online_exam_app/config/models/user_model/user_dto.dart';
 import 'dart:convert';
 
 import 'package:online_exam_app/features/auth/sign_up/domain/models/response/sign_up_response_model.dart';

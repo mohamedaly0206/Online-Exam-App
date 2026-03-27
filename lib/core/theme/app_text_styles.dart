@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
-  //todo: this is a constant and we will move it to AppConstants when we will marge the branches
   static const String fontFamily = 'Inter';
 
   // SemiBold

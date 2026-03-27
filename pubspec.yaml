@@ -16,7 +16,7 @@ dependencies:
   injectable:
   get_it:
   retrofit: ^4.9.2
-  json_annotation: ^4.9.0
+  json_annotation: ^4.11.0
   dio: ^5.9.1
   flutter_bloc: ^9.1.1
   flutter_svg: ^2.2.4
