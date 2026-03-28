@@ -39,7 +39,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     final response = await _signUpUseCase.invoke(intent.requestModel);
     if (response is SuccessBaseResponse<SignUpResponseModel>) {
       await SecurityStorageModule.setSecuredString(
-        AppStrings.tokenKey,
+        AppStrings.token,
         response.data.token,
       );
       emit(

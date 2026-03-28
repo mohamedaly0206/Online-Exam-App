@@ -2,9 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
 import 'package:online_exam_app/features/exams/data/model/exam_model_dto.dart';
-
-import 'package:online_exam_app/features/exams/data/model/get_exams_response.dart';
-
 import '../../data/data_source/exams_remote_data_source_contract.dart';
 import '../api_client/exams_api_client.dart';
 
@@ -16,7 +13,7 @@ class ExamsRemoteDataSourceImpl extends ExamsRemoteDataSourceContract {
   @override
   Future<BaseResponse<List<ExamModelDTO>>> getExams({
     required String token,
-    required String? subjectId,
+    String? subjectId,
   }) async {
     try {
       final response = await examsApiClient.getExams(token, subjectId);

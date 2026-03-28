@@ -18,11 +18,12 @@ class ExamsRepoImpl extends ExamsRepoContract {
   final ExamsLocalDataSourceContract examsLocalDataSourceContract;
   @override
   Future<BaseResponse<List<ExamModel>>> getExams({
-    required String token,
-    required String? subjectId,
+     String? subjectId,
   }) async {
+    // get token from local storage
+    final token = await examsLocalDataSourceContract.getToken();
     final response = await examsRemoteDataSourceContract.getExams(
-      token: token,
+      token: token ?? '',
       subjectId: subjectId,
     );
 

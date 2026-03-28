@@ -10,7 +10,6 @@ class GetExamsByCategoryUseCase {
   final ExamsRepoContract examsRepoContract;
 
   Future<BaseResponse<List<ExamModel>>> call({
-    required String token,
-    required String? subjectId,
-  }) async=> examsRepoContract.getExams(token: token, subjectId: subjectId);
+     String? subjectId,
+  }) async=> examsRepoContract.getExams( subjectId: subjectId);
 }

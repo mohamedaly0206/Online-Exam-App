@@ -1,13 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
-import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams/domain/model/exams_model.dart';
 import 'package:online_exam_app/features/exams/domain/use_case/get_exams_by_category_use_case.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/state/exams_state.dart';
-
 import '../../../../../config/base_response/base_response.dart';
 import '../intent/exams_intent.dart';
 
@@ -24,22 +19,15 @@ class ExamsCubit extends Cubit<ExamsState> {
     }
   }
 
-  Future<String> _getToken() async =>
-      await SecurityStorageModule.getSecuredString(AppStrings.tokenKey);
-
   Future<void> _getExams() async {
     emit(
       state.copyWith(
         examsStateParam: state.examsState.copyWith(isLoadingParam: true),
       ),
     );
-    final token = await _getToken();
-    log('the token is: $token');
-
     //! you should pass subjectId, but there is an wrong in the api
     final response = await getExamsByCategoryUseCase(
-      subjectId: null,
-      token: token,
+      // subjectId: null,
     );
     switch (response) {
       case SuccessBaseResponse<List<ExamModel>>():
