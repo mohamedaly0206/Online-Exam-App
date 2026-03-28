@@ -7,7 +7,6 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ti
 
 class ExamQuestionsViewBody extends StatelessWidget {
   const ExamQuestionsViewBody({super.key});
-  final totalQuestions = 30;
   @override
   Widget build(BuildContext context) {
     return BlocListener<ExamsQuestionsCubit, ExamsQuestionsState>(
@@ -28,13 +27,14 @@ class ExamQuestionsViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Question ${state.currentQuestionIndex + 1} of $totalQuestions',
+                  'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 SizedBox(height: 8),
                 LinearProgressIndicator(
                   minHeight: 6,
-                  value: (state.currentQuestionIndex + 1) / totalQuestions,
+                  value:
+                      (state.currentQuestionIndex + 1) / state.totalQuestions,
                 ),
                 SizedBox(height: 8),
                 ExamQuestion(),

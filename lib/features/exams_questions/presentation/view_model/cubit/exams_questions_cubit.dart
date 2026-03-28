@@ -24,6 +24,9 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         break;
       case SubmitQuestionIntent():
         break;
+      case StopTimerIntent():
+        _closeTimer();
+        break;
     }
   }
 
@@ -38,11 +41,23 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     });
   }
 
+  void _closeTimer() {
+    timer?.cancel();
+  }
+
   void _nextQuestion() {
-    emit(state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1));
+    if (state.currentQuestionIndex < state.totalQuestions - 1) {
+      emit(
+        state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1),
+      );
+    }
   }
 
   void _previousQuestion() {
-    emit(state.copyWith(currentQuestionIndex: state.currentQuestionIndex - 1));
+    if (state.currentQuestionIndex > 0) {
+      emit(
+        state.copyWith(currentQuestionIndex: state.currentQuestionIndex - 1),
+      );
+    }
   }
 }

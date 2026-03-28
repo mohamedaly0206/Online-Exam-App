@@ -18,27 +18,39 @@ class ExamsQuestionsView extends StatelessWidget {
       create: (context) =>
           getIt<ExamsQuestionsCubit>()
             ..handleExamsQuestionsIntent(StartTimerIntent()),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: AppBar(
-                leading: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Center(
-                    child: SvgPicture.asset(Assets.icons.arrowBackIcon),
+      child: Builder(
+        builder: (context) {
+          return SafeArea(
+            child: Scaffold(
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: AppBar(
+                    leading: InkWell(
+                      onTap: () {
+                        context
+                            .read<ExamsQuestionsCubit>()
+                            .handleExamsQuestionsIntent(StopTimerIntent());
+                        Navigator.pop(context);
+                      },
+                      child: Center(
+                        child: SvgPicture.asset(Assets.icons.arrowBackIcon),
+                      ),
+                    ),
+                    title: const Text(AppStrings.exam),
+
+                    actions: [ExamTimer()],
                   ),
                 ),
-                title: const Text(AppStrings.exam),
-
-                actions: [ExamTimer()],
               ),
+              body: ExamQuestionsViewBody(),
             ),
-          ),
-          body: ExamQuestionsViewBody(),
-        ),
+          );
+        },
       ),
     );
   }
