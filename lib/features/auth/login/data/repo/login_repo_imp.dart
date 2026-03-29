@@ -67,24 +67,33 @@ class LoginRepoImp implements LoginRepoContract {
 
   @override
   Future<BaseResponse<UserModel>> getLoggedUserInfo() async {
-    final token = await loginLocalDataSource.getToken();
+    try {
+      final token = await loginLocalDataSource.getToken();
 
-    if (token != null && token.isNotEmpty) {
-      final response = await loginRemoteDataSource.getLoggedUserInfo(token);
+      if (token != null && token.isNotEmpty) {
+        final response = await loginRemoteDataSource.getLoggedUserInfo(token);
 
-      switch (response) {
-        case SuccessBaseResponse<LoginResponse>():
-          return SuccessBaseResponse<UserModel>(
-            data: response.data.user!.toDomain(),
-          );
+        switch (response) {
+          case SuccessBaseResponse<LoginResponse>():
+            return SuccessBaseResponse<UserModel>(
+              data: response.data.user!.toDomain(),
+            );
 
-        case ErrorBaseResponse<LoginResponse>():
-          return ErrorBaseResponse<UserModel>(
-            errorMessage: response.errorMessage,
-          );
+          case ErrorBaseResponse<LoginResponse>():
+            return ErrorBaseResponse<UserModel>(
+              errorMessage: response.errorMessage,
+            );
+        }
+      } else {
+        return ErrorBaseResponse<UserModel>(
+          errorMessage: "No saved token found",
+        );
       }
-    } else {
-      return ErrorBaseResponse<UserModel>(errorMessage: "No saved token found");
+    } catch (e) {
+      // handle local data source error and remote data source error
+      return ErrorBaseResponse<UserModel>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 }
