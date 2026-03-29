@@ -22,6 +22,14 @@ dependencies:
   flutter_svg: ^2.2.4
   flutter_otp_text_field: ^1.5.1+1
   go_router: ^17.1.0
+  flutter_native_splash: ^2.3.11
+
+flutter_native_splash:
+    color: "#f9f9f9"
+    image: assets/icons/logo.png
+    android_12:
+      image: assets/icons/logo.png
+      color: "#f9f9f9"
 
 dev_dependencies:
   flutter_test:
