@@ -31,12 +31,12 @@ class LoginRepoImp implements LoginRepoContract {
         // try to store token locally
         try {
           // local can throw exception, so there is try-catch
-          await loginLocalDataSource.saveToken(response.data.token);
+          await loginLocalDataSource.saveToken(response.data.token!);
           await loginLocalDataSource.saveRememberMe(rememberMe);
 
           return SuccessBaseResponse<UserModel>(
             // send UserDto to (toDomain)
-            data: response.data.user.toDomain(),
+            data: response.data.user!.toDomain(),
           );
         } catch (e) {
           return ErrorBaseResponse<UserModel>(
@@ -53,6 +53,7 @@ class LoginRepoImp implements LoginRepoContract {
 
   @override
   Future<bool> isUserLoggedIn() async {
+    // for route
     try {
       final rememberMe = await loginLocalDataSource.getRememberMe();
 
@@ -61,6 +62,29 @@ class LoginRepoImp implements LoginRepoContract {
       return rememberMe && (token != null && token.isNotEmpty);
     } catch (e) {
       return false;
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserModel>> getLoggedUserInfo() async {
+    final token = await loginLocalDataSource.getToken();
+
+    if (token != null && token.isNotEmpty) {
+      final response = await loginRemoteDataSource.getLoggedUserInfo(token);
+
+      switch (response) {
+        case SuccessBaseResponse<LoginResponse>():
+          return SuccessBaseResponse<UserModel>(
+            data: response.data.user!.toDomain(),
+          );
+
+        case ErrorBaseResponse<LoginResponse>():
+          return ErrorBaseResponse<UserModel>(
+            errorMessage: response.errorMessage,
+          );
+      }
+    } else {
+      return ErrorBaseResponse<UserModel>(errorMessage: "No saved token found");
     }
   }
 }

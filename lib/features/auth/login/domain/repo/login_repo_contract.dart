@@ -10,4 +10,6 @@ abstract class LoginRepoContract {
   });
 
   Future<bool> isUserLoggedIn();
+
+  Future<BaseResponse<UserModel>> getLoggedUserInfo();
 }
