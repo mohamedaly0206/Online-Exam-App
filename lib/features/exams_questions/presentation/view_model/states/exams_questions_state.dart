@@ -1,36 +1,48 @@
 part of '../cubit/exams_questions_cubit.dart';
 
 class ExamsQuestionsState {
-  const ExamsQuestionsState({
-    this.remainingSeconds = 120,
-    this.currentQuestionIndex = 0,
-    this.initialSeconds = 120,
-    this.totalQuestions = 30,
-  });
-  final int remainingSeconds;
-  final int initialSeconds;
+  BaseState<ExamQuestionsModel> examsQuestionsState =
+      BaseState<ExamQuestionsModel>(isLoading: true);
+  final int examTimeInSeconds;
+  final int initialTimeInSeconds;
   final int currentQuestionIndex;
   final int totalQuestions;
-  bool get isHalfTime => remainingSeconds <= (initialSeconds / 2);
-  double get remainingSecondsInMinutes => remainingSeconds / 60;
-  double get progress => (currentQuestionIndex + 1);
+
+  bool get isHalfTime => examTimeInSeconds <= (initialTimeInSeconds / 2);
+  double get progress =>
+      totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
   String get formattedTime {
-    final minutes = remainingSeconds ~/ 60;
-    final secs = remainingSeconds % 60;
+    final minutes = examTimeInSeconds ~/ 60;
+    final seconds = examTimeInSeconds % 60;
 
     return '${minutes.toString().padLeft(2, '0')}:'
-        '${secs.toString().padLeft(2, '0')}';
+        '${seconds.toString().padLeft(2, '0')}';
+  }
+
+  ExamsQuestionsState({
+    this.examTimeInSeconds = 0,
+    this.initialTimeInSeconds = 0,
+    this.currentQuestionIndex = 0,
+    this.totalQuestions = 0,
+    BaseState<ExamQuestionsModel>? examsQuestionsState,
+  }) {
+    this.examsQuestionsState =
+        examsQuestionsState ?? BaseState<ExamQuestionsModel>(isLoading: true);
   }
 
   ExamsQuestionsState copyWith({
-    int? remainingSeconds,
+    BaseState<ExamQuestionsModel>? examsQuestionsState,
+    int? examTimeInSeconds,
     int? currentQuestionIndex,
-    int? initialSeconds,
+    int? initialTimeInSeconds,
+    int? totalQuestions,
   }) {
     return ExamsQuestionsState(
-      remainingSeconds: remainingSeconds ?? this.remainingSeconds,
-      initialSeconds: initialSeconds ?? this.initialSeconds,
+      examTimeInSeconds: examTimeInSeconds ?? this.examTimeInSeconds,
+      initialTimeInSeconds: initialTimeInSeconds ?? this.initialTimeInSeconds,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
+      examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
+      totalQuestions: totalQuestions ?? this.totalQuestions,
     );
   }
 }

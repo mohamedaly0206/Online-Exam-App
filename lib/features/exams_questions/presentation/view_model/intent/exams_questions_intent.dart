@@ -1,5 +1,7 @@
 abstract class ExamsQuestionsIntent {}
 
+class StartExam extends ExamsQuestionsIntent {}
+
 class GetExamsQuestionsIntent extends ExamsQuestionsIntent {}
 
 class NextQuestionIntent extends ExamsQuestionsIntent {}

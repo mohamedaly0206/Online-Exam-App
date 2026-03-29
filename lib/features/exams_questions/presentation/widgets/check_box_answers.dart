@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/answer_model.dart';
 
 class CheckBoxAnswers extends StatelessWidget {
-  const CheckBoxAnswers({super.key});
+  const CheckBoxAnswers({super.key, required this.answers});
+  final AnswerModel answers;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class CheckBoxAnswers extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(
-            'answer 1',
+           answers.answerText,
             style: Theme.of(context).textTheme.bodyMedium,
             maxLines: 3,
           ),

@@ -17,7 +17,7 @@ class ExamsQuestionsView extends StatelessWidget {
     return BlocProvider<ExamsQuestionsCubit>(
       create: (context) =>
           getIt<ExamsQuestionsCubit>()
-            ..handleExamsQuestionsIntent(StartTimerIntent()),
+            ..handleExamsQuestionsIntent(GetExamsQuestionsIntent()),
       child: Builder(
         builder: (context) {
           return SafeArea(
