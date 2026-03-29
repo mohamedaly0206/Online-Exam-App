@@ -3,7 +3,5 @@ import 'package:online_exam_app/features/exams_questions/domain/models/question_
 class ExamQuestionsModel {
   final List<QuestionModel> questions;
 
-  ExamQuestionsModel({
-    required this.questions,
-  });
+  ExamQuestionsModel({required this.questions});
 }

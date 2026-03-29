@@ -30,7 +30,7 @@ class Exam {
   Map<String, dynamic> toJson() => _$ExamToJson(this);
 
   ExamsModel toDomain() => ExamsModel(
-        duration: duration ?? 0,
-        numberOfQuestions: numberOfQuestions ?? 0,
-      );
+    duration: duration ?? 0,
+    numberOfQuestions: numberOfQuestions ?? 0,
+  );
 }

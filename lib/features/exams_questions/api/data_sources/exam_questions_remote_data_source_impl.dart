@@ -6,19 +6,26 @@ import 'package:online_exam_app/features/exams_questions/data/data_sources/exam_
 import 'package:online_exam_app/features/exams_questions/data/models/exam_questions_dto.dart';
 
 @Injectable(as: ExamsQuestionsRemoteDataSourceContract)
-class ExamQuetsionsRemoteDataSourceImp implements ExamsQuestionsRemoteDataSourceContract{
+class ExamQuetsionsRemoteDataSourceImp
+    implements ExamsQuestionsRemoteDataSourceContract {
   final ExamQuetsionsApiClient examQuetsionsApiClient;
 
   ExamQuetsionsRemoteDataSourceImp(this.examQuetsionsApiClient);
   @override
-  Future<BaseResponse<ExamQuestionsDto>> getExamsQuestions({String? examId, String? token}) async{
-try{
-  final response = await examQuetsionsApiClient.getExamsQuestions( examId: examId!, token: token!);
-  return SuccessBaseResponse<ExamQuestionsDto>(data: response);
-  
-}catch(e){
-  return ErrorBaseResponse<ExamQuestionsDto>(errorMessage: ServerFailure.failureHandler(e).errorMessage);
-
-}  }
-
+  Future<BaseResponse<ExamQuestionsDto>> getExamsQuestions({
+    String? examId,
+    String? token,
+  }) async {
+    try {
+      final response = await examQuetsionsApiClient.getExamsQuestions(
+        examId: examId!,
+        token: token!,
+      );
+      return SuccessBaseResponse<ExamQuestionsDto>(data: response);
+    } catch (e) {
+      return ErrorBaseResponse<ExamQuestionsDto>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
+    }
+  }
 }

@@ -16,7 +16,7 @@ class CheckBoxAnswers extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(
-           answers.answerText,
+            answers.answerText,
             style: Theme.of(context).textTheme.bodyMedium,
             maxLines: 3,
           ),

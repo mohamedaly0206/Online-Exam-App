@@ -2,15 +2,13 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/question_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_model.dart';
 part 'exam_questions_dto.g.dart';
+
 @JsonSerializable(explicitToJson: true)
 class ExamQuestionsDto {
   final String? message;
   final List<Question>? questions;
 
-  ExamQuestionsDto({
-    this.message,
-    this.questions,
-  });
+  ExamQuestionsDto({this.message, this.questions});
 
   factory ExamQuestionsDto.fromJson(Map<String, dynamic> json) =>
       _$ExamQuestionsDtoFromJson(json);

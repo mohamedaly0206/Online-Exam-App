@@ -4,8 +4,5 @@ class AnswerModel {
   final AnswerKey answerKey;
   final String answerText;
 
-  AnswerModel({
-    required this.answerKey,
-    required this.answerText,
-  });
+  AnswerModel({required this.answerKey, required this.answerText});
 }

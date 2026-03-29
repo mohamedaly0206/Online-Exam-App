@@ -34,16 +34,15 @@ class Question {
       _$QuestionFromJson(json);
 
   Map<String, dynamic> toJson() => _$QuestionToJson(this);
-  QuestionModel todomain(){
+  QuestionModel todomain() {
     return QuestionModel(
-      answers: answers?.map((e) => e.toDomain()).toList()??[],
+      answers: answers?.map((e) => e.toDomain()).toList() ?? [],
       type: type,
-      question: question?? '',
-      correctAnswer: correct?? AnswerKey.A1,
+      question: question ?? '',
+      correctAnswer: correct ?? AnswerKey.A1,
       exam: exam?.toDomain(),
     );
   }
-
 }
 
 enum QuestionType {
