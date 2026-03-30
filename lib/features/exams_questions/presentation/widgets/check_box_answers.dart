@@ -22,7 +22,7 @@ class CheckBoxAnswers extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 16),
           child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
+              color:  isChecked ? Theme.of(context).colorScheme.onTertiaryFixed : Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(

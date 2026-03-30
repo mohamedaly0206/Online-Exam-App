@@ -16,6 +16,7 @@ class AppTheme {
       onPrimary: AppColors.whiteColor,
       primaryContainer: AppColors.lightBlueColor,
       onPrimaryContainer: AppColors.primaryColor,
+      primaryFixed: AppColors.babyBlueColor,
 
       secondary: AppColors.secondaryColor,
       onSecondary: AppColors.whiteColor,
@@ -87,6 +88,9 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
         textStyle: AppTextStyles.textStyleRegular16.copyWith(
