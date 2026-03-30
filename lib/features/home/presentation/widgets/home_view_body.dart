@@ -7,5 +7,4 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(child: Text('<<<<<<<<<you r now in home>>>>>>>>>>'));
   }
-
 }
