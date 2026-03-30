@@ -39,7 +39,9 @@ class TimeOutWidget extends StatelessWidget {
             SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                GoRouter.of(context).push(AppRouterPaths.kexamScoreView);
+                GoRouter.of(
+                  context,
+                ).pushReplacement(AppRouterPaths.kexamScoreView);
               },
               child: Text(AppStrings.viewScore),
             ),

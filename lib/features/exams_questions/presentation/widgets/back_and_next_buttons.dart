@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/widgets/quit_exam_alert_dialog.dart';
 
 class BackAndNextButtons extends StatelessWidget {
   const BackAndNextButtons({super.key});
@@ -53,9 +54,22 @@ class BackAndNextButtons extends StatelessWidget {
                 ),
                 onPressed: () {
                   state.totalQuestions - 1 == state.currentQuestionIndex
-                      ? GoRouter.of(
-                          context,
-                        ).pushReplacement(AppRouterPaths.kexamScoreView)
+                      ? showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => QuitExamAlertDialog(
+                            onPositivePressed: () => GoRouter.of(
+                              context,
+                            ).pushReplacement(AppRouterPaths.kexamScoreView),
+                            posButtonColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                            title: AppStrings.finishExam,
+                            contentMessage: AppStrings.finishExamMessage,
+                            positiveButtonText: AppStrings.viewScore,
+                            negativeButtonText: AppStrings.cancel,
+                          ),
+                        )
                       : examsQuestionsCubit.handleExamsQuestionsIntent(
                           NextQuestionIntent(),
                         );

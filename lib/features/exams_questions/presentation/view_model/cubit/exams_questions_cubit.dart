@@ -23,7 +23,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
       case StartExam():
         _startExam();
         break;
-        case StopTimerIntent():
+      case StopTimerIntent():
         _closeTimer();
         break;
       case NextQuestionIntent():
