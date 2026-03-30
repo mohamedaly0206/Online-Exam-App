@@ -22,44 +22,61 @@ class ExamsQuestionsView extends StatelessWidget {
           getIt<ExamsQuestionsCubit>()..handleExamsQuestionsIntent(StartExam()),
       child: Builder(
         builder: (context) {
-          return SafeArea(
-            child: Scaffold(
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(kToolbarHeight),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: AppBar(
-                    leading: InkWell(
-                      onTap: () {
-                        showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (context) => QuitExamAlertDialog(
-                            posButtonColor: Colors.red,
-                            title: AppStrings.exitExam,
-                            contentMessage: AppStrings.exitExamMessage,
-                            negativeButtonText: AppStrings.no,
-                            positiveButtonText: AppStrings.yes,
-                            onPositivePressed: () => GoRouter.of(
-                              context,
-                            ).go(AppRouterPaths.kHomeView),
-                          ),
-                        );
-                      },
-                      child: Center(
-                        child: SvgPicture.asset(Assets.icons.arrowBackIcon),
-                      ),
+          return PopScope(
+            canPop: false,
+            onPopInvokedWithResult: (didPop, result) {
+              showDialog(
+                context: context,
+                builder: (context) => QuitExamAlertDialog(
+                  posButtonColor: Colors.red,
+                  title: AppStrings.exitExam,
+                  contentMessage: AppStrings.exitExamMessage,
+                  negativeButtonText: AppStrings.no,
+                  positiveButtonText: AppStrings.yes,
+                  onPositivePressed: () =>
+                      GoRouter.of(context).go(AppRouterPaths.kHomeView),
+                ),
+              );
+            },
+            child: SafeArea(
+              child: Scaffold(
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(kToolbarHeight),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
                     ),
-                    title: const Text(AppStrings.exam),
+                    child: AppBar(
+                      leading: InkWell(
+                        onTap: () {
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (context) => QuitExamAlertDialog(
+                              posButtonColor: Colors.red,
+                              title: AppStrings.exitExam,
+                              contentMessage: AppStrings.exitExamMessage,
+                              negativeButtonText: AppStrings.no,
+                              positiveButtonText: AppStrings.yes,
+                              onPositivePressed: () => GoRouter.of(
+                                context,
+                              ).go(AppRouterPaths.kHomeView),
+                            ),
+                          );
+                        },
+                        child: Center(
+                          child: SvgPicture.asset(Assets.icons.arrowBackIcon),
+                        ),
+                      ),
+                      title: const Text(AppStrings.exam),
 
-                    actions: [ExamTimer()],
+                      actions: [ExamTimer()],
+                    ),
                   ),
                 ),
+                body: ExamQuestionsViewBody(),
               ),
-              body: ExamQuestionsViewBody(),
             ),
           );
         },

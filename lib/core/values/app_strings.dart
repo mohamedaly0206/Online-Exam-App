@@ -85,11 +85,11 @@ class AppStrings {
   static const String getCacheExceptionMessage =
       'failed to get data locally, please try again later';
   static const String exitExam = 'Exit Exam';
-  static const String exitExamMessage = 'Are you sure you want to exit exam !!';
+  static const String exitExamMessage = 'Are you sure you want to exit exam !!\Your progress will be lost';
   static const String finishExam = 'Finish Exam';
   static const String finishExamMessage =
       'Are you sure you want to finish exam !!';
-  static const String cancel = 'Cancel';
+  static const String cancel = 'Cancel';  
   static const String yes = 'Yes';
   static const String no = 'No';
 }
