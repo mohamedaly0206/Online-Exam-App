@@ -108,9 +108,9 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void _selectMultipleAnswer(SelectMultipleAnswerIntent intent) {
     final updatedAnswers = Map<int, dynamic>.from(state.selectedAnswers);
 
-    final currentList =
-        (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[])
-            as List<AnswerKey>;
+    final currentList = List<AnswerKey>.from(
+      updatedAnswers[intent.questionIndex] ?? [],
+    );
 
     if (currentList.contains(intent.answerKey)) {
       currentList.remove(intent.answerKey);
