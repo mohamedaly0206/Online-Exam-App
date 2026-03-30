@@ -17,7 +17,9 @@ class ExamQuestionsViewBody extends StatelessWidget {
           showDialog(
             barrierDismissible: false,
             context: context,
-            builder: (context) => Dialog(child: TimeOutWidget()),
+            builder: (context) => Dialog(child: TimeOutWidget(
+              cubit:  context.read<ExamsQuestionsCubit>(),
+            )),
           );
         }
       },

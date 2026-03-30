@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
 class ScoreViewBodyButtons extends StatelessWidget {
@@ -19,7 +21,9 @@ class ScoreViewBodyButtons extends StatelessWidget {
               Theme.of(context).colorScheme.onSecondary,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).pushReplacement(AppRouterPaths.kexamQuestionsView);
+          },
           child: Text(
             AppStrings.startAgain,
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(

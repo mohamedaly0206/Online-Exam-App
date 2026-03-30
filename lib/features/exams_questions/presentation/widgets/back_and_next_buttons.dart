@@ -11,6 +11,7 @@ class BackAndNextButtons extends StatelessWidget {
   const BackAndNextButtons({super.key});
   @override
   Widget build(BuildContext context) {
+    
     final ExamsQuestionsCubit examsQuestionsCubit = context
         .read<ExamsQuestionsCubit>();
     return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
@@ -53,14 +54,21 @@ class BackAndNextButtons extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  final cubit = context.read<ExamsQuestionsCubit>();
                   state.totalQuestions - 1 == state.currentQuestionIndex
                       ? showDialog(
                           context: context,
                           barrierDismissible: false,
                           builder: (context) => QuitExamAlertDialog(
-                            onPositivePressed: () => GoRouter.of(
-                              context,
-                            ).pushReplacement(AppRouterPaths.kexamScoreView),
+                            onPositivePressed: () async {
+                              cubit.handleExamsQuestionsIntent(
+                                SubmitQuestionIntent(),
+                              );
+                              GoRouter.of(context).pushReplacement(
+                                AppRouterPaths.kexamScoreView,
+                                extra: cubit,
+                              );
+                            },
                             posButtonColor: Theme.of(
                               context,
                             ).colorScheme.primary,

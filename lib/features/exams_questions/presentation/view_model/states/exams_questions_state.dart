@@ -7,6 +7,8 @@ class ExamsQuestionsState {
   final int initialTimeInSeconds;
   final int currentQuestionIndex;
   final int totalQuestions;
+  final int totalCorrectAnswers;
+  final int totalWrongAnswers;
   final Map<int, dynamic> selectedAnswers;
   bool get isHalfTime => examTimeInSeconds <= (initialTimeInSeconds / 2);
   double get progress =>
@@ -24,6 +26,8 @@ class ExamsQuestionsState {
     this.initialTimeInSeconds = 0,
     this.currentQuestionIndex = 0,
     this.totalQuestions = 0,
+    this.totalWrongAnswers = 0,
+    this.totalCorrectAnswers = 0,
     Map<int, dynamic>? selectedAnswers,
 
     BaseState<ExamQuestionsModel>? examsQuestionsState,
@@ -38,9 +42,13 @@ class ExamsQuestionsState {
     int? currentQuestionIndex,
     int? initialTimeInSeconds,
     int? totalQuestions,
+    int? totalCorrectAnswers,
+    int? totalWrongAnswers,
     Map<int, dynamic>? selectedAnswers,
   }) {
     return ExamsQuestionsState(
+      totalCorrectAnswers:totalCorrectAnswers ?? this.totalCorrectAnswers,
+      totalWrongAnswers: totalWrongAnswers ?? this.totalWrongAnswers,
       examTimeInSeconds: examTimeInSeconds ?? this.examTimeInSeconds,
       initialTimeInSeconds: initialTimeInSeconds ?? this.initialTimeInSeconds,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,

@@ -11,9 +11,14 @@ class CircularPercentageIndicator extends StatelessWidget {
   final double answers;
   final double totalAnswers;
   final bool isCorrectAnswer;
-  double get percentage => answers / totalAnswers;
-  double get correctAnswersPersentage =>
-      isCorrectAnswer ? answers : (totalAnswers - answers) / totalAnswers;
+  double get percentage =>
+      totalAnswers == 0 ? 0 : (answers / totalAnswers).clamp(0, 1);
+  double get correctAnswersPersentage {
+  if (totalAnswers == 0) return 0;
+  return isCorrectAnswer
+      ? answers / totalAnswers
+      : (totalAnswers - answers) / totalAnswers;
+}
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
@@ -30,7 +35,9 @@ class CircularPercentageIndicator extends StatelessWidget {
           ? Theme.of(context).colorScheme.primary
           : Theme.of(context).colorScheme.error,
       backgroundColor: Colors.transparent,
-      startAngle: isCorrectAnswer ? 0 : 360 * correctAnswersPersentage,
+      startAngle:isCorrectAnswer
+    ? 0
+    : (360 * correctAnswersPersentage).clamp(0, 360),
       animation: true,
       animationDuration: 800,
     );

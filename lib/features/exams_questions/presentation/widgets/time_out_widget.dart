@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 
 class TimeOutWidget extends StatelessWidget {
-  const TimeOutWidget({super.key});
+  const TimeOutWidget({super.key, required this.cubit});
+  final ExamsQuestionsCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class TimeOutWidget extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(
                   context,
-                ).pushReplacement(AppRouterPaths.kexamScoreView);
+                ).pushReplacement(AppRouterPaths.kexamScoreView, extra:cubit );
               },
               child: Text(AppStrings.viewScore),
             ),

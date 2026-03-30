@@ -6,6 +6,7 @@ import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
 import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_model.dart';
 import 'package:online_exam_app/features/exams_questions/domain/use_cases/get_exam_questions_usecase.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
@@ -33,11 +34,20 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         _previousQuestion();
         break;
       case SubmitQuestionIntent():
+        _submitExam();
         break;
       case SelectSingleAnswerIntent():
         _selectSingleAnswer(intent);
         break;
+      case SelectMultipleAnswerIntent():
+        _selectMultipleAnswer(intent);
+        break;
     }
+  }
+
+  void _submitExam() {
+    _closeTimer();
+    calculateExamScore();
   }
 
   Future<void> _startExam() async {
@@ -94,21 +104,21 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     emit(state.copyWith(selectedAnswers: updatedAnswer));
     log('${state.selectedAnswers[state.currentQuestionIndex]}');
   }
-  //   void _selectMultipleAnswer(SelectAnswerIntent intent) {
-  //   final updatedAnswers = Map<int, dynamic>.from(state.selectedAnswers);
+    void _selectMultipleAnswer(SelectMultipleAnswerIntent intent) {
+    final updatedAnswers = Map<int, dynamic>.from(state.selectedAnswers);
 
-  //   final currentList = (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[]) as List<AnswerKey>;
+    final currentList = (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[]) as List<AnswerKey>;
 
-  //   if (currentList.contains(intent.answerKey)) {
-  //     currentList.remove(intent.answerKey);
-  //   } else {
-  //     currentList.add(intent.answerKey);
-  //   }
+    if (currentList.contains(intent.answerKey)) {
+      currentList.remove(intent.answerKey);
+    } else {
+      currentList.add(intent.answerKey);
+    }
 
-  //   updatedAnswers[intent.questionIndex] = currentList;
+    updatedAnswers[intent.questionIndex] = currentList;
 
-  //   emit(state.copyWith(selectedAnswers: updatedAnswers));
-  // }
+    emit(state.copyWith(selectedAnswers: updatedAnswers));
+  }
 
   void _startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -140,4 +150,28 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
       );
     }
   }
+
+  void calculateExamScore() {
+    int correctAnswers = 0;
+    int wrongAnswers = state.totalQuestions;
+    for (int i = 0; i < state.totalQuestions; i++) {
+      if (state.selectedAnswers[i] ==
+          state.examsQuestionsState.data!.questions[i].correctAnswer) {
+        correctAnswers++;
+        wrongAnswers--;
+      }
+    }
+    emit(
+      state.copyWith(
+        totalCorrectAnswers: correctAnswers,
+        totalWrongAnswers: wrongAnswers,
+      ),
+    );
+    log('correct answers:${state.totalCorrectAnswers} wrong answers:${state.totalWrongAnswers}');
+  }
+  @override
+Future<void> close() {
+  timer?.cancel();
+  return super.close();
+}
 }
