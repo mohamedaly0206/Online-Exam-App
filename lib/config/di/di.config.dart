@@ -50,6 +50,8 @@ import '../../features/auth/login/domain/repo/login_repo_contract.dart'
     as _i844;
 import '../../features/auth/login/domain/use_cases/check_user_loggedIn_use_case.dart'
     as _i443;
+import '../../features/auth/login/domain/use_cases/get_logged_user_info_use_case.dart'
+    as _i171;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/view_model/cubit/login_cubit.dart'
     as _i609;
@@ -66,6 +68,8 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_case.dart'
     as _i45;
 import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart'
     as _i667;
+import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart'
+    as _i369;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -109,6 +113,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i443.CheckUserLoggedInUseCase>(
       () => _i443.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
     );
+    gh.factory<_i171.GetLoggedUserInfoUseCase>(
+      () => _i171.GetLoggedUserInfoUseCase(gh<_i844.LoginRepoContract>()),
+    );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i844.LoginRepoContract>()),
     );
@@ -121,6 +128,12 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i246.ForgetPasswordRemoteDataSourceContract>(),
         forgetPasswordLocalDataSourceContract:
             gh<_i187.ForgetPasswordLocalDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i369.SplashCubit>(
+      () => _i369.SplashCubit(
+        gh<_i443.CheckUserLoggedInUseCase>(),
+        gh<_i171.GetLoggedUserInfoUseCase>(),
       ),
     );
     gh.factory<_i222.ForgetPasswordUseCase>(
