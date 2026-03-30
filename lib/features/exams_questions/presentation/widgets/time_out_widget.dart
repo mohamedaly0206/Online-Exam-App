@@ -5,6 +5,7 @@ import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class TimeOutWidget extends StatelessWidget {
   const TimeOutWidget({super.key, required this.cubit});
@@ -41,6 +42,7 @@ class TimeOutWidget extends StatelessWidget {
             SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
+                cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
                 GoRouter.of(
                   context,
                 ).pushReplacement(AppRouterPaths.kexamScoreView, extra: cubit);

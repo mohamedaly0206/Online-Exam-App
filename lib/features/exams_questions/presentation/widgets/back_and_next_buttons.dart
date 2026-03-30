@@ -59,7 +59,7 @@ class BackAndNextButtons extends StatelessWidget {
                           context: context,
                           barrierDismissible: false,
                           builder: (context) => QuitExamAlertDialog(
-                            onPositivePressed: () async {
+                            onPositivePressed: () {
                               cubit.handleExamsQuestionsIntent(
                                 SubmitQuestionIntent(),
                               );

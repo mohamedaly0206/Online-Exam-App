@@ -14,12 +14,11 @@ class ExamQuestionsViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state.examTimeInSeconds == 0 &&
             state.examsQuestionsState.errorMessage == null) {
+          final cubit = context.read<ExamsQuestionsCubit>();
           showDialog(
             barrierDismissible: false,
             context: context,
-            builder: (context) => Dialog(
-              child: TimeOutWidget(cubit: context.read<ExamsQuestionsCubit>()),
-            ),
+            builder: (context) => Dialog(child: TimeOutWidget(cubit: cubit)),
           );
         }
       },
