@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
 part 'subject_dto.g.dart';
 
 @JsonSerializable()
@@ -13,6 +14,12 @@ class SubjectDto {
   final String? createdAt;
 
   SubjectDto({this.id, this.name, this.icon, this.createdAt});
+
+  SubjectModel toDomain() => SubjectModel(
+    id: id ??"",
+    name: name??"",
+    icon: icon??"",
+  );
 
   factory SubjectDto.fromJson(Map<String, dynamic> json) =>
       _$SubjectDtoFromJson(json);

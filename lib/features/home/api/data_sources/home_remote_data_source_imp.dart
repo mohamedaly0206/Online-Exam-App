@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
+import 'package:online_exam_app/features/home/data/models/responses/subject_dto.dart';
 import 'package:online_exam_app/features/home/data/models/subjects_response.dart';
 
 import '../../../../config/security_storage/security_storage_module.dart';
@@ -16,7 +17,7 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSourceContract {
   HomeRemoteDataSourceImp(this.homeApiClient);
 
   @override
-  Future<BaseResponse<SubjectsResponse>> getAllSubjects() async {
+  Future<BaseResponse<List<SubjectDto>>> getAllSubjects() async {
     try {
       String token = await SecurityStorageModule.getSecuredString('token');
       if (token.isEmpty) {
@@ -24,10 +25,10 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSourceContract {
           errorMessage: AppStrings.storeCacheExceptionMessage,
         );
       }
-      final response = await homeApiClient.getAllSubjects(token: token);
-      return SuccessBaseResponse<SubjectsResponse>(data: response);
+      SubjectsResponse response = await homeApiClient.getAllSubjects(token: token);
+      return SuccessBaseResponse<List<SubjectDto>>(data: response.subjects ?? []);
     } catch (e) {
-      return ErrorBaseResponse<SubjectsResponse>(
+      return ErrorBaseResponse<List<SubjectDto>>(
         errorMessage: ServerFailure.failureHandler(e).errorMessage,
       );
     }

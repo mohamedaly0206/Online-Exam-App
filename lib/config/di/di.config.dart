@@ -70,6 +70,12 @@ import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.
     as _i667;
 import '../../features/home/api/api_client/get_all_subjects_api_client.dart'
     as _i71;
+import '../../features/home/api/data_sources/home_remote_data_source_imp.dart'
+    as _i800;
+import '../../features/home/data/data_source/home_remote_data_source_contract.dart'
+    as _i936;
+import '../../features/home/data/repo/home_repo_imp.dart' as _i197;
+import '../../features/home/domain/repo/home_repo_contract.dart' as _i396;
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart'
     as _i369;
 import '../dio/dio_module.dart' as _i977;
@@ -125,6 +131,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i539.SignUpRemoteDataSourceContract>(
       () => _i1052.SignUpRemoteDataSourceImpl(gh<_i858.SignUpApiClient>()),
     );
+    gh.factory<_i936.HomeRemoteDataSourceContract>(
+      () => _i800.HomeRemoteDataSourceImp(gh<_i71.HomeApiClient>()),
+    );
     gh.lazySingleton<_i665.ForgetPasswordRepoContract>(
       () => _i610.ForgetPasswordRepoImpl(
         forgetPasswordRemoteDataSourceContract:
@@ -153,6 +162,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i747.VerifyResetCodeUseCase(
         forgetPasswordRepoContract: gh<_i665.ForgetPasswordRepoContract>(),
       ),
+    );
+    gh.factory<_i396.HomeRepoContract>(
+      () => _i197.HomeRepoImp(gh<_i936.HomeRemoteDataSourceContract>()),
     );
     gh.factory<_i366.SignUpRepoContract>(
       () => _i150.SignUpRepoImpl(gh<_i539.SignUpRemoteDataSourceContract>()),
