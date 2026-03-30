@@ -47,7 +47,7 @@ class ExamsQuestionsState {
     Map<int, dynamic>? selectedAnswers,
   }) {
     return ExamsQuestionsState(
-      totalCorrectAnswers:totalCorrectAnswers ?? this.totalCorrectAnswers,
+      totalCorrectAnswers: totalCorrectAnswers ?? this.totalCorrectAnswers,
       totalWrongAnswers: totalWrongAnswers ?? this.totalWrongAnswers,
       examTimeInSeconds: examTimeInSeconds ?? this.examTimeInSeconds,
       initialTimeInSeconds: initialTimeInSeconds ?? this.initialTimeInSeconds,

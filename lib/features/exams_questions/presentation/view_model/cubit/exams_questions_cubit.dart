@@ -104,10 +104,13 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     emit(state.copyWith(selectedAnswers: updatedAnswer));
     log('${state.selectedAnswers[state.currentQuestionIndex]}');
   }
-    void _selectMultipleAnswer(SelectMultipleAnswerIntent intent) {
+
+  void _selectMultipleAnswer(SelectMultipleAnswerIntent intent) {
     final updatedAnswers = Map<int, dynamic>.from(state.selectedAnswers);
 
-    final currentList = (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[]) as List<AnswerKey>;
+    final currentList =
+        (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[])
+            as List<AnswerKey>;
 
     if (currentList.contains(intent.answerKey)) {
       currentList.remove(intent.answerKey);
@@ -167,11 +170,14 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         totalWrongAnswers: wrongAnswers,
       ),
     );
-    log('correct answers:${state.totalCorrectAnswers} wrong answers:${state.totalWrongAnswers}');
+    log(
+      'correct answers:${state.totalCorrectAnswers} wrong answers:${state.totalWrongAnswers}',
+    );
   }
+
   @override
-Future<void> close() {
-  timer?.cancel();
-  return super.close();
-}
+  Future<void> close() {
+    timer?.cancel();
+    return super.close();
+  }
 }

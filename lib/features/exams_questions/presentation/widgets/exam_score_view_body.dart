@@ -5,9 +5,14 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ex
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/score_view_body_buttons.dart';
 
 class ExamScoreViewBody extends StatelessWidget {
-  const ExamScoreViewBody({super.key, required this.correctAnswers, required this.wrongAnswers, required this.totalQuestions});
-  final int correctAnswers ;
-  final int wrongAnswers ;
+  const ExamScoreViewBody({
+    super.key,
+    required this.correctAnswers,
+    required this.wrongAnswers,
+    required this.totalQuestions,
+  });
+  final int correctAnswers;
+  final int wrongAnswers;
   final int totalQuestions;
 
   @override
@@ -30,7 +35,7 @@ class ExamScoreViewBody extends StatelessWidget {
                   corrrectAnswers: correctAnswers,
                   wrongAnswers: wrongAnswers,
                   totalAnswers: totalQuestions,
-                 ),
+                ),
               ),
               const SizedBox(width: 23),
               Expanded(

@@ -11,7 +11,6 @@ class BackAndNextButtons extends StatelessWidget {
   const BackAndNextButtons({super.key});
   @override
   Widget build(BuildContext context) {
-    
     final ExamsQuestionsCubit examsQuestionsCubit = context
         .read<ExamsQuestionsCubit>();
     return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(

@@ -38,9 +38,9 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kexamScoreView,
         builder: (context, state) {
-    final cubit = state.extra as ExamsQuestionsCubit;
-    return ExamScoreView(cubit: cubit);
-  },
+          final cubit = state.extra as ExamsQuestionsCubit;
+          return ExamScoreView(cubit: cubit);
+        },
       ),
     ],
   );

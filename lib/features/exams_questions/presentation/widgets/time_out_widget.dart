@@ -43,7 +43,7 @@ class TimeOutWidget extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(
                   context,
-                ).pushReplacement(AppRouterPaths.kexamScoreView, extra:cubit );
+                ).pushReplacement(AppRouterPaths.kexamScoreView, extra: cubit);
               },
               child: Text(AppStrings.viewScore),
             ),

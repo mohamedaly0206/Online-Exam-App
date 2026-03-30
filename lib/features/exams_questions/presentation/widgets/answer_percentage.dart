@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/circular_percentage_indicator.dart';
 
 class AnswerPercentage extends StatelessWidget {
-  const AnswerPercentage({super.key, required this.corrrectAnswers, required this.wrongAnswers, required this.totalAnswers});
-  final int corrrectAnswers ;
-  final int wrongAnswers ;
+  const AnswerPercentage({
+    super.key,
+    required this.corrrectAnswers,
+    required this.wrongAnswers,
+    required this.totalAnswers,
+  });
+  final int corrrectAnswers;
+  final int wrongAnswers;
   final int totalAnswers;
 
   @override
@@ -18,7 +23,7 @@ class AnswerPercentage extends StatelessWidget {
           totalAnswers: totalAnswers.toDouble(),
         ),
         CircularPercentageIndicator(
-          answers:wrongAnswers.toDouble(),
+          answers: wrongAnswers.toDouble(),
           isCorrectAnswer: false,
           totalAnswers: totalAnswers.toDouble(),
         ),
