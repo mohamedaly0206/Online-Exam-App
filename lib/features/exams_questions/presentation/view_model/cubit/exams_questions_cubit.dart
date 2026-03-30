@@ -139,7 +139,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   }
 
   void _nextQuestion() {
-    if (state.currentQuestionIndex < state.totalQuestions - 1) {
+    if (state.currentQuestionIndex < state.totalQuestions - 1&&state.selectedAnswers[state.currentQuestionIndex]!=null) {
       emit(
         state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1),
       );
