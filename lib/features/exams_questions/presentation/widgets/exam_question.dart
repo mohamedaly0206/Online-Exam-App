@@ -39,6 +39,8 @@ class ExamQuestion extends StatelessWidget {
           ],
         );
       },
+       buildWhen: (prev, curr) =>
+      prev.currentQuestionIndex != curr.currentQuestionIndex,
     );
   }
 }

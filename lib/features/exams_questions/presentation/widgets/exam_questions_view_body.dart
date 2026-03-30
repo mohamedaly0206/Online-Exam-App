@@ -33,35 +33,32 @@ class ExamQuestionsViewBody extends StatelessWidget {
             ),
           );
         }
-        return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  SizedBox(height: 8),
-                  LinearProgressIndicator(
-                    minHeight: 6,
-                    value: state.totalQuestions == 0
-                        ? 0
-                        : (state.currentQuestionIndex + 1) /
-                              state.totalQuestions,
-                  ),
-                  SizedBox(height: 8),
-                  ExamQuestion(),
-                  SizedBox(height: 80),
-                  BackAndNextButtons(),
-                ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Question ${state.currentQuestionIndex + 1} of ${state.totalQuestions}',
+                style: Theme.of(context).textTheme.displayLarge,
               ),
-            );
-          },
+              SizedBox(height: 8),
+              LinearProgressIndicator(
+                minHeight: 6,
+                value: state.totalQuestions == 0
+                    ? 0
+                    : (state.currentQuestionIndex + 1) / state.totalQuestions,
+              ),
+              SizedBox(height: 8),
+              ExamQuestion(),
+              SizedBox(height: 80),
+              BackAndNextButtons(),
+            ],
+          ),
         );
       },
+      buildWhen: (prev, curr) =>
+      prev.examsQuestionsState != curr.examsQuestionsState,
     );
   }
 }

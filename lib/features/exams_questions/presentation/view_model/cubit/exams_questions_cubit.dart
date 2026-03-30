@@ -23,7 +23,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
       case StartExam():
         _startExam();
         break;
-      case StopTimerIntent():
+        case StopTimerIntent():
         _closeTimer();
         break;
       case NextQuestionIntent():
@@ -91,7 +91,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void _selectSingleAnswer(SelectSingleAnswerIntent intent) {
     final updatedAnswer = Map<int, dynamic>.from(state.selectedAnswers);
     updatedAnswer[intent.questionIndex] = intent.answerKey;
-    emit(state.copyWith(selectedAnswers: state.selectedAnswers));
+    emit(state.copyWith(selectedAnswers: updatedAnswer));
     log('${state.selectedAnswers[state.currentQuestionIndex]}');
   }
   //   void _selectMultipleAnswer(SelectAnswerIntent intent) {

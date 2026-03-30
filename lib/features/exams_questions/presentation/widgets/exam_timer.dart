@@ -24,6 +24,8 @@ class ExamTimer extends StatelessWidget {
           ],
         );
       },
+       buildWhen: (prev, curr) =>
+      prev.examTimeInSeconds != curr.examTimeInSeconds,
     );
   }
 }
