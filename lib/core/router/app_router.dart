@@ -4,8 +4,8 @@ import 'package:online_exam_app/core/router/router_paths.dart';
 import '../../config/di/di.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
-import '../../features/auth/login/presentation/widgets/home_test.dart';
 import '../../features/auth/sign_up/presentation/views/sign_up_view.dart';
+import '../../features/home/presentation/view/home_view.dart';
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart';
 import '../../features/splash/presentation/view_model/intent/splash_intent.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
@@ -37,7 +37,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouterPaths.kHomeView,
-        builder: (context, state) => const HomeTest(),
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );
