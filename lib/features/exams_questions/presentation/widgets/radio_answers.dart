@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/models/answer_model.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class RadioAnswers extends StatelessWidget {
   const RadioAnswers({super.key, required this.answers});
@@ -24,7 +26,21 @@ class RadioAnswers extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
                 maxLines: 3,
               ),
-              leading: Radio(value: 1, groupValue: 0, onChanged: (value) {}),
+              leading: RadioGroup<AnswerKey>(
+                onChanged: (value) {
+                  context
+                      .read<ExamsQuestionsCubit>()
+                      .handleExamsQuestionsIntent(
+                        SelectSingleAnswerIntent(
+                          state.currentQuestionIndex,
+                          value!,
+                        ),
+                      );
+                },
+                groupValue: state.selectedAnswers[state.currentQuestionIndex],
+
+                child: Radio<AnswerKey>(value: answers.answerKey),
+              ),
             ),
           ),
         );

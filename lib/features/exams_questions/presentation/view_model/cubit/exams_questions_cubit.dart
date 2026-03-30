@@ -20,11 +20,11 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
 
   void handleExamsQuestionsIntent(ExamsQuestionsIntent intent) {
     switch (intent) {
-      case GetExamsQuestionsIntent():
-        _getExamsQuestions();
+      case StartExam():
+        _startExam();
         break;
-      case StartTimerIntent():
-        _startTimer();
+      case StopTimerIntent():
+        _closeTimer();
         break;
       case NextQuestionIntent():
         _nextQuestion();
@@ -34,10 +34,15 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         break;
       case SubmitQuestionIntent():
         break;
-      case StopTimerIntent():
-        _closeTimer();
+      case SelectSingleAnswerIntent():
+        _selectSingleAnswer(intent);
         break;
     }
+  }
+
+  Future<void> _startExam() async {
+    await _getExamsQuestions();
+    _startTimer();
   }
 
   Future<void> _getExamsQuestions() async {
@@ -65,7 +70,6 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
                 response.data.questions.first.exam!.duration * 60,
           ),
         );
-        _startTimer();
 
         log('Sucess getting question...');
 
@@ -83,6 +87,28 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         break;
     }
   }
+
+  void _selectSingleAnswer(SelectSingleAnswerIntent intent) {
+    final updatedAnswer = Map<int, dynamic>.from(state.selectedAnswers);
+    updatedAnswer[intent.questionIndex] = intent.answerKey;
+    emit(state.copyWith(selectedAnswers: state.selectedAnswers));
+    log('${state.selectedAnswers[state.currentQuestionIndex]}');
+  }
+  //   void _selectMultipleAnswer(SelectAnswerIntent intent) {
+  //   final updatedAnswers = Map<int, dynamic>.from(state.selectedAnswers);
+
+  //   final currentList = (updatedAnswers[intent.questionIndex] ?? <AnswerKey>[]) as List<AnswerKey>;
+
+  //   if (currentList.contains(intent.answerKey)) {
+  //     currentList.remove(intent.answerKey);
+  //   } else {
+  //     currentList.add(intent.answerKey);
+  //   }
+
+  //   updatedAnswers[intent.questionIndex] = currentList;
+
+  //   emit(state.copyWith(selectedAnswers: updatedAnswers));
+  // }
 
   void _startTimer() {
     const oneSec = Duration(seconds: 1);

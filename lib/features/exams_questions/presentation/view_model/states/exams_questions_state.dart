@@ -7,7 +7,7 @@ class ExamsQuestionsState {
   final int initialTimeInSeconds;
   final int currentQuestionIndex;
   final int totalQuestions;
-
+  final Map<int, dynamic> selectedAnswers;
   bool get isHalfTime => examTimeInSeconds <= (initialTimeInSeconds / 2);
   double get progress =>
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
@@ -24,8 +24,10 @@ class ExamsQuestionsState {
     this.initialTimeInSeconds = 0,
     this.currentQuestionIndex = 0,
     this.totalQuestions = 0,
+    Map<int, dynamic>? selectedAnswers,
+
     BaseState<ExamQuestionsModel>? examsQuestionsState,
-  }) {
+  }) : selectedAnswers = selectedAnswers ?? {} {
     this.examsQuestionsState =
         examsQuestionsState ?? BaseState<ExamQuestionsModel>(isLoading: true);
   }
@@ -36,6 +38,7 @@ class ExamsQuestionsState {
     int? currentQuestionIndex,
     int? initialTimeInSeconds,
     int? totalQuestions,
+    Map<int, dynamic>? selectedAnswers,
   }) {
     return ExamsQuestionsState(
       examTimeInSeconds: examTimeInSeconds ?? this.examTimeInSeconds,
@@ -43,6 +46,7 @@ class ExamsQuestionsState {
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
       totalQuestions: totalQuestions ?? this.totalQuestions,
+      selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
 }
