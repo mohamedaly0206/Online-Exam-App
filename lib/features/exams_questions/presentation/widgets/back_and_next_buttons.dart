@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
@@ -50,12 +52,20 @@ class BackAndNextButtons extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  examsQuestionsCubit.handleExamsQuestionsIntent(
-                    NextQuestionIntent(),
-                  );
+                  state.totalQuestions - 1 == state.currentQuestionIndex
+                      ? GoRouter.of(
+                          context,
+                        ).pushReplacement(AppRouterPaths.kexamScoreView)
+                      : examsQuestionsCubit.handleExamsQuestionsIntent(
+                          NextQuestionIntent(),
+                        );
                   // GoRouter.of(context).push(AppRouterPaths.kexamScoreView);
                 },
-                child: Text(AppStrings.nextButton),
+                child: Text(
+                  state.totalQuestions - 1 == state.currentQuestionIndex
+                      ? AppStrings.finishButton
+                      : AppStrings.nextButton,
+                ),
               ),
             ),
           ],
