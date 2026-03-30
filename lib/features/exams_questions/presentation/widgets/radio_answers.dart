@@ -17,7 +17,11 @@ class RadioAnswers extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 16),
           child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
+              color:
+                  state.selectedAnswers[state.currentQuestionIndex] ==
+                      answers.answerKey
+                  ? Theme.of(context).colorScheme.onTertiaryFixed
+                  : Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(

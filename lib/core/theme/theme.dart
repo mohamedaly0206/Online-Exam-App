@@ -26,6 +26,7 @@ class AppTheme {
       onTertiary: AppColors.whiteColor,
       tertiaryContainer: AppColors.lightGreenColor,
       onTertiaryContainer: AppColors.successColor,
+      onTertiaryFixed: AppColors.selectedAnswerColor,
 
       error: AppColors.errorColor,
       onError: AppColors.whiteColor,

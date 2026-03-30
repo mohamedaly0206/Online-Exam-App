@@ -58,7 +58,8 @@ class ExamQuestionsViewBody extends StatelessWidget {
         );
       },
       buildWhen: (prev, curr) =>
-      prev.examsQuestionsState != curr.examsQuestionsState,
+      prev.examsQuestionsState != curr.examsQuestionsState||
+      prev.currentQuestionIndex != curr.currentQuestionIndex,
     );
   }
 }
