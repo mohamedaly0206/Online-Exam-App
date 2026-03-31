@@ -126,8 +126,6 @@ class AppTheme {
         color: AppColors.blackColor,
       ),
     ),
-    // BottomNavigationBarTheme
-    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
     navigationBarTheme: NavigationBarThemeData(
       height: 60,
       indicatorColor: AppColors.primaryColor.withOpacity(0.12),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
+import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
+import 'package:online_exam_app/features/home/presentation/view_model/intent/home_intent.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/subjects_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -24,6 +27,11 @@ class HomeViewBody extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              onChanged: (value) {
+                BlocProvider.of<HomeCubit>(
+                  context,
+                ).doIntent(SearchSubjectsIntent(value));
+              },
               decoration: InputDecoration(
                 hintText: AppStrings.search,
                 prefixIcon: Padding(

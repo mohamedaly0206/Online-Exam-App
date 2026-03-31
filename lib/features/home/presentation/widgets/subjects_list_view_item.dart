@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/values/assets.gen.dart';
+import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
 
 class SubjectsListViewItem extends StatelessWidget {
-  const SubjectsListViewItem({super.key});
+  const SubjectsListViewItem({super.key, required this.subjectModel});
+
+  final SubjectModel subjectModel;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-      padding: const EdgeInsets.only(top: 25, bottom: 25, left: 24),
+      padding: const EdgeInsets.only(top: 23, bottom: 23, left: 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onSecondary,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -24,14 +25,10 @@ class SubjectsListViewItem extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            Assets.a3dIcons.draftingTools.path,
-            height: 40,
-            width: 40,
-          ),
-          const SizedBox(width: 12),
+          Image.network(subjectModel.icon, height: 55, width: 55),
+          const SizedBox(width: 16),
           Text(
-            'Math',
+            subjectModel.name,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ],

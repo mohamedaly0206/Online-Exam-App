@@ -22,12 +22,18 @@ class HomeCubit extends Cubit<HomeStates> {
       case ChangeTapIntent():
         _changeTab(intent.index);
         break;
+      case SearchSubjectsIntent():
+        _searchInSubjects(intent.query);
+        break;
     }
   }
 
   void _changeTab(int index) {
     emit(state.copyWith(currentIndexParam: index));
   }
+
+  late final List<SubjectModel>? filteredSubjects;
+  late final List<SubjectModel>? allSubjects;
 
   Future<void> _getAllSubjects() async {
     emit(
@@ -49,6 +55,7 @@ class HomeCubit extends Cubit<HomeStates> {
               isLoading: false,
               data: result.data,
             ),
+            filteredSubjectsParam: result.data,
           ),
         );
 
@@ -60,8 +67,23 @@ class HomeCubit extends Cubit<HomeStates> {
               data: [],
               errorMessage: result.errorMessage,
             ),
+            filteredSubjectsParam: [],
           ),
         );
+    }
+  }
+
+  void _searchInSubjects(String query) {
+    final allSubjects = state.subjectsListState.data ?? [];
+
+    if (query.isEmpty) {
+      emit(state.copyWith(filteredSubjectsParam: allSubjects));
+    } else {
+      final filtered = allSubjects.where((subject) {
+        return subject.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+
+      emit(state.copyWith(filteredSubjectsParam: filtered));
     }
   }
 }
