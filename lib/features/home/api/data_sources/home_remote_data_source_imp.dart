@@ -25,8 +25,12 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSourceContract {
           errorMessage: AppStrings.storeCacheExceptionMessage,
         );
       }
-      SubjectsResponse response = await homeApiClient.getAllSubjects(token: token);
-      return SuccessBaseResponse<List<SubjectDto>>(data: response.subjects ?? []);
+      SubjectsResponse response = await homeApiClient.getAllSubjects(
+        token: token,
+      );
+      return SuccessBaseResponse<List<SubjectDto>>(
+        data: response.subjects ?? [],
+      );
     } catch (e) {
       return ErrorBaseResponse<List<SubjectDto>>(
         errorMessage: ServerFailure.failureHandler(e).errorMessage,

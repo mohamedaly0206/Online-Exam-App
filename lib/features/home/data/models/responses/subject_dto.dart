@@ -15,11 +15,8 @@ class SubjectDto {
 
   SubjectDto({this.id, this.name, this.icon, this.createdAt});
 
-  SubjectModel toDomain() => SubjectModel(
-    id: id ??"",
-    name: name??"",
-    icon: icon??"",
-  );
+  SubjectModel toDomain() =>
+      SubjectModel(id: id ?? "", name: name ?? "", icon: icon ?? "");
 
   factory SubjectDto.fromJson(Map<String, dynamic> json) =>
       _$SubjectDtoFromJson(json);

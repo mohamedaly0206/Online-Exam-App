@@ -76,6 +76,9 @@ import '../../features/home/data/data_source/home_remote_data_source_contract.da
     as _i936;
 import '../../features/home/data/repo/home_repo_imp.dart' as _i197;
 import '../../features/home/domain/repo/home_repo_contract.dart' as _i396;
+import '../../features/home/domain/use_case/get_subjects_use_case.dart' as _i32;
+import '../../features/home/presentation/view_model/cubit/home_cubit.dart'
+    as _i1039;
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart'
     as _i369;
 import '../dio/dio_module.dart' as _i977;
@@ -182,8 +185,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i45.SignUpUseCase>(
       () => _i45.SignUpUseCase(gh<_i366.SignUpRepoContract>()),
     );
+    gh.factory<_i32.GetSubjectsUseCase>(
+      () => _i32.GetSubjectsUseCase(gh<_i396.HomeRepoContract>()),
+    );
     gh.factory<_i667.SignUpCubit>(
       () => _i667.SignUpCubit(gh<_i45.SignUpUseCase>()),
+    );
+    gh.factory<_i1039.HomeCubit>(
+      () => _i1039.HomeCubit(gh<_i32.GetSubjectsUseCase>()),
     );
     return this;
   }

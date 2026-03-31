@@ -13,7 +13,6 @@ abstract class HomeApiClient {
   @factoryMethod
   factory HomeApiClient(Dio dio) = _HomeApiClient;
 
-
   @GET(ApiEndpoints.getAllSubjects)
   Future<SubjectsResponse> getAllSubjects({
     @Header("token") required String token,
