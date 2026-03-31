@@ -74,10 +74,8 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
               dataParam: response.data,
             ),
             totalQuestions: response.data.questions.length,
-            examTimeInSeconds:
-                response.data.questions.first.exam!.duration * 60,
-            initialTimeInSeconds:
-                response.data.questions.first.exam!.duration * 60,
+            examTime: response.data.questions.first.exam!.duration * 60,
+            initialExamTime: response.data.questions.first.exam!.duration * 60,
           ),
         );
 
@@ -126,10 +124,10 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void _startTimer() {
     const oneSec = Duration(seconds: 1);
     timer = Timer.periodic(oneSec, (timer) {
-      if ((state.examTimeInSeconds) == 0) {
+      if ((state.examTime) == 0) {
         timer.cancel();
       } else {
-        emit(state.copyWith(examTimeInSeconds: state.examTimeInSeconds - 1));
+        emit(state.copyWith(examTime: state.examTime - 1));
       }
     });
   }
@@ -139,7 +137,8 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   }
 
   void _nextQuestion() {
-    if (state.currentQuestionIndex < state.totalQuestions - 1&&state.selectedAnswers[state.currentQuestionIndex]!=null) {
+    if (state.currentQuestionIndex < state.totalQuestions - 1 &&
+        state.selectedAnswers[state.currentQuestionIndex] != null) {
       emit(
         state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1),
       );

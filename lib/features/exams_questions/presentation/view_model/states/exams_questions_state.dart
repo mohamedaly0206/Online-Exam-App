@@ -3,27 +3,27 @@ part of '../cubit/exams_questions_cubit.dart';
 class ExamsQuestionsState {
   BaseState<ExamQuestionsModel> examsQuestionsState =
       BaseState<ExamQuestionsModel>(isLoading: true);
-  final int examTimeInSeconds;
-  final int initialTimeInSeconds;
+  final int examTime;
+  final int initialExamTime;
   final int currentQuestionIndex;
   final int totalQuestions;
   final int totalCorrectAnswers;
   final int totalWrongAnswers;
   final Map<int, dynamic> selectedAnswers;
-  bool get isHalfTime => examTimeInSeconds <= (initialTimeInSeconds / 2);
+  bool get isHalfTime => examTime <= (initialExamTime / 2);
   double get progress =>
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
   String get formattedTime {
-    final minutes = examTimeInSeconds ~/ 60;
-    final seconds = examTimeInSeconds % 60;
+    final minutes = examTime ~/ 60;
+    final seconds = examTime % 60;
 
     return '${minutes.toString().padLeft(2, '0')}:'
         '${seconds.toString().padLeft(2, '0')}';
   }
 
   ExamsQuestionsState({
-    this.examTimeInSeconds = 0,
-    this.initialTimeInSeconds = 0,
+    this.examTime = 0,
+    this.initialExamTime = 0,
     this.currentQuestionIndex = 0,
     this.totalQuestions = 0,
     this.totalWrongAnswers = 0,
@@ -38,9 +38,9 @@ class ExamsQuestionsState {
 
   ExamsQuestionsState copyWith({
     BaseState<ExamQuestionsModel>? examsQuestionsState,
-    int? examTimeInSeconds,
+    int? examTime,
     int? currentQuestionIndex,
-    int? initialTimeInSeconds,
+    int? initialExamTime,
     int? totalQuestions,
     int? totalCorrectAnswers,
     int? totalWrongAnswers,
@@ -49,8 +49,8 @@ class ExamsQuestionsState {
     return ExamsQuestionsState(
       totalCorrectAnswers: totalCorrectAnswers ?? this.totalCorrectAnswers,
       totalWrongAnswers: totalWrongAnswers ?? this.totalWrongAnswers,
-      examTimeInSeconds: examTimeInSeconds ?? this.examTimeInSeconds,
-      initialTimeInSeconds: initialTimeInSeconds ?? this.initialTimeInSeconds,
+      examTime: examTime ?? this.examTime,
+      initialExamTime: initialExamTime ?? this.initialExamTime,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
       totalQuestions: totalQuestions ?? this.totalQuestions,
