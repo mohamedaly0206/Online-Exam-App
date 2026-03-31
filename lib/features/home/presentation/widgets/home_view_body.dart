@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
+import 'package:online_exam_app/features/home/presentation/widgets/subjects_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -41,10 +42,10 @@ class HomeViewBody extends StatelessWidget {
                   ),
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
                   //borderSide: BorderSide(color: Theme.of(context)),
                 ),
                 hintStyle: Theme.of(context).textTheme.displayLarge!.copyWith(
@@ -53,6 +54,13 @@ class HomeViewBody extends StatelessWidget {
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
             ),
+            const SizedBox(height: 40),
+            Text(
+              AppStrings.browseBySubject,
+              style: Theme.of(context).textTheme.titleMedium!,
+            ),
+            const SizedBox(height: 24),
+            SubjectsListView(),
           ],
         ),
       ),
