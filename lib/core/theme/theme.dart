@@ -132,10 +132,7 @@ class AppTheme {
       height: 60,
       indicatorColor: AppColors.primaryColor.withOpacity(0.12),
       labelTextStyle: WidgetStateProperty.all(
-        AppTextStyles.textStyleMedium14.copyWith(
-          color: AppColors.primaryColor,
-        ),
-
+        AppTextStyles.textStyleMedium14.copyWith(color: AppColors.primaryColor),
       ),
       labelPadding: const EdgeInsets.only(top: 5),
     ),
