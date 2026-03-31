@@ -99,7 +99,9 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void _selectSingleAnswer(SelectSingleAnswerIntent intent) {
     final updatedAnswer = Map<int, dynamic>.from(state.selectedAnswers);
     updatedAnswer[intent.questionIndex] = intent.answerKey;
-    emit(state.copyWith(selectedAnswers: updatedAnswer));
+    emit(
+      state.copyWith(selectedAnswers: updatedAnswer, answerValidation: true),
+    );
     log('${state.selectedAnswers[state.currentQuestionIndex]}');
   }
 
@@ -118,7 +120,12 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
 
     updatedAnswers[intent.questionIndex] = currentList;
 
-    emit(state.copyWith(selectedAnswers: updatedAnswers));
+    emit(
+      state.copyWith(
+        selectedAnswers: updatedAnswers,
+        answerValidation: currentList.isNotEmpty,
+      ),
+    );
   }
 
   void _startTimer() {
@@ -137,10 +144,19 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   }
 
   void _nextQuestion() {
-    if (state.currentQuestionIndex < state.totalQuestions - 1 &&
-        state.selectedAnswers[state.currentQuestionIndex] != null) {
+    final hasAnswer = state.selectedAnswers[state.currentQuestionIndex] != null;
+
+    if (!hasAnswer) {
+      emit(state.copyWith(answerValidation: false));
+      return;
+    }
+
+    if (state.currentQuestionIndex < state.totalQuestions - 1) {
       emit(
-        state.copyWith(currentQuestionIndex: state.currentQuestionIndex + 1),
+        state.copyWith(
+          currentQuestionIndex: state.currentQuestionIndex + 1,
+          answerValidation: true,
+        ),
       );
     }
   }
@@ -148,7 +164,10 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void _previousQuestion() {
     if (state.currentQuestionIndex > 0) {
       emit(
-        state.copyWith(currentQuestionIndex: state.currentQuestionIndex - 1),
+        state.copyWith(
+          currentQuestionIndex: state.currentQuestionIndex - 1,
+          answerValidation: true,
+        ),
       );
     }
   }

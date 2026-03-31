@@ -9,6 +9,7 @@ class ExamsQuestionsState {
   final int totalQuestions;
   final int totalCorrectAnswers;
   final int totalWrongAnswers;
+  final bool answerValidation;
   final Map<int, dynamic> selectedAnswers;
   bool get isHalfTime => examTime <= (initialExamTime / 2);
   double get progress =>
@@ -22,6 +23,7 @@ class ExamsQuestionsState {
   }
 
   ExamsQuestionsState({
+    this.answerValidation = true,
     this.examTime = 0,
     this.initialExamTime = 0,
     this.currentQuestionIndex = 0,
@@ -38,6 +40,7 @@ class ExamsQuestionsState {
 
   ExamsQuestionsState copyWith({
     BaseState<ExamQuestionsModel>? examsQuestionsState,
+    bool? answerValidation,
     int? examTime,
     int? currentQuestionIndex,
     int? initialExamTime,
@@ -55,6 +58,7 @@ class ExamsQuestionsState {
       examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
       totalQuestions: totalQuestions ?? this.totalQuestions,
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
+      answerValidation: answerValidation ?? this.answerValidation,
     );
   }
 }

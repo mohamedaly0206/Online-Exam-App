@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/question_dto.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/multiple_answer_question.dart';
@@ -36,11 +37,20 @@ class ExamQuestion extends StatelessWidget {
                 : MultipleAnswerQuestion(
                     examQuestionModel: state.examsQuestionsState.data!,
                   ),
+            state.answerValidation == false
+                ? Text(
+                    AppStrings.unSelectedAnswerMessage,
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  )
+                : SizedBox(),
           ],
         );
       },
       buildWhen: (prev, curr) =>
-          prev.currentQuestionIndex != curr.currentQuestionIndex,
+          prev.currentQuestionIndex != curr.currentQuestionIndex ||
+          prev.answerValidation != curr.answerValidation,
     );
   }
 }
