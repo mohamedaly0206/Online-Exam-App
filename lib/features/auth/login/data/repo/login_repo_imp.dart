@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_local_data_source_contract.dart';
@@ -69,7 +71,7 @@ class LoginRepoImp implements LoginRepoContract {
   Future<BaseResponse<UserModel>> getLoggedUserInfo() async {
     try {
       final token = await loginLocalDataSource.getToken();
-      print("$token <<<<< token from local data source in splash");
+      log("$token <<<<< token from local data source in splash");
       if (token != null && token.isNotEmpty) {
         final response = await loginRemoteDataSource.getLoggedUserInfo(token);
 

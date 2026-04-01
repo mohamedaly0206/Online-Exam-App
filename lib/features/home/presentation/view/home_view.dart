@@ -36,7 +36,7 @@ class HomeView extends StatelessWidget {
             },
             indicatorColor: Theme.of(
               context,
-            ).colorScheme.primary.withOpacity(0.12),
+            ).colorScheme.primary.withValues(alpha: 0.12),
             destinations: [
               NavigationDestination(
                 icon: SvgPicture.asset(

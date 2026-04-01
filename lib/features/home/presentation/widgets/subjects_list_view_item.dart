@@ -11,8 +11,10 @@ class SubjectsListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        GoRouter.of(context).push(AppRouterPaths.kExamView, extra: subjectModel.id);
+      onTap: () {
+        GoRouter.of(
+          context,
+        ).push(AppRouterPaths.kExamView, extra: subjectModel.id);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
@@ -22,7 +24,7 @@ class SubjectsListViewItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.09),
+              color: Colors.black.withValues(alpha: 0.09),
               blurRadius: 8,
               spreadRadius: 0,
             ),

@@ -7,7 +7,7 @@ import '../../../../core/values/app_strings.dart';
 
 @Injectable(as: ExamsLocalDataSourceContract)
 class ExamsLocalDataSourceImpl extends ExamsLocalDataSourceContract {
-   @override
+  @override
   Future<String?> getToken() async {
     try {
       return await SecurityStorageModule.getSecuredString(AppStrings.token);

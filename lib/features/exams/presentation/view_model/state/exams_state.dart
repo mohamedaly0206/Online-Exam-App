@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_state/base_state.dart';
 import '../../../domain/model/exams_model.dart';
+
 @injectable
 class ExamsState {
   BaseState<List<ExamModel>> examsState = BaseState<List<ExamModel>>(
