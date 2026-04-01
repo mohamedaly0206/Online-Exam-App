@@ -66,7 +66,6 @@ class AppTheme {
     // ButtonTheme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        // make the button expand to the max width of its parent
         minimumSize: Size(double.infinity, 48),
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.whiteColor,
@@ -135,7 +134,6 @@ class AppTheme {
       ),
     ),
     // BottomNavigationBarTheme
-    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.whiteColor,
       selectedItemColor: AppColors.primaryColor,

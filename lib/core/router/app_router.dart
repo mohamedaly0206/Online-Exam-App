@@ -1,6 +1,5 @@
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
-import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
@@ -41,8 +40,14 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
-          final cubit = state.extra as ExamsQuestionsCubit;
-          return ExamScoreView(cubit: cubit);
+          final int correctAnswers = state.extra as int;
+          final int wrongAnswers = state.extra as int;
+          final int totalQuestions = state.extra as int;
+          return ExamScoreView(
+            correctAnswers: correctAnswers,
+            wrongAnswers: wrongAnswers,
+            totalQuestions: totalQuestions,
+          );
         },
       ),
     ],

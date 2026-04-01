@@ -65,7 +65,11 @@ class BackAndNextButtons extends StatelessWidget {
                               );
                               GoRouter.of(context).pushReplacement(
                                 AppRouterPaths.kExamScoreView,
-                                extra: cubit,
+                                extra: {
+                                  state.totalQuestions,
+                                  state.totalCorrectAnswers,
+                                  state.totalWrongAnswers,
+                                },
                               );
                             },
                             posButtonColor: Theme.of(
@@ -80,7 +84,6 @@ class BackAndNextButtons extends StatelessWidget {
                       : examsQuestionsCubit.handleExamsQuestionsIntent(
                           NextQuestionIntent(),
                         );
-                  // GoRouter.of(context).push(AppRouterPaths.kexamScoreView);
                 },
                 child: Text(
                   state.totalQuestions - 1 == state.currentQuestionIndex
