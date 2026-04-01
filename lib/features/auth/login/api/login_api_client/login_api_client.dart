@@ -15,4 +15,9 @@ abstract class LoginApiClient {
 
   @POST(ApiEndpoints.login)
   Future<LoginResponse> login({@Body() required Map<String, dynamic> body});
+
+  @GET(ApiEndpoints.getLoggedUserInfo)
+  Future<LoginResponse> getLoggedUserInfo({
+    @Header("token") required String token,
+  });
 }

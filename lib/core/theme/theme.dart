@@ -134,14 +134,13 @@ class AppTheme {
         color: AppColors.blackColor,
       ),
     ),
-    // BottomNavigationBarTheme
-    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.whiteColor,
-      selectedItemColor: AppColors.primaryColor,
-      unselectedItemColor: AppColors.placeHolderColor,
-      selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
-      unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+    navigationBarTheme: NavigationBarThemeData(
+      height: 60,
+      indicatorColor: AppColors.primaryColor.withOpacity(0.12),
+      labelTextStyle: WidgetStateProperty.all(
+        AppTextStyles.textStyleMedium14.copyWith(color: AppColors.primaryColor),
+      ),
+      labelPadding: const EdgeInsets.only(top: 5),
     ),
 
     checkboxTheme: CheckboxThemeData(

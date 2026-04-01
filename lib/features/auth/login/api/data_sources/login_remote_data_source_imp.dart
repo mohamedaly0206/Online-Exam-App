@@ -2,9 +2,9 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_remote_data_source_contract.dart';
 
+import '../../data/models/login_response.dart';
 import '../../../../../core/errors/failures.dart';
 import '../../../../../core/values/app_strings.dart';
-import '../../data/models/login_response.dart';
 import '../login_api_client/login_api_client.dart';
 
 @Injectable(as: LoginRemoteDataSourceContract)
@@ -13,7 +13,6 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSourceContract {
 
   final LoginApiClient loginApiClient;
 
-  @override
   @override
   Future<BaseResponse<LoginResponse>> login({
     required String email,
@@ -24,6 +23,18 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSourceContract {
         body: {AppStrings.emailKey: email, AppStrings.passwordKey: password},
       );
 
+      return SuccessBaseResponse<LoginResponse>(data: response);
+    } catch (e) {
+      return ErrorBaseResponse<LoginResponse>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
+    }
+  }
+
+  @override
+  Future<BaseResponse<LoginResponse>> getLoggedUserInfo(String token) async {
+    try {
+      final response = await loginApiClient.getLoggedUserInfo(token: token);
       return SuccessBaseResponse<LoginResponse>(data: response);
     } catch (e) {
       return ErrorBaseResponse<LoginResponse>(

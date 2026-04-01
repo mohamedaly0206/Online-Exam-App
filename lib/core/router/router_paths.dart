@@ -1,4 +1,5 @@
 abstract class AppRouterPaths {
+  static const kSplashView = '/splashView';
   static const kLoginView = '/loginView';
   static const kSignUpView = '/signUpView';
   static const kHomeView = '/homeView';
