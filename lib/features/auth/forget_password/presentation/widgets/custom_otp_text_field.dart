@@ -50,7 +50,10 @@ class CustomOTPTextField extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Assets.icons.errorIcon,
-                    color: Theme.of(context).colorScheme.error,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.error,
+                      BlendMode.srcIn,
+                    ),
                     width: 14,
                   ),
                   SizedBox(width: 4),

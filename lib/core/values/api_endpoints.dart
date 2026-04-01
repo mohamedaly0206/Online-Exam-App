@@ -13,4 +13,6 @@ class ApiEndpoints {
   static const String getLoggedUserInfo = '$baseUrl/auth/profileData';
   static const String editProfile = '$baseUrl/auth/editProfile';
   static const String getAllExams ="$baseUrl/exams";
+  static const String getAllSubjects = '$baseUrl/subjects';
+  static const String getExamQuestions = '$baseUrl/questions';
 }

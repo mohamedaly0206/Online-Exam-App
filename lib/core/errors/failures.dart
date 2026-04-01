@@ -25,11 +25,11 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioException(DioException exception) {
     switch (exception.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure('Connection timeout with API server');
+        return ServerFailure('Internal server error, please try again later');
       case DioExceptionType.sendTimeout:
-        return ServerFailure('Send timeout with API server');
+        return ServerFailure('Internal server error, please try again later');
       case DioExceptionType.receiveTimeout:
-        return ServerFailure('Receive timeout with API server');
+        return ServerFailure('Internal server error, please try again later');
       case DioExceptionType.badCertificate:
         return ServerFailure('Bad certificate with API server');
       case DioExceptionType.badResponse: //**********
