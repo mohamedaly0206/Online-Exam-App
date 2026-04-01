@@ -4,7 +4,6 @@ class AppStrings {
   static const String loginSuccessfully = 'Login Successfully';
   static const String email = 'Email';
   static const String emailKey = 'email';
-  static const String tokenKey = 'user_token';
   static const String token = 'token';
   static const String hintEmailText = 'Enter your email';
   static const String password = 'Password';
@@ -84,6 +83,14 @@ class AppStrings {
       'failed to store data locally, please try again later';
   static const String getCacheExceptionMessage =
       'failed to get data locally, please try again later';
+  static const String question = 'Question';
+  static const String minutes = 'Minutes';
+  static const String timeRange = 'From: 1.00  To: 6.00';
+  static const String instructions = 'Instructions';
+  static const String examInstructions =
+      '''1- Read each question thoroughly before answering.
+2- Manage your time wisely.
+3- Once you submit the exam, you cannot retake it.''';
   static const String exitExam = 'Exit Exam';
   static const String exitExamMessage =
       'Are you sure you want to exit exam !!\nYour progress will be lost';

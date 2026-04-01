@@ -1,5 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/exams/domain/model/exams_model.dart';
+import 'router_paths.dart';
+import '../../features/exams/presentation/view/exam_details_view.dart';
+import '../../features/exams/presentation/view/exams_view.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
 
 import '../../config/di/di.dart';
@@ -17,6 +21,11 @@ import '../../features/splash/presentation/view_model/intent/splash_intent.dart'
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
+  static GoRouter getRouter(bool isLoggedIn) => GoRouter(
+    // initialLocation: AppRouterPaths.kExamView,
+    initialLocation: isLoggedIn
+        ? AppRouterPaths.kLoginView
+        : AppRouterPaths.kLoginView,
   static GoRouter getRouter() => GoRouter(
     initialLocation: AppRouterPaths.kSplashView,
 
@@ -58,6 +67,20 @@ abstract class AppRouter {
         builder: (context, state) {
           final cubit = state.extra as ExamsQuestionsCubit;
           return ExamScoreView(cubit: cubit);
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kExamView,
+        builder: (context, state) {
+          final subjectId = state.extra as String;
+          return ExamsView(subjectId: subjectId);
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kExamDetailsView,
+        builder: (context, state) {
+          final examModel = state.extra as ExamModel;
+          return ExamDetailsView(exam: examModel);
         },
       ),
     ],

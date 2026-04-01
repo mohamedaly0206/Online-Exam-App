@@ -10,8 +10,15 @@ class MetadataModel {
   final int? numberOfPages;
   @JsonKey(name: 'limit')
   final int? limit;
+  @JsonKey(name: 'nextPage')
+  final int? nextPage;
 
-  MetadataModel({this.currentPage, this.numberOfPages, this.limit});
+  MetadataModel({
+    this.currentPage,
+    this.numberOfPages,
+    this.limit,
+    this.nextPage,
+  });
 
   factory MetadataModel.fromJson(Map<String, dynamic> json) =>
       _$MetadataModelFromJson(json);
