@@ -1,31 +1,25 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/exams/domain/model/exams_model.dart';
-import 'router_paths.dart';
-import '../../features/exams/presentation/view/exam_details_view.dart';
-import '../../features/exams/presentation/view/exams_view.dart';
-import 'package:online_exam_app/core/router/router_paths.dart';
-
-import '../../config/di/di.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
+
+import '../../config/di/di.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/sign_up/presentation/views/sign_up_view.dart';
+import '../../features/exams/domain/model/exams_model.dart';
+import '../../features/exams/presentation/view/exam_details_view.dart';
+import '../../features/exams/presentation/view/exams_view.dart';
 import '../../features/home/presentation/view/home_view.dart';
 import '../../features/home/presentation/view_model/cubit/home_cubit.dart';
 import '../../features/home/presentation/view_model/intent/home_intent.dart';
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart';
 import '../../features/splash/presentation/view_model/intent/splash_intent.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import 'router_paths.dart';
 
 abstract class AppRouter {
-  static GoRouter getRouter(bool isLoggedIn) => GoRouter(
-    // initialLocation: AppRouterPaths.kExamView,
-    initialLocation: isLoggedIn
-        ? AppRouterPaths.kLoginView
-        : AppRouterPaths.kLoginView,
   static GoRouter getRouter() => GoRouter(
     initialLocation: AppRouterPaths.kSplashView,
 
@@ -59,11 +53,15 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: AppRouterPaths.kexamQuestionsView,
-        builder: (context, state) => const ExamsQuestionsView(),
+        path: AppRouterPaths.kExamQuestionsView,
+
+        builder: (context, state) {
+          final examId = state.extra as String;
+          return ExamsQuestionsView(examId: examId);
+        },
       ),
       GoRoute(
-        path: AppRouterPaths.kexamScoreView,
+        path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
           final cubit = state.extra as ExamsQuestionsCubit;
           return ExamScoreView(cubit: cubit);

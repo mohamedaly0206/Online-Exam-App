@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
 import '../../../../core/values/assets.gen.dart';
@@ -64,8 +65,9 @@ class ExamDetailsBody extends StatelessWidget {
             SizedBox(height: 48),
             ElevatedButton(
               onPressed: () {
-                // TODO: handle this route when marge
-                GoRouter.of(context).push('', extra: exam.id);
+                GoRouter.of(
+                  context,
+                ).push(AppRouterPaths.kExamQuestionsView, extra: exam.id);
               },
               child: Text(AppStrings.startButton),
             ),
