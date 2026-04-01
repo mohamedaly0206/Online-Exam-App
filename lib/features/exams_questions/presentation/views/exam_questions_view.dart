@@ -13,7 +13,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ex
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/quit_exam_alert_dialog.dart';
 
 class ExamsQuestionsView extends StatelessWidget {
-  const ExamsQuestionsView({super.key});
+  const ExamsQuestionsView({super.key, required this.examId});
+  final String examId;
 
   @override
   Widget build(BuildContext context) {

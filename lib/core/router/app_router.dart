@@ -32,11 +32,14 @@ abstract class AppRouter {
         builder: (context, state) => const HomeTest(),
       ),
       GoRoute(
-        path: AppRouterPaths.kexamQuestionsView,
-        builder: (context, state) => const ExamsQuestionsView(),
+        path: AppRouterPaths.kExamQuestionsView,
+        builder: (context, state) {
+          final examId = state.extra as String;
+          return ExamsQuestionsView(examId: examId);
+        },
       ),
       GoRoute(
-        path: AppRouterPaths.kexamScoreView,
+        path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
           final cubit = state.extra as ExamsQuestionsCubit;
           return ExamScoreView(cubit: cubit);

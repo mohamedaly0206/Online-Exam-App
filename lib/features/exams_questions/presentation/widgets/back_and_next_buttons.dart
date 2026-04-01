@@ -64,7 +64,7 @@ class BackAndNextButtons extends StatelessWidget {
                                 SubmitQuestionIntent(),
                               );
                               GoRouter.of(context).pushReplacement(
-                                AppRouterPaths.kexamScoreView,
+                                AppRouterPaths.kExamScoreView,
                                 extra: cubit,
                               );
                             },

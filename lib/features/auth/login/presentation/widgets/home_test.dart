@@ -12,7 +12,7 @@ class HomeTest extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            GoRouter.of(context).push(AppRouterPaths.kexamQuestionsView);
+            GoRouter.of(context).push(AppRouterPaths.kExamQuestionsView);
           },
           child: Text('Exams Questions'),
         ),

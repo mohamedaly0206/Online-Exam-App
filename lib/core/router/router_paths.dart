@@ -4,6 +4,6 @@ abstract class AppRouterPaths {
   static const kHomeView = '/homeView';
   static const kForgetPasswordView = '/forgetPasswordView';
   static const kHomePageView = '/homeView';
-  static const kexamQuestionsView = '/examQuestionsView';
-  static const kexamScoreView = '/examScoreView';
+  static const kExamQuestionsView = '/examQuestionsView';
+  static const kExamScoreView = '/examScoreView';
 }

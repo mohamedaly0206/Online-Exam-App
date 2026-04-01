@@ -24,7 +24,7 @@ class ScoreViewBodyButtons extends StatelessWidget {
           onPressed: () {
             GoRouter.of(
               context,
-            ).pushReplacement(AppRouterPaths.kexamQuestionsView);
+            ).pushReplacement(AppRouterPaths.kExamQuestionsView);
           },
           child: Text(
             AppStrings.startAgain,

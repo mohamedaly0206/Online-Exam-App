@@ -45,7 +45,7 @@ class TimeOutWidget extends StatelessWidget {
                 cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
                 GoRouter.of(
                   context,
-                ).pushReplacement(AppRouterPaths.kexamScoreView, extra: cubit);
+                ).pushReplacement(AppRouterPaths.kExamScoreView, extra: cubit);
               },
               child: Text(AppStrings.viewScore),
             ),
