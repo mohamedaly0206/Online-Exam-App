@@ -79,7 +79,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
           ),
         );
 
-        log('Sucess getting question...');
+        log('Success getting question...');
 
         break;
       case ErrorBaseResponse<ExamQuestionsModel>():

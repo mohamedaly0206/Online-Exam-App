@@ -54,7 +54,11 @@ class TimeOutWidget extends StatelessWidget {
                 cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
                 GoRouter.of(context).pushReplacement(
                   AppRouterPaths.kExamScoreView,
-                  extra: {correctAnswers, wrongAnswers, totalQuestions},
+                  extra: {
+                    "correct": cubit.state.totalCorrectAnswers,
+                    "wrong": cubit.state.totalWrongAnswers,
+                    "total": cubit.state.totalQuestions,
+                  },
                 );
               },
               child: Text(AppStrings.viewScore),
