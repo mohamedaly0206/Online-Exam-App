@@ -32,7 +32,7 @@ class AnswersScore extends StatelessWidget {
             ),
           ),
           child: CircleAvatar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).colorScheme.onSecondary,
             radius: 10,
             child: Text(
               score.toString(),
