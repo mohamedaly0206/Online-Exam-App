@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/router/app_router.dart';
 import 'package:online_exam_app/core/theme/theme.dart';
-
 import 'features/auth/login/domain/use_cases/check_user_loggedin_use_case.dart';
 
 void main() async {

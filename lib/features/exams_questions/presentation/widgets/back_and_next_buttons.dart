@@ -6,7 +6,6 @@ import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
-import 'package:online_exam_app/core/widgets/dialogs/quit_alert_dialog.dart';
 
 class BackAndNextButtons extends StatelessWidget {
   const BackAndNextButtons({super.key});
@@ -56,8 +55,8 @@ class BackAndNextButtons extends StatelessWidget {
                 onPressed: () {
                   final cubit = context.read<ExamsQuestionsCubit>();
                   state.totalQuestions - 1 == state.currentQuestionIndex
-                      ? showFinishDialog(context, ()  {
-                           cubit.handleExamsQuestionsIntent(
+                      ? showFinishDialog(context, () {
+                          cubit.handleExamsQuestionsIntent(
                             SubmitQuestionIntent(),
                           );
                           if (!context.mounted) return;

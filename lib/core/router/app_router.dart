@@ -38,17 +38,17 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-  path: AppRouterPaths.kExamScoreView,
-  builder: (context, state) {
-    final extra = state.extra as Map<String, int>;
+        path: AppRouterPaths.kExamScoreView,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, int>;
 
-    return ExamScoreView(
-      correctAnswers: extra["correct"]!,
-      wrongAnswers: extra["wrong"]!,
-      totalQuestions: extra["total"]!,
-    );
-  },
-),
+          return ExamScoreView(
+            correctAnswers: extra["correct"]!,
+            wrongAnswers: extra["wrong"]!,
+            totalQuestions: extra["total"]!,
+          );
+        },
+      ),
     ],
   );
 }

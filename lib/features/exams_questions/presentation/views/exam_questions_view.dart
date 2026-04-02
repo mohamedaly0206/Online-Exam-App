@@ -23,7 +23,7 @@ class ExamsQuestionsView extends StatelessWidget {
           return PopScope(
             canPop: false,
             onPopInvokedWithResult: (didPop, result) {
-              showQuitExamDialog(context); 
+              showQuitExamDialog(context);
             },
             child: SafeArea(
               child: Scaffold(
