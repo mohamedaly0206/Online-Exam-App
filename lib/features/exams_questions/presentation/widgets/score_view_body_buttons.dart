@@ -11,7 +11,9 @@ class ScoreViewBodyButtons extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            //todo: navigate to result screen
+          },
           child: Text(AppStrings.showResultButton),
         ),
         SizedBox(height: 24),

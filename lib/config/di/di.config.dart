@@ -96,8 +96,8 @@ import '../../features/exams_questions/data/repo/exam_questions_repo_impl.dart'
     as _i526;
 import '../../features/exams_questions/domain/repo/exam_questions_repo_contract.dart'
     as _i261;
-import '../../features/exams_questions/domain/use_cases/get_exam_questions_usecase.dart'
-    as _i412;
+import '../../features/exams_questions/domain/use_cases/get_exam_questions_use_case.dart'
+    as _i796;
 import '../../features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart'
     as _i764;
 import '../../features/home/api/api_client/get_all_subjects_api_client.dart'
@@ -273,12 +273,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1039.HomeCubit>(
       () => _i1039.HomeCubit(gh<_i32.GetSubjectsUseCase>()),
     );
-    gh.factory<_i412.GetExamQuestionsUseCase>(
+    gh.factory<_i796.GetExamQuestionsUseCase>(
       () =>
-          _i412.GetExamQuestionsUseCase(gh<_i261.ExamQuestionsRepoContract>()),
+          _i796.GetExamQuestionsUseCase(gh<_i261.ExamQuestionsRepoContract>()),
     );
     gh.factory<_i764.ExamsQuestionsCubit>(
-      () => _i764.ExamsQuestionsCubit(gh<_i412.GetExamQuestionsUseCase>()),
+      () => _i764.ExamsQuestionsCubit(gh<_i796.GetExamQuestionsUseCase>()),
     );
     return this;
   }

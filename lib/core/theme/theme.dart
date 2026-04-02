@@ -66,7 +66,6 @@ class AppTheme {
     // ButtonTheme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        // make the button expand to the max width of its parent
         minimumSize: Size(double.infinity, 48),
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.whiteColor,
@@ -141,6 +140,15 @@ class AppTheme {
         AppTextStyles.textStyleMedium14.copyWith(color: AppColors.primaryColor),
       ),
       labelPadding: const EdgeInsets.only(top: 5),
+    // BottomNavigationBarTheme
+   
+),
+ bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.whiteColor,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.placeHolderColor,
+      selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+      unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
     ),
 
     checkboxTheme: CheckboxThemeData(
@@ -151,4 +159,4 @@ class AppTheme {
       side: BorderSide(color: AppColors.primaryColor, width: 2),
     ),
   );
-}
+  }

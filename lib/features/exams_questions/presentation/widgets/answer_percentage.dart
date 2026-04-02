@@ -4,11 +4,11 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ci
 class AnswerPercentage extends StatelessWidget {
   const AnswerPercentage({
     super.key,
-    required this.corrrectAnswers,
+    required this.correctAnswers,
     required this.wrongAnswers,
     required this.totalAnswers,
   });
-  final int corrrectAnswers;
+  final int correctAnswers;
   final int wrongAnswers;
   final int totalAnswers;
 
@@ -18,7 +18,7 @@ class AnswerPercentage extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CircularPercentageIndicator(
-          answers: corrrectAnswers.toDouble(),
+          answers: correctAnswers.toDouble(),
           isCorrectAnswer: true,
           totalAnswers: totalAnswers.toDouble(),
         ),

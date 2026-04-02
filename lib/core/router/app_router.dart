@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
-
 import '../../config/di/di.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
@@ -17,7 +16,6 @@ import '../../features/home/presentation/view_model/intent/home_intent.dart';
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart';
 import '../../features/splash/presentation/view_model/intent/splash_intent.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
-import 'router_paths.dart';
 
 abstract class AppRouter {
   static GoRouter getRouter() => GoRouter(
@@ -54,17 +52,21 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouterPaths.kExamQuestionsView,
-
         builder: (context, state) {
           final examId = state.extra as String;
-          return ExamsQuestionsView(examId: examId);
+           return ExamsQuestionsView(examId: examId);
         },
       ),
       GoRoute(
         path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
-          final cubit = state.extra as ExamsQuestionsCubit;
-          return ExamScoreView(cubit: cubit);
+          final extra = state.extra as Map<String, int>;
+
+          return ExamScoreView(
+            correctAnswers: extra["correct"]!,
+            wrongAnswers: extra["wrong"]!,
+            totalQuestions: extra["total"]!,
+          );
         },
       ),
       GoRoute(

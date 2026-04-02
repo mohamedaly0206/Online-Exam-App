@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
-import 'package:online_exam_app/features/exams_questions/presentation/widgets/quit_exam_alert_dialog.dart';
 
 class BackAndNextButtons extends StatelessWidget {
   const BackAndNextButtons({super.key});
@@ -55,32 +55,23 @@ class BackAndNextButtons extends StatelessWidget {
                 onPressed: () {
                   final cubit = context.read<ExamsQuestionsCubit>();
                   state.totalQuestions - 1 == state.currentQuestionIndex
-                      ? showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => QuitExamAlertDialog(
-                            onPositivePressed: () {
-                              cubit.handleExamsQuestionsIntent(
-                                SubmitQuestionIntent(),
-                              );
-                              GoRouter.of(context).pushReplacement(
-                                AppRouterPaths.kExamScoreView,
-                                extra: cubit,
-                              );
+                      ? showFinishDialog(context, () {
+                          cubit.handleExamsQuestionsIntent(
+                            SubmitQuestionIntent(),
+                          );
+                          if (!context.mounted) return;
+                          GoRouter.of(context).pushReplacement(
+                            AppRouterPaths.kExamScoreView,
+                            extra: {
+                              "correct": cubit.state.totalCorrectAnswers,
+                              "wrong": cubit.state.totalWrongAnswers,
+                              "total": cubit.state.totalQuestions,
                             },
-                            posButtonColor: Theme.of(
-                              context,
-                            ).colorScheme.primary,
-                            title: AppStrings.finishExam,
-                            contentMessage: AppStrings.finishExamMessage,
-                            positiveButtonText: AppStrings.viewScore,
-                            negativeButtonText: AppStrings.cancel,
-                          ),
-                        )
+                          );
+                        })
                       : examsQuestionsCubit.handleExamsQuestionsIntent(
                           NextQuestionIntent(),
                         );
-                  // GoRouter.of(context).push(AppRouterPaths.kexamScoreView);
                 },
                 child: Text(
                   state.totalQuestions - 1 == state.currentQuestionIndex
