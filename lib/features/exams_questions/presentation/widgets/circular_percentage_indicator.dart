@@ -13,7 +13,7 @@ class CircularPercentageIndicator extends StatelessWidget {
   final bool isCorrectAnswer;
   double get percentage =>
       totalAnswers == 0 ? 0 : (answers / totalAnswers).clamp(0, 1);
-  double get correctAnswersPersentage {
+  double get correctAnswersPercentage {
     if (totalAnswers == 0) return 0;
     return isCorrectAnswer
         ? answers / totalAnswers
@@ -35,10 +35,10 @@ class CircularPercentageIndicator extends StatelessWidget {
       progressColor: isCorrectAnswer
           ? Theme.of(context).colorScheme.primary
           : Theme.of(context).colorScheme.error,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Theme.of(context).colorScheme.onSecondary,
       startAngle: isCorrectAnswer
           ? 0
-          : (360 * correctAnswersPersentage).clamp(0, 360),
+          : (360 * correctAnswersPercentage).clamp(0, 360),
       animation: true,
       animationDuration: 800,
     );
