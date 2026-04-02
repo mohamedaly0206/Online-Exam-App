@@ -54,7 +54,7 @@ abstract class AppRouter {
         path: AppRouterPaths.kExamQuestionsView,
         builder: (context, state) {
           final examId = state.extra as String;
-           return ExamsQuestionsView(examId: examId);
+          return ExamsQuestionsView(examId: examId);
         },
       ),
       GoRoute(

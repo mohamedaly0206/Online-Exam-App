@@ -140,10 +140,10 @@ class AppTheme {
         AppTextStyles.textStyleMedium14.copyWith(color: AppColors.primaryColor),
       ),
       labelPadding: const EdgeInsets.only(top: 5),
-    // BottomNavigationBarTheme
-   
-),
- bottomNavigationBarTheme: BottomNavigationBarThemeData(
+
+      // BottomNavigationBarTheme
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.whiteColor,
       selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.placeHolderColor,
@@ -159,4 +159,4 @@ class AppTheme {
       side: BorderSide(color: AppColors.primaryColor, width: 2),
     ),
   );
-  }
+}
