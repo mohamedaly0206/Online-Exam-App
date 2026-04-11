@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
@@ -8,11 +9,19 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class TimeOutWidget extends StatelessWidget {
-  const TimeOutWidget({super.key, required this.cubit});
-  final ExamsQuestionsCubit cubit;
+  const TimeOutWidget({
+    super.key,
+    required this.correctAnswers,
+    required this.wrongAnswers,
+    required this.totalQuestions,
+  });
+  final int correctAnswers;
+  final int wrongAnswers;
+  final int totalQuestions;
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read()<ExamsQuestionsCubit>();
     return Container(
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.3,
@@ -43,9 +52,14 @@ class TimeOutWidget extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
-                GoRouter.of(
-                  context,
-                ).pushReplacement(AppRouterPaths.kExamScoreView, extra: cubit);
+                GoRouter.of(context).pushReplacement(
+                  AppRouterPaths.kExamScoreView,
+                  extra: {
+                    "correct": cubit.state.totalCorrectAnswers,
+                    "wrong": cubit.state.totalWrongAnswers,
+                    "total": cubit.state.totalQuestions,
+                  },
+                );
               },
               child: Text(AppStrings.viewScore),
             ),

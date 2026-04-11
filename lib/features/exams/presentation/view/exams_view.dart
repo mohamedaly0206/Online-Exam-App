@@ -14,10 +14,7 @@ import '../view_model/state/exams_state.dart';
 import '../widgets/custom_exams_list_item.dart';
 
 class ExamsView extends StatelessWidget {
-  ExamsView({
-    super.key,
-    this.subjectId,
-  });
+  ExamsView({super.key, this.subjectId});
   final String? subjectId;
   final examsCubit = getIt.get<ExamsCubit>();
 
@@ -51,9 +48,8 @@ class ExamsView extends StatelessWidget {
             }
             return ListView.builder(
               itemCount: state.examsState.data!.length,
-              itemBuilder: (context, index) => CustomExamsListItem(
-                examModel: state.examsState.data![index],
-              ),
+              itemBuilder: (context, index) =>
+                  CustomExamsListItem(examModel: state.examsState.data![index]),
             );
           },
         ),

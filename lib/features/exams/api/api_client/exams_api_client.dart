@@ -16,6 +16,6 @@ abstract class ExamsApiClient {
   @GET(ApiEndpoints.getAllExams)
   Future<GetExamsResponse> getExams(
     @Header(ApiParam.token) String token,
-    @Query(ApiParam.getSubjectExams) String? subjectId
+    @Query(ApiParam.getSubjectExams) String? subjectId,
   );
 }

@@ -32,7 +32,7 @@ class ExamScoreViewBody extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: AnswerPercentage(
-                  corrrectAnswers: correctAnswers,
+                  correctAnswers: correctAnswers,
                   wrongAnswers: wrongAnswers,
                   totalAnswers: totalQuestions,
                 ),

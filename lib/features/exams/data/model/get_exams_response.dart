@@ -14,16 +14,9 @@ class GetExamsResponse {
   @JsonKey(name: 'exams')
   final List<ExamModelDTO?>? exams;
 
-  GetExamsResponse({
-    this.message,
-    this.metadata,
-    this.exams,
-  });
+  GetExamsResponse({this.message, this.metadata, this.exams});
 
-  factory GetExamsResponse.fromJson(Map<String, dynamic> json) => _$GetExamsResponseFromJson(json);
+  factory GetExamsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetExamsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$GetExamsResponseToJson(this);
-
-
-
 }
-

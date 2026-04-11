@@ -8,7 +8,7 @@ import 'package:online_exam_app/config/security_storage/security_storage_module.
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_model.dart';
-import 'package:online_exam_app/features/exams_questions/domain/use_cases/get_exam_questions_usecase.dart';
+import 'package:online_exam_app/features/exams_questions/domain/use_cases/get_exam_questions_use_case.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 part '../states/exams_questions_state.dart';
 
@@ -79,7 +79,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
           ),
         );
 
-        log('Sucess getting question...');
+        log('Success getting question...');
 
         break;
       case ErrorBaseResponse<ExamQuestionsModel>():

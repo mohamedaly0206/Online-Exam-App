@@ -12,6 +12,6 @@ class ExamModel {
     this.duration,
     this.subject,
     this.numberOfQuestions,
-    this.answerData
+    this.answerData,
   });
 }
