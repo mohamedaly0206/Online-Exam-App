@@ -38,7 +38,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       TextEditingController();
   // page controller
   final PageController pageController = PageController();
-  int courantPageIndex = 0;
+  int currentPageIndex = 0;
 
   void doIntent(ForgetPasswordIntent intent) {
     switch (intent) {
@@ -52,7 +52,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         _resetPassword(intent.context);
         break;
       case BackToPriviesPageIntent():
-        _priviesPage(intent.context);
+        _previousPage(intent.context);
         break;
       case ResendOTPIntent():
         _resendOTP(intent.context);
@@ -70,16 +70,16 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     return super.close();
   }
 
-  void _priviesPage(BuildContext context) {
-    courantPageIndex = 0;
+  void _previousPage(BuildContext context) {
+    currentPageIndex = 0;
     GoRouter.of(context).pop();
   }
 
   void _nextPage(BuildContext context) {
-    if (courantPageIndex < 2) {
-      courantPageIndex++;
+    if (currentPageIndex < 2) {
+      currentPageIndex++;
       pageController.animateToPage(
-        courantPageIndex,
+        currentPageIndex,
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOutCubicEmphasized,
       );

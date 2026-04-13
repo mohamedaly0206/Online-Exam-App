@@ -10,7 +10,7 @@ import 'package:online_exam_app/features/auth/forget_password/domain/model/reset
 import 'package:online_exam_app/features/auth/forget_password/domain/model/verify_reset_code_model.dart';
 import 'package:online_exam_app/features/auth/forget_password/domain/repo/forget_password_repo_contract.dart';
 
-@LazySingleton(as: ForgetPasswordRepoContract)
+@Injectable(as: ForgetPasswordRepoContract)
 class ForgetPasswordRepoImpl implements ForgetPasswordRepoContract {
   final ForgetPasswordRemoteDataSourceContract
   forgetPasswordRemoteDataSourceContract;

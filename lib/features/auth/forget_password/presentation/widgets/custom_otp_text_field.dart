@@ -14,6 +14,7 @@ class CustomOTPTextField extends StatelessWidget {
   final ForgetPasswordState state;
   @override
   Widget build(BuildContext context) {
+  final theme= Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -21,21 +22,21 @@ class CustomOTPTextField extends StatelessWidget {
           numberOfFields: 6,
           fieldWidth: 46,
           contentPadding: EdgeInsets.all(2),
-          margin: EdgeInsetsGeometry.all(4),
+          margin: EdgeInsets.all(4),
           showFieldAsBox: true,
           autoFocus: true,
           filled: true,
-          textStyle: Theme.of(context).textTheme.headlineLarge,
-          cursorColor: Theme.of(context).colorScheme.primary,
+          textStyle: theme.textTheme.headlineLarge,
+          cursorColor: theme.colorScheme.primary,
           focusedBorderColor: state.verifyResetCodeState.errorMessage == null
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.error,
+              ? theme.colorScheme.primary
+              : theme.colorScheme.error,
           // styles: AppTextStyles.otpTextStyle,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           enabledBorderColor: state.verifyResetCodeState.errorMessage == null
-              ? Theme.of(context).colorScheme.primaryFixed
-              : Theme.of(context).colorScheme.error,
-          fillColor: Theme.of(context).colorScheme.primaryFixed,
+              ? theme.colorScheme.primaryFixed
+              : theme.colorScheme.error,
+          fillColor: theme.colorScheme.primaryFixed,
 
           onSubmit: (value) {
             context.read<ForgetPasswordCubit>().doIntent(
@@ -50,14 +51,14 @@ class CustomOTPTextField extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Assets.icons.errorIcon,
-                    color: Theme.of(context).colorScheme.error,
+                    color: theme.colorScheme.error,
                     width: 14,
                   ),
                   SizedBox(width: 4),
                   Text(
                     AppStrings.invalidCode,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: Theme.of(context).colorScheme.error,
+                    style: theme.textTheme.bodySmall!.copyWith(
+                      color: theme.colorScheme.error,
                     ),
                   ),
                 ],

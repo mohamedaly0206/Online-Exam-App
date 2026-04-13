@@ -3,7 +3,7 @@ import 'package:online_exam_app/features/auth/forget_password/domain/model/forge
 import 'package:online_exam_app/features/auth/forget_password/domain/model/reset_password_model.dart';
 import 'package:online_exam_app/features/auth/forget_password/domain/model/verify_reset_code_model.dart';
 
-abstract class ForgetPasswordRepoContract {
+abstract interface class ForgetPasswordRepoContract {
   Future<BaseResponse<ForgetPasswordModel>> forgetPassword(String email);
   Future<BaseResponse<ResetPasswordModel>> resetPassword(
     String email,
