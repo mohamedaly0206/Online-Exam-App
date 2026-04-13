@@ -31,16 +31,16 @@ class LoginRepoImp implements LoginRepoContract {
         // try to store token locally
         try {
           // local can throw exception, so there is try-catch
-          await loginLocalDataSource.saveToken(response.data.token);
+          await loginLocalDataSource.saveToken(response.data.token!);
           await loginLocalDataSource.saveRememberMe(rememberMe);
 
           return SuccessBaseResponse<UserModel>(
             // send UserDto to (toDomain)
-            data: response.data.user.toDomain(),
+            data: response.data.user!.toDomain(),
           );
         } catch (e) {
           return ErrorBaseResponse<UserModel>(
-            errorMessage: ServerFailure.failureHandler(e).errorMessage,
+            errorMessage: CacheFailure(e).errorMessage,
           );
         }
 

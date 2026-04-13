@@ -13,9 +13,7 @@ class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
 
   static ServerFailure failureHandler(Object e) {
-    if (e is CacheException) {
-      return ServerFailure(e.errorMessage);
-    } else if (e is DioException) {
+     if (e is DioException) {
       return ServerFailure.fromDioException(e);
     } else {
       return ServerFailure(AppStrings.errorMessage);
@@ -66,4 +64,8 @@ class ServerFailure extends Failure {
       return ServerFailure('Opps there was an error, please try again66');
     }
   }
+}
+
+class CacheFailure extends Failure {
+  CacheFailure(Object e) : super(e is CacheException ? e.errorMessage : "Storage Error");
 }
