@@ -7,7 +7,7 @@ import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_questions_view_body.dart';
-import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_timer.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_timer_widget.dart';
 
 class ExamsQuestionsView extends StatelessWidget {
   const ExamsQuestionsView({super.key, required this.examId});
@@ -17,7 +17,8 @@ class ExamsQuestionsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ExamsQuestionsCubit>(
       create: (context) =>
-          getIt<ExamsQuestionsCubit>()..handleExamsQuestionsIntent(StartExam()),
+          getIt<ExamsQuestionsCubit>()
+            ..handleExamsQuestionsIntent(StartExam(examId: examId)),
       child: Builder(
         builder: (context) {
           return PopScope(
@@ -29,7 +30,7 @@ class ExamsQuestionsView extends StatelessWidget {
               child: Scaffold(
                 appBar: CustomAppBar(
                   title: AppStrings.exam,
-                  actions: const [ExamTimer()],
+                  actions: const [ExamTimerWidget()],
                   onBackPressed: () {
                     showQuitExamDialog(context);
                   },

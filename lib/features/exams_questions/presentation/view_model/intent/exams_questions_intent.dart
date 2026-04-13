@@ -2,7 +2,11 @@ import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.
 
 abstract class ExamsQuestionsIntent {}
 
-class StartExam extends ExamsQuestionsIntent {}
+class StartExam extends ExamsQuestionsIntent {
+  final String examId;
+
+  StartExam({required this.examId});
+}
 
 class NextQuestionIntent extends ExamsQuestionsIntent {}
 

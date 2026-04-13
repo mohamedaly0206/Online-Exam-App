@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/exams_questions/presentation/widgets/answer_percentage.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/widgets/answer_percentage_widget.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_score_details.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/score_view_body_buttons.dart';
 
@@ -31,7 +31,7 @@ class ExamScoreViewBody extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: AnswerPercentage(
+                child: AnswerPercentageWidget(
                   correctAnswers: correctAnswers,
                   wrongAnswers: wrongAnswers,
                   totalAnswers: totalQuestions,

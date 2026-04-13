@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 
-class ExamTimer extends StatelessWidget {
-  const ExamTimer({super.key});
+class ExamTimerWidget extends StatelessWidget {
+  const ExamTimerWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(

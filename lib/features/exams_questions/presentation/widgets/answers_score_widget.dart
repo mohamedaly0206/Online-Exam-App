@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AnswersScore extends StatelessWidget {
-  const AnswersScore({
+class AnswersScoreWidget extends StatelessWidget {
+  const AnswersScoreWidget({
     super.key,
     required this.score,
     required this.answerKindName,

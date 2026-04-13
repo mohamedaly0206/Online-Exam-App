@@ -22,7 +22,7 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   void handleExamsQuestionsIntent(ExamsQuestionsIntent intent) {
     switch (intent) {
       case StartExam():
-        _startExam();
+        _startExam(intent.examId);
         break;
       case StopTimerIntent():
         _closeTimer();
@@ -50,19 +50,19 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     calculateExamScore();
   }
 
-  Future<void> _startExam() async {
-    await _getExamsQuestions();
+  Future<void> _startExam(String examId) async {
+    await _getExamsQuestions(examId);
     _startTimer();
   }
 
-  Future<void> _getExamsQuestions() async {
+  Future<void> _getExamsQuestions(String examId) async {
     // emit(state.copyWith(examsQuestionsState: state.examsQuestionsState.copyWith(isLoadingParam: true)));
     final token = await SecurityStorageModule.getSecuredString(
       AppStrings.token,
     );
     log('getting questions...');
     final response = await _examQuestionsRepoContract.call(
-      examId: '670070a830a3c3c1944a9c63',
+      examId: examId,
       token: token,
     );
     switch (response) {

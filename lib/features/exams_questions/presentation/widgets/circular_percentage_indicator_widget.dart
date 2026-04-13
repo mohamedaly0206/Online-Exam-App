@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class CircularPercentageIndicator extends StatelessWidget {
-  const CircularPercentageIndicator({
+class CircularPercentageIndicatorWidget extends StatelessWidget {
+  const CircularPercentageIndicatorWidget({
     super.key,
     required this.answers,
     required this.totalAnswers,
