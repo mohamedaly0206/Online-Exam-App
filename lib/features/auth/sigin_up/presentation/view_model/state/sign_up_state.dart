@@ -9,7 +9,7 @@ class SignUpState {
   SignUpState({BaseState<SignUpResponseModel>? signUpState}) {
     this.signUpState = signUpState ?? this.signUpState;
   }
-  SignUpState copyWith({BaseState<SignUpResponseModel>? signUpStatePram}) {
-    return SignUpState(signUpState: signUpStatePram ?? signUpState);
+  SignUpState copyWith({BaseState<SignUpResponseModel>? signUpStateParam}) {
+    return SignUpState(signUpState: signUpStateParam ?? signUpState);
   }
 }

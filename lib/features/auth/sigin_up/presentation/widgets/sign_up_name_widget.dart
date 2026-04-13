@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sign_up_cubit.dart';
 
-class SignUpName extends StatelessWidget {
-  const SignUpName({super.key});
-
+class SignUpNameWidget extends StatelessWidget {
+  const SignUpNameWidget({
+    super.key,
+    required this.firstNameController,
+    required this.lastNameController,
+  });
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
   @override
   Widget build(BuildContext context) {
-        final SignUpCubit signUpCubit = context.read<SignUpCubit>();
-
     return Row(
       children: [
         Expanded(
@@ -19,7 +20,7 @@ class SignUpName extends StatelessWidget {
               label: Text(AppStrings.firstName),
               hintText: AppStrings.hintFirstNameText,
             ),
-            controller: signUpCubit.firstNameController,
+            controller: firstNameController,
             validator: (value) =>
                 AppValidators.validateEmptyTextFormField(value),
             keyboardType: TextInputType.name,
@@ -32,7 +33,7 @@ class SignUpName extends StatelessWidget {
               label: Text(AppStrings.lastName),
               hintText: AppStrings.hintLastNameText,
             ),
-            controller: signUpCubit.lastNameController,
+            controller: lastNameController,
             validator: (value) =>
                 AppValidators.validateEmptyTextFormField(value),
             keyboardType: TextInputType.name,

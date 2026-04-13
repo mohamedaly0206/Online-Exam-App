@@ -6,6 +6,7 @@ import 'package:online_exam_app/core/values/api_endpoints.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'sign_up_api_client.g.dart';
+
 @injectable
 @RestApi()
 abstract class SignUpApiClient {
@@ -13,5 +14,4 @@ abstract class SignUpApiClient {
   factory SignUpApiClient(Dio dio) = _SignUpApiClient;
   @POST(ApiEndpoints.signUp)
   Future<SignUpResponseDto> signUp(@Body() SignUpRequestDto signUpRequestDto);
-  
 }

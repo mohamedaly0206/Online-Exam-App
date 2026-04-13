@@ -22,7 +22,9 @@ class AppValidators {
       return 'Password must be at least 8 characters';
     }
 
-    if (!RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$").hasMatch(password)) {
+    if (!RegExp(
+      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+    ).hasMatch(password)) {
       return 'password must contain upper and lowercase, number and symbol';
     }
 

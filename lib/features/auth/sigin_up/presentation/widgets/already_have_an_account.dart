@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
-class AlreadyHaveAnAcoount extends StatelessWidget {
-  const AlreadyHaveAnAcoount({super.key});
+class AlreadyHaveAnAcoountWidget extends StatelessWidget {
+  const AlreadyHaveAnAcoountWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

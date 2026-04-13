@@ -8,12 +8,11 @@ import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/c
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
-  SignUpView({super.key});
-  final SignUpCubit signUpCubit = getIt.get<SignUpCubit>();
+  const SignUpView({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignUpCubit>(
-      create: (context) => signUpCubit,
+      create: (context) => getIt<SignUpCubit>(),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -25,7 +24,7 @@ class SignUpView extends StatelessWidget {
             ),
             title: const Text(AppStrings.signUp),
           ),
-          body: const SignUpViewBody(),
+          body: SignUpViewBody(),
         ),
       ),
     );

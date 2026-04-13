@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sign_up_cubit.dart';
 
-class SignUpPassword extends StatelessWidget {
-  const SignUpPassword({super.key});
+class SignUpPasswordWidget extends StatelessWidget {
+  const SignUpPasswordWidget({
+    super.key,
+    required this.passwordController,
+    required this.confirmPasswordController,
+  });
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
 
   @override
   Widget build(BuildContext context) {
-    final SignUpCubit signUpCubit = context.read<SignUpCubit>();
     return Row(
       children: [
         Expanded(
@@ -19,7 +22,7 @@ class SignUpPassword extends StatelessWidget {
               hintText: AppStrings.hintPasswordSignUpText,
               errorMaxLines: 3,
             ),
-            controller: signUpCubit.passwordController,
+            controller: passwordController,
             validator: (value) => AppValidators.validatePassword(value),
             obscureText: true,
           ),
@@ -32,11 +35,9 @@ class SignUpPassword extends StatelessWidget {
               label: Text(AppStrings.confirmPassword),
               hintText: AppStrings.hintConfirmPasswordText,
             ),
-            controller: signUpCubit.confirmPasswordController,
-            validator: (value) => AppValidators.confirmPassword(
-              signUpCubit.passwordController.text,
-              value,
-            ),
+            controller: confirmPasswordController,
+            validator: (value) =>
+                AppValidators.confirmPassword(passwordController.text, value),
           ),
         ),
       ],
