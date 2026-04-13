@@ -1,4 +1,4 @@
-class AppValidators {
+abstract class AppValidators {
   static String? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
       return 'Email is required';

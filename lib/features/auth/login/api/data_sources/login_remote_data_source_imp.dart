@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_remote_data_source_contract.dart';
+import 'package:online_exam_app/features/auth/login/data/models/login_request_body.dart';
 
 import '../../../../../core/errors/failures.dart';
-import '../../../../../core/values/app_strings.dart';
 import '../../data/models/login_response.dart';
 import '../login_api_client/login_api_client.dart';
 
@@ -14,14 +14,17 @@ class LoginRemoteDataSourceImp implements LoginRemoteDataSourceContract {
   final LoginApiClient loginApiClient;
 
   @override
-  @override
   Future<BaseResponse<LoginResponse>> login({
     required String email,
     required String password,
   }) async {
     try {
+      final requestBody = LoginRequestBody(
+        email: email,
+        password: password,
+      );
       final response = await loginApiClient.login(
-        body: {AppStrings.emailKey: email, AppStrings.passwordKey: password},
+        body: requestBody,
       );
 
       return SuccessBaseResponse<LoginResponse>(data: response);
