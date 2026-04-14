@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../user_model.dart';
+import '../user_entity.dart';
 
 part 'user_dto.g.dart';
 
@@ -36,7 +36,7 @@ class UserDto {
     required this.isVerified,
     required this.createdAt,
   });
-  UserModel toDomain() => UserModel(
+  UserEntity toDomain() => UserEntity(
     id: id,
     userName: username,
     email: email,

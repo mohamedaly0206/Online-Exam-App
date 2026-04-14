@@ -1,4 +1,4 @@
-class UserModel {
+class UserEntity {
   final String userName;
   final String firstName;
   final String lastName;
@@ -7,7 +7,7 @@ class UserModel {
   final String? id;
   final String? createdAt;
 
-  UserModel({
+  UserEntity({
     required this.userName,
     required this.firstName,
     required this.lastName,

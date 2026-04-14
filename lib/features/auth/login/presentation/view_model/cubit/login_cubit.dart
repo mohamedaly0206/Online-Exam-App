@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../config/base_response/base_response.dart';
-import '../../../../../../config/models/user_model.dart';
+import '../../../../../../config/models/user_entity.dart';
 import '../../../domain/use_cases/login_use_case.dart';
 import '../intent/login_intent.dart';
 import '../state/login_state.dart';
@@ -40,7 +40,7 @@ class LoginCubit extends Cubit<LoginState> {
       rememberMe: state.rememberMe,
     );
 
-    if (response is SuccessBaseResponse<UserModel>) {
+    if (response is SuccessBaseResponse<UserEntity>) {
       emit(
         state.copyWith(
           loginStateParam: state.loginState.copyWith(
@@ -49,7 +49,7 @@ class LoginCubit extends Cubit<LoginState> {
           ),
         ),
       );
-    } else if (response is ErrorBaseResponse<UserModel>) {
+    } else if (response is ErrorBaseResponse<UserEntity>) {
       emit(
         state.copyWith(
           loginStateParam: state.loginState.copyWith(

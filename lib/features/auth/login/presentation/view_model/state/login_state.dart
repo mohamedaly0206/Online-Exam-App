@@ -1,21 +1,21 @@
 import '../../../../../../config/base_state/base_state.dart';
-import '../../../../../../config/models/user_model.dart';
+import '../../../../../../config/models/user_entity.dart';
 
 class LoginState {
-  final BaseState<UserModel> loginState;
+  final BaseState<UserEntity> loginState;
   final bool rememberMe;
 
-  LoginState({BaseState<UserModel>? loginState, this.rememberMe = false})
+  LoginState({BaseState<UserEntity>? loginState, this.rememberMe = false})
     : loginState =
           loginState ??
-          BaseState<UserModel>(
+          BaseState<UserEntity>(
             isLoading: false,
             errorMessage: null,
             data: null,
           );
 
   LoginState copyWith({
-    BaseState<UserModel>? loginStateParam,
+    BaseState<UserEntity>? loginStateParam,
     bool? rememberMeParam,
   }) {
     return LoginState(
