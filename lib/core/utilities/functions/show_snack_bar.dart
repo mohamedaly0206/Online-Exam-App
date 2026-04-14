@@ -5,7 +5,7 @@ void showSnackBar({
   required String message,
   required Color color,
 }) {
-  ScaffoldMessenger.of(
-    context,
-  ).showSnackBar(SnackBar(backgroundColor: color, content: Text(message)));
+  ScaffoldMessenger.of(context)
+    ..clearSnackBars()
+    ..showSnackBar(SnackBar(backgroundColor: color, content: Text(message)));
 }

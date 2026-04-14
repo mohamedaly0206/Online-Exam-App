@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/auth/login/data/data_sources/login_loca
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_remote_data_source_contract.dart';
 import 'package:online_exam_app/features/auth/login/data/models/login_response.dart';
 
-import '../../../../../config/models/user_model/user_model.dart';
+import '../../../../../config/models/user_model/user_entity.dart';
 import '../../../../../core/errors/failures.dart';
 import '../../domain/repo/login_repo_contract.dart';
 
@@ -16,7 +16,7 @@ class LoginRepoImp implements LoginRepoContract {
   final LoginLocalDataSourceContract loginLocalDataSource;
 
   @override
-  Future<BaseResponse<UserModel>> login({
+  Future<BaseResponse<UserEntity>> login({
     required String email,
     required String password,
     required bool rememberMe,
@@ -28,24 +28,24 @@ class LoginRepoImp implements LoginRepoContract {
 
     switch (response) {
       case SuccessBaseResponse<LoginResponse>():
-        // try to store token locally
+      // try to store token locally
         try {
           // local can throw exception, so there is try-catch
-          await loginLocalDataSource.saveToken(response.data.token);
+          await loginLocalDataSource.saveToken(response.data.token!);
           await loginLocalDataSource.saveRememberMe(rememberMe);
 
-          return SuccessBaseResponse<UserModel>(
+          return SuccessBaseResponse<UserEntity>(
             // send UserDto to (toDomain)
-            data: response.data.user.toDomain(),
+            data: response.data.user!.toDomain(),
           );
         } catch (e) {
-          return ErrorBaseResponse<UserModel>(
-            errorMessage: ServerFailure.failureHandler(e).errorMessage,
+          return ErrorBaseResponse<UserEntity>(
+            errorMessage: CacheFailure(e).errorMessage,
           );
         }
 
       case ErrorBaseResponse<LoginResponse>():
-        return ErrorBaseResponse<UserModel>(
+        return ErrorBaseResponse<UserEntity>(
           errorMessage: response.errorMessage,
         );
     }

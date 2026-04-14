@@ -35,6 +35,7 @@ dev_dependencies:
   json_serializable: ^6.10.0
 
 
+
 flutter_gen:
   output: lib/core/values/
   fonts:

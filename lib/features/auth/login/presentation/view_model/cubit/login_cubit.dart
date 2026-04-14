@@ -1,10 +1,8 @@
-import 'dart:developer';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../config/base_response/base_response.dart';
-import '../../../../../../config/models/user_model/user_model.dart';
+import '../../../../../../config/models/user_model/user_entity.dart';
 import '../../../domain/use_cases/login_use_case.dart';
 import '../intent/login_intent.dart';
 import '../state/login_state.dart';
@@ -15,16 +13,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   final LoginUseCase _loginUseCase;
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  bool rememberMe = false;
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  Future<void> close() {
-    emailController.dispose();
-    passwordController.dispose();
-    return super.close();
+  void toggleRememberMe(bool value) {
+    emit(state.copyWith(rememberMeParam: value));
   }
 
   Future<void> handleLoginIntent(LoginIntent intent) async {
@@ -44,14 +34,13 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
 
-    log(state.loginState.isLoading.toString());
     final response = await _loginUseCase.call(
-      email: emailController.text,
-      password: passwordController.text,
-      rememberMe: rememberMe,
+      email: intent.email,
+      password: intent.password,
+      rememberMe: state.rememberMe,
     );
 
-    if (response is SuccessBaseResponse<UserModel>) {
+    if (response is SuccessBaseResponse<UserEntity>) {
       emit(
         state.copyWith(
           loginStateParam: state.loginState.copyWith(
@@ -60,7 +49,7 @@ class LoginCubit extends Cubit<LoginState> {
           ),
         ),
       );
-    } else if (response is ErrorBaseResponse<UserModel>) {
+    } else if (response is ErrorBaseResponse<UserEntity>) {
       emit(
         state.copyWith(
           loginStateParam: state.loginState.copyWith(

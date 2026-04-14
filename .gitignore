@@ -12,6 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 
+# Generated (Generated Files should not be pushed if team requested so)
 # Generated
 *.g.dart
 *.gen.dart
@@ -24,10 +25,8 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# VS Code related (Uncommented to prevent pushing local settings)
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -42,6 +41,7 @@ linux/
 macos/
 windows/
 web/
+
 # Symbolication related
 app.*.symbols
 
@@ -49,8 +49,7 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android Studio artifacts
 /android/app/debug
 /android/app/profile
 /android/app/release
-
