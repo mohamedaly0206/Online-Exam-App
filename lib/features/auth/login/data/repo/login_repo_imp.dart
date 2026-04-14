@@ -28,7 +28,7 @@ class LoginRepoImp implements LoginRepoContract {
 
     switch (response) {
       case SuccessBaseResponse<LoginResponse>():
-      // try to store token locally
+        // try to store token locally
         try {
           // local can throw exception, so there is try-catch
           await loginLocalDataSource.saveToken(response.data.token!);

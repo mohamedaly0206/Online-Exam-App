@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-
 import 'user_entity.dart';
 part 'user_dto.g.dart';
 
