@@ -1,5 +1,3 @@
-import 'dart:developer';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,16 +13,8 @@ class LoginCubit extends Cubit<LoginState> {
 
   final LoginUseCase _loginUseCase;
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  bool rememberMe = false;
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  Future<void> close() {
-    emailController.dispose();
-    passwordController.dispose();
-    return super.close();
+  void toggleRememberMe(bool value) {
+    emit(state.copyWith(rememberMeParam: value));
   }
 
   Future<void> handleLoginIntent(LoginIntent intent) async {
@@ -44,11 +34,10 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
 
-    log(state.loginState.isLoading.toString());
     final response = await _loginUseCase.call(
-      email: emailController.text,
-      password: passwordController.text,
-      rememberMe: rememberMe,
+      email: intent.email,
+      password: intent.password,
+      rememberMe: state.rememberMe,
     );
 
     if (response is SuccessBaseResponse<UserModel>) {

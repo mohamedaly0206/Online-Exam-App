@@ -3,8 +3,9 @@ import '../../../../../../config/models/user_model.dart';
 
 class LoginState {
   final BaseState<UserModel> loginState;
+  final bool rememberMe;
 
-  LoginState({BaseState<UserModel>? loginState})
+  LoginState({BaseState<UserModel>? loginState, this.rememberMe = false})
     : loginState =
           loginState ??
           BaseState<UserModel>(
@@ -13,7 +14,13 @@ class LoginState {
             data: null,
           );
 
-  LoginState copyWith({BaseState<UserModel>? loginStateParam}) {
-    return LoginState(loginState: loginStateParam ?? loginState);
+  LoginState copyWith({
+    BaseState<UserModel>? loginStateParam,
+    bool? rememberMeParam,
+  }) {
+    return LoginState(
+      loginState: loginStateParam ?? loginState,
+      rememberMe: rememberMeParam ?? rememberMe,
+    );
   }
 }
