@@ -23,7 +23,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         signUpStateParam: state.signUpState.copyWith(isLoadingParam: true),
       ),
     );
-    final response = await _signUpUseCase.invoke(intent.requestModel);
+    final response = await _signUpUseCase.call(intent.requestModel);
     if (response is SuccessBaseResponse<SignUpResponseModel>) {
       emit(
         state.copyWith(

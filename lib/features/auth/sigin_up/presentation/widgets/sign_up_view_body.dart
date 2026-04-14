@@ -6,26 +6,28 @@ import 'package:online_exam_app/features/auth/sigin_up/domain/models/request/sig
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/state/sign_up_state.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/view_model/cubit/sign_up_cubit.dart';
-import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/already_have_an_account.dart';
+import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/already_have_an_account_widget.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_name_widget.dart';
 import 'package:online_exam_app/features/auth/sigin_up/presentation/widgets/sign_up_password_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpViewBody extends StatefulWidget {
-  const SignUpViewBody({super.key});
+class SignUpViewBody extends StatelessWidget {
+  SignUpViewBody({super.key});
 
-  @override
-  State<SignUpViewBody> createState() => _SignUpViewBodyState();
-}
-
-class _SignUpViewBodyState extends State<SignUpViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController userNameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController phoneNumberController = TextEditingController();
+
   final TextEditingController firstNameController = TextEditingController();
+
   final TextEditingController lastNameController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
@@ -131,25 +133,13 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 ),
 
                 const SizedBox(height: 16),
-                const AlreadyHaveAnAcoountWidget(),
+                const AlreadyHaveAnAccountWidget(),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    userNameController.dispose();
-    emailController.dispose();
-    phoneNumberController.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    super.dispose();
   }
 
   void clearForm() {
@@ -160,5 +150,6 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     lastNameController.clear();
     passwordController.clear();
     confirmPasswordController.clear();
+    formKey.currentState!.reset();
   }
 }

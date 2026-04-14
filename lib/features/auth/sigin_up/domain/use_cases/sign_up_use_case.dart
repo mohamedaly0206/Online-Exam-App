@@ -9,7 +9,7 @@ class SignUpUseCase {
   final SignUpRepoContract _signUpRepoContract;
   SignUpUseCase(this._signUpRepoContract);
 
-  Future<BaseResponse<SignUpResponseModel>> invoke(
+  Future<BaseResponse<SignUpResponseModel>> call(
     SignUpRequestModel signUpRequestModel,
   ) => _signUpRepoContract.signUp(signUpRequestModel);
 }

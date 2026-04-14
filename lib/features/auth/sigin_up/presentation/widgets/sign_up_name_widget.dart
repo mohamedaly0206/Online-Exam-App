@@ -26,7 +26,7 @@ class SignUpNameWidget extends StatelessWidget {
             keyboardType: TextInputType.name,
           ),
         ),
-        const SizedBox(width: 17),
+        const SizedBox(width: 16),
         Expanded(
           child: TextFormField(
             decoration: const InputDecoration(

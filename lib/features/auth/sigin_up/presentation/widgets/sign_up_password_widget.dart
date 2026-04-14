@@ -27,7 +27,7 @@ class SignUpPasswordWidget extends StatelessWidget {
             obscureText: true,
           ),
         ),
-        const SizedBox(width: 17),
+        const SizedBox(width: 16),
         Expanded(
           child: TextFormField(
             obscureText: true,
