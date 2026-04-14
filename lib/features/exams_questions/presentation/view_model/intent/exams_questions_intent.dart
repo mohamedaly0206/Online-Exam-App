@@ -1,6 +1,6 @@
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 
-abstract class ExamsQuestionsIntent {}
+sealed class ExamsQuestionsIntent {}
 
 class StartExam extends ExamsQuestionsIntent {
   final String examId;

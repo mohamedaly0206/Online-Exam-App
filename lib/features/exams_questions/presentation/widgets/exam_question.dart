@@ -13,24 +13,19 @@ class ExamQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
       builder: (context, state) {
+        final questionIndex = state
+            .examsQuestionsState
+            .data!
+            .questions[state.currentQuestionIndex];
         return Column(
           children: [
             Text(
-              state
-                  .examsQuestionsState
-                  .data!
-                  .questions[state.currentQuestionIndex]
-                  .question,
+              questionIndex.question,
               style: Theme.of(context).textTheme.titleMedium,
               maxLines: 3,
             ),
             SizedBox(height: 24),
-            state
-                        .examsQuestionsState
-                        .data!
-                        .questions[state.currentQuestionIndex]
-                        .type ==
-                    QuestionType.singleChoice
+            questionIndex.type == QuestionType.singleChoice
                 ? SingleAnswerQuestion(
                     examQuestionModel: state.examsQuestionsState.data!,
                   )

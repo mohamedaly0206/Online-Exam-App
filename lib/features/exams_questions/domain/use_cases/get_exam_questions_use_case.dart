@@ -11,8 +11,8 @@ class GetExamQuestionsUseCase {
   Future<BaseResponse<ExamQuestionsModel>> call({
     String? examId,
     String? token,
-  }) async {
-    return await _examQuestionsRepoContract.getExamsQuestions(
+  }) {
+    return _examQuestionsRepoContract.getExamsQuestions(
       examId: examId,
       token: token,
     );

@@ -6,8 +6,8 @@ import 'package:online_exam_app/features/exams_questions/domain/models/question_
 part 'question_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Question {
-  final List<Answer>? answers;
+class QuestionDto {
+  final List<AnswerDto>? answers;
   final QuestionType? type;
 
   @JsonKey(name: "_id")
@@ -16,10 +16,10 @@ class Question {
   final String? question;
   final AnswerKey? correct;
   final dynamic subject;
-  final Exam? exam;
+  final ExamDto? exam;
   final DateTime? createdAt;
 
-  Question({
+  QuestionDto({
     this.answers,
     this.type,
     this.id,
@@ -30,7 +30,7 @@ class Question {
     this.createdAt,
   });
 
-  factory Question.fromJson(Map<String, dynamic> json) =>
+  factory QuestionDto.fromJson(Map<String, dynamic> json) =>
       _$QuestionFromJson(json);
 
   Map<String, dynamic> toJson() => _$QuestionToJson(this);

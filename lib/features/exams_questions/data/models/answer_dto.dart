@@ -4,13 +4,14 @@ import 'package:online_exam_app/features/exams_questions/domain/models/answer_mo
 part 'answer_dto.g.dart';
 
 @JsonSerializable()
-class Answer {
+class AnswerDto {
   final String? answer;
   final AnswerKey? key;
 
-  Answer({this.answer, this.key});
+  AnswerDto({this.answer, this.key});
 
-  factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
+  factory AnswerDto.fromJson(Map<String, dynamic> json) =>
+      _$AnswerFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnswerToJson(this);
   AnswerModel toDomain() =>

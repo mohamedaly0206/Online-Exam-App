@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/exams_questions/domain/models/exams_mod
 part 'exam_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Exam {
+class ExamDto {
   @JsonKey(name: "_id")
   final String? id;
 
@@ -15,7 +15,7 @@ class Exam {
   final bool? active;
   final DateTime? createdAt;
 
-  Exam({
+  ExamDto({
     this.id,
     this.title,
     this.duration,
@@ -25,7 +25,7 @@ class Exam {
     this.createdAt,
   });
 
-  factory Exam.fromJson(Map<String, dynamic> json) => _$ExamFromJson(json);
+  factory ExamDto.fromJson(Map<String, dynamic> json) => _$ExamFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExamToJson(this);
 

@@ -21,7 +21,7 @@ class MultipleAnswerQuestion extends StatelessWidget {
                   .answers
                   .length,
               itemBuilder: (context, index) => CheckBoxAnswers(
-                answers: examQuestionModel
+                answer: examQuestionModel
                     .questions[state.currentQuestionIndex]
                     .answers[index],
               ),

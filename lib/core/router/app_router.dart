@@ -1,5 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
@@ -34,7 +39,11 @@ abstract class AppRouter {
         path: AppRouterPaths.kExamQuestionsView,
         builder: (context, state) {
           final examId = '69d980167c82914570305e19';
-          return ExamsQuestionsView(examId: examId);
+          return BlocProvider<ExamsQuestionsCubit>(
+            create: (context) =>getIt<ExamsQuestionsCubit>()
+            ..handleExamsQuestionsIntent(StartExam(examId: examId)),
+            child: ExamsQuestionsView(),
+          );
         },
       ),
       GoRoute(
@@ -43,9 +52,9 @@ abstract class AppRouter {
           final extra = state.extra as Map<String, int>;
 
           return ExamScoreView(
-            correctAnswers: extra["correct"]!,
-            wrongAnswers: extra["wrong"]!,
-            totalQuestions: extra["total"]!,
+            correctAnswers: extra[AppStrings.correctAnswers]!,
+            wrongAnswers: extra[AppStrings.wrongAnswers]!,
+            totalQuestions: extra[AppStrings.totalAnswers]!,
           );
         },
       ),

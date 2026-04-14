@@ -6,8 +6,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class CheckBoxAnswers extends StatelessWidget {
-  const CheckBoxAnswers({super.key, required this.answers});
-  final AnswerModel answers;
+  const CheckBoxAnswers({super.key, required this.answer});
+  final AnswerModel answer;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CheckBoxAnswers extends StatelessWidget {
         final selected = state.selectedAnswers[state.currentQuestionIndex];
 
         final isChecked = selected is List<AnswerKey>
-            ? selected.contains(answers.answerKey)
+            ? selected.contains(answer.answerKey)
             : false;
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
@@ -29,7 +29,7 @@ class CheckBoxAnswers extends StatelessWidget {
             ),
             child: ListTile(
               title: Text(
-                answers.answerText,
+                answer.answerText,
                 style: Theme.of(context).textTheme.bodyMedium,
                 maxLines: 3,
               ),
@@ -41,7 +41,7 @@ class CheckBoxAnswers extends StatelessWidget {
                       .handleExamsQuestionsIntent(
                         SelectMultipleAnswerIntent(
                           state.currentQuestionIndex,
-                          answers.answerKey,
+                          answer.answerKey,
                         ),
                       );
                 },

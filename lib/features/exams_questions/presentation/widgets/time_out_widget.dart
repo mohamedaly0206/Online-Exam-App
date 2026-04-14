@@ -40,7 +40,7 @@ class TimeOutWidget extends StatelessWidget {
                   SvgPicture.asset(Assets.a3dIcons.sandClock),
                   const SizedBox(width: 8),
                   Text(
-                    'Time out !!',
+                    AppStrings.timeOut,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       color: Theme.of(context).colorScheme.error,
                     ),
@@ -55,9 +55,9 @@ class TimeOutWidget extends StatelessWidget {
                 GoRouter.of(context).pushReplacement(
                   AppRouterPaths.kExamScoreView,
                   extra: {
-                    "correct": cubit.state.totalCorrectAnswers,
-                    "wrong": cubit.state.totalWrongAnswers,
-                    "total": cubit.state.totalQuestions,
+                    AppStrings.correctAnswers: cubit.state.totalCorrectAnswers,
+                    AppStrings.wrongAnswers: cubit.state.totalWrongAnswers,
+                    AppStrings.totalAnswers: cubit.state.totalQuestions,
                   },
                 );
               },

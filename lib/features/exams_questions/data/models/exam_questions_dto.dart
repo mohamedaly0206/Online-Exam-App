@@ -6,7 +6,7 @@ part 'exam_questions_dto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ExamQuestionsDto {
   final String? message;
-  final List<Question>? questions;
+  final List<QuestionDto>? questions;
 
   ExamQuestionsDto({this.message, this.questions});
 
