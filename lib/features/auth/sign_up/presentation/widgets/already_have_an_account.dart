@@ -14,9 +14,12 @@ class AlreadyHaveAnAccountWidget extends StatelessWidget {
           AppStrings.alreadyHaveAccount,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        TextButton(onPressed: () {
-          GoRouter.of(context).pop();
-        }, child: Text(AppStrings.login)),
+        TextButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          child: Text(AppStrings.login),
+        ),
       ],
     );
   }
