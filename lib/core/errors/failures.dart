@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:online_exam_app/core/errors/exceptions.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-
-import 'exceptions.dart';
 
 abstract class Failure {
   final String errorMessage;
-
   const Failure(this.errorMessage);
 }
 
@@ -43,7 +41,6 @@ class ServerFailure extends Failure {
         return ServerFailure('No Internet Connection');
     }
   }
-
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       final String errorMessageRes =

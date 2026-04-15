@@ -1,15 +1,19 @@
 import 'package:online_exam_app/config/base_state/base_state.dart';
-import 'package:online_exam_app/features/auth/sign_up/domain/models/response/sign_up_response_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/domain/entities/response/sign_up_response_entity.dart';
 
 class SignUpState {
-  BaseState<SignUpResponseModel> signUpState = BaseState<SignUpResponseModel>(
-    isLoading: false,
-  );
+  final BaseState<SignUpResponseEntity> signUpState;
 
-  SignUpState({BaseState<SignUpResponseModel>? signUpState}) {
-    this.signUpState = signUpState ?? this.signUpState;
-  }
-  SignUpState copyWith({BaseState<SignUpResponseModel>? signUpStatePram}) {
-    return SignUpState(signUpState: signUpStatePram ?? signUpState);
+  SignUpState({BaseState<SignUpResponseEntity>? signUpState})
+    : signUpState =
+          signUpState ??
+          BaseState<SignUpResponseEntity>(
+            isLoading: false,
+            data: null,
+            errorMessage: null,
+          );
+
+  SignUpState copyWith({BaseState<SignUpResponseEntity>? signUpStateParam}) {
+    return SignUpState(signUpState: signUpStateParam ?? signUpState);
   }
 }

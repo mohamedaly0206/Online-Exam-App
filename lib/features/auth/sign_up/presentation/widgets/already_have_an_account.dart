@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
-class AlreadyHaveAnAcoount extends StatelessWidget {
-  const AlreadyHaveAnAcoount({super.key});
+class AlreadyHaveAnAccountWidget extends StatelessWidget {
+  const AlreadyHaveAnAccountWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,9 @@ class AlreadyHaveAnAcoount extends StatelessWidget {
           AppStrings.alreadyHaveAccount,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        TextButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: Text(AppStrings.login),
-        ),
+        TextButton(onPressed: () {
+          GoRouter.of(context).pop();
+        }, child: Text(AppStrings.login)),
       ],
     );
   }
