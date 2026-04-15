@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/intent/forget_password_intent.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_state.dart';
@@ -9,10 +10,12 @@ import '../view_model/cubit/forget_password_cubit.dart';
 import '../widgets/custom_otp_text_field.dart';
 
 class VerifyResetCodeView extends StatelessWidget {
-  const VerifyResetCodeView({super.key});
+  VerifyResetCodeView({super.key});
+  final cubit = getIt.get<ForgetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listenWhen: (previous, current) {
@@ -26,13 +29,13 @@ class VerifyResetCodeView extends StatelessWidget {
             showSnackBar(
               context: context,
               message: state.verifyResetCodeState.errorMessage ?? '',
-              color: Theme.of(context).colorScheme.error,
+              color:theme.colorScheme.error,
             );
           } else if (state.resendOTPState.errorMessage != null) {
             showSnackBar(
               context: context,
               message: state.resendOTPState.errorMessage ?? '',
-              color: Theme.of(context).colorScheme.error,
+              color:theme.colorScheme.error,
             );
           }
         },
@@ -55,23 +58,23 @@ class VerifyResetCodeView extends StatelessWidget {
         },
         builder: (context, state) {
           return Form(
-            key: context.read<ForgetPasswordCubit>().verifyResetCodeFormKey,
+            key: cubit.verifyResetCodeFormKey,
             child: Column(
               children: [
                 Text(
                   AppStrings.emailVerification,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: theme.textTheme.titleMedium,
                 ),
                 SizedBox(height: 10),
                 Text(
                   AppStrings.enterCode,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: theme.textTheme.bodyMedium,
                 ),
                 SizedBox(height: 24),
                 state.verifyResetCodeState.isLoading
                     ? CircularProgressIndicator(
-                        color: Theme.of(context).colorScheme.primary,
+                        color: theme.colorScheme.primary,
                       )
                     : CustomOTPTextField(state: state),
                 SizedBox(height: 24),
@@ -81,12 +84,12 @@ class VerifyResetCodeView extends StatelessWidget {
                     Text(AppStrings.verifyButton),
                     state.resendOTPState.isLoading
                         ? CircularProgressIndicator(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: theme.colorScheme.primary,
                           )
                         : TextButton(
                             child: Text(AppStrings.resendButton),
                             onPressed: () {
-                              context.read<ForgetPasswordCubit>().doIntent(
+                            cubit.doIntent(
                                 ResendOTPIntent(context: context),
                               );
                             },

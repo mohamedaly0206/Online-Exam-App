@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
-import '../../../domain/model/forget_password_model.dart';
-import '../../../domain/model/reset_password_model.dart';
-import '../../../domain/model/verify_reset_code_model.dart';
+import '../../../domain/entity/forget_password_entity.dart';
+import '../../../domain/entity/reset_password_entity.dart';
+import '../../../domain/entity/verify_reset_code_entity.dart';
 import '../../../domain/use_case/forget_password_use_case.dart';
 import '../../../domain/use_case/reset_password_use_case.dart';
 import '../../../domain/use_case/verify_reset_code_use_case.dart';
@@ -38,7 +38,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       TextEditingController();
   // page controller
   final PageController pageController = PageController();
-  int courantPageIndex = 0;
+  int currentPageIndex = 0;
 
   void doIntent(ForgetPasswordIntent intent) {
     switch (intent) {
@@ -52,7 +52,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         _resetPassword(intent.context);
         break;
       case BackToPriviesPageIntent():
-        _priviesPage(intent.context);
+        _previousPage(intent.context);
         break;
       case ResendOTPIntent():
         _resendOTP(intent.context);
@@ -70,16 +70,16 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     return super.close();
   }
 
-  void _priviesPage(BuildContext context) {
-    courantPageIndex = 0;
+  void _previousPage(BuildContext context) {
+    currentPageIndex = 0;
     GoRouter.of(context).pop();
   }
 
   void _nextPage(BuildContext context) {
-    if (courantPageIndex < 2) {
-      courantPageIndex++;
+    if (currentPageIndex < 2) {
+      currentPageIndex++;
       pageController.animateToPage(
-        courantPageIndex,
+        currentPageIndex,
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOutCubicEmphasized,
       );
@@ -101,7 +101,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         enterEmailTextController.text,
       );
       switch (response) {
-        case SuccessBaseResponse<ForgetPasswordModel>():
+        case SuccessBaseResponse<ForgetPasswordEntity>():
           emit(
             state.copyWith(
               enterEmailStateParam: state.enterEmailState.copyWith(
@@ -112,7 +112,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           );
           _nextPage(context);
           break;
-        case ErrorBaseResponse<ForgetPasswordModel>():
+        case ErrorBaseResponse<ForgetPasswordEntity>():
           emit(
             state.copyWith(
               enterEmailStateParam: state.enterEmailState.copyWith(
@@ -143,7 +143,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       );
       final response = await verifyResetCodeUseCase(otp);
       switch (response) {
-        case SuccessBaseResponse<VerifyResetCodeModel>():
+        case SuccessBaseResponse<VerifyResetCodeEntity>():
           emit(
             state.copyWith(
               verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
@@ -155,7 +155,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           );
           _nextPage(context);
           break;
-        case ErrorBaseResponse<VerifyResetCodeModel>():
+        case ErrorBaseResponse<VerifyResetCodeEntity>():
           emit(
             state.copyWith(
               verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
@@ -183,7 +183,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         passwordTextController.text,
       );
       switch (response) {
-        case SuccessBaseResponse<ResetPasswordModel>():
+        case SuccessBaseResponse<ResetPasswordEntity>():
           emit(
             state.copyWith(
               resetPasswordStateParam: state.resetPasswordState.copyWith(
@@ -195,7 +195,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           );
           _nextPage(context);
           break;
-        case ErrorBaseResponse<ResetPasswordModel>():
+        case ErrorBaseResponse<ResetPasswordEntity>():
           emit(
             state.copyWith(
               resetPasswordStateParam: state.resetPasswordState.copyWith(
@@ -224,7 +224,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     );
     final response = await forgetPasswordUseCase(enterEmailTextController.text);
     switch (response) {
-      case SuccessBaseResponse<ForgetPasswordModel>():
+      case SuccessBaseResponse<ForgetPasswordEntity>():
         emit(
           state.copyWith(
             resendOTPStateParam: state.resendOTPState.copyWith(
@@ -235,10 +235,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           ),
         );
         break;
-      case ErrorBaseResponse<ForgetPasswordModel>():
+      case ErrorBaseResponse<ForgetPasswordEntity>():
         emit(
           state.copyWith(
-            enterEmailStateParam: state.enterEmailState.copyWith(
+            resendOTPStateParam: state.resendOTPState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
             ),

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/model/forget_password_model.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entity/forget_password_entity.dart';
 import 'package:online_exam_app/features/auth/forget_password/domain/repo/forget_password_repo_contract.dart';
 
 @injectable
@@ -9,7 +9,7 @@ class ForgetPasswordUseCase {
 
   ForgetPasswordUseCase({required this.forgetPasswordRepoContract});
 
-  Future<BaseResponse<ForgetPasswordModel>> call(String email) async {
+  Future<BaseResponse<ForgetPasswordEntity>> call(String email) async {
     return await forgetPasswordRepoContract.forgetPassword(email);
   }
 }

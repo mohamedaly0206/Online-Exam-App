@@ -10,52 +10,47 @@ class EnterEmailView extends StatelessWidget {
   const EnterEmailView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-      builder: (context, state) {
-        return SingleChildScrollView(
-          child: Form(
-            key: context.read<ForgetPasswordCubit>().enterEmailFormKey,
-            child: Column(
-              children: [
-                Text(
-                  AppStrings.forgetPassword,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  AppStrings.enterEmail,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                SizedBox(height: 32),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: AppStrings.email,
-                    hintText: AppStrings.hintEmailText,
-                  ),
-                  validator: (value) => AppValidators.validateEmail(value),
-                  controller: context
-                      .read<ForgetPasswordCubit>()
-                      .enterEmailTextController,
-                ),
-                SizedBox(height: 48),
-                ElevatedButton(
+    final cubit = context.read<ForgetPasswordCubit>();
+    final theme = Theme.of(context);
+    return SingleChildScrollView(
+      child: Form(
+        key: cubit.enterEmailFormKey,
+        child: Column(
+          children: [
+            Text(AppStrings.forgetPassword, style: theme.textTheme.titleMedium),
+            SizedBox(height: 10),
+            Text(
+              AppStrings.enterEmail,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium,
+            ),
+            SizedBox(height: 32),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: AppStrings.email,
+                hintText: AppStrings.hintEmailText,
+              ),
+              validator: (value) => AppValidators.validateEmail(value),
+              controller: cubit.enterEmailTextController,
+            ),
+            SizedBox(height: 48),
+            BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+              builder: (context, state) {
+                return ElevatedButton(
                   onPressed: () {
-                    context.read<ForgetPasswordCubit>().doIntent(
-                      EnterEmailIntent(context: context),
-                    );
+                    cubit.doIntent(EnterEmailIntent(context: context));
                   },
                   child: state.enterEmailState.isLoading
                       ? CircularProgressIndicator(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: theme.colorScheme.onPrimary,
                         )
                       : Text(AppStrings.continueButton),
-                ),
-              ],
+                );
+              },
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }

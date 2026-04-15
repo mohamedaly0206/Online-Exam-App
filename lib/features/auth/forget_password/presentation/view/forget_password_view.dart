@@ -9,11 +9,13 @@ import '../../presentation/view_model/cubit/forget_password_cubit.dart';
 import '../widgets/forget_password_body.dart';
 
 class ForgetPasswordView extends StatelessWidget {
-  const ForgetPasswordView({super.key});
+  ForgetPasswordView({super.key});
+  final cubit = getIt.get<ForgetPasswordCubit>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ForgetPasswordCubit>(
-      create: (context) => getIt.get<ForgetPasswordCubit>(),
+      create: (context) => cubit,
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppStrings.password),
