@@ -12,6 +12,13 @@
 .swiftpm/
 migrate_working_dir/
 
+# Generated
+*.g.dart
+*.gen.dart
+*.config.dart
+*.freezed.dart
+*.config.dart
+
 # IntelliJ related
 *.iml
 *.ipr
