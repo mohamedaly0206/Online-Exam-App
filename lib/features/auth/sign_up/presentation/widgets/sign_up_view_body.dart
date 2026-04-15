@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/auth/sign_up/domain/models/request/sign_up_request_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/domain/entities/request/sign_up_request_entity.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/state/sign_up_state.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
@@ -43,8 +43,8 @@ class SignUpViewBody extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           );
           clearForm();
-        }
-        else if (state.signUpState.errorMessage != null&& state.signUpState.isLoading==false) {
+        } else if (state.signUpState.errorMessage != null &&
+            state.signUpState.isLoading == false) {
           showSnackBar(
             context: context,
             message: state.signUpState.errorMessage!,
@@ -108,7 +108,7 @@ class SignUpViewBody extends StatelessWidget {
                         if (formKey.currentState!.validate()) {
                           context.read<SignUpCubit>().handleSignUpIntent(
                             SubmitSignUp(
-                              requestModel: SignUpRequestModel(
+                              requestModel: SignUpRequestEntity(
                                 userName: userNameController.text.trim(),
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim(),

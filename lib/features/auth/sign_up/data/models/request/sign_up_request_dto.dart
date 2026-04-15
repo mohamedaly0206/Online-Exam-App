@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
 
-import 'package:online_exam_app/features/auth/sign_up/domain/models/request/sign_up_request_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/domain/entities/request/sign_up_request_entity.dart';
 
 part 'sign_up_request_dto.g.dart';
 
@@ -43,7 +43,7 @@ class SignUpRequestDto {
 
   Map<String, dynamic> toJson() => _$SignUpRequestDtoToJson(this);
 
-  factory SignUpRequestDto.fromDomain(SignUpRequestModel model) {
+  factory SignUpRequestDto.fromDomain(SignUpRequestEntity model) {
     return SignUpRequestDto(
       username: model.userName,
       firstName: model.firstName,

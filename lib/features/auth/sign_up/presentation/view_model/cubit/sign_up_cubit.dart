@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/auth/sign_up/domain/models/response/sign_up_response_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/domain/entities/response/sign_up_response_entity.dart';
 import 'package:online_exam_app/features/auth/sign_up/domain/use_cases/sign_up_use_case.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/state/sign_up_state.dart';
@@ -20,13 +20,15 @@ class SignUpCubit extends Cubit<SignUpState> {
   Future<void> _signUp(SubmitSignUp intent) async {
     emit(
       state.copyWith(
-        signUpStateParam: state.signUpState.copyWith(isLoadingParam: true,
-            errorMessageParam: null,
-            dataParam: null),
+        signUpStateParam: state.signUpState.copyWith(
+          isLoadingParam: true,
+          errorMessageParam: null,
+          dataParam: null,
+        ),
       ),
     );
     final response = await _signUpUseCase.call(intent.requestModel);
-    if (response is SuccessBaseResponse<SignUpResponseModel>) {
+    if (response is SuccessBaseResponse<SignUpResponseEntity>) {
       emit(
         state.copyWith(
           signUpStateParam: state.signUpState.copyWith(
@@ -36,7 +38,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         ),
       );
     } else {
-      final error = response as ErrorBaseResponse<SignUpResponseModel>;
+      final error = response as ErrorBaseResponse<SignUpResponseEntity>;
       emit(
         state.copyWith(
           signUpStateParam: state.signUpState.copyWith(
