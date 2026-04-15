@@ -14,7 +14,7 @@ class CustomOTPTextField extends StatelessWidget {
   final ForgetPasswordState state;
   @override
   Widget build(BuildContext context) {
-  final theme= Theme.of(context);
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -36,7 +36,7 @@ class CustomOTPTextField extends StatelessWidget {
           enabledBorderColor: state.verifyResetCodeState.errorMessage == null
               ? theme.colorScheme.primaryFixed
               : theme.colorScheme.error,
-          fillColor: theme.colorScheme.primaryFixed,
+          fillColor: theme.colorScheme.onPrimary,
 
           onSubmit: (value) {
             context.read<ForgetPasswordCubit>().doIntent(

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
 import 'package:online_exam_app/features/auth/login/presentation/view_model/cubit/login_cubit.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
@@ -32,7 +33,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouterPaths.kForgetPasswordView,
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: ForgetPasswordView(),
+        ),
       ),
       GoRoute(
         path: AppRouterPaths.kHomeView,

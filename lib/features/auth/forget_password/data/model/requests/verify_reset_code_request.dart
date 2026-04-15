@@ -6,7 +6,7 @@ class VerifyResetCodeRequest {
   });
   Map<String, dynamic> toJson() {
     return {
-      'code': code,
+      'resetCode': code,
     };
   }
 }
