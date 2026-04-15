@@ -23,7 +23,7 @@ class ForgetPasswordView extends StatelessWidget {
           ),
         ),
       ),
-    
+
       body: ForgetPasswordBody(),
     );
   }

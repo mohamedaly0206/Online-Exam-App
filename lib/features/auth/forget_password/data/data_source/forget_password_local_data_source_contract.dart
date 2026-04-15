@@ -1,3 +1,1 @@
-abstract interface class ForgetPasswordLocalDataSourceContract {
-  
-}
+abstract interface class ForgetPasswordLocalDataSourceContract {}

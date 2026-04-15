@@ -29,13 +29,13 @@ class VerifyResetCodeView extends StatelessWidget {
             showSnackBar(
               context: context,
               message: state.verifyResetCodeState.errorMessage ?? '',
-              color:theme.colorScheme.error,
+              color: theme.colorScheme.error,
             );
           } else if (state.resendOTPState.errorMessage != null) {
             showSnackBar(
               context: context,
               message: state.resendOTPState.errorMessage ?? '',
-              color:theme.colorScheme.error,
+              color: theme.colorScheme.error,
             );
           }
         },
@@ -89,9 +89,7 @@ class VerifyResetCodeView extends StatelessWidget {
                         : TextButton(
                             child: Text(AppStrings.resendButton),
                             onPressed: () {
-                            cubit.doIntent(
-                                ResendOTPIntent(context: context),
-                              );
+                              cubit.doIntent(ResendOTPIntent(context: context));
                             },
                           ),
                   ],

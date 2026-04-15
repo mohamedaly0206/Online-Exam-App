@@ -136,43 +136,43 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> _verifyResetCode(BuildContext context, String otp) async {
     if (verifyResetCodeFormKey.currentState!.validate()) {
-    emit(
-      state.copyWith(
-        verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-          isLoadingParam: true,
+      emit(
+        state.copyWith(
+          verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+            isLoadingParam: true,
+          ),
         ),
-      ),
-    );
-    final response = await verifyResetCodeUseCase(otp);
-    log(response.toString());
-    log(otp);
-    switch (response) {
-      case SuccessBaseResponse<VerifyResetCodeEntity>():
-        emit(
-          state.copyWith(
-            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-              isLoadingParam: false,
-              dataParam: true,
-              errorMessageParam: null,
+      );
+      final response = await verifyResetCodeUseCase(otp);
+      log(response.toString());
+      log(otp);
+      switch (response) {
+        case SuccessBaseResponse<VerifyResetCodeEntity>():
+          emit(
+            state.copyWith(
+              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+                isLoadingParam: false,
+                dataParam: true,
+                errorMessageParam: null,
+              ),
             ),
-          ),
-        );
-        log('go next');
-        _nextPage(context);
-        log('go next done!');
-        break;
-      case ErrorBaseResponse<VerifyResetCodeEntity>():
-        log('error');
-        emit(
-          state.copyWith(
-            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-              isLoadingParam: false,
-              errorMessageParam: response.errorMessage,
+          );
+          log('go next');
+          _nextPage(context);
+          log('go next done!');
+          break;
+        case ErrorBaseResponse<VerifyResetCodeEntity>():
+          log('error');
+          emit(
+            state.copyWith(
+              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+                isLoadingParam: false,
+                errorMessageParam: response.errorMessage,
+              ),
             ),
-          ),
-        );
-        break;
-    }
+          );
+          break;
+      }
     }
   }
 
