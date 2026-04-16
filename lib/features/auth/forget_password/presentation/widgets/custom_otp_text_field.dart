@@ -16,7 +16,7 @@ class CustomOTPTextField extends StatelessWidget {
   final Function(String) onSubmit;
   @override
   Widget build(BuildContext context) {
-  final theme= Theme.of(context);
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -38,7 +38,7 @@ class CustomOTPTextField extends StatelessWidget {
           enabledBorderColor: state.verifyResetCodeState.errorMessage == null
               ? theme.colorScheme.primaryFixed
               : theme.colorScheme.error,
-          fillColor: theme.colorScheme.primaryFixed,
+          fillColor: theme.colorScheme.onPrimary,
 
           onSubmit: onSubmit,
         ),
@@ -49,7 +49,10 @@ class CustomOTPTextField extends StatelessWidget {
                 children: [
                   SvgPicture.asset(
                     Assets.icons.errorIcon,
-                    color: theme.colorScheme.error,
+                    colorFilter: ColorFilter.mode(
+                      theme.colorScheme.error,
+                      BlendMode.srcIn,
+                    ),
                     width: 14,
                   ),
                   SizedBox(width: 4),

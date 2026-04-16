@@ -1,0 +1,17 @@
+[33mcommit 612cd0960492841995772ee4c48f181706075650[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDevelop[m[33m, [m[1;31morigin/Develop[m[33m)[m
+Author: mohamedaly0206 <mohamedaly0206@gmail.com>
+Date:   Fri Mar 6 16:58:23 2026 +0200
+
+    add assets, config, core, features folders
+
+[33mcommit 80bebe65565a8f2ce8432cde26dad9b77831ebdf[m
+Author: mohamedaly0206 <mohamedaly0206@gmail.com>
+Date:   Thu Mar 5 15:25:49 2026 +0200
+
+    Remove desktop, web, linux, macos platforms
+
+[33mcommit 376b2e84e168904636eb70bbd42e6d5c617ce9f2[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: mohamedaly0206 <mohamedaly0206@gmail.com>
+Date:   Mon Mar 2 16:19:07 2026 +0200
+
+    first commit

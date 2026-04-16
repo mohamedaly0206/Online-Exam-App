@@ -18,9 +18,7 @@ abstract class ForgetPasswordApiClient {
   factory ForgetPasswordApiClient(Dio dio) = _ForgetPasswordApiClient;
 
   @POST(ApiEndpoints.forgetPassword)
-  Future<ForgetPasswordDTO> forgetPassword(
-    @Body() ForgetPasswordRequest data,
-  );
+  Future<ForgetPasswordDTO> forgetPassword(@Body() ForgetPasswordRequest data);
 
   // there is an error here it don't know which account that have this resetCode(OTP)
   @POST(ApiEndpoints.verifyResetPassword)
@@ -29,7 +27,5 @@ abstract class ForgetPasswordApiClient {
   );
 
   @PUT(ApiEndpoints.resetPassword)
-  Future<ResetPasswordDTO> resetPassword(
-  @Body() ResetPasswordRequest data,
-  );
+  Future<ResetPasswordDTO> resetPassword(@Body() ResetPasswordRequest data);
 }

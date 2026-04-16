@@ -1,12 +1,8 @@
 class VerifyResetCodeRequest {
   final String code;
 
-  VerifyResetCodeRequest({
-    required this.code,
-  });
+  VerifyResetCodeRequest({required this.code});
   Map<String, dynamic> toJson() {
-    return {
-      'code': code,
-    };
+    return {'resetCode': code};
   }
 }
