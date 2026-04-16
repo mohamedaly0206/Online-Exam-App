@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/di/di.dart';
+
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
@@ -13,7 +13,7 @@ class ResetPasswordView extends StatelessWidget {
   final VoidCallback onSuccess;
   @override
   Widget build(BuildContext context) {
-    final cubit = getIt.get<ForgetPasswordCubit>();
+    final cubit = context.read<ForgetPasswordCubit>();
     final theme = Theme.of(context);
 
     final formKey = GlobalKey<FormState>();
