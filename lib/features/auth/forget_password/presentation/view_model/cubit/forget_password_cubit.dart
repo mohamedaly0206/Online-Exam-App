@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
@@ -81,15 +78,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
             ),
-          );
-          // enterEmailTextController.clear();
-          showSnackBar(
-            context: context,
-            message: response.errorMessage,
-            color: Theme.of(context).colorScheme.error,
-          );
-          break;
-      }
+          ),
+        );
+        // enterEmailTextController.clear();
+        break;
     }
   }
 
@@ -99,33 +91,27 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
           isLoadingParam: true,
         ),
-      );
-      final response = await verifyResetCodeUseCase(otp);
-      log(response.toString());
-      log(otp);
-      switch (response) {
-        case SuccessBaseResponse<VerifyResetCodeEntity>():
-          emit(
-            state.copyWith(
-              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-                isLoadingParam: false,
-                dataParam: true,
-                errorMessageParam: null,
-              ),
+      ),
+    );
+    final response = await verifyResetCodeUseCase(otp);
+    switch (response) {
+      case SuccessBaseResponse<VerifyResetCodeEntity>():
+        emit(
+          state.copyWith(
+            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+              isLoadingParam: false,
+              dataParam: true,
+              errorMessageParam: null,
             ),
-          );
-          log('go next');
-          _nextPage(context);
-          log('go next done!');
-          break;
-        case ErrorBaseResponse<VerifyResetCodeEntity>():
-          log('error');
-          emit(
-            state.copyWith(
-              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-                isLoadingParam: false,
-                errorMessageParam: response.errorMessage,
-              ),
+          ),
+        );
+        break;
+      case ErrorBaseResponse<VerifyResetCodeEntity>():
+        emit(
+          state.copyWith(
+            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
             ),
           ),
         );
@@ -176,9 +162,8 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         ),
       ),
     );
-    log(enterEmailTextController.text);
-    final response = await forgetPasswordUseCase(enterEmailTextController.text);
-    log(response.toString());
+    final email = await _getEmailFromLocal();
+    final response = await forgetPasswordUseCase(email);
     switch (response) {
       case SuccessBaseResponse<ForgetPasswordEntity>():
         emit(
