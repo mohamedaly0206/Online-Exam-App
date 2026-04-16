@@ -13,23 +13,26 @@ class VerifyResetCodeView extends StatelessWidget {
   final VoidCallback onSuccess;
   @override
   Widget build(BuildContext context) {
-    final cubit = getIt.get<ForgetPasswordCubit>();
+    final cubit = context.read<ForgetPasswordCubit>();
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listenWhen: (previous, current) {
-          return previous.verifyResetCodeState != current.verifyResetCodeState;
+          return previous.verifyResetCodeState != current.verifyResetCodeState||
+          previous.resendOTPState != current.resendOTPState;
         },
         listener: (context, state) {
           if (state.verifyResetCodeState.data == true) {
             onSuccess();
-          } else if (state.verifyResetCodeState.errorMessage != null) {
+          } else if (state.verifyResetCodeState.errorMessage != '' &&
+              state.verifyResetCodeState.isLoading == false) {
             showSnackBar(
               context: context,
               message: state.verifyResetCodeState.errorMessage ?? '',
               color: theme.colorScheme.error,
             );
-          } else if (state.resendOTPState.errorMessage != null) {
+          } else if (state.resendOTPState.errorMessage != '' &&
+              state.resendOTPState.isLoading == false) {
             showSnackBar(
               context: context,
               message: state.resendOTPState.errorMessage ?? '',

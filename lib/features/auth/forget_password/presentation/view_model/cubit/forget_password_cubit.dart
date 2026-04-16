@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
@@ -54,6 +56,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       state.copyWith(
         enterEmailStateParam: state.enterEmailState.copyWith(
           isLoadingParam: true,
+          dataParam: null,
         ),
       ),
     );
@@ -76,6 +79,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             enterEmailStateParam: state.enterEmailState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
+              dataParam: null,
             ),
           ),
         );
@@ -88,10 +92,13 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       state.copyWith(
         verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
           isLoadingParam: true,
+          dataParam: null,
         ),
       ),
     );
+    log(' OTP: $otp');
     final response = await verifyResetCodeUseCase(otp);
+    log('Received response for OTP verification: $response');
     switch (response) {
       case SuccessBaseResponse<VerifyResetCodeEntity>():
         emit(
@@ -99,10 +106,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
               isLoadingParam: false,
               dataParam: true,
-              errorMessageParam: null,
             ),
           ),
         );
+        log('OTP verification successful');
         break;
       case ErrorBaseResponse<VerifyResetCodeEntity>():
         emit(
@@ -110,9 +117,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
+              dataParam: null,
             ),
           ),
         );
+        log('OTP verification failed: ${response.errorMessage}');
         break;
     }
   }
@@ -122,6 +131,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       state.copyWith(
         resetPasswordStateParam: state.resetPasswordState.copyWith(
           isLoadingParam: true,
+          dataParam: null,
         ),
       ),
     );
@@ -134,7 +144,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             resetPasswordStateParam: state.resetPasswordState.copyWith(
               isLoadingParam: false,
               dataParam: true,
-              errorMessageParam: null,
             ),
           ),
         );
@@ -145,6 +154,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             resetPasswordStateParam: state.resetPasswordState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
+              dataParam: null,
             ),
           ),
         );
@@ -157,9 +167,14 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       state.copyWith(
         resendOTPStateParam: state.resendOTPState.copyWith(
           isLoadingParam: true,
+          dataParam: null,
+        ),
+        verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+          errorMessageParam: '',
         ),
       ),
     );
+    log('Resending OTP...');
     final email = await _getEmailFromLocal();
     final response = await forgetPasswordUseCase(email);
     switch (response) {
@@ -169,10 +184,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             resendOTPStateParam: state.resendOTPState.copyWith(
               isLoadingParam: false,
               dataParam: true,
-              errorMessageParam: null,
             ),
           ),
         );
+        log('OTP resent successfully');
         break;
       case ErrorBaseResponse<ForgetPasswordEntity>():
         emit(
@@ -180,9 +195,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             resendOTPStateParam: state.resendOTPState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
+              dataParam: null,
             ),
           ),
         );
+        log('Failed to resend OTP: ${response.errorMessage}');
         break;
     }
   }

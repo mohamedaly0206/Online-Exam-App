@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
@@ -56,11 +58,15 @@ class ForgetPasswordRemoteDataSourceImpl
     required String resetCode,
   }) async {
     try {
+          log('1- data source: Received response for OTP verification: tryyy');
       var response = await forgetPasswordApiClient.verifyResetCode(
         VerifyResetCodeRequest(code: resetCode),
       );
+
+          log('2- data source: Received response for OTP verification: ${response.toString()}');
       return SuccessBaseResponse<VerifyResetCodeDTO>(data: response);
     } catch (e) {
+          log('2- data source: Received response for OTP verification: $e');
       return ErrorBaseResponse<VerifyResetCodeDTO>(
         errorMessage: ServerFailure.failureHandler(e).errorMessage,
       );

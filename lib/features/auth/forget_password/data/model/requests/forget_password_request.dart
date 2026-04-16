@@ -1,3 +1,5 @@
+import 'package:online_exam_app/core/values/api_param.dart';
+
 class ForgetPasswordRequest{
   final String email;
 
@@ -5,7 +7,7 @@ class ForgetPasswordRequest{
 
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
+      ApiParam.email: email,
     };
   }
 }

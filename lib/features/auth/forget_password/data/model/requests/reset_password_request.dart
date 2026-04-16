@@ -1,3 +1,5 @@
+import 'package:online_exam_app/core/values/api_param.dart';
+
 class ResetPasswordRequest {
   final String email;
   final String newPassword;
@@ -8,8 +10,8 @@ class ResetPasswordRequest {
   });
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
-      'newPassword': newPassword,
+      ApiParam.email: email,
+      ApiParam.newPassword: newPassword,
     };
   }
 }

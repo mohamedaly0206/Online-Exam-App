@@ -65,7 +65,8 @@ class ResetPasswordView extends StatelessWidget {
               listener: (context, state) {
                 if (state.resetPasswordState.data == true) {
                   onSuccess();
-                } else if (state.resetPasswordState.errorMessage != null) {
+                } else if (state.resetPasswordState.errorMessage != '' &&
+                    state.resetPasswordState.isLoading == false) {
                   showSnackBar(
                     context: context,
                     message: state.resetPasswordState.errorMessage ?? '',
