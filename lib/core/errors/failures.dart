@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:online_exam_app/core/errors/exceptions.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
 abstract class Failure {
@@ -61,9 +60,4 @@ class ServerFailure extends Failure {
       return ServerFailure('Opps there was an error, please try again66');
     }
   }
-}
-
-class CacheFailure extends Failure {
-  CacheFailure(Object e)
-    : super(e is CacheException ? e.errorMessage : "Storage Error");
 }

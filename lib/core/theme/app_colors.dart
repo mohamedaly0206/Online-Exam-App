@@ -11,7 +11,6 @@ class AppColors {
   static const successColor = Color(0xFF11CE19);
 
   static const lightBlueColor = Color(0xFFEDEFF3);
-  static const babyBlueColor = Color(0xFFDFE7F7);
   static const lightGreenColor = Color(0xFFCAF9CC);
   static const lightRedColor = Color(0xFFF8D2D2);
   static const placeHolderColor = Color(0xFFA6A6A6);
