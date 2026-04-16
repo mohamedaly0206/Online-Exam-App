@@ -63,9 +63,12 @@ class BackAndNextButtons extends StatelessWidget {
                           GoRouter.of(context).pushReplacement(
                             AppRouterPaths.kExamScoreView,
                             extra: {
-                              "correct": cubit.state.totalCorrectAnswers,
-                              "wrong": cubit.state.totalWrongAnswers,
-                              "total": cubit.state.totalQuestions,
+                              AppStrings.correctAnswers:
+                                  cubit.state.totalCorrectAnswers,
+                              AppStrings.wrongAnswers:
+                                  cubit.state.totalWrongAnswers,
+                              AppStrings.totalAnswers:
+                                  cubit.state.totalQuestions,
                             },
                           );
                         })

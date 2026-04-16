@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/exam_dto.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/question_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/question_entity.dart';
 
 part 'question_dto.g.dart';
 
@@ -31,11 +31,11 @@ class QuestionDto {
   });
 
   factory QuestionDto.fromJson(Map<String, dynamic> json) =>
-      _$QuestionFromJson(json);
+      _$QuestionDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$QuestionToJson(this);
-  QuestionModel todomain() {
-    return QuestionModel(
+  Map<String, dynamic> toJson() => _$QuestionDtoToJson(this);
+  QuestionEntity todomain() {
+    return QuestionEntity(
       answers: answers?.map((e) => e.toDomain()).toList() ?? [],
       type: type,
       question: question ?? '',

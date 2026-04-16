@@ -5,7 +5,7 @@ class AppStrings {
   static const String email = 'Email';
   static const String emailKey = 'email';
   static const String tokenKey = 'user_token';
-  static const String token = 'token';  
+  static const String token = 'token';
   static const String hintEmailText = 'Enter your email';
   static const String password = 'Password';
   static const String passwordKey = 'password';
@@ -62,7 +62,7 @@ class AppStrings {
   static const String lowLevel = 'Low Level';
   static const String startButton = 'Start';
   static const exam = 'Exam';
-    static const examParam = 'exam';
+  static const examParam = 'exam';
 
   static const String selectAnswer =
       'Select the correctly punctuated sentence.';

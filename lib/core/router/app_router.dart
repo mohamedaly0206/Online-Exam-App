@@ -40,8 +40,9 @@ abstract class AppRouter {
         builder: (context, state) {
           final examId = '69d980167c82914570305e19';
           return BlocProvider<ExamsQuestionsCubit>(
-            create: (context) =>getIt<ExamsQuestionsCubit>()
-            ..handleExamsQuestionsIntent(StartExam(examId: examId)),
+            create: (context) =>
+                getIt<ExamsQuestionsCubit>()
+                  ..handleExamsQuestionsIntent(StartExam(examId: examId)),
             child: ExamsQuestionsView(),
           );
         },

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/answer_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/answer_entity.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class CheckBoxAnswers extends StatelessWidget {
   const CheckBoxAnswers({super.key, required this.answer});
-  final AnswerModel answer;
+  final AnswerEntity answer;
 
   @override
   Widget build(BuildContext context) {

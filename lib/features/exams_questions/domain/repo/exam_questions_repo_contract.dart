@@ -1,8 +1,8 @@
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_entity.dart';
 
 abstract interface class ExamQuestionsRepoContract {
-  Future<BaseResponse<ExamQuestionsModel>> getExamsQuestions({
+  Future<BaseResponse<ExamQuestionsEntity>> getExamsQuestions({
     String? examId,
     String? token,
   });

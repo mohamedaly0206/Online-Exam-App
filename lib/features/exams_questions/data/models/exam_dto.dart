@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/exams_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/exams_entity.dart';
 
 part 'exam_dto.g.dart';
 
@@ -25,11 +25,12 @@ class ExamDto {
     this.createdAt,
   });
 
-  factory ExamDto.fromJson(Map<String, dynamic> json) => _$ExamFromJson(json);
+  factory ExamDto.fromJson(Map<String, dynamic> json) =>
+      _$ExamDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ExamToJson(this);
+  Map<String, dynamic> toJson() => _$ExamDtoToJson(this);
 
-  ExamsModel toDomain() => ExamsModel(
+  ExamsEntity toDomain() => ExamsEntity(
     duration: duration ?? 0,
     numberOfQuestions: numberOfQuestions ?? 0,
   );

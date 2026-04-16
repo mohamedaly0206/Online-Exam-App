@@ -1,8 +1,8 @@
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 
-class AnswerModel {
+class AnswerEntity {
   final AnswerKey answerKey;
   final String answerText;
 
-  AnswerModel({required this.answerKey, required this.answerText});
+  AnswerEntity({required this.answerKey, required this.answerText});
 }

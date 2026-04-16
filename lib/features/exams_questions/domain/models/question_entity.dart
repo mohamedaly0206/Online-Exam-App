@@ -1,16 +1,16 @@
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/question_dto.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/answer_model.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/exams_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/answer_entity.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/exams_entity.dart';
 
-class QuestionModel {
+class QuestionEntity {
   final String question;
-  final List<AnswerModel> answers;
+  final List<AnswerEntity> answers;
   final AnswerKey correctAnswer;
   final QuestionType? type;
-  final ExamsModel? exam;
+  final ExamsEntity? exam;
 
-  QuestionModel({
+  QuestionEntity({
     required this.question,
     required this.answers,
     required this.correctAnswer,

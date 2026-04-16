@@ -21,7 +21,7 @@ class TimeOutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read()<ExamsQuestionsCubit>();
+    final cubit = context.read<ExamsQuestionsCubit>();
     return Container(
       width: MediaQuery.of(context).size.width * 0.8,
       height: MediaQuery.of(context).size.height * 0.3,

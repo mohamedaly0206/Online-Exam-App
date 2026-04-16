@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/answer_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/answer_entity.dart';
 
 part 'answer_dto.g.dart';
 
@@ -11,11 +11,11 @@ class AnswerDto {
   AnswerDto({this.answer, this.key});
 
   factory AnswerDto.fromJson(Map<String, dynamic> json) =>
-      _$AnswerFromJson(json);
+      _$AnswerDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AnswerToJson(this);
-  AnswerModel toDomain() =>
-      AnswerModel(answerText: answer ?? '', answerKey: key ?? AnswerKey.A1);
+  Map<String, dynamic> toJson() => _$AnswerDtoToJson(this);
+  AnswerEntity toDomain() =>
+      AnswerEntity(answerText: answer ?? '', answerKey: key ?? AnswerKey.A1);
 }
 
 enum AnswerKey {

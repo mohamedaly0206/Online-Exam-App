@@ -97,14 +97,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i687.ExamQuetsionsApiClient>(
+      () => _i687.ExamQuetsionsApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i251.LoginApiClient>(
       () => _i251.LoginApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i858.SignUpApiClient>(
       () => _i858.SignUpApiClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i687.ExamQuetsionsApiClient>(
-      () => _i687.ExamQuetsionsApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i183.LoginRemoteDataSourceContract>(
       () => _i182.LoginRemoteDataSourceImp(gh<_i251.LoginApiClient>()),

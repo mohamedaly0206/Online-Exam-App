@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_model.dart';
+import 'package:online_exam_app/features/exams_questions/domain/models/exam_questions_entity.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/check_box_answers.dart';
 
 class MultipleAnswerQuestion extends StatelessWidget {
   const MultipleAnswerQuestion({super.key, required this.examQuestionModel});
-  final ExamQuestionsModel examQuestionModel;
+  final ExamQuestionsEntity examQuestionModel;
 
   @override
   Widget build(BuildContext context) {

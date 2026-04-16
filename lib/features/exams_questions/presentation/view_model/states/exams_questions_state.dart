@@ -1,8 +1,8 @@
 part of '../cubit/exams_questions_cubit.dart';
 
 class ExamsQuestionsState {
-  BaseState<ExamQuestionsModel> examsQuestionsState =
-      BaseState<ExamQuestionsModel>(isLoading: true);
+  BaseState<ExamQuestionsEntity> examsQuestionsState =
+      BaseState<ExamQuestionsEntity>(isLoading: true);
   final int examTime;
   final int initialExamTime;
   final int currentQuestionIndex;
@@ -32,14 +32,14 @@ class ExamsQuestionsState {
     this.totalCorrectAnswers = 0,
     Map<int, dynamic>? selectedAnswers,
 
-    BaseState<ExamQuestionsModel>? examsQuestionsState,
+    BaseState<ExamQuestionsEntity>? examsQuestionsState,
   }) : selectedAnswers = selectedAnswers ?? {} {
     this.examsQuestionsState =
-        examsQuestionsState ?? BaseState<ExamQuestionsModel>(isLoading: true);
+        examsQuestionsState ?? BaseState<ExamQuestionsEntity>(isLoading: true);
   }
 
   ExamsQuestionsState copyWith({
-    BaseState<ExamQuestionsModel>? examsQuestionsState,
+    BaseState<ExamQuestionsEntity>? examsQuestionsState,
     bool? answerValidation,
     int? examTime,
     int? currentQuestionIndex,
