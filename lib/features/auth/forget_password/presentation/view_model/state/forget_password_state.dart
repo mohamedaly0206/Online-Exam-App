@@ -15,7 +15,8 @@ class ForgetPasswordState {
     this.enterEmailState = enterEmailState ?? this.enterEmailState;
     this.resendOTPState = resendOTPState ?? this.resendOTPState;
     this.resetPasswordState = resetPasswordState ?? this.resetPasswordState;
-    this.verifyResetCodeState = verifyResetCodeState ?? this.verifyResetCodeState;
+    this.verifyResetCodeState =
+        verifyResetCodeState ?? this.verifyResetCodeState;
   }
 
   ForgetPasswordState copyWith({
