@@ -19,19 +19,6 @@ class SecurityStorageModule {
     return await flutterSecureStorage.read(key: key) ?? '';
   }
 
-  static Future<void> setSecuredBool(String key, bool value) async {
-    const flutterSecureStorage = FlutterSecureStorage();
-    log("FlutterSecureStorage: setSecuredBool key: $key value: $value");
-    await flutterSecureStorage.write(key: key, value: value.toString());
-  }
-
-  static Future<bool> getSecuredBool(String key) async {
-    const flutterSecureStorage = FlutterSecureStorage();
-    log("FlutterSecureStorage: getSecuredBool key: $key");
-    String? value = await flutterSecureStorage.read(key: key);
-    return value == 'true';
-  }
-
   static Future<void> deleteSecuredString(String key) async {
     const flutterSecureStorage = FlutterSecureStorage();
     log('FlutterSecureStorage : deleteSecuredString with key : $key');
