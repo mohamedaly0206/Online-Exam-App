@@ -10,22 +10,22 @@ import '../view_model/cubit/forget_password_cubit.dart';
 import '../widgets/custom_otp_text_field.dart';
 
 class VerifyResetCodeView extends StatelessWidget {
-  VerifyResetCodeView({super.key});
-  final cubit = getIt.get<ForgetPasswordCubit>();
-
+  const VerifyResetCodeView({super.key, required this.onSuccess});
+  final VoidCallback onSuccess;
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt.get<ForgetPasswordCubit>();
     final theme = Theme.of(context);
+    final otpController = TextEditingController();
     return SingleChildScrollView(
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
         listenWhen: (previous, current) {
-          return previous.verifyResetCodeState.errorMessage !=
-                  current.verifyResetCodeState.errorMessage ||
-              previous.resendOTPState.errorMessage !=
-                  current.resendOTPState.errorMessage;
+          return previous.verifyResetCodeState != current.verifyResetCodeState;
         },
         listener: (context, state) {
-          if (state.verifyResetCodeState.errorMessage != null) {
+          if (state.verifyResetCodeState.data == true) {
+            onSuccess();
+          } else if (state.verifyResetCodeState.errorMessage != null) {
             showSnackBar(
               context: context,
               message: state.verifyResetCodeState.errorMessage ?? '',
@@ -40,21 +40,9 @@ class VerifyResetCodeView extends StatelessWidget {
           }
         },
         buildWhen: (previous, current) {
-          return
-          // changes on verify otp state
-          (previous.verifyResetCodeState.isLoading !=
-                      current.verifyResetCodeState.isLoading ||
-                  previous.verifyResetCodeState.errorMessage !=
-                      current.verifyResetCodeState.errorMessage ||
-                  previous.verifyResetCodeState.data !=
-                      current.verifyResetCodeState.data)
-              // changes on resend otp state
-              ||
-              (previous.resendOTPState.isLoading !=
-                      current.resendOTPState.isLoading ||
-                  previous.resendOTPState.errorMessage !=
-                      current.resendOTPState.errorMessage ||
-                  previous.resendOTPState.data != current.resendOTPState.data);
+          return previous.verifyResetCodeState !=
+                  current.verifyResetCodeState ||
+              previous.resendOTPState != current.resendOTPState;
         },
         builder: (context, state) {
           return Form(

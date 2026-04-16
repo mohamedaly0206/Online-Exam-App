@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
-import '../../presentation/view_model/cubit/forget_password_cubit.dart';
-import '../widgets/forget_password_body.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/widgets/forget_password_body.dart';
+
 
 class ForgetPasswordView extends StatelessWidget {
-  ForgetPasswordView({super.key});
-  final cubit = getIt.get<ForgetPasswordCubit>();
+  const ForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {

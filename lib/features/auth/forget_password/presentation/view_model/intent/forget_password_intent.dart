@@ -1,34 +1,23 @@
-import 'package:flutter/material.dart';
-
 sealed class ForgetPasswordIntent {}
 
-class EnterEmailIntent extends ForgetPasswordIntent {
-  final BuildContext context;
+class EnterResetEmailIntent extends ForgetPasswordIntent {
+  final String email;
 
-  EnterEmailIntent({required this.context});
+  EnterResetEmailIntent({required this.email});
 }
 
 class ResendOTPIntent extends ForgetPasswordIntent {
-  final BuildContext context;
-
-  ResendOTPIntent({required this.context});
+  ResendOTPIntent();
 }
 
 class ResetPasswordIntent extends ForgetPasswordIntent {
-  final BuildContext context;
+  final String newPassword;
 
-  ResetPasswordIntent({required this.context});
+  ResetPasswordIntent({required this.newPassword});
 }
 
 class VerifyResetCodeIntent extends ForgetPasswordIntent {
-  final BuildContext context;
   final String otp;
 
-  VerifyResetCodeIntent({required this.context, required this.otp});
-}
-
-class BackToPriviesPageIntent extends ForgetPasswordIntent {
-  final BuildContext context;
-
-  BackToPriviesPageIntent({required this.context});
+  VerifyResetCodeIntent({required this.otp});
 }
