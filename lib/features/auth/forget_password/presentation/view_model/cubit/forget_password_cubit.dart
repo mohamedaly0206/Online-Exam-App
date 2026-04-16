@@ -96,9 +96,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         ),
       ),
     );
-    log(' OTP: $otp');
     final response = await verifyResetCodeUseCase(otp);
-    log('Received response for OTP verification: $response');
     switch (response) {
       case SuccessBaseResponse<VerifyResetCodeEntity>():
         emit(
@@ -109,7 +107,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             ),
           ),
         );
-        log('OTP verification successful');
         break;
       case ErrorBaseResponse<VerifyResetCodeEntity>():
         emit(
@@ -121,7 +118,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             ),
           ),
         );
-        log('OTP verification failed: ${response.errorMessage}');
         break;
     }
   }
@@ -174,7 +170,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         ),
       ),
     );
-    log('Resending OTP...');
     final email = await _getEmailFromLocal();
     final response = await forgetPasswordUseCase(email);
     switch (response) {
@@ -187,7 +182,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             ),
           ),
         );
-        log('OTP resent successfully');
         break;
       case ErrorBaseResponse<ForgetPasswordEntity>():
         emit(
@@ -199,7 +193,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             ),
           ),
         );
-        log('Failed to resend OTP: ${response.errorMessage}');
         break;
     }
   }
