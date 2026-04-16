@@ -1,18 +1,15 @@
+import 'package:equatable/equatable.dart'; // 1. استيراد المكتبة
 import '../../../../../../config/base_state/base_state.dart';
 import '../../../../../../config/models/user_model/user_entity.dart';
 
-class LoginState {
+class LoginState extends Equatable {
   final BaseState<UserEntity> loginState;
   final bool rememberMe;
 
-  LoginState({BaseState<UserEntity>? loginState, this.rememberMe = false})
-    : loginState =
-          loginState ??
-          BaseState<UserEntity>(
-            isLoading: false,
-            errorMessage: null,
-            data: null,
-          );
+  const LoginState({
+    this.loginState = const BaseState<UserEntity>(),
+    this.rememberMe = false,
+  });
 
   LoginState copyWith({
     BaseState<UserEntity>? loginStateParam,
@@ -23,4 +20,7 @@ class LoginState {
       rememberMe: rememberMeParam ?? rememberMe,
     );
   }
+
+  @override
+  List<Object?> get props => [loginState, rememberMe];
 }

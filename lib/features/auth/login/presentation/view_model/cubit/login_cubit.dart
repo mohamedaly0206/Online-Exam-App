@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../../config/base_response/base_response.dart';
 import '../../../../../../config/models/user_model/user_entity.dart';
 import '../../../domain/use_cases/login_use_case.dart';
@@ -9,7 +8,7 @@ import '../state/login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this._loginUseCase) : super(LoginState());
+  LoginCubit(this._loginUseCase) : super(const LoginState());
 
   final LoginUseCase _loginUseCase;
 
@@ -28,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
       state.copyWith(
         loginStateParam: state.loginState.copyWith(
           isLoadingParam: true,
-          errorMessageParam: null,
+          errorMessageParam: '',
           dataParam: null,
         ),
       ),
@@ -46,6 +45,7 @@ class LoginCubit extends Cubit<LoginState> {
           loginStateParam: state.loginState.copyWith(
             isLoadingParam: false,
             dataParam: response.data,
+            errorMessageParam: '',
           ),
         ),
       );
@@ -55,6 +55,7 @@ class LoginCubit extends Cubit<LoginState> {
           loginStateParam: state.loginState.copyWith(
             isLoadingParam: false,
             errorMessageParam: response.errorMessage,
+            dataParam: null,
           ),
         ),
       );
