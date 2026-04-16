@@ -52,7 +52,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             color: Theme.of(context).primaryColor,
           );
           GoRouter.of(context).go(AppRouterPaths.kHomePageView);
-        } else if (loginState.errorMessage != null && !loginState.isLoading) {
+        } else if (loginState.errorMessage != null &&
+            loginState.errorMessage!.isNotEmpty &&
+            !loginState.isLoading) {
           showSnackBar(
             context: context,
             message: loginState.errorMessage!,
