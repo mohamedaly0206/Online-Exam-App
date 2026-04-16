@@ -6,7 +6,6 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData appTheme = ThemeData(
-    //todo: this line will be change on marge and will be AppConstants.fontFamily
     fontFamily: AppTextStyles.fontFamily,
     // colorScheme
     colorScheme: const ColorScheme(
@@ -36,7 +35,6 @@ class AppTheme {
       onSurface: AppColors.blackColor,
       surfaceContainerHighest: AppColors.lightBlueColor, //surfaceVariant
       onSurfaceVariant: AppColors.secondaryColor,
-
     ),
     // inputDecorationTheme
     inputDecorationTheme: InputDecorationTheme(
@@ -85,6 +83,9 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
         textStyle: AppTextStyles.textStyleRegular16.copyWith(
@@ -120,6 +121,7 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
+      leadingWidth: 24,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
@@ -127,7 +129,6 @@ class AppTheme {
       ),
     ),
     // BottomNavigationBarTheme
-    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.whiteColor,
       selectedItemColor: AppColors.primaryColor,
