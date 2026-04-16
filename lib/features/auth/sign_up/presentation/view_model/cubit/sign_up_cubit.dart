@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
@@ -18,6 +20,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> _signUp(SubmitSignUp intent) async {
+    log('signUp loading...');
     emit(
       state.copyWith(
         signUpStateParam: state.signUpState.copyWith(
@@ -29,6 +32,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     final response = await _signUpUseCase.call(intent.requestModel);
     if (response is SuccessBaseResponse<SignUpResponseEntity>) {
+      log('signUp success...');
       emit(
         state.copyWith(
           signUpStateParam: state.signUpState.copyWith(
@@ -47,6 +51,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           ),
         ),
       );
+      log(error.errorMessage);
     }
   }
 }
