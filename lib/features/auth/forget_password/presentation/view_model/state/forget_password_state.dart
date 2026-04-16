@@ -1,10 +1,10 @@
 import 'package:online_exam_app/config/base_state/base_state.dart';
 
 class ForgetPasswordState {
-  BaseState<bool> enterEmailState = BaseState<bool>(isLoading: false);
-  BaseState<bool> resendOTPState = BaseState<bool>(isLoading: false);
-  BaseState<bool> resetPasswordState = BaseState<bool>(isLoading: false);
-  BaseState<bool> verifyResetCodeState = BaseState<bool>(isLoading: false);
+  BaseState<bool> enterEmailState = BaseState<bool>();
+  BaseState<bool> resendOTPState = BaseState<bool>();
+  BaseState<bool> resetPasswordState = BaseState<bool>();
+  BaseState<bool> verifyResetCodeState = BaseState<bool>();
 
   ForgetPasswordState({
     BaseState<bool>? enterEmailState,
@@ -15,8 +15,7 @@ class ForgetPasswordState {
     this.enterEmailState = enterEmailState ?? this.enterEmailState;
     this.resendOTPState = resendOTPState ?? this.resendOTPState;
     this.resetPasswordState = resetPasswordState ?? this.resetPasswordState;
-    this.verifyResetCodeState =
-        verifyResetCodeState ?? this.verifyResetCodeState;
+    this.verifyResetCodeState = verifyResetCodeState ?? this.verifyResetCodeState;
   }
 
   ForgetPasswordState copyWith({

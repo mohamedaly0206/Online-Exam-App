@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
@@ -12,7 +14,7 @@ import '../../../domain/use_case/verify_reset_code_use_case.dart';
 import '../intent/forget_password_intent.dart';
 import '../state/forget_password_state.dart';
 
-@singleton
+@injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit({
     required this.forgetPasswordUseCase,
@@ -101,7 +103,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
             verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
               isLoadingParam: false,
               dataParam: true,
-              errorMessageParam: null,
+              errorMessageParam: '',
+            ),
+            resendOTPStateParam: state.resendOTPState.copyWith(
+              errorMessageParam: '',
             ),
           ),
         );
