@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 class BaseState<T> extends Equatable {
   final bool isLoading;
   final String? errorMessage;

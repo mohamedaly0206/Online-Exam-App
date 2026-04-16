@@ -6,9 +6,6 @@ class ResetPasswordRequest {
 
   ResetPasswordRequest({required this.email, required this.newPassword});
   Map<String, dynamic> toJson() {
-    return {
-      ApiParam.email: email,
-      ApiParam.newPassword: newPassword,
-    };
+    return {ApiParam.email: email, ApiParam.newPassword: newPassword};
   }
 }
