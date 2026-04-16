@@ -3,7 +3,7 @@ import 'package:online_exam_app/features/auth/forget_password/data/model/forget_
 import 'package:online_exam_app/features/auth/forget_password/data/model/reset_password_dto.dart';
 import 'package:online_exam_app/features/auth/forget_password/data/model/verify_reset_code_dto.dart';
 
-abstract class ForgetPasswordRemoteDataSourceContract {
+abstract interface class ForgetPasswordRemoteDataSourceContract {
 
   Future<BaseResponse<ForgetPasswordDTO>> forgetPassword({
     required String email,

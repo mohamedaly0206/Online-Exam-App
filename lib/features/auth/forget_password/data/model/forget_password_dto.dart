@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/model/forget_password_model.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entity/forget_password_entity.dart';
 part 'forget_password_dto.g.dart';
 
 @JsonSerializable()
@@ -14,6 +14,6 @@ class ForgetPasswordDTO {
 
   Map<String, dynamic> toJson() => _$ForgetPasswordDTOToJson(this);
 
-  ForgetPasswordModel toDomain() =>
-      ForgetPasswordModel(message: message, info: info);
+  ForgetPasswordEntity toDomain() =>
+      ForgetPasswordEntity(message: message, info: info);
 }
