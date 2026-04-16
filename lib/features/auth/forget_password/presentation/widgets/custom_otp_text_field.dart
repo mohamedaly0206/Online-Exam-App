@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/state/forget_password_state.dart';
-import '../view_model/cubit/forget_password_cubit.dart';
-import '../view_model/intent/forget_password_intent.dart';
 
 class CustomOTPTextField extends StatelessWidget {
-  const CustomOTPTextField({super.key, required this.state});
+  const CustomOTPTextField({
+    super.key,
+    required this.state,
+    required this.onSubmit,
+  });
   final ForgetPasswordState state;
+  final Function(String) onSubmit;
   @override
   Widget build(BuildContext context) {
   final theme= Theme.of(context);
@@ -38,11 +40,7 @@ class CustomOTPTextField extends StatelessWidget {
               : theme.colorScheme.error,
           fillColor: theme.colorScheme.primaryFixed,
 
-          onSubmit: (value) {
-            context.read<ForgetPasswordCubit>().doIntent(
-              VerifyResetCodeIntent(context: context, otp: value),
-            );
-          },
+          onSubmit: onSubmit,
         ),
         state.verifyResetCodeState.errorMessage == null
             ? SizedBox()

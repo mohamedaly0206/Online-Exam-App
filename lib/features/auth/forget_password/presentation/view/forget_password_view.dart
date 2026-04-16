@@ -5,29 +5,27 @@ import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/values/assets.gen.dart';
-import '../../presentation/view_model/cubit/forget_password_cubit.dart';
-import '../widgets/forget_password_body.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/widgets/forget_password_body.dart';
+
 
 class ForgetPasswordView extends StatelessWidget {
-  ForgetPasswordView({super.key});
-  final cubit = getIt.get<ForgetPasswordCubit>();
+  const ForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ForgetPasswordCubit>(
-      create: (context) => cubit,
+    return BlocProvider(
+      create: (_) => getIt.get<ForgetPasswordCubit>(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(AppStrings.password),
-          leading: Center(
-            child: GestureDetector(
-              onTap: () => GoRouter.of(context).pop(),
-              child: SvgPicture.asset(Assets.icons.arrowBackIcon),
-            ),
+          title: const Text(AppStrings.password),
+          leading: GestureDetector(
+            onTap: () => GoRouter.of(context).pop(),
+            child: Center(child: SvgPicture.asset(Assets.icons.arrowBackIcon)),
           ),
         ),
 
-        body: ForgetPasswordBody(),
+        body: const ForgetPasswordBody(),
       ),
     );
   }
