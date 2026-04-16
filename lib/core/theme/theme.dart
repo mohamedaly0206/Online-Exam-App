@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/core/theme/app_text_styles.dart';
-import 'package:online_exam_app/core/values/fonts.gen.dart';
 
 class AppTheme {
   AppTheme._();
 
   static ThemeData appTheme = ThemeData(
-    fontFamily: FontFamily.inter,
+    fontFamily: AppTextStyles.fontFamily,
     // colorScheme
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
@@ -36,7 +35,6 @@ class AppTheme {
       onSurface: AppColors.blackColor,
       surfaceContainerHighest: AppColors.lightBlueColor, //surfaceVariant
       onSurfaceVariant: AppColors.secondaryColor,
-
     ),
     // inputDecorationTheme
     inputDecorationTheme: InputDecorationTheme(
@@ -85,6 +83,9 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
         textStyle: AppTextStyles.textStyleRegular16.copyWith(
@@ -120,16 +121,14 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
+      leadingWidth: 24,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
         color: AppColors.blackColor,
       ),
-      titleSpacing: 0,
-      leadingWidth: 40,
     ),
     // BottomNavigationBarTheme
-    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.whiteColor,
       selectedItemColor: AppColors.primaryColor,
