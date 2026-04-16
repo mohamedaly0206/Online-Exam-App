@@ -44,7 +44,8 @@ class EnterEmailView extends StatelessWidget {
               listener: (context, state) {
                 if (state.enterEmailState.data == true) {
                   onSuccess();
-                } else if (state.enterEmailState.errorMessage != null) {
+                } else if (state.enterEmailState.errorMessage != '' &&
+                    state.enterEmailState.isLoading == false) {
                   showSnackBar(
                     context: context,
                     message: state.enterEmailState.errorMessage ?? '',
