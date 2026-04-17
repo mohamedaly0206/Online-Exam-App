@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/exams/domain/model/exams_model.dart';
+import 'package:online_exam_app/features/exams/domain/entity/exams_entity.dart';
 
 part 'exam_model_dto.g.dart';
 
@@ -35,7 +35,7 @@ class ExamModelDTO {
 
   Map<String, dynamic> toJson() => _$ExamModelDTOToJson(this);
 
-  ExamModel toDomain() => ExamModel(
+  ExamEntity toDomain() => ExamEntity(
     id: id,
     title: title,
     duration: duration,

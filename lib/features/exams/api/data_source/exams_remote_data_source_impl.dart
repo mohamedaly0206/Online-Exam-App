@@ -6,14 +6,14 @@ import '../../data/data_source/exams_remote_data_source_contract.dart';
 import '../api_client/exams_api_client.dart';
 
 @Injectable(as: ExamsRemoteDataSourceContract)
-class ExamsRemoteDataSourceImpl extends ExamsRemoteDataSourceContract {
+class ExamsRemoteDataSourceImpl implements ExamsRemoteDataSourceContract {
   ExamsRemoteDataSourceImpl({required this.examsApiClient});
   final ExamsApiClient examsApiClient;
 
   @override
   Future<BaseResponse<List<ExamModelDTO>>> getExams({
     required String token,
-    String? subjectId,
+    required String subjectId,
   }) async {
     try {
       final response = await examsApiClient.getExams(token, subjectId);

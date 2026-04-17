@@ -4,13 +4,14 @@ import 'package:online_exam_app/core/router/router_paths.dart';
 
 import '../../../../core/values/app_strings.dart';
 import '../../../../core/values/assets.gen.dart';
-import '../../domain/model/exams_model.dart';
+import '../../domain/entity/exams_entity.dart';
 
 class CustomExamsListItem extends StatelessWidget {
   const CustomExamsListItem({super.key, required this.examModel});
-  final ExamModel examModel;
+  final ExamEntity examModel;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
         GoRouter.of(
@@ -21,13 +22,10 @@ class CustomExamsListItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: theme.colorScheme.onPrimary,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.secondary,
-              blurRadius: 8,
-            ),
+            BoxShadow(color: theme.colorScheme.secondary, blurRadius: 8),
           ],
         ),
         child: Row(
@@ -35,33 +33,30 @@ class CustomExamsListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(Assets.a3dIcons.profit.path, width: 60),
+            Image.asset(Assets.a3dIcons.profit, width: 60),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '${examModel.title}',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: theme.textTheme.headlineMedium,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   '${examModel.numberOfQuestions} ${AppStrings.question}',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.secondary,
+                  style: theme.textTheme.headlineSmall!.copyWith(
+                    color: theme.colorScheme.secondary,
                   ),
                 ),
                 SizedBox(height: 8),
-                Text(
-                  AppStrings.timeRange,
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
+                Text(AppStrings.timeRange, style: theme.textTheme.labelSmall),
               ],
             ),
             Text(
               '${examModel.duration} ${AppStrings.minutes}',
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                color: Theme.of(context).colorScheme.primary,
+              style: theme.textTheme.headlineSmall!.copyWith(
+                color: theme.colorScheme.primary,
               ),
             ),
           ],

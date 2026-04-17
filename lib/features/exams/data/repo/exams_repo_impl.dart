@@ -1,14 +1,13 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/exams/data/data_source/exams_local_data_source_contract.dart';
+import 'package:online_exam_app/features/exams/data/data_source/exams_remote_data_source_contract.dart';
+import 'package:online_exam_app/features/exams/data/model/exam_model_dto.dart';
+import 'package:online_exam_app/features/exams/domain/entity/exams_entity.dart';
 import 'package:online_exam_app/features/exams/domain/repo/exams_repo_contract.dart';
 
-import '../../domain/model/exams_model.dart';
-import '../data_source/exams_remote_data_source_contract.dart';
-import '../model/exam_model_dto.dart';
-
 @Singleton(as: ExamsRepoContract)
-class ExamsRepoImpl extends ExamsRepoContract {
+class ExamsRepoImpl implements ExamsRepoContract {
   ExamsRepoImpl({
     required this.examsRemoteDataSourceContract,
     required this.examsLocalDataSourceContract,
@@ -17,10 +16,9 @@ class ExamsRepoImpl extends ExamsRepoContract {
   final ExamsRemoteDataSourceContract examsRemoteDataSourceContract;
   final ExamsLocalDataSourceContract examsLocalDataSourceContract;
   @override
-  Future<BaseResponse<List<ExamModel>>> getExams({
-     String? subjectId,
+  Future<BaseResponse<List<ExamEntity>>> getExams({
+    required String subjectId,
   }) async {
-    // get token from local storage
     final token = await examsLocalDataSourceContract.getToken();
     final response = await examsRemoteDataSourceContract.getExams(
       token: token ?? '',
@@ -29,11 +27,11 @@ class ExamsRepoImpl extends ExamsRepoContract {
 
     switch (response) {
       case SuccessBaseResponse<List<ExamModelDTO>>():
-        return SuccessBaseResponse<List<ExamModel>>(
+        return SuccessBaseResponse<List<ExamEntity>>(
           data: response.data.map((e) => e.toDomain()).toList(),
         );
       case ErrorBaseResponse<List<ExamModelDTO>>():
-        return ErrorBaseResponse<List<ExamModel>>(
+        return ErrorBaseResponse<List<ExamEntity>>(
           errorMessage: response.errorMessage,
         );
     }

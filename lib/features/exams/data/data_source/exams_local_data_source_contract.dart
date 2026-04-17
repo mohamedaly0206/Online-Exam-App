@@ -1,3 +1,3 @@
-abstract class ExamsLocalDataSourceContract {
+abstract interface class ExamsLocalDataSourceContract {
   Future<String?> getToken();
 }

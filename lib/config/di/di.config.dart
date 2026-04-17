@@ -76,7 +76,7 @@ import '../../features/exams/data/data_source/exams_local_data_source_contract.d
 import '../../features/exams/data/data_source/exams_remote_data_source_contract.dart'
     as _i886;
 import '../../features/exams/data/repo/exams_repo_impl.dart' as _i646;
-import '../../features/exams/domain/model/exams_model.dart' as _i589;
+import '../../features/exams/domain/entity/exams_entity.dart' as _i617;
 import '../../features/exams/domain/repo/exams_repo_contract.dart' as _i827;
 import '../../features/exams/domain/use_case/get_exams_by_category_use_case.dart'
     as _i401;
@@ -101,11 +101,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i187.ForgetPasswordLocalDataSourceContract>(
       () => _i428.ForgetPasswordLocalDataSourceImpl(),
-    );
-    gh.factory<_i924.ExamsState>(
-      () => _i924.ExamsState(
-        examsState: gh<_i96.BaseState<List<_i589.ExamModel>>>(),
-      ),
     );
     gh.lazySingleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
@@ -141,8 +136,8 @@ extension GetItInjectableX on _i174.GetIt {
         examsApiClient: gh<_i188.ExamsApiClient>(),
       ),
     );
-    gh.factory<_i443.CheckUserLoggedInUseCase>(
-      () => _i443.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
+    gh.factory<_i996.CheckUserLoggedInUseCase>(
+      () => _i996.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
     );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i844.LoginRepoContract>()),
@@ -152,6 +147,11 @@ extension GetItInjectableX on _i174.GetIt {
         examsRemoteDataSourceContract:
             gh<_i886.ExamsRemoteDataSourceContract>(),
         examsLocalDataSourceContract: gh<_i148.ExamsLocalDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i924.ExamsState>(
+      () => _i924.ExamsState(
+        examsState: gh<_i96.BaseState<List<_i617.ExamEntity>>>(),
       ),
     );
     gh.factory<_i539.SignUpRemoteDataSourceContract>(

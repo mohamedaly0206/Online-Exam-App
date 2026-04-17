@@ -6,8 +6,8 @@ import '../../../../core/errors/exceptions.dart';
 import '../../../../core/values/app_strings.dart';
 
 @Injectable(as: ExamsLocalDataSourceContract)
-class ExamsLocalDataSourceImpl extends ExamsLocalDataSourceContract {
-   @override
+class ExamsLocalDataSourceImpl implements ExamsLocalDataSourceContract {
+  @override
   Future<String?> getToken() async {
     try {
       return await SecurityStorageModule.getSecuredString(AppStrings.token);

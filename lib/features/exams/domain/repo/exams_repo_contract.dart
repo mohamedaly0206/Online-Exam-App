@@ -1,8 +1,6 @@
 import '../../../../config/base_response/base_response.dart';
-import '../model/exams_model.dart';
+import '../entity/exams_entity.dart';
 
-abstract class ExamsRepoContract {
-  Future<BaseResponse<List<ExamModel>>> getExams({
-     String? subjectId,
-  });
+abstract interface class ExamsRepoContract {
+  Future<BaseResponse<List<ExamEntity>>> getExams({required String subjectId});
 }

@@ -1,18 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_state/base_state.dart';
-import '../../../domain/model/exams_model.dart';
-@injectable
-class ExamsState {
-  BaseState<List<ExamModel>> examsState = BaseState<List<ExamModel>>(
-    isLoading: true,
-  );
-  ExamsState({BaseState<List<ExamModel>>? examsState}) {
-    this.examsState = examsState ?? this.examsState;
-  }
+import '../../../domain/entity/exams_entity.dart';
 
-  ExamsState copyWith({BaseState<List<ExamModel>>? examsStateParam}) {
+@injectable
+class ExamsState extends Equatable {
+  const ExamsState({this.examsState = const BaseState<List<ExamEntity>>()});
+  final BaseState<List<ExamEntity>> examsState;
+
+  ExamsState copyWith({BaseState<List<ExamEntity>>? examsStateParam}) {
     return ExamsState(examsState: examsStateParam ?? examsState);
   }
+
+  @override
+  List<Object?> get props => [examsState];
 }
