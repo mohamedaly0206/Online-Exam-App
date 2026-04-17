@@ -66,6 +66,25 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_case.dart'
     as _i45;
 import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart'
     as _i667;
+import '../../features/exams/api/api_client/exams_api_client.dart' as _i188;
+import '../../features/exams/api/data_source/exams_local_data_source_impl.dart'
+    as _i896;
+import '../../features/exams/api/data_source/exams_remote_data_source_impl.dart'
+    as _i895;
+import '../../features/exams/data/data_source/exams_local_data_source_contract.dart'
+    as _i148;
+import '../../features/exams/data/data_source/exams_remote_data_source_contract.dart'
+    as _i886;
+import '../../features/exams/data/repo/exams_repo_impl.dart' as _i646;
+import '../../features/exams/domain/model/exams_model.dart' as _i589;
+import '../../features/exams/domain/repo/exams_repo_contract.dart' as _i827;
+import '../../features/exams/domain/use_case/get_exams_by_category_use_case.dart'
+    as _i401;
+import '../../features/exams/presentation/view_model/cubit/exams_cubit.dart'
+    as _i731;
+import '../../features/exams/presentation/view_model/state/exams_state.dart'
+    as _i924;
+import '../base_state/base_state.dart' as _i96;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -77,11 +96,22 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
+    gh.factory<_i148.ExamsLocalDataSourceContract>(
+      () => _i896.ExamsLocalDataSourceImpl(),
+    );
     gh.lazySingleton<_i187.ForgetPasswordLocalDataSourceContract>(
       () => _i428.ForgetPasswordLocalDataSourceImpl(),
     );
+    gh.factory<_i924.ExamsState>(
+      () => _i924.ExamsState(
+        examsState: gh<_i96.BaseState<List<_i589.ExamModel>>>(),
+      ),
+    );
     gh.lazySingleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i188.ExamsApiClient>(
+      () => _i188.ExamsApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i251.LoginApiClient>(
       () => _i251.LoginApiClient(gh<_i361.Dio>()),
@@ -106,11 +136,23 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i724.LoginLocalDataSourceContract>(),
       ),
     );
-    gh.factory<_i996.CheckUserLoggedInUseCase>(
-      () => _i996.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
+    gh.factory<_i886.ExamsRemoteDataSourceContract>(
+      () => _i895.ExamsRemoteDataSourceImpl(
+        examsApiClient: gh<_i188.ExamsApiClient>(),
+      ),
+    );
+    gh.factory<_i443.CheckUserLoggedInUseCase>(
+      () => _i443.CheckUserLoggedInUseCase(gh<_i844.LoginRepoContract>()),
     );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(gh<_i844.LoginRepoContract>()),
+    );
+    gh.singleton<_i827.ExamsRepoContract>(
+      () => _i646.ExamsRepoImpl(
+        examsRemoteDataSourceContract:
+            gh<_i886.ExamsRemoteDataSourceContract>(),
+        examsLocalDataSourceContract: gh<_i148.ExamsLocalDataSourceContract>(),
+      ),
     );
     gh.factory<_i539.SignUpRemoteDataSourceContract>(
       () => _i1052.SignUpRemoteDataSourceImpl(gh<_i858.SignUpApiClient>()),
@@ -121,6 +163,11 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i246.ForgetPasswordRemoteDataSourceContract>(),
         forgetPasswordLocalDataSourceContract:
             gh<_i187.ForgetPasswordLocalDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i401.GetExamsByCategoryUseCase>(
+      () => _i401.GetExamsByCategoryUseCase(
+        examsRepoContract: gh<_i827.ExamsRepoContract>(),
       ),
     );
     gh.factory<_i222.ForgetPasswordUseCase>(
@@ -136,6 +183,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i747.VerifyResetCodeUseCase>(
       () => _i747.VerifyResetCodeUseCase(
         forgetPasswordRepoContract: gh<_i665.ForgetPasswordRepoContract>(),
+      ),
+    );
+    gh.factory<_i731.ExamsCubit>(
+      () => _i731.ExamsCubit(
+        getExamsByCategoryUseCase: gh<_i401.GetExamsByCategoryUseCase>(),
       ),
     );
     gh.factory<_i366.SignUpRepoContract>(
