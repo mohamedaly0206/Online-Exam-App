@@ -74,8 +74,8 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
               dataParam: response.data,
             ),
             totalQuestions: response.data.questions.length,
-            examTime: response.data.questions.first.exam!.duration * 60,
-            initialExamTime: response.data.questions.first.exam!.duration * 60,
+            examTime: 1 * 60,
+            initialExamTime: 1* 60,
           ),
         );
 

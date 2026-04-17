@@ -49,19 +49,24 @@ class TimeOutWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
-                GoRouter.of(context).pushReplacement(
-                  AppRouterPaths.kExamScoreView,
-                  extra: {
-                    AppStrings.correctAnswers: cubit.state.totalCorrectAnswers,
-                    AppStrings.wrongAnswers: cubit.state.totalWrongAnswers,
-                    AppStrings.totalAnswers: cubit.state.totalQuestions,
+            BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                  onPressed: () {
+                    cubit.handleExamsQuestionsIntent(SubmitQuestionIntent());
+                    GoRouter.of(context).pushReplacement(
+                      AppRouterPaths.kExamScoreView,
+                      extra: {
+                        AppStrings.correctAnswers:
+                            cubit.state.totalCorrectAnswers,
+                        AppStrings.wrongAnswers: cubit.state.totalWrongAnswers,
+                        AppStrings.totalAnswers: cubit.state.totalQuestions,
+                      },
+                    );
                   },
+                  child: Text(AppStrings.viewScore),
                 );
               },
-              child: Text(AppStrings.viewScore),
             ),
           ],
         ),
