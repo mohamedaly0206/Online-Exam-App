@@ -4,6 +4,10 @@ import 'package:online_exam_app/features/home/data/data_source/home_remote_data_
 import 'package:online_exam_app/features/home/data/models/responses/subject_dto.dart';
 import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
 
+import '../../../../config/security_storage/security_storage_module.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/values/app_strings.dart';
 import '../../domain/repo/home_repo_contract.dart';
 
 @Injectable(as: HomeRepoContract)
@@ -14,16 +18,38 @@ class HomeRepoImp implements HomeRepoContract {
 
   @override
   Future<BaseResponse<List<SubjectModel>>> getAllSubjects() async {
-    final response = await homeRemoteDataSourceContract.getAllSubjects();
-    switch (response) {
-      case SuccessBaseResponse<List<SubjectDto>>():
-        return SuccessBaseResponse<List<SubjectModel>>(
-          data: response.data.map((e) => e.toDomain()).toList(),
-        );
-      case ErrorBaseResponse<List<SubjectDto>>():
+    try {
+      final token = await SecurityStorageModule.getSecuredString(
+        AppStrings.token,
+      );
+
+      if (token.isEmpty) {
         return ErrorBaseResponse<List<SubjectModel>>(
-          errorMessage: response.errorMessage,
+          errorMessage: AppStrings.getCacheExceptionMessage,
         );
+      }
+
+      final response = await homeRemoteDataSourceContract.getAllSubjects(token);
+
+      switch (response) {
+        case SuccessBaseResponse<List<SubjectDto>>():
+          return SuccessBaseResponse<List<SubjectModel>>(
+            data: response.data.map((e) => e.toDomain()).toList(),
+          );
+
+        case ErrorBaseResponse<List<SubjectDto>>():
+          return ErrorBaseResponse<List<SubjectModel>>(
+            errorMessage: response.errorMessage,
+          );
+      }
+    } on CacheException catch (e) {
+      return ErrorBaseResponse<List<SubjectModel>>(
+        errorMessage: CacheFailure(e).errorMessage,
+      );
+    } catch (e) {
+      return ErrorBaseResponse<List<SubjectModel>>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 }

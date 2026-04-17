@@ -3,10 +3,7 @@ import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/features/home/data/models/responses/subject_dto.dart';
 import 'package:online_exam_app/features/home/data/models/subjects_response.dart';
 
-import '../../../../config/security_storage/security_storage_module.dart';
-import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
-import '../../../../core/values/app_strings.dart';
 import '../../data/data_source/home_remote_data_source_contract.dart';
 import '../api_client/get_all_subjects_api_client.dart';
 
@@ -17,14 +14,8 @@ class HomeRemoteDataSourceImp implements HomeRemoteDataSourceContract {
   HomeRemoteDataSourceImp(this.homeApiClient);
 
   @override
-  Future<BaseResponse<List<SubjectDto>>> getAllSubjects() async {
+  Future<BaseResponse<List<SubjectDto>>> getAllSubjects(String token) async {
     try {
-      String token = await SecurityStorageModule.getSecuredString('token');
-      if (token.isEmpty) {
-        throw const CacheException(
-          errorMessage: AppStrings.storeCacheExceptionMessage,
-        );
-      }
       SubjectsResponse response = await homeApiClient.getAllSubjects(
         token: token,
       );
