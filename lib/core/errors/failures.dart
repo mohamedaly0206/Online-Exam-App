@@ -65,5 +65,5 @@ class ServerFailure extends Failure {
 
 class CacheFailure extends Failure {
   CacheFailure(Object e)
-      : super(e is CacheException ? e.errorMessage : "Storage Error");
+    : super(e is CacheException ? e.errorMessage : "Storage Error");
 }
