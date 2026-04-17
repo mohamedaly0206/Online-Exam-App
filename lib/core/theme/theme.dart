@@ -6,6 +6,7 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData appTheme = ThemeData(
+    //todo: this line will be change on marge and will be AppConstants.fontFamily
     fontFamily: AppTextStyles.fontFamily,
     // colorScheme
     colorScheme: const ColorScheme(
@@ -15,6 +16,7 @@ class AppTheme {
       onPrimary: AppColors.whiteColor,
       primaryContainer: AppColors.lightBlueColor,
       onPrimaryContainer: AppColors.primaryColor,
+      primaryFixed: AppColors.babyBlueColor,
 
       secondary: AppColors.secondaryColor,
       onSecondary: AppColors.whiteColor,
@@ -25,6 +27,7 @@ class AppTheme {
       onTertiary: AppColors.whiteColor,
       tertiaryContainer: AppColors.lightGreenColor,
       onTertiaryContainer: AppColors.successColor,
+      onTertiaryFixed: AppColors.selectedAnswerColor,
 
       error: AppColors.errorColor,
       onError: AppColors.whiteColor,
@@ -33,7 +36,8 @@ class AppTheme {
 
       surface: AppColors.whiteColor,
       onSurface: AppColors.blackColor,
-      surfaceContainerHighest: AppColors.lightBlueColor, //surfaceVariant
+      surfaceContainerHighest: AppColors.lightBlueColor,
+      //surfaceVariant
       onSurfaceVariant: AppColors.secondaryColor,
     ),
     // inputDecorationTheme
@@ -67,6 +71,7 @@ class AppTheme {
         foregroundColor: AppColors.whiteColor,
         textStyle: AppTextStyles.textStyleMedium16,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        side: BorderSide(color: AppColors.primaryColor),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -120,7 +125,8 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
-      leadingWidth: 24,
+      titleSpacing: 8,
+      leadingWidth: 22,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
@@ -134,6 +140,14 @@ class AppTheme {
       unselectedItemColor: AppColors.placeHolderColor,
       selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
       unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+    ),
+
+    checkboxTheme: CheckboxThemeData(
+      side: BorderSide(color: AppColors.primaryColor, width: 2),
+    ),
+
+    radioTheme: RadioThemeData(
+      side: BorderSide(color: AppColors.primaryColor, width: 2),
     ),
   );
 }

@@ -24,18 +24,18 @@ class VerifyResetCodeView extends StatelessWidget {
         listener: (context, state) {
           if (state.verifyResetCodeState.data == true) {
             onSuccess();
-          } else if (state.verifyResetCodeState.errorMessage != '' &&
+          } else if (state.verifyResetCodeState.errorMessage != null&&
               state.verifyResetCodeState.isLoading == false) {
             showSnackBar(
               context: context,
-              message: state.verifyResetCodeState.errorMessage ?? '',
+              message: state.verifyResetCodeState.errorMessage!,
               color: theme.colorScheme.error,
             );
-          } else if (state.resendOTPState.errorMessage != '' &&
+          } else if (state.resendOTPState.errorMessage != null &&
               state.resendOTPState.isLoading == false) {
             showSnackBar(
               context: context,
-              message: state.resendOTPState.errorMessage ?? '',
+              message: state.resendOTPState.errorMessage!,
               color: theme.colorScheme.error,
             );
           }
@@ -74,7 +74,7 @@ class VerifyResetCodeView extends StatelessWidget {
                   Text(AppStrings.verifyButton),
                   state.resendOTPState.isLoading
                       ? CircularProgressIndicator(
-                          color: theme.colorScheme.primary,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )
                       : TextButton(
                           child: Text(AppStrings.resendButton),
