@@ -1,22 +1,22 @@
-import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
+import 'package:online_exam_app/features/home/domain/model/subject_entity.dart';
 import '../../../../../config/base_state/base_state.dart';
 
 class HomeStates {
   final int currentIndex;
-  final BaseState<List<SubjectModel>> subjectsListState;
-  final List<SubjectModel>? filteredSubjects;
+  final BaseState<List<SubjectEntity>> subjectsListState;
+  final List<SubjectEntity>? filteredSubjects;
   HomeStates({
     this.currentIndex = 0,
-    BaseState<List<SubjectModel>>? subjectsListState,
+    BaseState<List<SubjectEntity>>? subjectsListState,
     this.filteredSubjects,
   }) : subjectsListState =
            subjectsListState ??
-           BaseState<List<SubjectModel>>(isLoading: false, data: []);
+           BaseState<List<SubjectEntity>>(isLoading: false, data: []);
 
   HomeStates copyWith({
     int? currentIndexParam,
-    BaseState<List<SubjectModel>>? subjectsListStateParam,
-    List<SubjectModel>? filteredSubjectsParam,
+    BaseState<List<SubjectEntity>>? subjectsListStateParam,
+    List<SubjectEntity>? filteredSubjectsParam,
   }) {
     return HomeStates(
       currentIndex: currentIndexParam ?? this.currentIndex,

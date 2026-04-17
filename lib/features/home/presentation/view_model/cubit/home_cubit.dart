@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/home/domain/use_case/get_subjects_use_c
 
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_state/base_state.dart';
-import '../../../domain/model/subject_model.dart';
+import '../../../domain/model/subject_entity.dart';
 import '../intent/home_intent.dart';
 import '../state/home_states.dart';
 
@@ -32,8 +32,8 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(state.copyWith(currentIndexParam: index));
   }
 
-  late final List<SubjectModel>? filteredSubjects;
-  late final List<SubjectModel>? allSubjects;
+  late final List<SubjectEntity>? filteredSubjects;
+  late final List<SubjectEntity>? allSubjects;
 
   Future<void> _getAllSubjects() async {
     emit(
@@ -48,7 +48,7 @@ class HomeCubit extends Cubit<HomeStates> {
     final result = await _getSubjectsUseCase();
 
     switch (result) {
-      case SuccessBaseResponse<List<SubjectModel>>():
+      case SuccessBaseResponse<List<SubjectEntity>>():
         emit(
           state.copyWith(
             subjectsListStateParam: BaseState(
@@ -59,7 +59,7 @@ class HomeCubit extends Cubit<HomeStates> {
           ),
         );
 
-      case ErrorBaseResponse<List<SubjectModel>>():
+      case ErrorBaseResponse<List<SubjectEntity>>():
         emit(
           state.copyWith(
             subjectsListStateParam: BaseState(

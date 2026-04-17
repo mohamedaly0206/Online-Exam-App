@@ -9,11 +9,11 @@ import '../../../../core/values/app_strings.dart';
 import '../../../../core/values/assets.gen.dart';
 import '../view_model/intent/home_intent.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   static const List<Widget> _tabs = [
-    HomeViewBody(),
+    HomePage(),
     Center(child: Text(AppStrings.result)),
     Center(child: Text(AppStrings.profile)),
   ];

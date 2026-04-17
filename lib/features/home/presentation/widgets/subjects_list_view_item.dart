@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
+import 'package:online_exam_app/features/home/domain/model/subject_entity.dart';
 
 class SubjectsListViewItem extends StatelessWidget {
   const SubjectsListViewItem({super.key, required this.subjectModel});
 
-  final SubjectModel subjectModel;
+  final SubjectEntity subjectModel;
 
   @override
   Widget build(BuildContext context) {

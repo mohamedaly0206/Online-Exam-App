@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/home/domain/model/subject_model.dart';
+import 'package:online_exam_app/features/home/domain/model/subject_entity.dart';
 
 import '../../../../config/base_response/base_response.dart';
 import '../repo/home_repo_contract.dart';
@@ -10,7 +10,7 @@ class GetSubjectsUseCase {
 
   final HomeRepoContract homeRepo;
 
-  Future<BaseResponse<List<SubjectModel>>> call() async {
+  Future<BaseResponse<List<SubjectEntity>>> call() async {
     return homeRepo.getAllSubjects();
   }
 }

@@ -53,6 +53,7 @@ class AppStrings {
   static const String survey = 'Survey';
   static const String search = 'Search';
   static const String browseBySubject = 'Browse by subject';
+  static const String noSubjectFound = 'No subject found';
   static const String language = 'Language';
   static const String math = 'Math';
   static const String art = 'Art';

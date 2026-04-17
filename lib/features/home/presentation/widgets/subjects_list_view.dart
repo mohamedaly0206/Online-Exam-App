@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/state/home_states.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/subjects_list_view_item.dart';
@@ -26,6 +27,10 @@ class SubjectsListView extends StatelessWidget {
 
           final subjects =
               state.filteredSubjects ?? state.subjectsListState.data ?? [];
+
+          if (subjects.isEmpty) {
+            return const Center(child: Text(AppStrings.noSubjectFound));
+          }
 
           return ListView.separated(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),

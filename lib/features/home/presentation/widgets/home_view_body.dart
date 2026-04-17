@@ -8,8 +8,8 @@ import 'package:online_exam_app/features/home/presentation/view_model/cubit/home
 import 'package:online_exam_app/features/home/presentation/view_model/intent/home_intent.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/subjects_list_view.dart';
 
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

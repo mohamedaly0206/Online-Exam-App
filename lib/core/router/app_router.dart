@@ -6,7 +6,7 @@ import '../../config/di/di.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/sign_up/presentation/views/sign_up_view.dart';
-import '../../features/home/presentation/view/home_view.dart';
+import '../../features/home/presentation/view/home_screen.dart';
 import '../../features/home/presentation/view_model/cubit/home_cubit.dart';
 import '../../features/home/presentation/view_model/intent/home_intent.dart';
 import '../../features/splash/presentation/view_model/cubit/splash_cubit.dart';
@@ -43,7 +43,7 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt<HomeCubit>()..doIntent(GetAllSubjectsIntent()),
-          child: const HomeView(),
+          child: const HomeScreen(),
         ),
       ),
     ],
