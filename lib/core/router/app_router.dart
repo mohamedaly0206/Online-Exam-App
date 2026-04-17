@@ -12,10 +12,10 @@ import '../../features/auth/sign_up/presentation/views/sign_up_view.dart';
 
 abstract class AppRouter {
   static GoRouter getRouter(bool isLoggedIn) => GoRouter(
-    // initialLocation: AppRouterPaths.kExamView,
     initialLocation: isLoggedIn
-        ? AppRouterPaths.kLoginView
+        ? AppRouterPaths.kHomeView
         : AppRouterPaths.kLoginView,
+
     routes: [
       GoRoute(
         path: AppRouterPaths.kLoginView,
@@ -41,20 +41,6 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kHomeView,
         builder: (context, state) => const HomeTest(),
-      ),
-      GoRoute(
-        path: AppRouterPaths.kExamView,
-        builder: (context, state) {
-          final subjectId = state.extra as String;
-          return ExamsView(subjectId: subjectId);
-        },
-      ),
-      GoRoute(
-        path: AppRouterPaths.kExamDetailsView,
-        builder: (context, state) {
-          final examModel = state.extra as ExamModel;
-          return ExamDetailsView(exam: examModel);
-        },
       ),
     ],
   );

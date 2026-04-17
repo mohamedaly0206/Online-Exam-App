@@ -27,12 +27,8 @@ class SignUpCubit extends Cubit<SignUpState> {
         ),
       ),
     );
-    final response = await _signUpUseCase.invoke(intent.requestModel);
-    if (response is SuccessBaseResponse<SignUpResponseModel>) {
-      await SecurityStorageModule.setSecuredString(
-        AppStrings.token,
-        response.data.token,
-      );
+    final response = await _signUpUseCase.call(intent.requestModel);
+    if (response is SuccessBaseResponse<SignUpResponseEntity>) {
       emit(
         state.copyWith(
           signUpStateParam: state.signUpState.copyWith(

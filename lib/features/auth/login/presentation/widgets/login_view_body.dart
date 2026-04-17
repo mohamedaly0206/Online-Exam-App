@@ -51,10 +51,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             message: AppStrings.loginSuccessfully,
             color: Theme.of(context).primaryColor,
           );
-          // TODO: this line will change later this for test only,
-          // this line will be in the home screen,
-          // and the extra will be the subject id
-          GoRouter.of(context).go(AppRouterPaths.kExamView, extra: '13468461');
+          GoRouter.of(context).go(AppRouterPaths.kHomePageView);
         } else if (loginState.errorMessage != null &&
             loginState.errorMessage!.isNotEmpty &&
             !loginState.isLoading) {
