@@ -7,5 +7,4 @@ abstract class LoginRemoteDataSourceContract {
     required String email,
     required String password,
   });
-  Future<BaseResponse<LoginResponse>> getLoggedUserInfo(String token);
 }

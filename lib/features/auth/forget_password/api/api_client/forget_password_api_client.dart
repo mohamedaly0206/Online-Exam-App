@@ -15,12 +15,14 @@ abstract class ForgetPasswordApiClient {
   factory ForgetPasswordApiClient(Dio dio) = _ForgetPasswordApiClient;
 
   @POST(ApiEndpoints.forgetPassword)
-  Future<ForgetPasswordDTO> forgetPassword(@Body() Map<String, dynamic> data);
+  Future<ForgetPasswordDTO> forgetPassword(@Body() Map<String, dynamic>? data);
 
   // there is an error here it don't know which account that have this resetCode(OTP)
   @POST(ApiEndpoints.verifyResetPassword)
-  Future<VerifyResetCodeDTO> verifyResetCode(@Body() Map<String, dynamic> data);
+  Future<VerifyResetCodeDTO> verifyResetCode(
+    @Body() Map<String, dynamic>? data,
+  );
 
   @PUT(ApiEndpoints.resetPassword)
-  Future<ResetPasswordDTO> resetPassword(@Body() Map<String, dynamic> data);
+  Future<ResetPasswordDTO> resetPassword(@Body() Map<String, dynamic>? data);
 }

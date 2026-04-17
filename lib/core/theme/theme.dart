@@ -16,7 +16,6 @@ class AppTheme {
       onPrimary: AppColors.whiteColor,
       primaryContainer: AppColors.lightBlueColor,
       onPrimaryContainer: AppColors.primaryColor,
-      primaryFixed: AppColors.babyBlueColor,
 
       secondary: AppColors.secondaryColor,
       onSecondary: AppColors.whiteColor,
@@ -27,7 +26,6 @@ class AppTheme {
       onTertiary: AppColors.whiteColor,
       tertiaryContainer: AppColors.lightGreenColor,
       onTertiaryContainer: AppColors.successColor,
-      onTertiaryFixed: AppColors.selectedAnswerColor,
 
       error: AppColors.errorColor,
       onError: AppColors.whiteColor,
@@ -72,7 +70,6 @@ class AppTheme {
         foregroundColor: AppColors.whiteColor,
         textStyle: AppTextStyles.textStyleMedium16,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        side: BorderSide(color: AppColors.primaryColor),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -88,9 +85,6 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-        minimumSize: Size.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
         textStyle: AppTextStyles.textStyleRegular16.copyWith(
@@ -126,29 +120,20 @@ class AppTheme {
     ),
     // AppBarTheme
     appBarTheme: AppBarTheme(
-      titleSpacing: 8,
-      leadingWidth: 22,
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
         color: AppColors.blackColor,
       ),
     ),
-    navigationBarTheme: NavigationBarThemeData(
-      height: 60,
-      indicatorColor: AppColors.primaryColor.withOpacity(0.12),
-      labelTextStyle: WidgetStateProperty.all(
-        AppTextStyles.textStyleMedium14.copyWith(color: AppColors.primaryColor),
-      ),
-      labelPadding: const EdgeInsets.only(top: 5),
-    ),
-
-    checkboxTheme: CheckboxThemeData(
-      side: BorderSide(color: AppColors.primaryColor, width: 2),
-    ),
-
-    radioTheme: RadioThemeData(
-      side: BorderSide(color: AppColors.primaryColor, width: 2),
+    // BottomNavigationBarTheme
+    //! this theme isn't same as the figma design, it's only for test and we will remove it later, because we will use custom bottomNavigationBar
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.whiteColor,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.placeHolderColor,
+      selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+      unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
     ),
   );
 }

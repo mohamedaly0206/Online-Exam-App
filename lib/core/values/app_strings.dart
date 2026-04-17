@@ -71,7 +71,7 @@ class AppStrings {
   static const String examScore = 'Exam Score';
   static const String yourScore = 'Your Score';
   static const String correct = 'Correct';
-  static const String inCorrect = 'Incorrect';
+  static const String wrong = 'Wrong';
   static const String showResultButton = 'Show Results';
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
@@ -91,15 +91,4 @@ class AppStrings {
       '''1- Read each question thoroughly before answering.
 2- Manage your time wisely.
 3- Once you submit the exam, you cannot retake it.''';
-  static const String exitExam = 'Exit Exam';
-  static const String exitExamMessage =
-      'Are you sure you want to exit exam !!\nYour progress will be lost';
-  static const String finishExam = 'Finish Exam';
-  static const String finishExamMessage =
-      'Are you sure you want to finish exam !!';
-  static const String cancel = 'Cancel';
-  static const String yes = 'Yes';
-  static const String no = 'No';
-  static const String unSelectedAnswerMessage =
-      'Please select an answer first before moving to the next question';
 }
