@@ -35,9 +35,8 @@ class ExamQuestionsViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state.examsQuestionsState.isLoading == true) {
           return const Center(child: CircularProgressIndicator());
-        }
-
-        if (state.examsQuestionsState.errorMessage != null) {
+        } else if (state.examsQuestionsState.errorMessage != null &&
+            state.examsQuestionsState.data == null) {
           return Center(
             child: ShowErrorWidget(
               message: state.examsQuestionsState.errorMessage.toString(),

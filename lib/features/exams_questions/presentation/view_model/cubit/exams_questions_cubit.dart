@@ -52,7 +52,6 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
 
   Future<void> _startExam(String examId) async {
     await _getExamsQuestions(examId);
-    _startTimer();
   }
 
   Future<void> _getExamsQuestions(String examId) async {
@@ -75,11 +74,15 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
             ),
             totalQuestions: response.data.questions.length,
             examTime: 1 * 60,
-            initialExamTime: 1* 60,
+            initialExamTime: 1 * 60,
           ),
         );
+        if (response.data.questions.isNotEmpty) {
+          _startTimer();
+        }
 
         log('Success getting question...');
+        log('${response.data.questions.length}');
 
         break;
       case ErrorBaseResponse<ExamQuestionsEntity>():

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/model/reset_password_model.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entity/reset_password_entity.dart';
 part 'reset_password_dto.g.dart';
 
 @JsonSerializable()
@@ -14,6 +14,6 @@ class ResetPasswordDTO {
 
   Map<String, dynamic> toJson() => _$ResetPasswordDTOToJson(this);
 
-  ResetPasswordModel toDomain() =>
-      ResetPasswordModel(message: message, token: token);
+  ResetPasswordEntity toDomain() =>
+      ResetPasswordEntity(message: message, token: token);
 }

@@ -109,7 +109,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.LoginRemoteDataSourceContract>(
       () => _i182.LoginRemoteDataSourceImp(gh<_i251.LoginApiClient>()),
     );
-    gh.lazySingleton<_i246.ForgetPasswordRemoteDataSourceContract>(
+    gh.factory<_i246.ForgetPasswordRemoteDataSourceContract>(
       () => _i159.ForgetPasswordRemoteDataSourceImpl(
         forgetPasswordApiClient: gh<_i478.ForgetPasswordApiClient>(),
       ),
@@ -132,7 +132,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i539.SignUpRemoteDataSourceContract>(
       () => _i1052.SignUpRemoteDataSourceImpl(gh<_i858.SignUpApiClient>()),
     );
-    gh.lazySingleton<_i665.ForgetPasswordRepoContract>(
+    gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i610.ForgetPasswordRepoImpl(
         forgetPasswordRemoteDataSourceContract:
             gh<_i246.ForgetPasswordRemoteDataSourceContract>(),

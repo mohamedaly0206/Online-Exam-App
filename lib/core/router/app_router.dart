@@ -1,7 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/config/di/di.dart';
+import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
+import 'package:online_exam_app/features/auth/login/presentation/view_model/cubit/login_cubit.dart';
+import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
@@ -21,15 +26,24 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: AppRouterPaths.kLoginView,
-        builder: (context, state) => const LoginView(),
+        builder: (context, state) => BlocProvider<LoginCubit>(
+          create: (context) => getIt<LoginCubit>(),
+          child: const LoginView(),
+        ),
       ),
       GoRoute(
         path: AppRouterPaths.kSignUpView,
-        builder: (context, state) => SignUpView(),
+        builder: (context, state) => BlocProvider<SignUpCubit>(
+          create: (context) => getIt<SignUpCubit>(),
+          child: SignUpView(),
+        ),
       ),
       GoRoute(
         path: AppRouterPaths.kForgetPasswordView,
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: ForgetPasswordView(),
+        ),
       ),
       GoRoute(
         path: AppRouterPaths.kHomeView,

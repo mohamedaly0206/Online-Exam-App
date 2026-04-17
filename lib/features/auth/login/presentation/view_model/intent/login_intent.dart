@@ -1,5 +1,8 @@
-abstract class LoginIntent {}
+sealed class LoginIntent {}
 
 class LoginSubmitIntent extends LoginIntent {
-  LoginSubmitIntent();
+  final String email;
+  final String password;
+
+  LoginSubmitIntent({required this.email, required this.password});
 }
