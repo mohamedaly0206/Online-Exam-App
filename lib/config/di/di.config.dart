@@ -48,8 +48,8 @@ import '../../features/auth/login/data/data_sources/login_remote_data_source_con
 import '../../features/auth/login/data/repo/login_repo_imp.dart' as _i21;
 import '../../features/auth/login/domain/repo/login_repo_contract.dart'
     as _i844;
-import '../../features/auth/login/domain/use_cases/check_user_loggedIn_use_case.dart'
-    as _i443;
+import '../../features/auth/login/domain/use_cases/check_user_logged_in_use_case.dart'
+    as _i996;
 import '../../features/auth/login/domain/use_cases/login_use_case.dart' as _i50;
 import '../../features/auth/login/presentation/view_model/cubit/login_cubit.dart'
     as _i609;
@@ -122,7 +122,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.LoginRemoteDataSourceContract>(
       () => _i182.LoginRemoteDataSourceImp(gh<_i251.LoginApiClient>()),
     );
-    gh.lazySingleton<_i246.ForgetPasswordRemoteDataSourceContract>(
+    gh.factory<_i246.ForgetPasswordRemoteDataSourceContract>(
       () => _i159.ForgetPasswordRemoteDataSourceImpl(
         forgetPasswordApiClient: gh<_i478.ForgetPasswordApiClient>(),
       ),
@@ -157,7 +157,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i539.SignUpRemoteDataSourceContract>(
       () => _i1052.SignUpRemoteDataSourceImpl(gh<_i858.SignUpApiClient>()),
     );
-    gh.lazySingleton<_i665.ForgetPasswordRepoContract>(
+    gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i610.ForgetPasswordRepoImpl(
         forgetPasswordRemoteDataSourceContract:
             gh<_i246.ForgetPasswordRemoteDataSourceContract>(),

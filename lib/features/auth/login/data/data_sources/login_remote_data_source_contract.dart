@@ -2,7 +2,7 @@ import 'package:online_exam_app/features/auth/login/data/models/login_response.d
 
 import '../../../../../config/base_response/base_response.dart';
 
-abstract class LoginRemoteDataSourceContract {
+abstract interface class LoginRemoteDataSourceContract {
   Future<BaseResponse<LoginResponse>> login({
     required String email,
     required String password,

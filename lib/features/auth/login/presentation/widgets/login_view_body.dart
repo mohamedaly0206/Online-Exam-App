@@ -18,20 +18,34 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>(); // = bloc provider.of(context)
+    final cubit = context.read<LoginCubit>();
 
-    return BlocConsumer<LoginCubit, LoginState>(
-      listenWhen: (previous, current) {
-        return previous.loginState.data != current.loginState.data ||
-            previous.loginState.errorMessage !=
-                current.loginState.errorMessage ||
-            previous.loginState.isLoading != current.loginState.isLoading;
-      },
+    return BlocListener<LoginCubit, LoginState>(
+      listenWhen: (previous, current) =>
+          previous.loginState != current.loginState,
       listener: (context, state) {
         final loginState = state.loginState;
-        if (loginState.data != null && loginState.isLoading == false) {
+        if (loginState.data != null && !loginState.isLoading) {
           showSnackBar(
             context: context,
             message: AppStrings.loginSuccessfully,
@@ -42,7 +56,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           // and the extra will be the subject id
           GoRouter.of(context).go(AppRouterPaths.kExamView, extra: '13468461');
         } else if (loginState.errorMessage != null &&
-            loginState.isLoading == false) {
+            loginState.errorMessage!.isNotEmpty &&
+            !loginState.isLoading) {
           showSnackBar(
             context: context,
             message: loginState.errorMessage!,
@@ -50,12 +65,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           );
         }
       },
-
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-          child: Form(
-            key: cubit.formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,7 +79,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  controller: cubit.emailController,
+                  controller: _emailController,
                   validator: (value) => AppValidators.validateEmail(value),
                   decoration: const InputDecoration(
                     labelText: AppStrings.email,
@@ -75,7 +89,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 const SizedBox(height: 24),
                 TextFormField(
                   obscureText: true,
-                  controller: cubit.passwordController,
+                  controller: _passwordController,
                   validator: (value) =>
                       AppValidators.validateEmptyTextFormField(value),
                   decoration: const InputDecoration(
@@ -86,12 +100,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 ),
                 Row(
                   children: [
-                    Checkbox(
-                      value: cubit.rememberMe,
-                      onChanged: (value) {
-                        setState(() {
-                          cubit.rememberMe = value ?? false;
-                        });
+                    BlocBuilder<LoginCubit, LoginState>(
+                      buildWhen: (previous, current) =>
+                          previous.rememberMe != current.rememberMe,
+                      builder: (context, state) {
+                        return Checkbox(
+                          value: state.rememberMe,
+                          onChanged: (value) {
+                            cubit.toggleRememberMe(value ?? false);
+                          },
+                        );
                       },
                     ),
                     Text(
@@ -107,27 +125,42 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           context,
                         ).colorScheme.onSurface,
                       ),
+                      child: const Text(AppStrings.forgetPassword),
                       onPressed: () {
                         GoRouter.of(
                           context,
                         ).push(AppRouterPaths.kForgetPasswordView);
                       },
-                      child: Text(AppStrings.forgetPassword),
                     ),
                   ],
                 ),
                 const SizedBox(height: 48),
-                ElevatedButton(
-                  child: state.loginState.isLoading
-                      ? CircularProgressIndicator(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        )
-                      : const Text(AppStrings.login),
-                  onPressed: () {
-                    if (cubit.formKey.currentState!.validate()) {
-                      cubit.handleLoginIntent(LoginSubmitIntent());
-                    }
-                  },
+                SizedBox(
+                  width: double.infinity,
+                  child: BlocBuilder<LoginCubit, LoginState>(
+                    buildWhen: (previous, current) =>
+                        previous.loginState.isLoading !=
+                        current.loginState.isLoading,
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        child: state.loginState.isLoading
+                            ? CircularProgressIndicator(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              )
+                            : const Text(AppStrings.login),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            cubit.handleLoginIntent(
+                              LoginSubmitIntent(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              ),
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -145,15 +178,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         textStyle: Theme.of(context).textTheme.headlineMedium
                             ?.copyWith(decoration: TextDecoration.underline),
                       ),
-                      child: Text(AppStrings.signUp),
+                      child: const Text(AppStrings.signUp),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

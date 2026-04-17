@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
-import '../../../domain/model/forget_password_model.dart';
-import '../../../domain/model/reset_password_model.dart';
-import '../../../domain/model/verify_reset_code_model.dart';
+import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
+import 'package:online_exam_app/core/values/api_param.dart';
+import '../../../domain/entity/forget_password_entity.dart';
+import '../../../domain/entity/reset_password_entity.dart';
+import '../../../domain/entity/verify_reset_code_entity.dart';
 import '../../../domain/use_case/forget_password_use_case.dart';
 import '../../../domain/use_case/reset_password_use_case.dart';
 import '../../../domain/use_case/verify_reset_code_use_case.dart';
@@ -25,229 +24,174 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final ForgetPasswordUseCase forgetPasswordUseCase;
   final ResetPasswordUseCase resetPasswordUseCase;
   final VerifyResetCodeUseCase verifyResetCodeUseCase;
-  // formKeys
-  final GlobalKey<FormState> enterEmailFormKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> verifyResetCodeFormKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> resetPasswordFormKey = GlobalKey<FormState>();
-  // text form field controllers
-  final TextEditingController enterEmailTextController =
-      TextEditingController();
-  final TextEditingController resetCodeTextController = TextEditingController();
-  final TextEditingController passwordTextController = TextEditingController();
-  final TextEditingController confirmPasswordTextController =
-      TextEditingController();
-  // page controller
-  final PageController pageController = PageController();
-  int courantPageIndex = 0;
 
   void doIntent(ForgetPasswordIntent intent) {
     switch (intent) {
-      case EnterEmailIntent():
-        _enterEmail(intent.context);
+      case EnterResetEmailIntent():
+        _sendResetEmail(intent.email);
         break;
       case VerifyResetCodeIntent():
-        _verifyResetCode(intent.context, intent.otp);
+        _verifyResetCode(intent.otp);
         break;
       case ResetPasswordIntent():
-        _resetPassword(intent.context);
-        break;
-      case BackToPriviesPageIntent():
-        _priviesPage(intent.context);
+        _resetPassword(newPassword: intent.newPassword);
         break;
       case ResendOTPIntent():
-        _resendOTP(intent.context);
+        _resendOTP();
         break;
     }
   }
 
-  @override
-  Future<void> close() {
-    enterEmailTextController.dispose();
-    resetCodeTextController.dispose();
-    passwordTextController.dispose();
-    confirmPasswordTextController.dispose();
-    pageController.dispose();
-    return super.close();
+  void _saveEmailLocally(String email) {
+    SecurityStorageModule.setSecuredString(ApiParam.email, email);
   }
 
-  void _priviesPage(BuildContext context) {
-    courantPageIndex = 0;
-    GoRouter.of(context).pop();
+  Future<String> _getEmailFromLocal() async {
+    return await SecurityStorageModule.getSecuredString(ApiParam.email);
   }
 
-  void _nextPage(BuildContext context) {
-    if (courantPageIndex < 2) {
-      courantPageIndex++;
-      pageController.animateToPage(
-        courantPageIndex,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOutCubicEmphasized,
-      );
-    } else {
-      GoRouter.of(context).pop();
-    }
-  }
-
-  Future<void> _enterEmail(BuildContext context) async {
-    if (enterEmailFormKey.currentState!.validate()) {
-      emit(
-        state.copyWith(
-          enterEmailStateParam: state.enterEmailState.copyWith(
-            isLoadingParam: true,
-          ),
-        ),
-      );
-      final response = await forgetPasswordUseCase(
-        enterEmailTextController.text,
-      );
-      switch (response) {
-        case SuccessBaseResponse<ForgetPasswordModel>():
-          emit(
-            state.copyWith(
-              enterEmailStateParam: state.enterEmailState.copyWith(
-                isLoadingParam: false,
-                dataParam: true,
-              ),
-            ),
-          );
-          _nextPage(context);
-          break;
-        case ErrorBaseResponse<ForgetPasswordModel>():
-          emit(
-            state.copyWith(
-              enterEmailStateParam: state.enterEmailState.copyWith(
-                isLoadingParam: false,
-                errorMessageParam: response.errorMessage,
-              ),
-            ),
-          );
-          enterEmailTextController.clear();
-          showSnackBar(
-            context: context,
-            message: response.errorMessage,
-            color: Theme.of(context).colorScheme.error,
-          );
-          break;
-      }
-    }
-  }
-
-  Future<void> _verifyResetCode(BuildContext context, String otp) async {
-    if (verifyResetCodeFormKey.currentState!.validate()) {
-      emit(
-        state.copyWith(
-          verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-            isLoadingParam: true,
-          ),
-        ),
-      );
-      final response = await verifyResetCodeUseCase(otp);
-      switch (response) {
-        case SuccessBaseResponse<VerifyResetCodeModel>():
-          emit(
-            state.copyWith(
-              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-                isLoadingParam: false,
-                dataParam: true,
-                errorMessageParam: null,
-              ),
-            ),
-          );
-          _nextPage(context);
-          break;
-        case ErrorBaseResponse<VerifyResetCodeModel>():
-          emit(
-            state.copyWith(
-              verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
-                isLoadingParam: false,
-                errorMessageParam: response.errorMessage,
-              ),
-            ),
-          );
-          break;
-      }
-    }
-  }
-
-  Future<void> _resetPassword(BuildContext context) async {
-    if (resetPasswordFormKey.currentState!.validate()) {
-      emit(
-        state.copyWith(
-          resetPasswordStateParam: state.resetPasswordState.copyWith(
-            isLoadingParam: true,
-          ),
-        ),
-      );
-      final response = await resetPasswordUseCase(
-        enterEmailTextController.text,
-        passwordTextController.text,
-      );
-      switch (response) {
-        case SuccessBaseResponse<ResetPasswordModel>():
-          emit(
-            state.copyWith(
-              resetPasswordStateParam: state.resetPasswordState.copyWith(
-                isLoadingParam: false,
-                dataParam: true,
-                errorMessageParam: null,
-              ),
-            ),
-          );
-          _nextPage(context);
-          break;
-        case ErrorBaseResponse<ResetPasswordModel>():
-          emit(
-            state.copyWith(
-              resetPasswordStateParam: state.resetPasswordState.copyWith(
-                isLoadingParam: false,
-                errorMessageParam: response.errorMessage,
-              ),
-            ),
-          );
-          showSnackBar(
-            context: context,
-            message: response.errorMessage,
-            color: Theme.of(context).colorScheme.error,
-          );
-          break;
-      }
-    }
-  }
-
-  Future<void> _resendOTP(BuildContext context) async {
+  Future<void> _sendResetEmail(String email) async {
     emit(
       state.copyWith(
-        resendOTPStateParam: state.resendOTPState.copyWith(
+        enterEmailStateParam: state.enterEmailState.copyWith(
           isLoadingParam: true,
+          dataParam: null,
         ),
       ),
     );
-    final response = await forgetPasswordUseCase(enterEmailTextController.text);
+    final response = await forgetPasswordUseCase(email);
     switch (response) {
-      case SuccessBaseResponse<ForgetPasswordModel>():
+      case SuccessBaseResponse<ForgetPasswordEntity>():
         emit(
           state.copyWith(
-            resendOTPStateParam: state.resendOTPState.copyWith(
+            enterEmailStateParam: state.enterEmailState.copyWith(
               isLoadingParam: false,
               dataParam: true,
-              errorMessageParam: null,
             ),
           ),
         );
+        _saveEmailLocally(email);
         break;
-      case ErrorBaseResponse<ForgetPasswordModel>():
+      case ErrorBaseResponse<ForgetPasswordEntity>():
         emit(
           state.copyWith(
             enterEmailStateParam: state.enterEmailState.copyWith(
               isLoadingParam: false,
               errorMessageParam: response.errorMessage,
+              dataParam: null,
             ),
           ),
         );
-        showSnackBar(
-          context: context,
-          message: response.errorMessage,
-          color: Theme.of(context).colorScheme.secondary,
+        // enterEmailTextController.clear();
+        break;
+    }
+  }
+
+  Future<void> _verifyResetCode(String otp) async {
+    emit(
+      state.copyWith(
+        verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+          isLoadingParam: true,
+          dataParam: null,
+        ),
+      ),
+    );
+    final response = await verifyResetCodeUseCase(otp);
+    switch (response) {
+      case SuccessBaseResponse<VerifyResetCodeEntity>():
+        emit(
+          state.copyWith(
+            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+              isLoadingParam: false,
+              dataParam: true,
+            ),
+          ),
+        );
+        break;
+      case ErrorBaseResponse<VerifyResetCodeEntity>():
+        emit(
+          state.copyWith(
+            verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+              dataParam: null,
+            ),
+          ),
+        );
+        break;
+    }
+  }
+
+  Future<void> _resetPassword({required String newPassword}) async {
+    emit(
+      state.copyWith(
+        resetPasswordStateParam: state.resetPasswordState.copyWith(
+          isLoadingParam: true,
+          dataParam: null,
+        ),
+      ),
+    );
+    final email = await _getEmailFromLocal();
+    final response = await resetPasswordUseCase(email, newPassword);
+    switch (response) {
+      case SuccessBaseResponse<ResetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resetPasswordStateParam: state.resetPasswordState.copyWith(
+              isLoadingParam: false,
+              dataParam: true,
+            ),
+          ),
+        );
+        break;
+      case ErrorBaseResponse<ResetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resetPasswordStateParam: state.resetPasswordState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+              dataParam: null,
+            ),
+          ),
+        );
+        break;
+    }
+  }
+
+  Future<void> _resendOTP() async {
+    emit(
+      state.copyWith(
+        resendOTPStateParam: state.resendOTPState.copyWith(
+          isLoadingParam: true,
+          dataParam: null,
+        ),
+        verifyResetCodeStateParam: state.verifyResetCodeState.copyWith(
+          errorMessageParam: '',
+        ),
+      ),
+    );
+    final email = await _getEmailFromLocal();
+    final response = await forgetPasswordUseCase(email);
+    switch (response) {
+      case SuccessBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendOTPStateParam: state.resendOTPState.copyWith(
+              isLoadingParam: false,
+              dataParam: true,
+            ),
+          ),
+        );
+        break;
+      case ErrorBaseResponse<ForgetPasswordEntity>():
+        emit(
+          state.copyWith(
+            resendOTPStateParam: state.resendOTPState.copyWith(
+              isLoadingParam: false,
+              errorMessageParam: response.errorMessage,
+              dataParam: null,
+            ),
+          ),
         );
         break;
     }

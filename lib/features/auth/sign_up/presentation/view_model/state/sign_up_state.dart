@@ -1,15 +1,16 @@
+import 'package:equatable/equatable.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
-import 'package:online_exam_app/features/auth/sign_up/domain/models/response/sign_up_response_model.dart';
+import 'package:online_exam_app/features/auth/sign_up/domain/entities/response/sign_up_response_entity.dart';
 
-class SignUpState {
-  BaseState<SignUpResponseModel> signUpState = BaseState<SignUpResponseModel>(
-    isLoading: false,
-  );
+class SignUpState extends Equatable {
+  final BaseState<SignUpResponseEntity> signUpState;
 
-  SignUpState({BaseState<SignUpResponseModel>? signUpState}) {
-    this.signUpState = signUpState ?? this.signUpState;
+  const SignUpState({this.signUpState = const BaseState()});
+
+  SignUpState copyWith({BaseState<SignUpResponseEntity>? signUpStateParam}) {
+    return SignUpState(signUpState: signUpStateParam ?? signUpState);
   }
-  SignUpState copyWith({BaseState<SignUpResponseModel>? signUpStatePram}) {
-    return SignUpState(signUpState: signUpStatePram ?? signUpState);
-  }
+
+  @override
+  List<Object?> get props => [signUpState];
 }

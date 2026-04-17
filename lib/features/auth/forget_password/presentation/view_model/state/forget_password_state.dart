@@ -1,23 +1,18 @@
 import 'package:online_exam_app/config/base_state/base_state.dart';
+import 'package:equatable/equatable.dart';
 
-class ForgetPasswordState {
-  BaseState<bool> enterEmailState = BaseState<bool>(isLoading: false);
-  BaseState<bool> resendOTPState = BaseState<bool>(isLoading: false);
-  BaseState<bool> resetPasswordState = BaseState<bool>(isLoading: false);
-  BaseState<bool> verifyResetCodeState = BaseState<bool>(isLoading: false);
+class ForgetPasswordState extends Equatable {
+  final BaseState<bool> enterEmailState;
+  final BaseState<bool> resendOTPState;
+  final BaseState<bool> resetPasswordState;
+  final BaseState<bool> verifyResetCodeState;
 
-  ForgetPasswordState({
-    BaseState<bool>? enterEmailState,
-    BaseState<bool>? resetPasswordState,
-    BaseState<bool>? verifyResetCodeState,
-    BaseState<bool>? resendOTPState,
-  }) {
-    this.enterEmailState = enterEmailState ?? this.enterEmailState;
-    this.resendOTPState = resendOTPState ?? this.resendOTPState;
-    this.resetPasswordState = resetPasswordState ?? this.resetPasswordState;
-    this.verifyResetCodeState =
-        verifyResetCodeState ?? this.verifyResetCodeState;
-  }
+  const ForgetPasswordState({
+    this.enterEmailState = const BaseState<bool>(),
+    this.resetPasswordState = const BaseState<bool>(),
+    this.verifyResetCodeState = const BaseState<bool>(),
+    this.resendOTPState = const BaseState<bool>(),
+  });
 
   ForgetPasswordState copyWith({
     BaseState<bool>? enterEmailStateParam,
@@ -32,4 +27,12 @@ class ForgetPasswordState {
       resendOTPState: resendOTPStateParam ?? resendOTPState,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    enterEmailState,
+    resetPasswordState,
+    verifyResetCodeState,
+    resendOTPState,
+  ];
 }
