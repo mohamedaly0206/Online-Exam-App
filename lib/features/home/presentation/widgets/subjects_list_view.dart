@@ -21,7 +21,8 @@ class SubjectsListView extends StatelessWidget {
             );
           }
 
-          if (state.subjectsListState.errorMessage != null) {
+          if (state.subjectsListState.errorMessage != null &&
+              state.subjectsListState.errorMessage!.isNotEmpty) {
             return Center(child: Text(state.subjectsListState.errorMessage!));
           }
 

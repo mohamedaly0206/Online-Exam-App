@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/state/home_states.dart';
-import 'package:online_exam_app/features/home/presentation/widgets/home_view_body.dart';
+import 'package:online_exam_app/features/home/presentation/widgets/home_page.dart';
 
 import '../../../../core/values/app_strings.dart';
 import '../../../../core/values/assets.gen.dart';
