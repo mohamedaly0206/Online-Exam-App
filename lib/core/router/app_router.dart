@@ -1,3 +1,5 @@
+
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
@@ -17,6 +19,14 @@ abstract class AppRouter {
   static GoRouter getRouter() => GoRouter(
     initialLocation: AppRouterPaths.kSplashView,
 
+    errorBuilder: (context, state) => Scaffold(
+      body: Center(
+        child: Text(
+          'No route defined',
+          style: const TextStyle(fontSize: 18),
+        ),
+      ),
+    ),
     routes: [
       GoRoute(
         path: AppRouterPaths.kSplashView,

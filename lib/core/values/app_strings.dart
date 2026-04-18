@@ -101,5 +101,20 @@ class AppStrings {
   static const String serverInternalError =
       'Internal server error, please try again later';
   static const String serverDefaultError =
-      'Opps there was an error, please try again66';
+      'Opps there was an error, please try again';
+
+  // Validator Messages
+  static const String emailRequired = 'Email is required';
+  static const String emailNotValid = 'This Email is not valid';
+  static const String passwordRequired = 'Password is required';
+  static const String passwordLength = 'Password must be at least 8 characters';
+  static const String passwordInvalid =
+      'password must contain upper and lowercase, number and symbol';
+  static const String passwordNotMatched = 'Password not matched';
+  static const String fieldRequired = 'This field is required';
+  static const String nameLength = 'length must be at least 3 characters long';
+  static const String nameOnlyLetters = 'must contain letters only';
+  static const String nameNoSpaces = 'cannot contain spaces';
+  static const String phoneRequired = 'Phone number is required';
+  static const String phoneInvalid = 'Invalid Egyptian phone number';
 }
