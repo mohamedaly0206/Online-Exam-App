@@ -1,19 +1,19 @@
 import '../../../../../../config/base_state/base_state.dart';
-import '../../../../../../config/models/user_model/user_model.dart';
+import '../../../../../../config/models/user_model/user_entity.dart';
 
 class SplashState {
-  final BaseState<UserModel> splashState;
+  final BaseState<UserEntity> splashState;
 
-  SplashState({BaseState<UserModel>? splashStateParam})
+  SplashState({BaseState<UserEntity>? splashStateParam})
     : splashState =
           splashStateParam ??
-          BaseState<UserModel>(
+          BaseState<UserEntity>(
             isLoading: false,
             errorMessage: null,
             data: null,
           );
 
-  SplashState copyWith({BaseState<UserModel>? splashStateParam}) {
+  SplashState copyWith({BaseState<UserEntity>? splashStateParam}) {
     return SplashState(splashStateParam: splashStateParam ?? splashState);
   }
 }

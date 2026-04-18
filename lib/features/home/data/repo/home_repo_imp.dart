@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/home/data/data_source/home_remote_data_
 import 'package:online_exam_app/features/home/data/models/responses/subject_dto.dart';
 import 'package:online_exam_app/features/home/domain/model/subject_entity.dart';
 
-import '../../../../config/security_storage/security_storage_module.dart';
+import '../../../../config/security_storage/security_storage.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/values/app_strings.dart';
@@ -12,16 +12,15 @@ import '../../domain/repo/home_repo_contract.dart';
 
 @Injectable(as: HomeRepoContract)
 class HomeRepoImp implements HomeRepoContract {
-  HomeRepoImp(this.homeRemoteDataSourceContract);
+  HomeRepoImp(this.homeRemoteDataSourceContract, this._securityStorage);
 
   final HomeRemoteDataSourceContract homeRemoteDataSourceContract;
+  final SecurityStorage _securityStorage;
 
   @override
   Future<BaseResponse<List<SubjectEntity>>> getAllSubjects() async {
     try {
-      final token = await SecurityStorageModule.getSecuredString(
-        AppStrings.token,
-      );
+      final token = await _securityStorage.getSecuredString(AppStrings.token);
 
       if (token.isEmpty) {
         return ErrorBaseResponse<List<SubjectEntity>>(

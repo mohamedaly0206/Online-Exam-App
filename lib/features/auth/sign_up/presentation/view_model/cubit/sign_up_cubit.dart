@@ -1,19 +1,24 @@
 import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/sign_up/domain/models/response/sign_up_response_model.dart';
 import 'package:online_exam_app/features/auth/sign_up/domain/use_cases/sign_up_use_case.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/intent/sign_up_intent.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/state/sign_up_state.dart';
 
+import '../../../../../../config/security_storage/security_storage.dart';
+
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit(this._signUpUseCase) : super((SignUpState()));
+  SignUpCubit(this._signUpUseCase, this._securityStorage)
+    : super((SignUpState()));
+  final SecurityStorage _securityStorage;
   final SignUpUseCase _signUpUseCase;
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -38,7 +43,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     final response = await _signUpUseCase.invoke(intent.requestModel);
     if (response is SuccessBaseResponse<SignUpResponseModel>) {
-      await SecurityStorageModule.setSecuredString(
+      await _securityStorage.setSecuredString(
         AppStrings.tokenKey,
         response.data.token,
       );

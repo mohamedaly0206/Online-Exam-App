@@ -4,7 +4,7 @@ import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
 import 'package:online_exam_app/features/splash/presentation/view_model/state/splash_state.dart';
 
-import '../../../../../config/models/user_model/user_model.dart';
+import '../../../../../config/models/user_model/user_entity.dart';
 import '../../../../auth/login/domain/use_cases/check_user_loggedIn_use_case.dart';
 import '../../../../auth/login/domain/use_cases/get_logged_user_info_use_case.dart';
 import '../intent/splash_intent.dart';
@@ -33,13 +33,13 @@ class SplashCubit extends Cubit<SplashState> {
     if (isLoggedIn) {
       final response = await _getLoggedUserInfoUseCase();
 
-      if (response is SuccessBaseResponse<UserModel>) {
+      if (response is SuccessBaseResponse<UserEntity>) {
         emit(
           state.copyWith(
             splashStateParam: BaseState(isLoading: false, data: response.data),
           ),
         );
-      } else if (response is ErrorBaseResponse<UserModel>) {
+      } else if (response is ErrorBaseResponse<UserEntity>) {
         emit(
           state.copyWith(
             splashStateParam: BaseState(

@@ -1,19 +1,19 @@
 import '../../../../../../config/base_state/base_state.dart';
-import '../../../../../../config/models/user_model/user_model.dart';
+import '../../../../../../config/models/user_model/user_entity.dart';
 
 class LoginState {
-  final BaseState<UserModel> loginState;
+  final BaseState<UserEntity> loginState;
 
-  LoginState({BaseState<UserModel>? loginState})
+  LoginState({BaseState<UserEntity>? loginState})
     : loginState =
           loginState ??
-          BaseState<UserModel>(
+          BaseState<UserEntity>(
             isLoading: false,
             errorMessage: null,
             data: null,
           );
 
-  LoginState copyWith({BaseState<UserModel>? loginStateParam}) {
+  LoginState copyWith({BaseState<UserEntity>? loginStateParam}) {
     return LoginState(loginState: loginStateParam ?? loginState);
   }
 }

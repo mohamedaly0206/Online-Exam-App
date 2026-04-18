@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
+import 'package:online_exam_app/config/security_storage/security_storage.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/auth/login/data/data_sources/login_local_data_source_contract.dart';
 
@@ -7,10 +7,14 @@ import '../../../../../core/errors/exceptions.dart';
 
 @Injectable(as: LoginLocalDataSourceContract)
 class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
+  final SecurityStorage _securityStorage;
+
+  LoginLocalDataSourceImp(this._securityStorage);
+
   @override
   Future<void> saveToken(String token) async {
     try {
-      await SecurityStorageModule.setSecuredString(AppStrings.token, token);
+      await _securityStorage.setSecuredString(AppStrings.token, token);
     } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.storeCacheExceptionMessage,
@@ -21,7 +25,7 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
   @override
   Future<String?> getToken() async {
     try {
-      return await SecurityStorageModule.getSecuredString(AppStrings.token);
+      return await _securityStorage.getSecuredString(AppStrings.token);
     } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.getCacheExceptionMessage,
@@ -30,12 +34,9 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
   }
 
   @override
-  Future<void> saveRememberMe(bool value) {
+  Future<void> saveRememberMe(bool value) async {
     try {
-      return SecurityStorageModule.setSecuredBool(
-        AppStrings.rememberMeKey,
-        value,
-      );
+      await _securityStorage.setSecuredBool(AppStrings.rememberMeKey, value);
     } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.storeCacheExceptionMessage,
@@ -44,9 +45,9 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
   }
 
   @override
-  Future<bool> getRememberMe() {
+  Future<bool> getRememberMe() async {
     try {
-      return SecurityStorageModule.getSecuredBool(AppStrings.rememberMeKey);
+      return await _securityStorage.getSecuredBool(AppStrings.rememberMeKey);
     } catch (e) {
       throw const CacheException(
         errorMessage: AppStrings.getCacheExceptionMessage,

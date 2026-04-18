@@ -1,9 +1,9 @@
 import 'package:online_exam_app/config/base_response/base_response.dart';
 
-import '../../../../../config/models/user_model/user_model.dart';
+import '../../../../../config/models/user_model/user_entity.dart';
 
 abstract interface class LoginRepoContract {
-  Future<BaseResponse<UserModel>> login({
+  Future<BaseResponse<UserEntity>> login({
     // for login
     required String email,
     required String password,
@@ -12,5 +12,5 @@ abstract interface class LoginRepoContract {
 
   Future<bool> isUserLoggedIn();
 
-  Future<BaseResponse<UserModel>> getLoggedUserInfo(); // for auto-login
+  Future<BaseResponse<UserEntity>> getLoggedUserInfo(); // for auto-login
 }
