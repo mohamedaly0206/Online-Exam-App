@@ -24,7 +24,7 @@ class VerifyResetCodeView extends StatelessWidget {
         listener: (context, state) {
           if (state.verifyResetCodeState.data == true) {
             onSuccess();
-          } else if (state.verifyResetCodeState.errorMessage != null&&
+          } else if (state.verifyResetCodeState.errorMessage != null &&
               state.verifyResetCodeState.isLoading == false) {
             showSnackBar(
               context: context,

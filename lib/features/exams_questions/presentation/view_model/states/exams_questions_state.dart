@@ -3,7 +3,7 @@ part of '../cubit/exams_questions_cubit.dart';
 class ExamsQuestionsState {
   BaseState<ExamQuestionsEntity> examsQuestionsState =
       BaseState<ExamQuestionsEntity>(isLoading: true);
-  final int examTime;
+  final bool isExamFinished;
   final int initialExamTime;
   final int currentQuestionIndex;
   final int totalQuestions;
@@ -11,20 +11,12 @@ class ExamsQuestionsState {
   final int totalWrongAnswers;
   final bool answerValidation;
   final Map<int, dynamic> selectedAnswers;
-  bool get isHalfTime => examTime <= (initialExamTime / 2);
   double get progress =>
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
-  String get formattedTime {
-    final minutes = examTime ~/ 60;
-    final seconds = examTime % 60;
-
-    return '${minutes.toString().padLeft(2, '0')}:'
-        '${seconds.toString().padLeft(2, '0')}';
-  }
 
   ExamsQuestionsState({
+    this.isExamFinished = false,
     this.answerValidation = true,
-    this.examTime = 0,
     this.initialExamTime = 0,
     this.currentQuestionIndex = 0,
     this.totalQuestions = 0,
@@ -39,6 +31,7 @@ class ExamsQuestionsState {
   }
 
   ExamsQuestionsState copyWith({
+    bool? isExamFinished,
     BaseState<ExamQuestionsEntity>? examsQuestionsState,
     bool? answerValidation,
     int? examTime,
@@ -52,13 +45,13 @@ class ExamsQuestionsState {
     return ExamsQuestionsState(
       totalCorrectAnswers: totalCorrectAnswers ?? this.totalCorrectAnswers,
       totalWrongAnswers: totalWrongAnswers ?? this.totalWrongAnswers,
-      examTime: examTime ?? this.examTime,
       initialExamTime: initialExamTime ?? this.initialExamTime,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
       totalQuestions: totalQuestions ?? this.totalQuestions,
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
       answerValidation: answerValidation ?? this.answerValidation,
+      isExamFinished: isExamFinished ?? this.isExamFinished,
     );
   }
 }

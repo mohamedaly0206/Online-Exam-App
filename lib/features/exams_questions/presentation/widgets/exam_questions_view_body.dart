@@ -12,7 +12,7 @@ class ExamQuestionsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ExamsQuestionsCubit, ExamsQuestionsState>(
       listener: (context, state) {
-        if (state.examTime == 0 &&
+        if (state.isExamFinished &&
             state.examsQuestionsState.errorMessage == null) {
           final cubit = context.read<ExamsQuestionsCubit>();
 

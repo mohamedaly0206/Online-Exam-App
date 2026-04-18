@@ -5,26 +5,39 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 
 class ExamTimerWidget extends StatelessWidget {
   const ExamTimerWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
-      builder: (context, state) {
+    final cubit = context.read<ExamsQuestionsCubit>();
+    final theme = Theme.of(context);
+
+    return ValueListenableBuilder<int>(
+      valueListenable: cubit.examTimeNotifier,
+      builder: (context, time, _) {
+        final minutes = time ~/ 60;
+        final seconds = time % 60;
+
+        final formattedTime =
+            '${minutes.toString().padLeft(2, '0')}:'
+            '${seconds.toString().padLeft(2, '0')}';
+
+        final isHalfTime = time <= (cubit.state.initialExamTime / 2);
+
         return Row(
           children: [
             Image.asset(Assets.a3dIcons.alarmLightBlue.path),
             const SizedBox(width: 8),
             Text(
-              state.formattedTime,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: state.isHalfTime
-                    ? Theme.of(context).colorScheme.error
-                    : Theme.of(context).colorScheme.tertiary,
+              formattedTime,
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: isHalfTime
+                    ? theme.colorScheme.error
+                    : theme.colorScheme.tertiary,
               ),
             ),
           ],
         );
       },
-      buildWhen: (prev, curr) => prev.examTime != curr.examTime,
     );
   }
 }

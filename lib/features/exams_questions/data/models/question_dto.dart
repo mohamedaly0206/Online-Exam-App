@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/exam_dto.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/question_entity.dart';
+import 'package:online_exam_app/features/exams_questions/domain/entities/question_entity.dart';
 
 part 'question_dto.g.dart';
 

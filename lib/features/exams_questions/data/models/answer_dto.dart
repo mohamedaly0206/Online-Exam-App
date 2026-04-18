@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/exams_questions/domain/models/answer_entity.dart';
+import 'package:online_exam_app/features/exams_questions/domain/entities/answer_entity.dart';
 
 part 'answer_dto.g.dart';
 
