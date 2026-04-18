@@ -1,8 +1,7 @@
 part of '../cubit/exams_questions_cubit.dart';
 
-class ExamsQuestionsState {
-  BaseState<ExamQuestionsEntity> examsQuestionsState =
-      BaseState<ExamQuestionsEntity>(isLoading: true);
+class ExamsQuestionsState extends Equatable {
+  final BaseState<ExamQuestionsEntity> examsQuestionsState;
   final bool isExamFinished;
   final int initialExamTime;
   final int currentQuestionIndex;
@@ -15,6 +14,7 @@ class ExamsQuestionsState {
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
 
   ExamsQuestionsState({
+    this.examsQuestionsState = const BaseState(),
     this.isExamFinished = false,
     this.answerValidation = true,
     this.initialExamTime = 0,
@@ -23,12 +23,7 @@ class ExamsQuestionsState {
     this.totalWrongAnswers = 0,
     this.totalCorrectAnswers = 0,
     Map<int, dynamic>? selectedAnswers,
-
-    BaseState<ExamQuestionsEntity>? examsQuestionsState,
-  }) : selectedAnswers = selectedAnswers ?? {} {
-    this.examsQuestionsState =
-        examsQuestionsState ?? BaseState<ExamQuestionsEntity>(isLoading: true);
-  }
+  }) : selectedAnswers = selectedAnswers ?? {};
 
   ExamsQuestionsState copyWith({
     bool? isExamFinished,
@@ -54,4 +49,15 @@ class ExamsQuestionsState {
       isExamFinished: isExamFinished ?? this.isExamFinished,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    examsQuestionsState,
+    isExamFinished,
+    currentQuestionIndex,
+    totalCorrectAnswers,
+    totalWrongAnswers,
+    selectedAnswers,
+    answerValidation,
+  ];
 }
