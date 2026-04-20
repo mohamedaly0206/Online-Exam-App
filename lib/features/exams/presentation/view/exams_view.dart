@@ -1,14 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
-import 'package:online_exam_app/config/di/di.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/cubit/exams_cubit.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/intent/exams_intent.dart';
-
-import '../../../../core/values/app_strings.dart';
 import '../../../../core/values/assets.gen.dart';
 import '../view_model/state/exams_state.dart';
 import '../widgets/custom_exams_list_item.dart';
@@ -27,11 +23,12 @@ class ExamsView extends StatefulWidget {
 }
 
 class _ExamsViewState extends State<ExamsView> {
-  final examsCubit = getIt.get<ExamsCubit>();
   @override
   initState() {
     super.initState();
-    examsCubit.doIntent(GetExamsIntent(subjectId: widget.subjectId));
+    context.read<ExamsCubit>().doIntent(
+      GetExamsIntent(subjectId: widget.subjectId),
+    );
   }
 
   @override
@@ -51,17 +48,20 @@ class _ExamsViewState extends State<ExamsView> {
           return previous.examsState != current.examsState;
         },
         builder: (context, state) {
+          final errorMessage = state.examsState.errorMessage;
+          final data = state.examsState.data;
           if (state.examsState.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state.examsState.errorMessage != '' &&
-              state.examsState.data != null) {
-            return Center(child: Text(state.examsState.errorMessage!));
-          } else {
+          } else if (errorMessage != null && errorMessage.isNotEmpty == true) {
+            return Center(child: Text(errorMessage));
+          } else if (data != null) {
             return ListView.builder(
-              itemCount: state.examsState.data?.length ?? 0,
+              itemCount: data.length,
               itemBuilder: (context, index) =>
-                  CustomExamsListItem(examModel: state.examsState.data![index]),
+                  CustomExamsListItem(examModel: data[index]),
             );
+          } else {
+            return Center(child: Text(AppStrings.noExamsAvailable));
           }
         },
       ),

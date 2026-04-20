@@ -91,4 +91,5 @@ class AppStrings {
       '''1- Read each question thoroughly before answering.
 2- Manage your time wisely.
 3- Once you submit the exam, you cannot retake it.''';
+  static const String noExamsAvailable = 'No Exams Available';
 }

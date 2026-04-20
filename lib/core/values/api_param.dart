@@ -1,4 +1,4 @@
-class ApiParam {
+abstract class ApiParam {
   static const String token = 'token';
   static const String getSubjectExams = 'subject';
   static const String getAllExamQuestions = 'exam';
