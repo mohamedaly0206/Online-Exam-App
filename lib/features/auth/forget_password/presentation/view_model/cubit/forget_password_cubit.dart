@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
 import 'package:online_exam_app/core/values/api_param.dart';
+import '../../../../../../config/security_storage/security_storage.dart';
 import '../../../domain/entity/forget_password_entity.dart';
 import '../../../domain/entity/reset_password_entity.dart';
 import '../../../domain/entity/verify_reset_code_entity.dart';
@@ -18,7 +18,9 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     required this.forgetPasswordUseCase,
     required this.resetPasswordUseCase,
     required this.verifyResetCodeUseCase,
+    required this.securityStorage,
   }) : super(ForgetPasswordState());
+  final SecurityStorage securityStorage;
 
   // use case injection
   final ForgetPasswordUseCase forgetPasswordUseCase;
@@ -43,11 +45,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   }
 
   void _saveEmailLocally(String email) {
-    SecurityStorageModule.setSecuredString(ApiParam.email, email);
+    securityStorage.setSecuredString(ApiParam.email, email);
   }
 
   Future<String> _getEmailFromLocal() async {
-    return await SecurityStorageModule.getSecuredString(ApiParam.email);
+    return await securityStorage.getSecuredString(ApiParam.email);
   }
 
   Future<void> _sendResetEmail(String email) async {

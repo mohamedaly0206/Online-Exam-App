@@ -1,4 +1,4 @@
-class AppStrings {
+abstract class AppStrings {
   static const String appName = 'Online Exam App';
   static const String login = 'Login';
   static const String loginSuccessfully = 'Login Successfully';
@@ -53,6 +53,7 @@ class AppStrings {
   static const String survey = 'Survey';
   static const String search = 'Search';
   static const String browseBySubject = 'Browse by subject';
+  static const String noSubjectFound = 'No subject found';
   static const String language = 'Language';
   static const String math = 'Math';
   static const String art = 'Art';
@@ -108,4 +109,36 @@ class AppStrings {
 2- Manage your time wisely.
 3- Once you submit the exam, you cannot retake it.''';
   static const String noExamsAvailable = 'No Exams Available';
+  static const String cacheStorageError = "Storage Error";
+
+  //server failure messages
+  static const String serverConnTimeout = 'Connection timeout with API server';
+  static const String serverSendTimeout = 'Send timeout with API server';
+  static const String serverRecTimeout = 'Receive timeout with API server';
+  static const String serverCertError = 'Bad certificate with API server';
+  static const String serverCancel = 'Request to API server was cancelled';
+  static const String serverConnError = 'There is Connection Error';
+  static const String serverNoInternet = 'No Internet Connection';
+  static const String serverInvalidCreds = 'Invalid email or password';
+  static const String serverNotFound =
+      'Opps there was an error, please try again';
+  static const String serverInternalError =
+      'Internal server error, please try again later';
+  static const String serverDefaultError =
+      'Opps there was an error, please try again';
+
+  // Validator Messages
+  static const String emailRequired = 'Email is required';
+  static const String emailNotValid = 'This Email is not valid';
+  static const String passwordRequired = 'Password is required';
+  static const String passwordLength = 'Password must be at least 8 characters';
+  static const String passwordInvalid =
+      'password must contain upper and lowercase, number and symbol';
+  static const String passwordNotMatched = 'Password not matched';
+  static const String fieldRequired = 'This field is required';
+  static const String nameLength = 'length must be at least 3 characters long';
+  static const String nameOnlyLetters = 'must contain letters only';
+  static const String nameNoSpaces = 'cannot contain spaces';
+  static const String phoneRequired = 'Phone number is required';
+  static const String phoneInvalid = 'Invalid Egyptian phone number';
 }

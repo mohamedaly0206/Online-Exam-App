@@ -1,4 +1,4 @@
-class ApiEndpoints {
+abstract class ApiEndpoints {
   ApiEndpoints._();
   static const String baseUrl = 'https://exam.elevateegy.com/api/v1';
   static const String login = '$baseUrl/auth/signin';
@@ -13,4 +13,5 @@ class ApiEndpoints {
   static const String editProfile = '$baseUrl/auth/editProfile';
   static const String getExamQuestions = '$baseUrl/questions';
   static const String getAllExams = "$baseUrl/exams";
+  static const String getAllSubjects = '$baseUrl/subjects';
 }

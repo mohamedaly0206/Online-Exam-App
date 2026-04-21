@@ -40,7 +40,7 @@ class LoginRepoImp implements LoginRepoContract {
           );
         } catch (e) {
           return ErrorBaseResponse<UserEntity>(
-            errorMessage: CacheFailure(e).errorMessage,
+            errorMessage: ServerFailure.failureHandler(e).errorMessage,
           );
         }
 
@@ -53,6 +53,7 @@ class LoginRepoImp implements LoginRepoContract {
 
   @override
   Future<bool> isUserLoggedIn() async {
+    // for route
     try {
       final rememberMe = await loginLocalDataSource.getRememberMe();
 
@@ -61,6 +62,38 @@ class LoginRepoImp implements LoginRepoContract {
       return rememberMe && (token != null && token.isNotEmpty);
     } catch (e) {
       return false;
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserEntity>> getLoggedUserInfo() async {
+    try {
+      final token = await loginLocalDataSource.getToken();
+      print("$token <<<<< token from local data source in splash");
+      if (token != null && token.isNotEmpty) {
+        final response = await loginRemoteDataSource.getLoggedUserInfo(token);
+
+        switch (response) {
+          case SuccessBaseResponse<LoginResponse>():
+            return SuccessBaseResponse<UserEntity>(
+              data: response.data.user!.toDomain(),
+            );
+
+          case ErrorBaseResponse<LoginResponse>():
+            return ErrorBaseResponse<UserEntity>(
+              errorMessage: response.errorMessage,
+            );
+        }
+      } else {
+        return ErrorBaseResponse<UserEntity>(
+          errorMessage: "No saved token found",
+        );
+      }
+    } catch (e) {
+      // handle local data source error and remote data source error
+      return ErrorBaseResponse<UserEntity>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
     }
   }
 }

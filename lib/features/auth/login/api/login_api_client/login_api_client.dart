@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/login/data/models/login_request_body.dart';
 import 'package:online_exam_app/features/auth/login/data/models/login_response.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,5 +14,10 @@ abstract class LoginApiClient {
   factory LoginApiClient(Dio dio) = _LoginApiClient;
 
   @POST(ApiEndpoints.login)
-  Future<LoginResponse> login({@Body() required LoginRequestBody body});
+  Future<LoginResponse> login({@Body() required Map<String, dynamic> body});
+
+  @GET(ApiEndpoints.getLoggedUserInfo)
+  Future<LoginResponse> getLoggedUserInfo({
+    @Header("token") required String token,
+  });
 }

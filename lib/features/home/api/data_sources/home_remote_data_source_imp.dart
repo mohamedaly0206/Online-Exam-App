@@ -1,0 +1,31 @@
+import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/config/base_response/base_response.dart';
+import 'package:online_exam_app/features/home/data/models/responses/subject_dto.dart';
+
+import '../../../../core/errors/failures.dart';
+import '../../data/data_source/home_remote_data_source_contract.dart';
+import '../../data/models/subjects_response.dart';
+import '../api_client/get_all_subjects_api_client.dart';
+
+@Injectable(as: HomeRemoteDataSourceContract)
+class HomeRemoteDataSourceImp implements HomeRemoteDataSourceContract {
+  final HomeApiClient homeApiClient;
+
+  HomeRemoteDataSourceImp(this.homeApiClient);
+
+  @override
+  Future<BaseResponse<List<SubjectDto>>> getAllSubjects(String token) async {
+    try {
+      SubjectsResponse response = await homeApiClient.getAllSubjects(
+        token: token,
+      );
+      return SuccessBaseResponse<List<SubjectDto>>(
+        data: response.subjects ?? [],
+      );
+    } catch (e) {
+      return ErrorBaseResponse<List<SubjectDto>>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
+    }
+  }
+}

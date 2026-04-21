@@ -134,6 +134,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/sort_icon.svg
   String get sortIcon => 'assets/icons/sort_icon.svg';
 
+  /// File path: assets/icons/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/icons/splash.png');
+
   /// File path: assets/icons/switch_icon.svg
   String get switchIcon => 'assets/icons/switch_icon.svg';
 
@@ -175,6 +178,7 @@ class $AssetsIconsGen {
     searchIcon,
     shoppingCartIcon,
     sortIcon,
+    splash,
     switchIcon,
     translateIcon,
     tulipFlowerIcon,

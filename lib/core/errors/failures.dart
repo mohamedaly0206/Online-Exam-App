@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:online_exam_app/core/errors/exceptions.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+
+import 'exceptions.dart';
 
 abstract class Failure {
   final String errorMessage;
+
   const Failure(this.errorMessage);
 }
 
@@ -21,49 +23,64 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioException(DioException exception) {
     switch (exception.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure('Connection timeout with API server');
+        return ServerFailure(AppStrings.serverConnTimeout);
       case DioExceptionType.sendTimeout:
-        return ServerFailure('Send timeout with API server');
+        return ServerFailure(AppStrings.serverSendTimeout);
       case DioExceptionType.receiveTimeout:
-        return ServerFailure('Receive timeout with API server');
+        return ServerFailure(AppStrings.serverRecTimeout);
       case DioExceptionType.badCertificate:
-        return ServerFailure('Bad certificate with API server');
-      case DioExceptionType.badResponse: //**********
+        return ServerFailure(AppStrings.serverCertError);
+      case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
-          exception.response!.statusCode!,
-          exception.response!.data,
+          exception.response?.statusCode,
+          exception.response?.data,
         );
       case DioExceptionType.cancel:
-        return ServerFailure('Request to API server was cancelled');
+        return ServerFailure(AppStrings.serverCancel);
       case DioExceptionType.connectionError:
-        return ServerFailure('There is Connection Error');
+        return ServerFailure(AppStrings.serverConnError);
       case DioExceptionType.unknown:
-        return ServerFailure('No Internet Connection');
+        return ServerFailure(AppStrings.serverNoInternet);
     }
   }
-  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      final String errorMessageRes =
-          response['message'] ?? 'Opps, there was an error';
-      if (errorMessageRes.contains('required pattern')) {
-        return ServerFailure('Invalid email or password');
-      }
 
-      return ServerFailure(errorMessageRes);
-    } else if (statusCode == 404) {
-      return ServerFailure('Opps there was an error, please try again');
-    } else if (statusCode == 409) {
-      final message = response['message'].toString();
-      return ServerFailure(message);
-    } else if (statusCode == 500) {
-      return ServerFailure('Internal server error, please try again later');
-    } else {
-      return ServerFailure('Opps there was an error, please try again66');
+  factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
+    if (statusCode == null) {
+      return ServerFailure(AppStrings.serverDefaultError);
+    }
+
+    switch (statusCode) {
+      case 400:
+      case 401:
+      case 403:
+        final String errorMessageRes =
+            response?['message'] ?? AppStrings.errorMessage;
+
+        if (errorMessageRes.contains('required pattern')) {
+          return ServerFailure(AppStrings.serverInvalidCreds);
+        }
+        return ServerFailure(errorMessageRes);
+
+      case 404:
+        return ServerFailure(AppStrings.serverNotFound);
+
+      case 409:
+        final message =
+            response?['message']?.toString() ?? AppStrings.errorMessage;
+        return ServerFailure(message);
+
+      case 500:
+        return ServerFailure(AppStrings.serverInternalError);
+
+      default:
+        return ServerFailure(AppStrings.serverDefaultError);
     }
   }
 }
 
 class CacheFailure extends Failure {
   CacheFailure(Object e)
-    : super(e is CacheException ? e.errorMessage : "Storage Error");
+    : super(
+        e is CacheException ? e.errorMessage : AppStrings.cacheStorageError,
+      );
 }

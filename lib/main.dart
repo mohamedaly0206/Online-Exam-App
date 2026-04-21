@@ -22,7 +22,7 @@ class OnlineExamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: AppRouter.getRouter(isLoggedIn),
+      routerConfig: AppRouter.getRouter(),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
     );

@@ -5,7 +5,7 @@ import 'package:online_exam_app/core/values/assets.gen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback? onBackPressed; // 👈 make it optional
+  final VoidCallback? onBackPressed;
   final List<Widget>? actions;
 
   const CustomAppBar({
