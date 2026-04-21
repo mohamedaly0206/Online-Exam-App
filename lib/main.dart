@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/router/app_router.dart';
 import 'package:online_exam_app/core/theme/theme.dart';
@@ -6,7 +7,8 @@ import 'package:online_exam_app/core/theme/theme.dart';
 import 'features/auth/login/domain/use_cases/check_user_logged_in_use_case.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   configureDependencies();
 
   final checkAuth = getIt<CheckUserLoggedInUseCase>();

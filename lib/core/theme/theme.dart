@@ -135,12 +135,15 @@ abstract class AppTheme {
       ),
     ),
     // BottomNavigationBarTheme
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.whiteColor,
-      selectedItemColor: AppColors.primaryColor,
-      unselectedItemColor: AppColors.placeHolderColor,
-      selectedLabelStyle: AppTextStyles.textStyleSemiBold12,
-      unselectedLabelStyle: AppTextStyles.textStyleSemiBold12,
+    navigationBarTheme: NavigationBarThemeData(
+      labelTextStyle: WidgetStateProperty.resolveWith((states) {
+        return AppTextStyles.textStyleMedium14;
+      }),
+
+      backgroundColor: Colors.white,
+      indicatorColor: Color(0x1A2196F3),
+
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
     ),
 
     checkboxTheme: CheckboxThemeData(

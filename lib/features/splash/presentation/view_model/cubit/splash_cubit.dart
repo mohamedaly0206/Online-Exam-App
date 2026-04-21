@@ -31,8 +31,12 @@ class SplashCubit extends Cubit<SplashState> {
 
     final isLoggedIn = await _checkUserLoggedInUseCase();
 
+    if (isClosed) return;
+
     if (isLoggedIn) {
       final response = await _getLoggedUserInfoUseCase();
+
+      if (isClosed) return;
 
       if (response is SuccessBaseResponse<UserEntity>) {
         emit(
@@ -51,6 +55,8 @@ class SplashCubit extends Cubit<SplashState> {
         );
       }
     } else {
+      if (isClosed) return;
+
       emit(
         state.copyWith(
           splashStateParam: BaseState(

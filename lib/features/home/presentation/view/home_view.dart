@@ -20,6 +20,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return BlocBuilder<HomeCubit, HomeStates>(
       buildWhen: (previous, current) =>
           previous.currentIndex != current.currentIndex,
@@ -28,6 +29,7 @@ class HomeView extends StatelessWidget {
           // to save the state of each tab when switching between them
           body: IndexedStack(index: state.currentIndex, children: _tabs),
           bottomNavigationBar: NavigationBar(
+            height: height * 0.08,
             selectedIndex: state.currentIndex,
             onDestinationSelected: (index) {
               BlocProvider.of<HomeCubit>(
@@ -41,8 +43,8 @@ class HomeView extends StatelessWidget {
               NavigationDestination(
                 icon: SvgPicture.asset(
                   Assets.icons.homeIcon,
-                  height: 30,
-                  width: 30,
+                  height: height * 0.033,
+                  width: height * 0.033,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).primaryColor,
                     BlendMode.srcIn,
@@ -53,8 +55,8 @@ class HomeView extends StatelessWidget {
               NavigationDestination(
                 icon: SvgPicture.asset(
                   Assets.icons.resultIcon,
-                  height: 30,
-                  width: 30,
+                  height: height * 0.033,
+                  width: height * 0.033,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).primaryColor,
                     BlendMode.srcIn,
@@ -65,8 +67,8 @@ class HomeView extends StatelessWidget {
               NavigationDestination(
                 icon: SvgPicture.asset(
                   Assets.icons.personIcon,
-                  height: 30,
-                  width: 30,
+                  height: height * 0.033,
+                  width: height * 0.033,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).primaryColor,
                     BlendMode.srcIn,

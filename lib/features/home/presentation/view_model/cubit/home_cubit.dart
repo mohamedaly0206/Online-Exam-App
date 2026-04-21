@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/home/domain/use_case/get_subjects_use_case.dart';
+
 import '../../../../../config/base_response/base_response.dart';
 import '../../../domain/model/subject_entity.dart';
 import '../intent/home_intent.dart';
@@ -38,6 +39,7 @@ class HomeCubit extends Cubit<HomeStates> {
     );
 
     final result = await _getSubjectsUseCase();
+    if (isClosed) return;
     switch (result) {
       case SuccessBaseResponse<List<SubjectEntity>>():
         emit(

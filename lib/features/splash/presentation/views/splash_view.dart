@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/features/splash/presentation/view_model/cubit/splash_cubit.dart';
 import 'package:online_exam_app/features/splash/presentation/view_model/state/splash_state.dart';
 
@@ -18,18 +17,26 @@ class SplashView extends StatelessWidget {
       listener: (context, state) {
         if (!state.splashState.isLoading) {
           FlutterNativeSplash.remove();
-
           if (state.splashState.data != null) {
-            GoRouter.of(context).go(AppRouterPaths.kHomeView);
+            context.go(AppRouterPaths.kHomeView);
           } else {
-            GoRouter.of(context).go(AppRouterPaths.kLoginView);
+            context.go(AppRouterPaths.kLoginView);
           }
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: Colors.white, // أبيض صريح زي الـ pubspec
         body: Center(
-          child: Assets.icons.splash.image(width: 150, fit: BoxFit.contain),
+          child: Opacity(
+            opacity:
+                0.95, // جرب تقلل الـ Opacity سنة لو الألوان حادة زيادة عن اللزوم
+            child: Assets.icons.splash.image(
+              width: 165, // 👈 كبرنا المقاس عشان يطابق الـ Native
+              fit: BoxFit.contain,
+              // الترتيب ده بيخلي الريندر أنعم شوية (Anti-aliasing)
+              filterQuality: FilterQuality.high,
+            ),
+          ),
         ),
       ),
     );
