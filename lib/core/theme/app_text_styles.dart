@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 abstract class AppTextStyles {
   AppTextStyles._();
 
-  static const String fontFamily = 'Inter';
-
   // SemiBold
   static const textStyleSemiBold20 = TextStyle(
     fontSize: 20,
