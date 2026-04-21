@@ -8,8 +8,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
 class BackAndNextButtons extends StatefulWidget {
-  const BackAndNextButtons({super.key});
-
+  const BackAndNextButtons({super.key, required this.examId});
+  final String examId;
   @override
   State<BackAndNextButtons> createState() => _BackAndNextButtonsState();
 }
@@ -75,6 +75,7 @@ class _BackAndNextButtonsState extends State<BackAndNextButtons> {
                           GoRouter.of(context).pushReplacement(
                             AppRouterPaths.kExamScoreView,
                             extra: {
+                              AppStrings.examId: widget.examId,
                               AppStrings.correctAnswers:
                                   examsQuestionsCubit.state.totalCorrectAnswers,
                               AppStrings.wrongAnswers:

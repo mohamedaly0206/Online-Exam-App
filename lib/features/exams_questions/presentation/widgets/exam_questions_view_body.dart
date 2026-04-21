@@ -7,7 +7,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ex
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/time_out_widget.dart';
 
 class ExamQuestionsViewBody extends StatelessWidget {
-  const ExamQuestionsViewBody({super.key});
+  final String examId;
+  const ExamQuestionsViewBody({super.key, required this.examId});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ExamsQuestionsCubit, ExamsQuestionsState>(
@@ -62,7 +63,7 @@ class ExamQuestionsViewBody extends StatelessWidget {
               SizedBox(height: 8),
               ExamQuestion(),
               SizedBox(height: 80),
-              BackAndNextButtons(),
+              BackAndNextButtons(examId: examId),
             ],
           ),
         );

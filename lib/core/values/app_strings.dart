@@ -110,6 +110,7 @@ abstract class AppStrings {
 3- Once you submit the exam, you cannot retake it.''';
   static const String noExamsAvailable = 'No Exams Available';
   static const String cacheStorageError = "Storage Error";
+  static const String examId = 'examId';
 
   //server failure messages
   static const String serverConnTimeout = 'Connection timeout with API server';

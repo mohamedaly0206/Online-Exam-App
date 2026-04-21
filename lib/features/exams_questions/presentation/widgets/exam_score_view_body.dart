@@ -10,10 +10,12 @@ class ExamScoreViewBody extends StatelessWidget {
     required this.correctAnswers,
     required this.wrongAnswers,
     required this.totalQuestions,
+    required this.examId,
   });
   final int correctAnswers;
   final int wrongAnswers;
   final int totalQuestions;
+  final String examId;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ExamScoreViewBody extends StatelessWidget {
             ],
           ),
           SizedBox(height: 80),
-          ScoreViewBodyButtons(),
+          ScoreViewBodyButtons(examId: examId),
         ],
       ),
     );

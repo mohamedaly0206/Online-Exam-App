@@ -6,8 +6,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/widgets/ex
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_timer_widget.dart';
 
 class ExamsQuestionsView extends StatelessWidget {
-  const ExamsQuestionsView({super.key});
-
+  const ExamsQuestionsView({super.key, required this.examId});
+  final String examId;
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -26,7 +26,7 @@ class ExamsQuestionsView extends StatelessWidget {
                   showQuitExamDialog(context);
                 },
               ),
-              body: ExamQuestionsViewBody(),
+              body: ExamQuestionsViewBody(examId: examId),
             ),
           ),
         );

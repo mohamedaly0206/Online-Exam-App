@@ -9,10 +9,12 @@ class ExamScoreView extends StatelessWidget {
     required this.correctAnswers,
     required this.wrongAnswers,
     required this.totalQuestions,
+    required this.examId,
   });
   final int correctAnswers;
   final int wrongAnswers;
   final int totalQuestions;
+  final String examId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class ExamScoreView extends StatelessWidget {
           correctAnswers: correctAnswers,
           wrongAnswers: wrongAnswers,
           totalQuestions: totalQuestions,
+          examId: examId,
         ),
       ),
     );

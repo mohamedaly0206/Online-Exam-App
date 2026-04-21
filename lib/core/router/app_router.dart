@@ -84,7 +84,7 @@ abstract class AppRouter {
             create: (context) =>
                 getIt<ExamsQuestionsCubit>()
                   ..handleExamsQuestionsIntent(StartExam(examId: examId)),
-            child: ExamsQuestionsView(),
+            child: ExamsQuestionsView(examId: examId),
           );
         },
       ),
@@ -105,12 +105,13 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
-          final extra = state.extra as Map<String, int>;
+          final extra = state.extra as Map<String, dynamic>;
 
           return ExamScoreView(
-            correctAnswers: extra[AppStrings.correctAnswers]!,
-            wrongAnswers: extra[AppStrings.wrongAnswers]!,
-            totalQuestions: extra[AppStrings.totalAnswers]!,
+            examId: extra[AppStrings.examId] as String,
+            correctAnswers: extra[AppStrings.correctAnswers] as int,
+            wrongAnswers: extra[AppStrings.wrongAnswers] as int,
+            totalQuestions: extra[AppStrings.totalAnswers] as int,
           );
         },
       ),
