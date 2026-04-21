@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/core/values/assets.gen.dart';
+import 'package:online_exam_app/core/widgets/custom_app_bar.dart';
 import 'package:online_exam_app/features/auth/forget_password/presentation/widgets/forget_password_body.dart';
 
 class ForgetPasswordView extends StatelessWidget {
@@ -11,15 +9,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppStrings.password),
-        leading: Center(
-          child: GestureDetector(
-            onTap: () => GoRouter.of(context).pop(),
-            child: SvgPicture.asset(Assets.icons.arrowBackIcon),
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: AppStrings.password),
 
       body: ForgetPasswordBody(),
     );

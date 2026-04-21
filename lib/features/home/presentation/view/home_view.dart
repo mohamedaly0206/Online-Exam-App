@@ -26,7 +26,6 @@ class HomeView extends StatelessWidget {
           previous.currentIndex != current.currentIndex,
       builder: (context, state) {
         return Scaffold(
-          // to save the state of each tab when switching between them
           body: IndexedStack(index: state.currentIndex, children: _tabs),
           bottomNavigationBar: NavigationBar(
             height: height * 0.08,
@@ -38,7 +37,7 @@ class HomeView extends StatelessWidget {
             },
             indicatorColor: Theme.of(
               context,
-            ).colorScheme.primary.withOpacity(0.12),
+            ).colorScheme.primary.withValues(alpha: 0.12),
             destinations: [
               NavigationDestination(
                 icon: SvgPicture.asset(

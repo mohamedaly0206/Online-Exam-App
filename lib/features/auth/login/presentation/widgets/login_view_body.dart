@@ -70,11 +70,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppStrings.login,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 24),
                 TextFormField(
                   controller: _emailController,
                   validator: (value) => AppValidators.validateEmail(value),
