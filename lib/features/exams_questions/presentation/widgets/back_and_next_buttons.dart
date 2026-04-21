@@ -14,7 +14,6 @@ class BackAndNextButtons extends StatefulWidget {
   State<BackAndNextButtons> createState() => _BackAndNextButtonsState();
 }
 
-
 class _BackAndNextButtonsState extends State<BackAndNextButtons> {
   late ThemeData theme;
 
@@ -23,6 +22,7 @@ class _BackAndNextButtonsState extends State<BackAndNextButtons> {
     super.didChangeDependencies();
     theme = Theme.of(context);
   }
+
   @override
   Widget build(BuildContext context) {
     final examsQuestionsCubit = context.read<ExamsQuestionsCubit>();

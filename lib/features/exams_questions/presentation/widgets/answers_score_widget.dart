@@ -23,13 +23,10 @@ class AnswersScoreWidget extends StatelessWidget {
           ).textTheme.headlineMedium!.copyWith(color: color),
         ),
         Container(
-          padding: const EdgeInsets.all(2), // space for border
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(
-              color: color, // your border color
-              width: 2,
-            ),
+            border: Border.all(color: color, width: 2),
           ),
           child: CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.onSecondary,

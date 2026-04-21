@@ -18,7 +18,6 @@ class ExamTimerWidget extends StatelessWidget {
         final formattedTime =
             '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
 
-        // Check half-time logic using a context.read or another Selector
         final initialTime = context
             .read<ExamsQuestionsCubit>()
             .state

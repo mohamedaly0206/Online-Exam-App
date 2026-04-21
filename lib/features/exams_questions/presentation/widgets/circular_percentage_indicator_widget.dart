@@ -7,7 +7,7 @@ class CircularPercentageIndicatorWidget extends StatelessWidget {
     required this.answers,
     required this.totalAnswers,
     required this.isCorrectAnswer,
-    this.correctPercentage = 0, // Add this to know where to start the red arc
+    this.correctPercentage = 0,
   });
 
   final double answers;
@@ -29,17 +29,15 @@ class CircularPercentageIndicatorWidget extends StatelessWidget {
           : null,
       percent: percentage,
       radius: 80,
-      lineWidth: 6, // Made slightly thicker for better visibility
+      lineWidth: 6,
       progressColor: isCorrectAnswer
           ? Theme.of(context).colorScheme.primary
           : Theme.of(context).colorScheme.error,
 
-      // CRITICAL: Only the bottom layer (Correct) should have a background color
       backgroundColor: isCorrectAnswer
           ? Theme.of(context).colorScheme.onSecondary
           : Theme.of(context).colorScheme.onTertiaryFixedVariant,
 
-      // Start the "Wrong" arc exactly where the "Correct" arc ends
       startAngle: isCorrectAnswer ? 0 : (360 * correctPercentage),
 
       animation: true,
