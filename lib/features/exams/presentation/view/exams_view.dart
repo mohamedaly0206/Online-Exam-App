@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/widgets/custom_app_bar.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/cubit/exams_cubit.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/intent/exams_intent.dart';
-import '../../../../core/values/assets.gen.dart';
 import '../view_model/state/exams_state.dart';
 import '../widgets/custom_exams_list_item.dart';
 

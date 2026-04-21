@@ -9,10 +9,7 @@ class HomeStates extends Equatable {
 
   const HomeStates({
     this.currentIndex = 0,
-    this.subjectsListState = const BaseState<List<SubjectEntity>>(
-      isLoading: false,
-      data: [],
-    ),
+    this.subjectsListState = const BaseState(),
     this.filteredSubjects,
   });
 
@@ -22,7 +19,7 @@ class HomeStates extends Equatable {
     List<SubjectEntity>? filteredSubjectsParam,
   }) {
     return HomeStates(
-      currentIndex: currentIndexParam ?? this.currentIndex,
+      currentIndex: currentIndexParam ?? currentIndex,
       subjectsListState: subjectsListStateParam ?? this.subjectsListState,
       filteredSubjects: filteredSubjectsParam ?? this.filteredSubjects,
     );
