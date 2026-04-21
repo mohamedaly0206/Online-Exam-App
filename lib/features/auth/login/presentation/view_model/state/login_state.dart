@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart'; // 1. استيراد المكتبة
+import 'package:equatable/equatable.dart';
 import '../../../../../../config/base_state/base_state.dart';
 import '../../../../../../config/models/user_model/user_entity.dart';
 
