@@ -10,6 +10,11 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
+import 'package:online_exam_app/features/exams/domain/entity/subject_request.dart';
+import 'package:online_exam_app/features/exams/domain/entity/exams_entity.dart';
+import 'package:online_exam_app/features/exams/presentation/view/exam_details_view.dart';
+import 'package:online_exam_app/features/exams/presentation/view/exams_view.dart';
+import 'package:online_exam_app/features/exams/presentation/view_model/cubit/exams_cubit.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/login/presentation/widgets/home_test.dart';
@@ -50,12 +55,26 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kExamQuestionsView,
         builder: (context, state) {
-          final examId = '69d980167c82914570305e19';
+          final String examId = state.extra as String;
           return BlocProvider<ExamsQuestionsCubit>(
             create: (context) =>
                 getIt<ExamsQuestionsCubit>()
                   ..handleExamsQuestionsIntent(StartExam(examId: examId)),
             child: ExamsQuestionsView(),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kExamView,
+        builder: (context, state) {
+          final subject = state.extra as SubjectRequest;
+
+          return BlocProvider(
+            create: (context) => getIt<ExamsCubit>(),
+            child: ExamsView(
+              subjectId: subject.subjectId,
+              subjectName: subject.subjectName,
+            ),
           );
         },
       ),
@@ -69,6 +88,13 @@ abstract class AppRouter {
             wrongAnswers: extra[AppStrings.wrongAnswers]!,
             totalQuestions: extra[AppStrings.totalAnswers]!,
           );
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kExamDetailsView,
+        builder: (context, state) {
+          final examModel = state.extra as ExamEntity;
+          return ExamDetailsView(exam: examModel);
         },
       ),
     ],

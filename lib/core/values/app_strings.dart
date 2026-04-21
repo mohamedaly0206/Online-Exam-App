@@ -63,7 +63,6 @@ class AppStrings {
   static const String startButton = 'Start';
   static const exam = 'Exam';
   static const examParam = 'exam';
-
   static const String selectAnswer =
       'Select the correctly punctuated sentence.';
   static const nextButton = 'Next';
@@ -100,4 +99,13 @@ class AppStrings {
   static const String no = 'No';
   static const String unSelectedAnswerMessage =
       'Please select an answer first before moving to the next question';
+  static const String question = 'Question';
+  static const String minutes = 'Minutes';
+  static const String timeRange = 'From: 1.00  To: 6.00';
+  static const String instructions = 'Instructions';
+  static const String examInstructions =
+      '''1- Read each question thoroughly before answering.
+2- Manage your time wisely.
+3- Once you submit the exam, you cannot retake it.''';
+  static const String noExamsAvailable = 'No Exams Available';
 }
