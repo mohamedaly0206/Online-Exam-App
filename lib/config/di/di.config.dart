@@ -66,6 +66,20 @@ import '../../features/auth/sign_up/domain/use_cases/sign_up_use_case.dart'
     as _i45;
 import '../../features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart'
     as _i667;
+import '../../features/exams_questions/api/data_sources/exam_questions_remote_data_source_impl.dart'
+    as _i264;
+import '../../features/exams_questions/api/exams_questions_api_client/exam_questions_api_client.dart'
+    as _i687;
+import '../../features/exams_questions/data/data_sources/exam_questions_remote_data_source_contract.dart'
+    as _i163;
+import '../../features/exams_questions/data/repo/exam_questions_repo_impl.dart'
+    as _i526;
+import '../../features/exams_questions/domain/repo/exam_questions_repo_contract.dart'
+    as _i261;
+import '../../features/exams_questions/domain/use_cases/get_exam_questions_use_case.dart'
+    as _i796;
+import '../../features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart'
+    as _i764;
 import '../dio/dio_module.dart' as _i977;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -82,6 +96,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i687.ExamQuetsionsApiClient>(
+      () => _i687.ExamQuetsionsApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i251.LoginApiClient>(
       () => _i251.LoginApiClient(gh<_i361.Dio>()),
@@ -123,6 +140,11 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i187.ForgetPasswordLocalDataSourceContract>(),
       ),
     );
+    gh.factory<_i163.ExamsQuestionsRemoteDataSourceContract>(
+      () => _i264.ExamQuetsionsRemoteDataSourceImp(
+        gh<_i687.ExamQuetsionsApiClient>(),
+      ),
+    );
     gh.factory<_i222.ForgetPasswordUseCase>(
       () => _i222.ForgetPasswordUseCase(
         forgetPasswordRepoContract: gh<_i665.ForgetPasswordRepoContract>(),
@@ -154,8 +176,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i45.SignUpUseCase>(
       () => _i45.SignUpUseCase(gh<_i366.SignUpRepoContract>()),
     );
+    gh.factory<_i261.ExamQuestionsRepoContract>(
+      () => _i526.ExamQuestionsRepoImpl(
+        gh<_i163.ExamsQuestionsRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i667.SignUpCubit>(
       () => _i667.SignUpCubit(gh<_i45.SignUpUseCase>()),
+    );
+    gh.factory<_i796.GetExamQuestionsUseCase>(
+      () =>
+          _i796.GetExamQuestionsUseCase(gh<_i261.ExamQuestionsRepoContract>()),
+    );
+    gh.factory<_i764.ExamsQuestionsCubit>(
+      () => _i764.ExamsQuestionsCubit(gh<_i796.GetExamQuestionsUseCase>()),
     );
     return this;
   }

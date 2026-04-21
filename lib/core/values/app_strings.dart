@@ -62,6 +62,8 @@ class AppStrings {
   static const String lowLevel = 'Low Level';
   static const String startButton = 'Start';
   static const exam = 'Exam';
+  static const examParam = 'exam';
+
   static const String selectAnswer =
       'Select the correctly punctuated sentence.';
   static const nextButton = 'Next';
@@ -72,7 +74,10 @@ class AppStrings {
   static const String examScore = 'Exam Score';
   static const String yourScore = 'Your Score';
   static const String correct = 'Correct';
-  static const String wrong = 'Wrong';
+  static const String inCorrect = 'Incorrect';
+  static const String correctAnswers = 'correct';
+  static const String wrongAnswers = 'wrong';
+  static const String totalAnswers = 'total';
   static const String showResultButton = 'Show Results';
   static const String startAgain = 'Start Again';
   static const String answers = 'Answers';
@@ -84,4 +89,15 @@ class AppStrings {
       'failed to store data locally, please try again later';
   static const String getCacheExceptionMessage =
       'failed to get data locally, please try again later';
+  static const String exitExam = 'Exit Exam';
+  static const String exitExamMessage =
+      'Are you sure you want to exit exam !!\nYour progress will be lost';
+  static const String finishExam = 'Finish Exam';
+  static const String finishExamMessage =
+      'Are you sure you want to finish exam !!';
+  static const String cancel = 'Cancel';
+  static const String yes = 'Yes';
+  static const String no = 'No';
+  static const String unSelectedAnswerMessage =
+      'Please select an answer first before moving to the next question';
 }

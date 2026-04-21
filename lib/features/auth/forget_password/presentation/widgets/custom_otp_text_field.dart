@@ -30,19 +30,19 @@ class CustomOTPTextField extends StatelessWidget {
           filled: true,
           textStyle: theme.textTheme.headlineLarge,
           cursorColor: theme.colorScheme.primary,
-          focusedBorderColor: state.verifyResetCodeState.errorMessage == ''
+          focusedBorderColor: state.verifyResetCodeState.errorMessage == null
               ? theme.colorScheme.primary
               : theme.colorScheme.error,
           // styles: AppTextStyles.otpTextStyle,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          enabledBorderColor: state.verifyResetCodeState.errorMessage == ''
+          enabledBorderColor: state.verifyResetCodeState.errorMessage == null
               ? theme.colorScheme.primaryFixed
               : theme.colorScheme.error,
           fillColor: theme.colorScheme.onPrimary,
 
           onSubmit: onSubmit,
         ),
-        state.verifyResetCodeState.errorMessage == ''
+        state.verifyResetCodeState.errorMessage == null
             ? SizedBox()
             : Row(
                 mainAxisAlignment: MainAxisAlignment.end,

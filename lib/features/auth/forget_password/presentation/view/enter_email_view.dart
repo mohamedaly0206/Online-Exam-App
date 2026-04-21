@@ -55,20 +55,16 @@ class EnterEmailView extends StatelessWidget {
               },
               builder: (context, state) {
                 return ElevatedButton(
-                  onPressed: state.enterEmailState.isLoading
-                      ? null
-                      : () {
-                          if (formKey.currentState!.validate()) {
-                            cubit.doIntent(
-                              EnterResetEmailIntent(
-                                email: emailController.text,
-                              ),
-                            );
-                          }
-                        },
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      cubit.doIntent(
+                        EnterResetEmailIntent(email: emailController.text),
+                      );
+                    }
+                  },
                   child: state.enterEmailState.isLoading
                       ? CircularProgressIndicator(
-                          color: theme.colorScheme.onPrimary,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )
                       : Text(AppStrings.continueButton),
                 );

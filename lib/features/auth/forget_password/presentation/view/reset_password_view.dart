@@ -76,20 +76,18 @@ class ResetPasswordView extends StatelessWidget {
               },
               builder: (context, state) {
                 return ElevatedButton(
-                  onPressed: state.resetPasswordState.isLoading
-                      ? null
-                      : () {
-                          if (formKey.currentState!.validate()) {
-                            cubit.doIntent(
-                              ResetPasswordIntent(
-                                newPassword: passwordController.text,
-                              ),
-                            );
-                          }
-                        },
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      cubit.doIntent(
+                        ResetPasswordIntent(
+                          newPassword: passwordController.text,
+                        ),
+                      );
+                    }
+                  },
                   child: state.resetPasswordState.isLoading
                       ? CircularProgressIndicator(
-                          color: theme.colorScheme.onPrimary,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         )
                       : Text(AppStrings.continueButton),
                 );
