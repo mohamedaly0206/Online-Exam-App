@@ -4,6 +4,7 @@ class ExamsQuestionsState extends Equatable {
   final BaseState<ExamQuestionsEntity> examsQuestionsState;
   final bool isExamFinished;
   final int initialExamTime;
+  final int remainingTime;
   final int currentQuestionIndex;
   final int totalQuestions;
   final int totalCorrectAnswers;
@@ -14,6 +15,7 @@ class ExamsQuestionsState extends Equatable {
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
 
   ExamsQuestionsState({
+    this.remainingTime = 0,
     this.examsQuestionsState = const BaseState(),
     this.isExamFinished = false,
     this.answerValidation = true,
@@ -32,6 +34,7 @@ class ExamsQuestionsState extends Equatable {
     int? examTime,
     int? currentQuestionIndex,
     int? initialExamTime,
+    int? remainingTime,
     int? totalQuestions,
     int? totalCorrectAnswers,
     int? totalWrongAnswers,
@@ -41,6 +44,7 @@ class ExamsQuestionsState extends Equatable {
       totalCorrectAnswers: totalCorrectAnswers ?? this.totalCorrectAnswers,
       totalWrongAnswers: totalWrongAnswers ?? this.totalWrongAnswers,
       initialExamTime: initialExamTime ?? this.initialExamTime,
+      remainingTime: remainingTime ?? this.remainingTime,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       examsQuestionsState: examsQuestionsState ?? this.examsQuestionsState,
       totalQuestions: totalQuestions ?? this.totalQuestions,
@@ -59,5 +63,9 @@ class ExamsQuestionsState extends Equatable {
     totalWrongAnswers,
     selectedAnswers,
     answerValidation,
+    remainingTime,
+    initialExamTime,
+    totalQuestions,
+    progress,
   ];
 }

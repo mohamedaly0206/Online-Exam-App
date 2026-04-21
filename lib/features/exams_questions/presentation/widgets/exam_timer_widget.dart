@@ -8,20 +8,22 @@ class ExamTimerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ExamsQuestionsCubit>();
     final theme = Theme.of(context);
 
-    return ValueListenableBuilder<int>(
-      valueListenable: cubit.examTimeNotifier,
-      builder: (context, time, _) {
-        final minutes = time ~/ 60;
-        final seconds = time % 60;
-
+    return BlocSelector<ExamsQuestionsCubit, ExamsQuestionsState, int>(
+      selector: (state) => state.remainingTime,
+      builder: (context, remainingTime) {
+        final minutes = remainingTime ~/ 60;
+        final seconds = remainingTime % 60;
         final formattedTime =
-            '${minutes.toString().padLeft(2, '0')}:'
-            '${seconds.toString().padLeft(2, '0')}';
+            '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
 
-        final isHalfTime = time <= (cubit.state.initialExamTime / 2);
+        // Check half-time logic using a context.read or another Selector
+        final initialTime = context
+            .read<ExamsQuestionsCubit>()
+            .state
+            .initialExamTime;
+        final isHalfTime = remainingTime <= (initialTime / 2);
 
         return Row(
           children: [

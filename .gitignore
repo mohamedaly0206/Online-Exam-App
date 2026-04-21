@@ -11,6 +11,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+pubspec.lock
 
 # Generated (Generated Files should not be pushed if team requested so)
 # Generated

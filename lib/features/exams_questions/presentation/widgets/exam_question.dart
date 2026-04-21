@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/exams_questions/data/models/question_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/question_dto.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/multiple_answer_question.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/single_answer_question.dart';

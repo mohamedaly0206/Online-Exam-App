@@ -14,4 +14,5 @@ class AppColors {
   static const lightRedColor = Color(0xFFF8D2D2);
   static const placeHolderColor = Color(0xFFA6A6A6);
   static const selectedAnswerColor = Color(0xFFCCD7EB);
+  static const transparentColor = Colors.transparent;
 }

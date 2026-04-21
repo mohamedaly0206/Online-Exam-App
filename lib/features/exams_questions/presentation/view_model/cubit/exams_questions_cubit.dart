@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
-import 'package:online_exam_app/config/security_storage/security_storage_module.dart';
-import 'package:online_exam_app/core/values/app_strings.dart';
-import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/get_exam_questions_request/exam_questions_request.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/exam_questions_entity.dart';
 import 'package:online_exam_app/features/exams_questions/domain/use_cases/get_exam_questions_use_case.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
@@ -16,17 +14,16 @@ part '../states/exams_questions_state.dart';
 
 @injectable
 class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
-  ExamsQuestionsCubit(this._examQuestionsRepoContract)
+  ExamsQuestionsCubit(this._examQuestionsUseCase)
     : super(ExamsQuestionsState());
-  final GetExamQuestionsUseCase _examQuestionsRepoContract;
-  final ValueNotifier<int> examTimeNotifier = ValueNotifier(0);
+  final GetExamQuestionsUseCase _examQuestionsUseCase;
 
   Timer? timer;
 
   void handleExamsQuestionsIntent(ExamsQuestionsIntent intent) {
     switch (intent) {
       case StartExam():
-        _startExam(intent.examId);
+        _getExamsQuestions(intent.examId);
         break;
       case StopTimerIntent():
         _closeTimer();
@@ -54,10 +51,6 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     calculateExamScore();
   }
 
-  Future<void> _startExam(String examId) async {
-    await _getExamsQuestions(examId);
-  }
-
   Future<void> _getExamsQuestions(String examId) async {
     emit(
       state.copyWith(
@@ -66,17 +59,13 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         ),
       ),
     );
-    final token = await SecurityStorageModule.getSecuredString(
-      AppStrings.token,
-    );
+
     log('getting questions...');
-    final response = await _examQuestionsRepoContract.call(
-      examId: examId,
-      token: token,
-    );
+    final request = GetExamQuestionsRequest(examId: examId);
+    final response = await _examQuestionsUseCase.call(request);
     switch (response) {
       case SuccessBaseResponse<ExamQuestionsEntity>():
-        final duration = response.data.questions.first.exam!.duration*60;
+        final duration = response.data.questions.first.exam!.duration * 60;
         emit(
           state.copyWith(
             examsQuestionsState: state.examsQuestionsState.copyWith(
@@ -85,9 +74,9 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
             ),
             totalQuestions: response.data.questions.length,
             initialExamTime: duration,
+            remainingTime: duration,
           ),
         );
-        examTimeNotifier.value = duration;
 
         if (response.data.questions.isNotEmpty) {
           _startTimer();
@@ -143,15 +132,13 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   }
 
   void _startTimer() {
-    const oneSec = Duration(seconds: 1);
-    timer?.cancel(); 
-
-    timer = Timer.periodic(oneSec, (timer) {
-      if (examTimeNotifier.value <= 0) {
+    timer?.cancel();
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (state.remainingTime <= 0) {
         timer.cancel();
         emit(state.copyWith(isExamFinished: true));
       } else {
-        examTimeNotifier.value -= 1;
+        emit(state.copyWith(remainingTime: state.remainingTime - 1));
       }
     });
   }
@@ -213,7 +200,6 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
   @override
   Future<void> close() {
     timer?.cancel();
-    examTimeNotifier.dispose();
     return super.close();
   }
 }

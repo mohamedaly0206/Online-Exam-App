@@ -1,5 +1,5 @@
-import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
-import 'package:online_exam_app/features/exams_questions/data/models/question_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/answer_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/question_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/answer_entity.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/exams_entity.dart';
 

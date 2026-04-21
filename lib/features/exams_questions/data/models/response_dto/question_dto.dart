@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/exams_questions/data/models/answer_dto.dart';
-import 'package:online_exam_app/features/exams_questions/data/models/exam_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/answer_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/exam_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/question_entity.dart';
 
 part 'question_dto.g.dart';

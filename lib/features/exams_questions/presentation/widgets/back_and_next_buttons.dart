@@ -7,12 +7,25 @@ import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
-class BackAndNextButtons extends StatelessWidget {
+class BackAndNextButtons extends StatefulWidget {
   const BackAndNextButtons({super.key});
+
+  @override
+  State<BackAndNextButtons> createState() => _BackAndNextButtonsState();
+}
+
+
+class _BackAndNextButtonsState extends State<BackAndNextButtons> {
+  late ThemeData theme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = Theme.of(context);
+  }
   @override
   Widget build(BuildContext context) {
-    final ExamsQuestionsCubit examsQuestionsCubit = context
-        .read<ExamsQuestionsCubit>();
+    final examsQuestionsCubit = context.read<ExamsQuestionsCubit>();
     return BlocBuilder<ExamsQuestionsCubit, ExamsQuestionsState>(
       builder: (context, state) {
         return Row(
@@ -21,7 +34,7 @@ class BackAndNextButtons extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom().copyWith(
                   backgroundColor: WidgetStatePropertyAll(
-                    Theme.of(context).colorScheme.onSecondary,
+                    theme.colorScheme.onSecondary,
                   ),
                   shape: WidgetStatePropertyAll(
                     RoundedRectangleBorder(
@@ -36,8 +49,8 @@ class BackAndNextButtons extends StatelessWidget {
                 },
                 child: Text(
                   AppStrings.backButton,
-                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                  style: theme.textTheme.headlineMedium!.copyWith(
+                    color: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -53,10 +66,9 @@ class BackAndNextButtons extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  final cubit = context.read<ExamsQuestionsCubit>();
                   state.totalQuestions - 1 == state.currentQuestionIndex
                       ? showFinishDialog(context, () {
-                          cubit.handleExamsQuestionsIntent(
+                          examsQuestionsCubit.handleExamsQuestionsIntent(
                             SubmitQuestionIntent(),
                           );
                           if (!context.mounted) return;
@@ -64,11 +76,11 @@ class BackAndNextButtons extends StatelessWidget {
                             AppRouterPaths.kExamScoreView,
                             extra: {
                               AppStrings.correctAnswers:
-                                  cubit.state.totalCorrectAnswers,
+                                  examsQuestionsCubit.state.totalCorrectAnswers,
                               AppStrings.wrongAnswers:
-                                  cubit.state.totalWrongAnswers,
+                                  examsQuestionsCubit.state.totalWrongAnswers,
                               AppStrings.totalAnswers:
-                                  cubit.state.totalQuestions,
+                                  examsQuestionsCubit.state.totalQuestions,
                             },
                           );
                         })

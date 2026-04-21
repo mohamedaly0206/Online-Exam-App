@@ -25,14 +25,16 @@ class VerifyResetCodeView extends StatelessWidget {
           if (state.verifyResetCodeState.data == true) {
             onSuccess();
           } else if (state.verifyResetCodeState.errorMessage != null &&
-              state.verifyResetCodeState.isLoading == false) {
+                  state.verifyResetCodeState.isLoading == false ||
+              state.verifyResetCodeState.errorMessage != '') {
             showSnackBar(
               context: context,
               message: state.verifyResetCodeState.errorMessage!,
               color: theme.colorScheme.error,
             );
           } else if (state.resendOTPState.errorMessage != null &&
-              state.resendOTPState.isLoading == false) {
+                  state.resendOTPState.isLoading == false ||
+              state.resendOTPState.errorMessage != '') {
             showSnackBar(
               context: context,
               message: state.resendOTPState.errorMessage!,
