@@ -28,8 +28,7 @@ class SplashView extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: Opacity(
-            opacity:
-                0.95,
+            opacity: 0.95,
             child: Assets.icons.splash.image(
               width: 165,
               fit: BoxFit.contain,

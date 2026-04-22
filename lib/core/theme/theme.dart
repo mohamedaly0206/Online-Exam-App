@@ -28,7 +28,7 @@ abstract class AppTheme {
       tertiaryContainer: AppColors.lightGreenColor,
       onTertiaryContainer: AppColors.successColor,
       onTertiaryFixed: AppColors.selectedAnswerColor,
-
+      onSecondaryFixed: AppColors.backgroundIconColor,
       error: AppColors.errorColor,
       onError: AppColors.whiteColor,
       errorContainer: AppColors.lightRedColor,

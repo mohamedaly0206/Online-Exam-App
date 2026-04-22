@@ -15,4 +15,5 @@ abstract class AppColors {
   static const placeHolderColor = Color(0xFFA6A6A6);
   static const selectedAnswerColor = Color(0xFFCCD7EB);
   static const transparentColor = Colors.transparent;
+  static const backgroundIconColor = Color(0xFF5679BD);
 }
