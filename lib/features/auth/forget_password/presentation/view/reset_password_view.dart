@@ -34,7 +34,7 @@ class ResetPasswordView extends StatelessWidget {
             SizedBox(height: 32),
             TextFormField(
               decoration: InputDecoration(
-                labelText: AppStrings.newPassword,
+                labelText: AppStrings.hintNewPassword,
                 hintText: AppStrings.hintPasswordText,
               ),
               obscureText: true,

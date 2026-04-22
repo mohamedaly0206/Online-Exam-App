@@ -7,6 +7,7 @@ import 'package:online_exam_app/features/auth/forget_password/presentation/view_
 import 'package:online_exam_app/features/auth/login/presentation/view_model/cubit/login_cubit.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/change_password/presentation/view/change_password_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
@@ -121,6 +122,10 @@ abstract class AppRouter {
           final examModel = state.extra as ExamEntity;
           return ExamDetailsView(exam: examModel);
         },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kChangePasswordView,
+        builder: (context, state) => const ChangePasswordView(),
       ),
     ],
   );

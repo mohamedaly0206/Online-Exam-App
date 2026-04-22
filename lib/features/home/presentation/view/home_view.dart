@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:online_exam_app/features/change_password/presentation/view/change_password_view.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/state/home_states.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/home_view_body.dart';
@@ -15,7 +16,7 @@ class HomeView extends StatelessWidget {
   static const List<Widget> _tabs = [
     HomeViewBody(),
     Center(child: Text(AppStrings.result)),
-    Center(child: Text(AppStrings.profile)),
+    ChangePasswordView(),
   ];
 
   @override
