@@ -6,9 +6,7 @@ import 'package:online_exam_app/features/home/domain/model/subject_entity.dart';
 
 class SubjectsListViewItem extends StatelessWidget {
   const SubjectsListViewItem({super.key, required this.subjectModel});
-
   final SubjectEntity subjectModel;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -29,7 +27,7 @@ class SubjectsListViewItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.09),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 8,
               spreadRadius: 0,
             ),

@@ -69,7 +69,6 @@ class LoginRepoImp implements LoginRepoContract {
   Future<BaseResponse<UserEntity>> getLoggedUserInfo() async {
     try {
       final token = await loginLocalDataSource.getToken();
-      print("$token <<<<< token from local data source in splash");
       if (token != null && token.isNotEmpty) {
         final response = await loginRemoteDataSource.getLoggedUserInfo(token);
 

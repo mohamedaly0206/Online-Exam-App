@@ -31,17 +31,17 @@ abstract class AppStrings {
   static const String signUpbutton = 'Signup';
   static const String hintNameText = 'Enter your user name';
   static const String enterEmail =
-      'Please enter your email associated to your account';
+      'Please enter your email associated \n to your account';
   static const String continueButton = 'Continue';
   static const String emailVerification = 'Email verification';
   static const String enterCode =
-      'Please enter your code that send to your email address';
+      'Please enter your code that send to your \n email address';
   static const String invalidCode = 'Invalid code';
   static const String verifyButton = 'Didn\'t receive code? ';
   static const String resendButton = 'Resend';
   static const String resetPassword = 'Reset Password';
   static const String resetPasswordHint =
-      'Password must not be empty and must contain 6 characters with upper case letter and one number at least ';
+      'Password must not be empty and must contain \n 6 characters with upper case letter and one \n number at least ';
   static const String newPassword = 'New Password';
   static const String profile = 'Profile';
   static const String editProfile = 'Edit Profile';
