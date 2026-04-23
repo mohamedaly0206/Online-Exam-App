@@ -5,6 +5,5 @@ import 'package:online_exam_app/features/change_password/domain/entities/change_
 abstract interface class ChangePasswordRepoContract {
   Future<BaseResponse<ChangePasswordResponseEntity>> changePassword(
     ChangePasswordRequestEntity changePasswordRequestEntity,
-   
   );
 }

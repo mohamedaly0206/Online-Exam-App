@@ -20,8 +20,8 @@ class ChangePasswordBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ChangePasswordCubit, ChangePasswordState>(
       listener: (context, state) {
-       if (!state.changePasswordState.isLoading &&
-    state.changePasswordState.data != null) {
+        if (!state.changePasswordState.isLoading &&
+            state.changePasswordState.data != null) {
           clearForm();
           // GoRouter.of(context).pop();
           showSnackBar(
@@ -95,8 +95,8 @@ class ChangePasswordBody extends StatelessWidget {
           ),
         ),
       ),
-       listenWhen: (previous, current) =>
-      previous.changePasswordState != current.changePasswordState,
+      listenWhen: (previous, current) =>
+          previous.changePasswordState != current.changePasswordState,
     );
   }
 

@@ -18,29 +18,26 @@ class ChangePasswordRepoImpl implements ChangePasswordRepoContract {
   ChangePasswordRepoImpl(this._dataSource);
   @override
   Future<BaseResponse<ChangePasswordResponseEntity>> changePassword(
-   ChangePasswordRequestEntity changePasswordRequestEntity,
-
-     
-  )async {
-final token = await getIt<SecurityStorage>()
-    .getSecuredString(AppStrings.token);
-
-if (token.isEmpty) {
-  log("❌ Token is empty");
-  return ErrorBaseResponse(errorMessage: "Unauthorized");
-}
-    final response =await  _dataSource.changePassword(
-      ChangePasswordRequestDto.fromDomain(changePasswordRequestEntity),
-      token
+    ChangePasswordRequestEntity changePasswordRequestEntity,
+  ) async {
+    final token = await getIt<SecurityStorage>().getSecuredString(
+      AppStrings.token,
     );
 
-    switch(response) {
+    if (token.isEmpty) {
+      log("❌ Token is empty");
+      return ErrorBaseResponse(errorMessage: "Unauthorized");
+    }
+    final response = await _dataSource.changePassword(
+      ChangePasswordRequestDto.fromDomain(changePasswordRequestEntity),
+      token,
+    );
+
+    switch (response) {
       case SuccessBaseResponse<ChangePasswordResponseDto>():
         return SuccessBaseResponse(data: response.data.toDomain());
       case ErrorBaseResponse<ChangePasswordResponseDto>():
-      
-        return ErrorBaseResponse(errorMessage:  response.errorMessage);
+        return ErrorBaseResponse(errorMessage: response.errorMessage);
     }
-    
   }
 }

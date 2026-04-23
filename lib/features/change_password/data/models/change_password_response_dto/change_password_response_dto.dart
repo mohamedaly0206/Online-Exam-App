@@ -17,8 +17,7 @@ class ChangePasswordResponseDto {
 
   Map<String, dynamic> toJson() => _$ChangePasswordResponseDtoToJson(this);
 
-  ChangePasswordResponseEntity toDomain(){
-    return ChangePasswordResponseEntity(message: message, );
+  ChangePasswordResponseEntity toDomain() {
+    return ChangePasswordResponseEntity(message: message);
   }
-      
 }

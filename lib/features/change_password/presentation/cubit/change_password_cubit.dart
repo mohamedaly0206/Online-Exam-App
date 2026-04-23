@@ -48,7 +48,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       );
     } else {
       final error = response as ErrorBaseResponse<ChangePasswordResponseEntity>;
-            log('ChangePassword Error: ${error.errorMessage}');
+      log('ChangePassword Error: ${error.errorMessage}');
 
       emit(
         state.copyWith(

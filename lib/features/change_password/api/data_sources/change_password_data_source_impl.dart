@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/core/errors/failures.dart';
@@ -16,8 +14,8 @@ class ChangePasswordRemoteDataSourceImpl
   ChangePasswordRemoteDataSourceImpl(this.changePasswordApiClient);
   @override
   Future<BaseResponse<ChangePasswordResponseDto>> changePassword(
-     ChangePasswordRequestDto changePasswordRequestDto,
-      token,
+    ChangePasswordRequestDto changePasswordRequestDto,
+    token,
   ) async {
     try {
       final response = await changePasswordApiClient.changePassword(

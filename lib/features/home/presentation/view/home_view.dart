@@ -19,9 +19,9 @@ class HomeView extends StatelessWidget {
     const HomeViewBody(),
     const Center(child: Text(AppStrings.result)),
     BlocProvider(
-    create: (_) => getIt<ChangePasswordCubit>(),
-    child: const ChangePasswordView(),
-  ),
+      create: (_) => getIt<ChangePasswordCubit>(),
+      child: const ChangePasswordView(),
+    ),
   ];
 
   @override

@@ -18,9 +18,11 @@ class ChangePasswordRequestDto {
       _$ChangePasswordRequestDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChangePasswordRequestDtoToJson(this);
-  factory ChangePasswordRequestDto.fromDomain(ChangePasswordRequestEntity model) {
+  factory ChangePasswordRequestDto.fromDomain(
+    ChangePasswordRequestEntity model,
+  ) {
     return ChangePasswordRequestDto(
-      oldPassword:model.currentPassword,
+      oldPassword: model.currentPassword,
       password: model.newPassword,
       rePassword: model.confirmPassword,
     );

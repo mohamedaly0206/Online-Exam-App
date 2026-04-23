@@ -5,10 +5,14 @@ import 'package:online_exam_app/features/change_password/domain/repo/change_pass
 import 'package:injectable/injectable.dart';
 
 @injectable
- class ChangePasswordUseCase {
+class ChangePasswordUseCase {
   final ChangePasswordRepoContract changePasswordRepoContract;
   ChangePasswordUseCase(this.changePasswordRepoContract);
-  Future<BaseResponse<ChangePasswordResponseEntity>> call(ChangePasswordRequestEntity changePasswordRequestEntity)async{
-    return await changePasswordRepoContract.changePassword(changePasswordRequestEntity);
+  Future<BaseResponse<ChangePasswordResponseEntity>> call(
+    ChangePasswordRequestEntity changePasswordRequestEntity,
+  ) async {
+    return await changePasswordRepoContract.changePassword(
+      changePasswordRequestEntity,
+    );
   }
 }

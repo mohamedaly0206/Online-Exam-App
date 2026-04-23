@@ -4,7 +4,7 @@ import 'package:online_exam_app/features/change_password/data/models/change_pass
 
 abstract interface class ChangePasswordRemoteDataSourceContract {
   Future<BaseResponse<ChangePasswordResponseDto>> changePassword(
-     ChangePasswordRequestDto changePasswordRequestDto,
-     String token,
+    ChangePasswordRequestDto changePasswordRequestDto,
+    String token,
   );
 }
