@@ -1,0 +1,20 @@
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/features/edit_profile/data/models/edit_profile_response.dart';
+import 'package:retrofit/retrofit.dart';
+
+import '../../../../../core/values/api_endpoints.dart';
+
+part 'edit_profile_api_client.g.dart';
+
+@injectable
+@RestApi()
+abstract class EditProfileApiClient {
+  @factoryMethod
+  factory EditProfileApiClient(Dio dio) = _EditProfileApiClient;
+
+  @POST(ApiEndpoints.editProfile)
+  Future<EditProfileResponse> editProfile({
+    @Body() required Map<String, dynamic> body,
+  });
+}
