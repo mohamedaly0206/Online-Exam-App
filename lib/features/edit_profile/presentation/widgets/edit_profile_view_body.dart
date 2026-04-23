@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/values/app_strings.dart';
 
 class EditProfileViewBody extends StatelessWidget {
   const EditProfileViewBody({super.key});
@@ -42,6 +43,76 @@ class EditProfileViewBody extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            decoration: const InputDecoration(
+              label: Text(AppStrings.userName),
+              hintText: 'Enter your user name',
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    label: Text(AppStrings.firstName),
+                    hintText: 'Enter first name',
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    label: Text(AppStrings.lastName),
+                    hintText: 'Enter last name',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            decoration: const InputDecoration(
+              label: Text(AppStrings.email),
+              hintText: 'Enter your email',
+            ),
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            decoration: InputDecoration(
+              suffixIcon: Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: Theme.of(context).textTheme.displayLarge
+                        ?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  onPressed: () {},
+                  child: Text(AppStrings.change),
+                ),
+              ),
+              label: Text(AppStrings.password),
+              hintText: 'Enter your password',
+            ),
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            decoration: const InputDecoration(
+              label: Text(AppStrings.phone),
+              hintText: 'Enter your phone number',
+            ),
+          ),
+          const SizedBox(height: 60),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(AppStrings.updateButton),
           ),
         ],
       ),
