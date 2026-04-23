@@ -14,7 +14,7 @@ abstract class EditProfileApiClient {
   @factoryMethod
   factory EditProfileApiClient(Dio dio) = _EditProfileApiClient;
 
-  @POST(ApiEndpoints.editProfile)
+  @PUT(ApiEndpoints.editProfile)
   Future<EditProfileResponse> editProfile({
     @Body() required EditProfileRequestBody editProfileRequestBody,
   });
