@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 
 import '../../../../core/utilities/app_validators.dart';
@@ -71,16 +72,44 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<EditProfileCubit, EditProfileState>(
-      listenWhen: (previous, current) =>
-          previous.editProfileState.data == null &&
-          current.editProfileState.data != null,
+      listenWhen: (previous, current) {
+        return (previous.editProfileState.data == null &&
+                current.editProfileState.data != null) ||
+            (previous.editProfileState.isLoading !=
+                current.editProfileState.isLoading) ||
+            (previous.editProfileState.errorMessage !=
+                current.editProfileState.errorMessage);
+      },
       listener: (context, state) {
         final user = state.editProfileState.data;
-        _userNameController.text = user?.userName ?? '';
-        _firstNameController.text = user?.firstName ?? '';
-        _lastNameController.text = user?.lastName ?? '';
-        _emailController.text = user?.email ?? '';
-        _phoneController.text = user?.phone ?? '';
+        final errorMessage = state.editProfileState.errorMessage;
+        final isLoading = state.editProfileState.isLoading;
+
+        if (!isLoading && errorMessage == null && user != null) {
+          if (_userNameController.text.isEmpty) {
+            _userNameController.text = user.userName;
+            _firstNameController.text = user.firstName;
+            _lastNameController.text = user.lastName;
+            _emailController.text = user.email;
+            _phoneController.text = user.phone;
+            _checkInputs();
+          } else if (_isButtonEnabled) {
+            showSnackBar(
+              context: context,
+              message: AppStrings.profileUpdatedSuccessfully,
+              color: Theme.of(context).colorScheme.tertiary,
+            );
+            _checkInputs();
+          }
+        }
+
+        if (errorMessage != null && !isLoading) {
+          showSnackBar(
+            context: context,
+            message: state.editProfileState.errorMessage!,
+            color: Theme.of(context).colorScheme.error,
+          );
+        }
       },
       child: BlocBuilder<EditProfileCubit, EditProfileState>(
         builder: (context, state) {

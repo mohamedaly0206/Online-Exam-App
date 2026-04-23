@@ -10,7 +10,7 @@ class EditProfileUseCase {
   final EditProfileRepoContract editProfileRepoContract;
 
   Future<BaseResponse<UserEntity>> call({
-    String? image,
+    //String? image,
     String? username,
     String? firstName,
     String? lastName,
@@ -18,7 +18,7 @@ class EditProfileUseCase {
     String? phone,
   }) async {
     return await editProfileRepoContract.editProfile(
-      image: image,
+      //image: image,
       username: username,
       firstName: firstName,
       lastName: lastName,

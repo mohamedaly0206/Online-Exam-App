@@ -4,20 +4,26 @@ import 'package:online_exam_app/features/edit_profile/data/data_source/edit_prof
 import '../../../../config/base_response/base_response.dart';
 import '../../../../config/models/user_model/user_dto.dart';
 import '../../../../config/models/user_model/user_entity.dart';
+import '../../../../config/security_storage/security_storage.dart';
 import '../../../../core/errors/failures.dart';
+import '../../../../core/values/app_strings.dart';
 import '../../domain/repo/edit_profile_repo_contract.dart';
 import '../models/edit_profile_request_body.dart';
 
 @Injectable(as: EditProfileRepoContract)
 class EditProfileRepoImp implements EditProfileRepoContract {
-  EditProfileRepoImp(this._editProfileRemoteDataSourceContract);
+  EditProfileRepoImp(
+    this._editProfileRemoteDataSourceContract,
+    this._securityStorage,
+  );
 
   final EditProfileRemoteDataSourceContract
   _editProfileRemoteDataSourceContract;
+  final SecurityStorage _securityStorage;
 
   @override
   Future<BaseResponse<UserEntity>> editProfile({
-    String? image,
+    //String? image,
     String? username,
     String? firstName,
     String? lastName,
@@ -25,8 +31,15 @@ class EditProfileRepoImp implements EditProfileRepoContract {
     String? phone,
   }) async {
     try {
+      final token = await _securityStorage.getSecuredString(AppStrings.token);
+
+      if (token.isEmpty) {
+        return ErrorBaseResponse<UserEntity>(
+          errorMessage: AppStrings.getCacheExceptionMessage,
+        );
+      }
       final requestBody = EditProfileRequestBody(
-        image: image,
+        //image: image,
         username: username,
         firstName: firstName,
         lastName: lastName,
@@ -36,6 +49,7 @@ class EditProfileRepoImp implements EditProfileRepoContract {
 
       final response = await _editProfileRemoteDataSourceContract.editProfile(
         editProfileRequestBody: requestBody,
+        token: token,
       );
 
       switch (response) {

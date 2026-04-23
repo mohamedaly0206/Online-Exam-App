@@ -45,6 +45,8 @@ abstract class AppStrings {
   static const String newPassword = 'New Password';
   static const String profile = 'Profile';
   static const String editProfile = 'Edit Profile';
+  static const String profileUpdatedSuccessfully =
+      'Profile Updated Successfully';
   static const String change = 'Change';
   static const String updateButton = 'Update';
   static const String currentPassword = 'Current Password';

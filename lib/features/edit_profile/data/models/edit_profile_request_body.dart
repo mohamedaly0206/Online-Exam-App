@@ -4,7 +4,7 @@ part 'edit_profile_request_body.g.dart';
 
 @JsonSerializable()
 class EditProfileRequestBody {
-  final String? image;
+  //final String? image;
   @JsonKey(name: 'username')
   final String? username;
   @JsonKey(name: 'firstName')
@@ -17,7 +17,7 @@ class EditProfileRequestBody {
   final String? phone;
 
   EditProfileRequestBody({
-    this.image,
+    //this.image,
     this.username,
     this.firstName,
     this.lastName,

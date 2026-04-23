@@ -5,5 +5,6 @@ import '../../../../../config/base_response/base_response.dart';
 abstract interface class EditProfileRemoteDataSourceContract {
   Future<BaseResponse<UserDto>> editProfile({
     required EditProfileRequestBody editProfileRequestBody,
+    required String token,
   });
 }

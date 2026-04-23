@@ -16,10 +16,12 @@ class EditProfileRemoteDataSourceImp
   @override
   Future<BaseResponse<UserDto>> editProfile({
     required EditProfileRequestBody editProfileRequestBody,
+    required String token,
   }) async {
     try {
       final response = await _editProfileApiClient.editProfile(
         editProfileRequestBody: editProfileRequestBody,
+        token: token,
       );
       return SuccessBaseResponse<UserDto>(data: response.user!);
     } catch (e) {
