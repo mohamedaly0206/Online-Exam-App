@@ -4,6 +4,7 @@ import 'package:online_exam_app/features/edit_profile/data/models/edit_profile_r
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../../core/values/api_endpoints.dart';
+import '../../data/models/edit_profile_request_body.dart';
 
 part 'edit_profile_api_client.g.dart';
 
@@ -15,6 +16,6 @@ abstract class EditProfileApiClient {
 
   @POST(ApiEndpoints.editProfile)
   Future<EditProfileResponse> editProfile({
-    @Body() required Map<String, dynamic> body,
+    @Body() required EditProfileRequestBody editProfileRequestBody,
   });
 }
