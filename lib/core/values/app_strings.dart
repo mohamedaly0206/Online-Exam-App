@@ -48,6 +48,7 @@ abstract class AppStrings {
   static const String change = 'Change';
   static const String updateButton = 'Update';
   static const String hintcurrentPassword = 'Current Password';
+  static const String successChangePassword = 'Change password successfully';
   static const String explore = 'Explore';
   static const String result = 'Result';
   static const String survey = 'Survey';
