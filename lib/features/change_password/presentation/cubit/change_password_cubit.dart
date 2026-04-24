@@ -25,6 +25,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       state.copyWith(
         changePasswordState: state.changePasswordState.copyWith(
           isLoadingParam: true,
+          errorMessageParam: null,
+          dataParam: null,
         ),
       ),
     );
@@ -55,6 +57,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
           changePasswordState: state.changePasswordState.copyWith(
             isLoadingParam: false,
             errorMessageParam: error.errorMessage,
+            dataParam: null,
           ),
         ),
       );

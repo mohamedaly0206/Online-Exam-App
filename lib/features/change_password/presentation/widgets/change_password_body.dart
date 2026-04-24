@@ -21,15 +21,17 @@ class ChangePasswordBody extends StatelessWidget {
     return BlocListener<ChangePasswordCubit, ChangePasswordState>(
       listener: (context, state) {
         if (!state.changePasswordState.isLoading &&
-            state.changePasswordState.data != null) {
+            state.changePasswordState.data != null&&
+            state.changePasswordState.data!.message!.isNotEmpty) {
           clearForm();
-          // GoRouter.of(context).pop();
+          //todo navigate to login
           showSnackBar(
             context: context,
             message: AppStrings.successChangePassword,
             color: Theme.of(context).colorScheme.primary,
           );
-        } else if (state.changePasswordState.errorMessage != null) {
+        } else if (state.changePasswordState.errorMessage != null&&
+            state.changePasswordState.isLoading == false) {
           showSnackBar(
             context: context,
             message: state.changePasswordState.errorMessage!,
@@ -37,61 +39,73 @@ class ChangePasswordBody extends StatelessWidget {
           );
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: currentPasswordController,
-                decoration: const InputDecoration(
-                  label: Text(AppStrings.hintcurrentPassword),
-                  hintText: AppStrings.hintcurrentPassword,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: currentPasswordController,
+                  decoration: const InputDecoration(
+                    label: Text(AppStrings.hintcurrentPassword),
+                    hintText: AppStrings.hintcurrentPassword,
+                  ),
+                  validator: (value) =>
+                      AppValidators.validateEmptyTextFormField(value),
+                  obscureText: true,
                 ),
-                validator: (value) =>
-                    AppValidators.validateEmptyTextFormField(value),
-                obscureText: true,
-              ),
-              const SizedBox(height: 24),
-              TextFormField(
-                controller: newPasswordController,
-                decoration: const InputDecoration(
-                  label: Text(AppStrings.hintNewPassword),
-                  hintText: AppStrings.hintNewPassword,
+                const SizedBox(height: 24),
+                TextFormField(
+                  controller: newPasswordController,
+                  decoration: const InputDecoration(
+                    label: Text(AppStrings.hintNewPassword),
+                    hintText: AppStrings.hintNewPassword,
+                  ),
+                  validator: (value) => AppValidators.validatePassword(value),
+                  obscureText: true,
                 ),
-                validator: (value) => AppValidators.validatePassword(value),
-                obscureText: true,
-              ),
-              const SizedBox(height: 24),
-              TextFormField(
-                controller: confirmPasswordController,
-                decoration: const InputDecoration(
-                  label: Text(AppStrings.confirmPassword),
-                  hintText: AppStrings.hintConfirmPasswordText,
+                const SizedBox(height: 24),
+                TextFormField(
+                  controller: confirmPasswordController,
+                  decoration: const InputDecoration(
+                    label: Text(AppStrings.confirmPassword),
+                    hintText: AppStrings.hintConfirmPasswordText,
+                  ),
+                  validator: (value) => AppValidators.confirmPassword(
+                    newPasswordController.text,
+                    value,
+                  ),
+                  obscureText: true,
                 ),
-                validator: (value) => AppValidators.confirmPassword(
-                  newPasswordController.text,
-                  value,
+                const SizedBox(height: 24),
+                BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
+                            context
+                                .read<ChangePasswordCubit>()
+                                .changePassword(
+                                  currentPasswordController.text,
+                                  newPasswordController.text,
+                                  confirmPasswordController.text,
+                                );
+                          }
+                        }
+                      },
+                      child: state.changePasswordState.isLoading
+                          ? CircularProgressIndicator(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            )
+                          : const Text(AppStrings.updateButton),
+                    );
+                  },
                 ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    if (formKey.currentState!.validate()) {
-                      context.read<ChangePasswordCubit>().changePassword(
-                        currentPasswordController.text,
-                        newPasswordController.text,
-                        confirmPasswordController.text,
-                      );
-                    }
-                  }
-                },
-                child: const Text(AppStrings.updateButton),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

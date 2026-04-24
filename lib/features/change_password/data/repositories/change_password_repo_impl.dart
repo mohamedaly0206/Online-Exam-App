@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/di/di.dart';
@@ -24,10 +22,6 @@ class ChangePasswordRepoImpl implements ChangePasswordRepoContract {
       AppStrings.token,
     );
 
-    if (token.isEmpty) {
-      log("❌ Token is empty");
-      return ErrorBaseResponse(errorMessage: "Unauthorized");
-    }
     final response = await _dataSource.changePassword(
       ChangePasswordRequestDto.fromDomain(changePasswordRequestEntity),
       token,
