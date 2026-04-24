@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/utilities/app_validators.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
@@ -21,16 +22,16 @@ class ChangePasswordBody extends StatelessWidget {
     return BlocListener<ChangePasswordCubit, ChangePasswordState>(
       listener: (context, state) {
         if (!state.changePasswordState.isLoading &&
-            state.changePasswordState.data != null&&
+            state.changePasswordState.data != null &&
             state.changePasswordState.data!.message!.isNotEmpty) {
           clearForm();
-          //todo navigate to login
           showSnackBar(
             context: context,
             message: AppStrings.successChangePassword,
             color: Theme.of(context).colorScheme.primary,
           );
-        } else if (state.changePasswordState.errorMessage != null&&
+          GoRouter.of(context).go(AppRouterPaths.kLoginView);
+        } else if (state.changePasswordState.errorMessage != null &&
             state.changePasswordState.isLoading == false) {
           showSnackBar(
             context: context,
@@ -86,13 +87,11 @@ class ChangePasswordBody extends StatelessWidget {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           if (formKey.currentState!.validate()) {
-                            context
-                                .read<ChangePasswordCubit>()
-                                .changePassword(
-                                  currentPasswordController.text,
-                                  newPasswordController.text,
-                                  confirmPasswordController.text,
-                                );
+                            context.read<ChangePasswordCubit>().changePassword(
+                              currentPasswordController.text,
+                              newPasswordController.text,
+                              confirmPasswordController.text,
+                            );
                           }
                         }
                       },
