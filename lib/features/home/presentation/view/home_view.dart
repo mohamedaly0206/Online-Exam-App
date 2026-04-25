@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:online_exam_app/config/di/di.dart';
-import 'package:online_exam_app/features/change_password/presentation/cubit/change_password_cubit.dart';
-import 'package:online_exam_app/features/change_password/presentation/view/change_password_view.dart';
+import 'package:online_exam_app/features/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/state/home_states.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/home_view_body.dart';
@@ -15,13 +13,10 @@ import '../view_model/intent/home_intent.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  static final List<Widget> _tabs = [
-    const HomeViewBody(),
-    const Center(child: Text(AppStrings.result)),
-    BlocProvider(
-      create: (_) => getIt<ChangePasswordCubit>(),
-      child:  ChangePasswordView(),
-    ),
+  static const List<Widget> _tabs = [
+    HomeViewBody(),
+    Center(child: Text(AppStrings.result)),
+    EditProfileView(),
   ];
 
   @override
