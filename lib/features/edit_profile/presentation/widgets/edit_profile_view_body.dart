@@ -26,10 +26,11 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   bool _isButtonEnabled = false;
-
+  late EditProfileCubit _cubit;
   @override
   void initState() {
     super.initState();
+    _cubit = context.read<EditProfileCubit>();
     _passwordController.text = '********';
     _userNameController.addListener(_checkInputs);
     _firstNameController.addListener(_checkInputs);
@@ -39,9 +40,8 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   }
 
   void _checkInputs() {
-    final state = context.read<EditProfileCubit>().state;
     // data in cubit
-    final user = state.editProfileState.data;
+    final user = _cubit.state.editProfileState.data;
 
     if (user == null) {
       setState(() => _isButtonEnabled = false);

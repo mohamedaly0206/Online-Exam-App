@@ -9,7 +9,7 @@ import 'package:online_exam_app/features/change_password/data/models/change_pass
 @Injectable(as: ChangePasswordRemoteDataSourceContract)
 class ChangePasswordRemoteDataSourceImpl
     implements ChangePasswordRemoteDataSourceContract {
- final  ChangePasswordApiClient changePasswordApiClient;
+  final ChangePasswordApiClient changePasswordApiClient;
 
   const ChangePasswordRemoteDataSourceImpl(this.changePasswordApiClient);
   @override
