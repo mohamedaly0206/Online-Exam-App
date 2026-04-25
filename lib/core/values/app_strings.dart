@@ -45,8 +45,6 @@ abstract class AppStrings {
   static const String hintNewPassword = 'New Password';
   static const String profile = 'Profile';
   static const String editProfile = 'Edit Profile';
-  static const String profileUpdatedSuccessfully =
-      'Profile Updated Successfully';
   static const String change = 'Change';
   static const String updateButton = 'Update';
   static const String hintcurrentPassword = 'Current Password';
@@ -146,6 +144,4 @@ abstract class AppStrings {
   static const String nameNoSpaces = 'cannot contain spaces';
   static const String phoneRequired = 'Phone number is required';
   static const String phoneInvalid = 'Invalid Egyptian phone number';
-  static const String defaultImage =
-      'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&iar=0&w=600&hash=833D605FDB6AC3C2D2915F6BF8B4ADA4';
 }

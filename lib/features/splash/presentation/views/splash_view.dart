@@ -25,13 +25,15 @@ class SplashView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white, // أبيض صريح زي الـ pubspec
         body: Center(
           child: Opacity(
-            opacity: 0.95,
+            opacity:
+                0.95, // جرب تقلل الـ Opacity سنة لو الألوان حادة زيادة عن اللزوم
             child: Assets.icons.splash.image(
-              width: 165,
+              width: 165, // 👈 كبرنا المقاس عشان يطابق الـ Native
               fit: BoxFit.contain,
+              // الترتيب ده بيخلي الريندر أنعم شوية (Anti-aliasing)
               filterQuality: FilterQuality.high,
             ),
           ),
