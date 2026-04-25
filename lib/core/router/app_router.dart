@@ -128,7 +128,7 @@ abstract class AppRouter {
         path: AppRouterPaths.kChangePasswordView,
         builder: (context, state) => BlocProvider<ChangePasswordCubit>(
           create: (context) => getIt<ChangePasswordCubit>(),
-          child: const ChangePasswordView(),
+          child:  ChangePasswordView(),
         ),
       ),
     ],

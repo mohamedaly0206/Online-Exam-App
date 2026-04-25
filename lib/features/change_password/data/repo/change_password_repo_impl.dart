@@ -13,7 +13,7 @@ import 'package:online_exam_app/features/change_password/domain/repo/change_pass
 @Injectable(as: ChangePasswordRepoContract)
 class ChangePasswordRepoImpl implements ChangePasswordRepoContract {
   final ChangePasswordRemoteDataSourceContract _dataSource;
-  ChangePasswordRepoImpl(this._dataSource);
+  const ChangePasswordRepoImpl(this._dataSource);
   @override
   Future<BaseResponse<ChangePasswordResponseEntity>> changePassword(
     ChangePasswordRequestEntity changePasswordRequestEntity,

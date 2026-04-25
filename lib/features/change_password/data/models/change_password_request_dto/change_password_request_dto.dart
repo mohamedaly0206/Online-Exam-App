@@ -6,13 +6,17 @@ part 'change_password_request_dto.g.dart';
 @JsonSerializable()
 class ChangePasswordRequestDto {
   @JsonKey(name: "oldPassword")
-  final String? oldPassword;
+  final String oldPassword;
   @JsonKey(name: "password")
-  final String? password;
+  final String password;
   @JsonKey(name: "rePassword")
-  final String? rePassword;
+  final String rePassword;
 
-  ChangePasswordRequestDto({this.oldPassword, this.password, this.rePassword});
+  ChangePasswordRequestDto({
+    required this.oldPassword,
+    required this.password,
+    required this.rePassword,
+  });
 
   factory ChangePasswordRequestDto.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestDtoFromJson(json);
