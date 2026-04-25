@@ -42,14 +42,16 @@ abstract class AppStrings {
   static const String resetPassword = 'Reset Password';
   static const String resetPasswordHint =
       'Password must not be empty and must contain \n 6 characters with upper case letter and one \n number at least ';
-  static const String newPassword = 'New Password';
+  static const String hintNewPassword = 'New Password';
   static const String profile = 'Profile';
   static const String editProfile = 'Edit Profile';
   static const String profileUpdatedSuccessfully =
       'Profile Updated Successfully';
   static const String change = 'Change';
   static const String updateButton = 'Update';
-  static const String currentPassword = 'Current Password';
+  static const String hintcurrentPassword = 'Current Password';
+  static const String successChangePassword =
+      'Password changed successfully please login again';
   static const String explore = 'Explore';
   static const String result = 'Result';
   static const String survey = 'Survey';
