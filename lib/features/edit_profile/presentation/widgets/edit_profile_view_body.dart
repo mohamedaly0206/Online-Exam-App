@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/utilities/functions/show_snack_bar.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
-
+import 'package:online_exam_app/features/edit_profile/presentation/widgets/password_change_field.dart';
 import '../../../../core/utilities/app_validators.dart';
 import '../view_model/cubit/edit_profile_cubit.dart';
 import '../view_model/intent/edit_profile_intent.dart';
 import '../view_model/state/edit_profile_state.dart';
+import 'edit_profile_image.dart';
+import 'name_fields_row.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key});
@@ -121,41 +123,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            width: 105,
-                            height: 105,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  'https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&iar=0&w=600&hash=833D605FDB6AC3C2D2915F6BF8B4ADA4',
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 33,
-                            width: 33,
-                            decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSecondaryFixed,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              size: 20,
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    EditProfileImage(),
                     const SizedBox(height: 20),
                     TextFormField(
                       controller: _userNameController,
@@ -164,27 +132,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: _firstNameController,
-                            decoration: const InputDecoration(
-                              label: Text(AppStrings.firstName),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: TextFormField(
-                            controller: _lastNameController,
-                            decoration: const InputDecoration(
-                              label: Text(AppStrings.lastName),
-                            ),
-                          ),
-                        ),
-                      ],
+                    NameFieldsRow(
+                      firstNameController: _firstNameController,
+                      lastNameController: _lastNameController,
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
@@ -197,29 +147,8 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                           : AppValidators.validateEmail(value),
                     ),
                     const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              textStyle: Theme.of(context).textTheme.bodyLarge
-                                  ?.copyWith(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                            onPressed: () {},
-                            child: const Text(AppStrings.change),
-                          ),
-                        ),
-                        label: const Text(AppStrings.password),
-                      ),
+                    PasswordChangeField(
+                      passwordController: _passwordController,
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
