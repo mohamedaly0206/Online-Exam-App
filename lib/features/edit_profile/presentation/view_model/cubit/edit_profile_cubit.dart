@@ -10,7 +10,6 @@ import '../intent/edit_profile_intent.dart';
 import '../state/edit_profile_state.dart';
 
 @injectable
-@injectable
 class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileUseCase _editProfileUseCase;
   final GetLoggedUserInfoUseCase _getLoggedUserInfoUseCase;
