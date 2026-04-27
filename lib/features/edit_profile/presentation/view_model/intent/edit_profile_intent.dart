@@ -17,3 +17,5 @@ class SubmitEditProfileIntent extends EditProfileIntent {
     this.phone,
   });
 }
+
+class LogoutIntent extends EditProfileIntent {}

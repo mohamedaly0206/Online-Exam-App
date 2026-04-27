@@ -6,6 +6,8 @@ import 'package:online_exam_app/features/edit_profile/domain/use_cases/edit_prof
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/models/user_model/user_entity.dart';
 import '../../../../auth/login/domain/use_cases/get_logged_user_info_use_case.dart';
+import '../../../domain/entities/logout_entity.dart';
+import '../../../domain/use_cases/logout_use_case.dart';
 import '../intent/edit_profile_intent.dart';
 import '../state/edit_profile_state.dart';
 
@@ -13,9 +15,13 @@ import '../state/edit_profile_state.dart';
 class EditProfileCubit extends Cubit<EditProfileState> {
   final EditProfileUseCase _editProfileUseCase;
   final GetLoggedUserInfoUseCase _getLoggedUserInfoUseCase;
+  final LogoutUseCase _logoutUseCase;
 
-  EditProfileCubit(this._editProfileUseCase, this._getLoggedUserInfoUseCase)
-    : super(const EditProfileState());
+  EditProfileCubit(
+    this._editProfileUseCase,
+    this._getLoggedUserInfoUseCase,
+    this._logoutUseCase,
+  ) : super(const EditProfileState());
 
   void processIntent(EditProfileIntent intent) {
     switch (intent) {
@@ -23,6 +29,8 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         _handleGetUserInfo();
       case SubmitEditProfileIntent():
         _handleSubmitEdit(intent);
+      case LogoutIntent():
+        _handleLogout();
     }
   }
 
@@ -86,6 +94,29 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           editProfileStateParam: state.editProfileState.copyWith(
             isLoadingParam: false,
             errorMessageParam: (response as ErrorBaseResponse).errorMessage,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleLogout() async {
+    emit(state.copyWith(logoutStateParam: const BaseState(isLoading: true)));
+
+    final response = await _logoutUseCase.call();
+
+    if (response is SuccessBaseResponse<LogoutEntity>) {
+      emit(
+        state.copyWith(
+          logoutStateParam: BaseState(isLoading: false, data: response.data),
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          logoutStateParam: BaseState(
+            isLoading: false,
+            errorMessage: (response as ErrorBaseResponse).errorMessage,
           ),
         ),
       );
