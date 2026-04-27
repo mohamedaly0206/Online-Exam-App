@@ -1,6 +1,8 @@
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/models/user_model/user_entity.dart';
 
+import '../entities/logout_entity.dart';
+
 abstract interface class EditProfileRepoContract {
   Future<BaseResponse<UserEntity>> editProfile({
     //String? image,
@@ -10,4 +12,6 @@ abstract interface class EditProfileRepoContract {
     String? email,
     String? phone,
   });
+
+  Future<BaseResponse<LogoutEntity>> logout();
 }

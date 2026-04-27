@@ -1,5 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/edit_profile/data/data_source/edit_profile_remote_data_source_contract.dart';
+import 'package:online_exam_app/features/edit_profile/data/models/logout_response.dart';
+import 'package:online_exam_app/features/edit_profile/domain/entities/logout_entity.dart';
 
 import '../../../../config/base_response/base_response.dart';
 import '../../../../config/models/user_model/user_dto.dart';
@@ -65,6 +67,41 @@ class EditProfileRepoImp implements EditProfileRepoContract {
       }
     } catch (e) {
       return ErrorBaseResponse<UserEntity>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
+    }
+  }
+
+  @override
+  Future<BaseResponse<LogoutEntity>> logout() async {
+    try {
+      final token = await _securityStorage.getSecuredString(AppStrings.token);
+
+      if (token.isEmpty) {
+        return ErrorBaseResponse<LogoutEntity>(
+          errorMessage: AppStrings.getCacheExceptionMessage,
+        );
+      }
+
+      final response = await _editProfileRemoteDataSourceContract.logout(
+        token: token,
+      );
+
+      switch (response) {
+        case SuccessBaseResponse<LogoutResponse>():
+          await _securityStorage.deleteSecuredString(AppStrings.token);
+
+          return SuccessBaseResponse<LogoutEntity>(
+            data: response.data.toDomain(),
+          );
+
+        case ErrorBaseResponse<LogoutResponse>():
+          return ErrorBaseResponse<LogoutEntity>(
+            errorMessage: response.errorMessage,
+          );
+      }
+    } catch (e) {
+      return ErrorBaseResponse<LogoutEntity>(
         errorMessage: ServerFailure.failureHandler(e).errorMessage,
       );
     }
