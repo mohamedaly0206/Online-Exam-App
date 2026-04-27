@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/models/user_model/user_dto.dart';
+import 'package:online_exam_app/features/edit_profile/data/models/logout_response.dart';
+
 import '../../../../core/errors/failures.dart';
 import '../../data/data_source/edit_profile_remote_data_source_contract.dart';
 import '../../data/models/edit_profile_request_body.dart';
@@ -26,6 +28,18 @@ class EditProfileRemoteDataSourceImp
       return SuccessBaseResponse<UserDto>(data: response.user!);
     } catch (e) {
       return ErrorBaseResponse<UserDto>(
+        errorMessage: ServerFailure.failureHandler(e).errorMessage,
+      );
+    }
+  }
+
+  @override
+  Future<BaseResponse<LogoutResponse>> logout({required String token}) async {
+    try {
+      final response = await _editProfileApiClient.logout(token: token);
+      return SuccessBaseResponse<LogoutResponse>(data: response);
+    } catch (e) {
+      return ErrorBaseResponse(
         errorMessage: ServerFailure.failureHandler(e).errorMessage,
       );
     }
