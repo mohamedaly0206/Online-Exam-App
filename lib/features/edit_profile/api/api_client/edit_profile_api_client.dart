@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/edit_profile/data/models/edit_profile_response.dart';
+import 'package:online_exam_app/features/edit_profile/data/models/logout_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../../core/values/api_endpoints.dart';
@@ -19,5 +20,9 @@ abstract class EditProfileApiClient {
   Future<EditProfileResponse> editProfile({
     @Header(AppStrings.token) required String token,
     @Body() required EditProfileRequestBody editProfileRequestBody,
+  });
+  @GET(ApiEndpoints.logout)
+  Future<LogoutResponse> logout({
+    @Header(AppStrings.token) required String token,
   });
 }
