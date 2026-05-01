@@ -61,6 +61,7 @@ class TimeOutWidget extends StatelessWidget {
                             cubit.state.totalCorrectAnswers,
                         AppStrings.wrongAnswers: cubit.state.totalWrongAnswers,
                         AppStrings.totalAnswers: cubit.state.totalQuestions,
+                        AppStrings.examResults: cubit.getExamResult(),
                       },
                     );
                   },

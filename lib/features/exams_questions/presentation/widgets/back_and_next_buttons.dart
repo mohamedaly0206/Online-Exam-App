@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view_model/cubit/exam_result_cubit.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view_model/intent/exam_result_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 
@@ -82,6 +84,8 @@ class _BackAndNextButtonsState extends State<BackAndNextButtons> {
                                   examsQuestionsCubit.state.totalWrongAnswers,
                               AppStrings.totalAnswers:
                                   examsQuestionsCubit.state.totalQuestions,
+                              AppStrings.examResults: examsQuestionsCubit
+                                  .getExamResult(),
                             },
                           );
                         })

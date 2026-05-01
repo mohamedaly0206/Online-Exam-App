@@ -1,6 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/widgets/custom_app_bar.dart';
+import 'package:online_exam_app/features/exam_result/domain/entity/exam_result_entity.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_score_view_body.dart';
 
 class ExamScoreView extends StatelessWidget {
@@ -10,11 +13,13 @@ class ExamScoreView extends StatelessWidget {
     required this.wrongAnswers,
     required this.totalQuestions,
     required this.examId,
+    required this.examResult,
   });
   final int correctAnswers;
   final int wrongAnswers;
   final int totalQuestions;
   final String examId;
+  final ExamResultEntity examResult;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +31,7 @@ class ExamScoreView extends StatelessWidget {
           wrongAnswers: wrongAnswers,
           totalQuestions: totalQuestions,
           examId: examId,
+          examResult: examResult,
         ),
       ),
     );
