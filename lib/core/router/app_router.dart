@@ -7,6 +7,11 @@ import 'package:online_exam_app/features/auth/forget_password/presentation/view_
 import 'package:online_exam_app/features/auth/login/presentation/view_model/cubit/login_cubit.dart';
 import 'package:online_exam_app/features/auth/sign_up/presentation/view_model/cubit/sign_up_cubit.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
+import 'package:online_exam_app/features/exam_result/domain/entity/exam_result_entity.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view/exam_result_view.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view/questions_answers_view.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view_model/cubit/exam_result_cubit.dart';
+import 'package:online_exam_app/features/exam_result/presentation/view_model/intent/exam_result_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
@@ -16,6 +21,7 @@ import 'package:online_exam_app/features/exams/domain/entity/exams_entity.dart';
 import 'package:online_exam_app/features/exams/presentation/view/exam_details_view.dart';
 import 'package:online_exam_app/features/exams/presentation/view/exams_view.dart';
 import 'package:online_exam_app/features/exams/presentation/view_model/cubit/exams_cubit.dart';
+import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_question.dart';
 import '../../features/auth/forget_password/presentation/view/forget_password_view.dart';
 import '../../features/auth/login/presentation/views/login_view.dart';
 import '../../features/auth/sign_up/presentation/views/sign_up_view.dart';
@@ -70,9 +76,18 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRouterPaths.kHomeView,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              getIt<HomeCubit>()..doIntent(GetAllSubjectsIntent()),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  getIt<HomeCubit>()..doIntent(GetAllSubjectsIntent()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  getIt<ExamResultCubit>()
+                    ..onIntent(GetExamResultsHistoryIntent()),
+            ),
+          ],
           child: const HomeView(),
         ),
       ),
@@ -107,11 +122,15 @@ abstract class AppRouter {
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
 
-          return ExamScoreView(
-            examId: extra[AppStrings.examId] as String,
-            correctAnswers: extra[AppStrings.correctAnswers] as int,
-            wrongAnswers: extra[AppStrings.wrongAnswers] as int,
-            totalQuestions: extra[AppStrings.totalAnswers] as int,
+          return BlocProvider(
+            create: (context) => getIt<ExamsQuestionsCubit>(),
+            child: ExamScoreView(
+              examId: extra[AppStrings.examId] as String,
+              correctAnswers: extra[AppStrings.correctAnswers] as int,
+              wrongAnswers: extra[AppStrings.wrongAnswers] as int,
+              totalQuestions: extra[AppStrings.totalAnswers] as int,
+              examResult: extra[AppStrings.examResults] as ExamResultEntity,
+            ),
           );
         },
       ),
@@ -120,6 +139,19 @@ abstract class AppRouter {
         builder: (context, state) {
           final examModel = state.extra as ExamEntity;
           return ExamDetailsView(exam: examModel);
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kExamResultView,
+        builder: (context, state) {
+          return ExamResultView();
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kQuestionsAnswersView,
+        builder: (context, state) {
+          final exam = state.extra as ExamResultEntity;
+          return QuestionsAnswersView(exam: exam);
         },
       ),
     ],

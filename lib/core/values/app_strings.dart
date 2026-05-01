@@ -142,4 +142,9 @@ abstract class AppStrings {
   static const String nameNoSpaces = 'cannot contain spaces';
   static const String phoneRequired = 'Phone number is required';
   static const String phoneInvalid = 'Invalid Egyptian phone number';
+  static const String correctedAnswersIn = 'corrected answers in';
+  static const String min = 'min.';
+  static const String youHaveNotTakeAnyExamYet =
+      "you haven't take any exam yet";
+  static const String examResults = 'Results';
 }
