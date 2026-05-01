@@ -5,8 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/base_state/base_state.dart';
+import 'package:online_exam_app/features/exam_result/domain/entity/exam_result_entity.dart';
+import 'package:online_exam_app/features/exam_result/domain/entity/question_detail_entity.dart';
+import 'package:online_exam_app/features/exam_result/domain/entity/question_option_entity.dart';
+import 'package:online_exam_app/features/exam_result/domain/use_case/cache_exam_result_use_case.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/get_exam_questions_request/exam_questions_request.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/response_dto/answer_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/question_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/exam_questions_entity.dart';
 import 'package:online_exam_app/features/exams_questions/domain/use_cases/get_exam_questions_use_case.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
@@ -14,9 +19,11 @@ part '../states/exams_questions_state.dart';
 
 @injectable
 class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
-  ExamsQuestionsCubit(this._examQuestionsUseCase)
+  ExamsQuestionsCubit(this._examQuestionsUseCase, this._cacheExamResultUseCase)
     : super(ExamsQuestionsState());
   final GetExamQuestionsUseCase _examQuestionsUseCase;
+  // add cache exam result use case
+  final CacheExamResultUseCase _cacheExamResultUseCase;
 
   Timer? timer;
 
@@ -186,6 +193,17 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
         wrongAnswers--;
       }
     }
+    try {
+      // TODO: handel the caching of exam result here
+      _cacheExamResultUseCase.call(
+        getExamResult(),
+        // here we need subject name
+        'Data Structures',
+      );
+      log('Exam result cached successfully');
+    } catch (e) {
+      log('Error caching exam result: $e');
+    }
     emit(
       state.copyWith(
         totalCorrectAnswers: correctAnswers,
@@ -194,6 +212,49 @@ class ExamsQuestionsCubit extends Cubit<ExamsQuestionsState> {
     );
     log(
       'correct answers:${state.totalCorrectAnswers} wrong answers:${state.totalWrongAnswers}',
+    );
+  }
+
+  ExamResultEntity getExamResult() {
+    // cache exam result by _cacheExamResultUseCase
+    List<QuestionDetailEntity> questionsDetail = [];
+    if (state.examsQuestionsState.data?.questions != null) {
+      questionsDetail = state.examsQuestionsState.data!.questions
+          .map(
+            (question) => QuestionDetailEntity(
+              questionTitle: question.question,
+              isMultipleChoice: question.type == QuestionType.multipleChoice,
+              options: question.answers.map((option) {
+                var index = state.examsQuestionsState.data!.questions
+                    .indexWhere(
+                      (element) => element.question == question.question,
+                    );
+
+                return QuestionOptionEntity(
+                  optionText: option.answerText,
+                  isSelected: state.selectedAnswers[index] == option.answerKey,
+                  isCorrect: option.answerKey == question.correctAnswer,
+                );
+              }).toList(),
+            ),
+          )
+          .toList();
+    }
+    log('>>> geting');
+    log('>>> total correct answers: ' + state.totalCorrectAnswers.toString());
+    log('>>> total wrong answers: ' + state.totalWrongAnswers.toString());
+    log(
+      '>>> time taken: ' +
+          ((state.initialExamTime - state.remainingTime)).toString() +
+          ' minutes',
+    );
+    return ExamResultEntity(
+      examTitle: 'math test 1',
+      duration:
+          '${(state.initialExamTime ~/ 60) + (state.initialExamTime % 60 != 0 ? 1 : 0)}',
+      totalQuestions: state.totalQuestions,
+      correctAnswers: state.totalCorrectAnswers,
+      questions: questionsDetail,
     );
   }
 
