@@ -1,6 +1,8 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive_ce.dart';
 import 'package:online_exam_app/features/exam_result/data/model/question_detail_model_dto.dart';
 import 'package:online_exam_app/features/exam_result/domain/entity/exam_result_entity.dart';
+
+part 'exam_result_model_dto.g.dart';
 
 @HiveType(typeId: 0)
 class ExamResultModelDTO extends HiveObject {

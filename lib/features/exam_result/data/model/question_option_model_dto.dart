@@ -1,5 +1,7 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive_ce.dart';
 import 'package:online_exam_app/features/exam_result/domain/entity/question_option_entity.dart';
+
+part 'question_option_model_dto.g.dart';
 
 @HiveType(typeId: 2)
 class QuestionOptionModelDTO extends HiveObject {
