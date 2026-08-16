@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/core/router/router_paths.dart';
 import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/core/widgets/dialogs/show_dialog.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/cubit/exams_questions_cubit.dart';
@@ -68,22 +67,11 @@ class _BackAndNextButtonsState extends State<BackAndNextButtons> {
                 onPressed: () {
                   state.totalQuestions - 1 == state.currentQuestionIndex
                       ? showFinishDialog(context, () {
+                          GoRouter.of(context).pop();
                           examsQuestionsCubit.handleExamsQuestionsIntent(
                             SubmitQuestionIntent(),
                           );
                           if (!context.mounted) return;
-                          GoRouter.of(context).pushReplacement(
-                            AppRouterPaths.kExamScoreView,
-                            extra: {
-                              AppStrings.examId: widget.examId,
-                              AppStrings.correctAnswers:
-                                  examsQuestionsCubit.state.totalCorrectAnswers,
-                              AppStrings.wrongAnswers:
-                                  examsQuestionsCubit.state.totalWrongAnswers,
-                              AppStrings.totalAnswers:
-                                  examsQuestionsCubit.state.totalQuestions,
-                            },
-                          );
                         })
                       : examsQuestionsCubit.handleExamsQuestionsIntent(
                           NextQuestionIntent(),

@@ -20,8 +20,8 @@ class HomeStates extends Equatable {
   }) {
     return HomeStates(
       currentIndex: currentIndexParam ?? currentIndex,
-      subjectsListState: subjectsListStateParam ?? this.subjectsListState,
-      filteredSubjects: filteredSubjectsParam ?? this.filteredSubjects,
+      subjectsListState: subjectsListStateParam ?? subjectsListState,
+      filteredSubjects: filteredSubjectsParam ?? filteredSubjects,
     );
   }
 

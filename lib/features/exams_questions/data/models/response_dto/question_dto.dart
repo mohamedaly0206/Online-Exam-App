@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/response_dto/answer_dto.dart';
 import 'package:online_exam_app/features/exams_questions/data/models/response_dto/exam_dto.dart';
+import 'package:online_exam_app/features/exams_questions/data/models/response_dto/subject_dto.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/question_entity.dart';
 
 part 'question_dto.g.dart';
@@ -15,8 +16,7 @@ class QuestionDto {
 
   final String? question;
   final AnswerKey? correct;
-  final dynamic subject;
-  final ExamDto? exam;
+ final Subject? subject;  final ExamDto? exam;
   final DateTime? createdAt;
 
   QuestionDto({
@@ -41,6 +41,7 @@ class QuestionDto {
       question: question ?? '',
       correctAnswer: correct ?? AnswerKey.A1,
       exam: exam?.toDomain(),
+      subject: subject?.toDomain(),
     );
   }
 }

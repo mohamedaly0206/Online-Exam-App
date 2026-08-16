@@ -13,6 +13,8 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/view_model/intent/exams_questions_intent.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_questions_view.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/views/exam_score_view.dart';
+import 'package:online_exam_app/features/exam_result/domain/entities/exam_result_entity.dart';
+import 'package:online_exam_app/features/exam_result/presentation/views/answers_view.dart';
 import 'package:online_exam_app/features/exams/domain/entity/subject_request.dart';
 import 'package:online_exam_app/features/exams/domain/entity/exams_entity.dart';
 import 'package:online_exam_app/features/exams/presentation/view/exam_details_view.dart';
@@ -81,7 +83,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kExamQuestionsView,
         builder: (context, state) {
-          final String examId = state.extra as String;
+          final String examId = (state.extra as String?) ?? '';
           return BlocProvider<ExamsQuestionsCubit>(
             create: (context) =>
                 getIt<ExamsQuestionsCubit>()
@@ -107,14 +109,35 @@ abstract class AppRouter {
       GoRoute(
         path: AppRouterPaths.kExamScoreView,
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
+          final extra = state.extra;
+          if (extra is ExamResultEntity) {
+            return ExamScoreView(
+              examId: extra.examId,
+              correctAnswers: extra.correctCount,
+              wrongAnswers: extra.wrongCount,
+              totalQuestions: extra.totalQuestions,
+              examResult: extra,
+            );
+          }
+
+          final resultExtra = extra as Map<String, dynamic>;
+          final examResult =
+              resultExtra[AppStrings.examResult] as ExamResultEntity;
 
           return ExamScoreView(
-            examId: extra[AppStrings.examId] as String,
-            correctAnswers: extra[AppStrings.correctAnswers] as int,
-            wrongAnswers: extra[AppStrings.wrongAnswers] as int,
-            totalQuestions: extra[AppStrings.totalAnswers] as int,
+            examId: resultExtra[AppStrings.examId] as String,
+            correctAnswers: resultExtra[AppStrings.correctAnswers] as int,
+            wrongAnswers: resultExtra[AppStrings.wrongAnswers] as int,
+            totalQuestions: resultExtra[AppStrings.totalAnswers] as int,
+            examResult: examResult,
           );
+        },
+      ),
+      GoRoute(
+        path: AppRouterPaths.kAnswersView,
+        builder: (context, state) {
+          final examResult = state.extra as ExamResultEntity;
+          return AnswersView(examResult: examResult);
         },
       ),
       GoRoute(

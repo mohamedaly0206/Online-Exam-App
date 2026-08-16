@@ -5,6 +5,9 @@ import 'package:online_exam_app/features/exams_questions/presentation/view_model
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/back_and_next_buttons.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_question.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/time_out_widget.dart';
+import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/router/router_paths.dart';
+import 'package:online_exam_app/features/exam_result/domain/entities/exam_result_entity.dart';
 
 class ExamQuestionsViewBody extends StatelessWidget {
   final String examId;
@@ -13,7 +16,12 @@ class ExamQuestionsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ExamsQuestionsCubit, ExamsQuestionsState>(
       listener: (context, state) {
-        if (state.isExamFinished &&
+        if (state.isSubmitted && state.submitResult != null) {
+          GoRouter.of(context).pushReplacement(
+            AppRouterPaths.kExamScoreView,
+            extra: state.submitResult as ExamResultEntity,
+          );
+        } else if (state.isExamFinished &&
             state.examsQuestionsState.errorMessage == null) {
           final cubit = context.read<ExamsQuestionsCubit>();
 
@@ -43,6 +51,8 @@ class ExamQuestionsViewBody extends StatelessWidget {
               message: state.examsQuestionsState.errorMessage.toString(),
             ),
           );
+        } else if (state.totalQuestions == 0) {
+          return const Center(child: Text('No questions found.'));
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

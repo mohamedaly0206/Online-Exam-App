@@ -10,9 +10,9 @@ part 'exam_questions_api_client.g.dart';
 
 @lazySingleton
 @RestApi()
-abstract class ExamQuetsionsApiClient {
+abstract class ExamQuestionsApiClient {
   @factoryMethod
-  factory ExamQuetsionsApiClient(Dio dio) = _ExamQuetsionsApiClient;
+  factory ExamQuestionsApiClient(Dio dio) = _ExamQuestionsApiClient;
   @GET(ApiEndpoints.getExamQuestions)
   Future<ExamQuestionsDto> getExamsQuestions({
     @Query(ApiParam.getAllExamQuestions) required String examId,

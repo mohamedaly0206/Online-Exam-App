@@ -3,6 +3,7 @@ import 'package:online_exam_app/core/values/app_strings.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/answer_percentage_widget.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/exam_score_details.dart';
 import 'package:online_exam_app/features/exams_questions/presentation/widgets/score_view_body_buttons.dart';
+import 'package:online_exam_app/features/exam_result/domain/entities/exam_result_entity.dart';
 
 class ExamScoreViewBody extends StatelessWidget {
   const ExamScoreViewBody({
@@ -11,11 +12,13 @@ class ExamScoreViewBody extends StatelessWidget {
     required this.wrongAnswers,
     required this.totalQuestions,
     required this.examId,
+    required this.examResult,
   });
   final int correctAnswers;
   final int wrongAnswers;
   final int totalQuestions;
   final String examId;
+  final ExamResultEntity examResult;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class ExamScoreViewBody extends StatelessWidget {
             ],
           ),
           SizedBox(height: 80),
-          ScoreViewBodyButtons(examId: examId),
+          ScoreViewBodyButtons(examId: examId, examResult: examResult),
         ],
       ),
     );

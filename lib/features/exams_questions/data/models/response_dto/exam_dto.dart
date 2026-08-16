@@ -31,6 +31,9 @@ class ExamDto {
   Map<String, dynamic> toJson() => _$ExamDtoToJson(this);
 
   ExamsEntity toDomain() => ExamsEntity(
+    id: id,
+    title: title,
+    subject: subject,
     duration: duration ?? 0,
     numberOfQuestions: numberOfQuestions ?? 0,
   );

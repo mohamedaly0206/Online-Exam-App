@@ -68,6 +68,7 @@ abstract class AppStrings {
   static const String startButton = 'Start';
   static const exam = 'Exam';
   static const examParam = 'exam';
+  static const String examResult = 'examResult';
   static const String selectAnswer =
       'Select the correctly punctuated sentence.';
   static const nextButton = 'Next';

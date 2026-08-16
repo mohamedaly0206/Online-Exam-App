@@ -5,6 +5,7 @@ import 'package:online_exam_app/features/edit_profile/presentation/view/edit_pro
 import 'package:online_exam_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:online_exam_app/features/home/presentation/view_model/state/home_states.dart';
 import 'package:online_exam_app/features/home/presentation/widgets/home_view_body.dart';
+import 'package:online_exam_app/features/exam_result/presentation/views/result_tab.dart';
 
 import '../../../../core/values/app_strings.dart';
 import '../../../../core/values/assets.gen.dart';
@@ -15,7 +16,7 @@ class HomeView extends StatelessWidget {
 
   static const List<Widget> _tabs = [
     HomeViewBody(),
-    Center(child: Text(AppStrings.result)),
+    ResultTab(),
     EditProfileView(),
   ];
 

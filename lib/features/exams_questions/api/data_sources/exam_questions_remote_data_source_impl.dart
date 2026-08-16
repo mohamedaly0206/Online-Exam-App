@@ -7,17 +7,17 @@ import 'package:online_exam_app/features/exams_questions/data/models/response_dt
 import 'package:online_exam_app/features/exams_questions/data/models/get_exam_questions_request/exam_questions_request.dart';
 
 @Injectable(as: ExamsQuestionsRemoteDataSourceContract)
-class ExamQuetsionsRemoteDataSourceImp
+class ExamQuestionsRemoteDataSourceImp
     implements ExamsQuestionsRemoteDataSourceContract {
-  final ExamQuetsionsApiClient examQuetsionsApiClient;
+  final ExamQuestionsApiClient examQuestionsApiClient;
 
-  ExamQuetsionsRemoteDataSourceImp(this.examQuetsionsApiClient);
+  ExamQuestionsRemoteDataSourceImp(this.examQuestionsApiClient);
   @override
   Future<BaseResponse<ExamQuestionsDto>> getExamsQuestions(
     GetExamQuestionsRequest request,
   ) async {
     try {
-      final response = await examQuetsionsApiClient.getExamsQuestions(
+      final response = await examQuestionsApiClient.getExamsQuestions(
         examId: request.examId,
         token: request.token ?? '',
       );
