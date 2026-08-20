@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: AppBar(
-          forceMaterialTransparency : true,
+          forceMaterialTransparency: true,
           leading: hasBackButton
               ? InkWell(
                   onTap: () {

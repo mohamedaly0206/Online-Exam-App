@@ -21,16 +21,14 @@ class ExamScoreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(title: AppStrings.examScore),
-        body: ExamScoreViewBody(
-          correctAnswers: correctAnswers,
-          wrongAnswers: wrongAnswers,
-          totalQuestions: totalQuestions,
-          examId: examId,
-          examResult: examResult,
-        ),
+    return Scaffold(
+      appBar: CustomAppBar(title: AppStrings.examScore),
+      body: ExamScoreViewBody(
+        correctAnswers: correctAnswers,
+        wrongAnswers: wrongAnswers,
+        totalQuestions: totalQuestions,
+        examId: examId,
+        examResult: examResult,
       ),
     );
   }

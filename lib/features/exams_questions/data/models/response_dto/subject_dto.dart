@@ -2,8 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/exams_questions/domain/entities/exam_subject_entity.dart';
 
 part 'subject_dto.g.dart';
+
 @JsonSerializable()
-class Subject{
+class Subject {
   @JsonKey(name: "_id")
   final String? id;
   @JsonKey(name: "name")

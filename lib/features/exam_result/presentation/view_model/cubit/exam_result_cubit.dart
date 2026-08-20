@@ -12,13 +12,14 @@ class ExamResultCubit extends Cubit<ExamResultStates> {
   final ExamResultRepo _repo;
   ExamResultCubit(this._repo) : super(const ExamResultStates());
 
-void handleExamResultsIntent(ExamResultIntent intent) {
-   switch (intent) {
+  void handleExamResultsIntent(ExamResultIntent intent) {
+    switch (intent) {
       case GetResultsIntent():
         _getResults();
         break;
     }
   }
+
   void _getResults() async {
     emit(state.copyWith(gettingResultsState: const BaseState(isLoading: true)));
     final result = await _repo.getResults();

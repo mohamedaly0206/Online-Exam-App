@@ -14,10 +14,10 @@ class ExamsQuestionsState extends Equatable {
   final Map<int, dynamic> selectedAnswers;
   double get progress =>
       totalQuestions == 0 ? 0 : (currentQuestionIndex + 1) / totalQuestions;
-     final bool isSubmitted;
+  final bool isSubmitted;
   final dynamic submitResult;
 
-  ExamsQuestionsState( {
+  ExamsQuestionsState({
     this.examId = '',
     this.remainingTime = 0,
     this.examsQuestionsState = const BaseState(),
@@ -28,7 +28,7 @@ class ExamsQuestionsState extends Equatable {
     this.totalQuestions = 0,
     this.totalWrongAnswers = 0,
     this.totalCorrectAnswers = 0,
-    this.isSubmitted = false, 
+    this.isSubmitted = false,
     this.submitResult,
 
     Map<int, dynamic>? selectedAnswers,
@@ -82,6 +82,6 @@ class ExamsQuestionsState extends Equatable {
     totalQuestions,
     progress,
     isSubmitted,
-    submitResult
+    submitResult,
   ];
 }

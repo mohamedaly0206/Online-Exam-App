@@ -18,7 +18,9 @@ class ExamResultRepoImpl implements ExamResultRepo {
       final results = await _localDataSource.getResults();
       return SuccessBaseResponse<List<ExamResultEntity>>(data: results);
     } catch (e) {
-      return ErrorBaseResponse<List<ExamResultEntity>>(errorMessage: e.toString());
+      return ErrorBaseResponse<List<ExamResultEntity>>(
+        errorMessage: e.toString(),
+      );
     }
   }
 

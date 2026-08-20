@@ -12,9 +12,7 @@ class AnswersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: AppStrings.answers,
-      ),
+      appBar: const CustomAppBar(title: AppStrings.answers),
       body: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemCount: examResult.questions.length,

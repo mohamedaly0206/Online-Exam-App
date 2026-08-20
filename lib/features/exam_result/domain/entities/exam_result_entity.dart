@@ -25,7 +25,8 @@ class ExamResultEntity {
     required this.totalQuestions,
     int? completedInMinutes,
     required this.submittedAt,
-    required this.questions, required this.subjectIcon,
+    required this.questions,
+    required this.subjectIcon,
   }) : completedInMinutes = completedInMinutes ?? duration;
 }
 

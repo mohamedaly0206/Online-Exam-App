@@ -35,13 +35,12 @@ class ResultExamCard extends StatelessWidget {
             Container(
               width: 55,
               height: 55,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-              ),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
               child: examResult.subjectIcon.isNotEmpty
                   ? CachedNetworkImage(
                       imageUrl: examResult.subjectIcon,
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     )
                   : const Icon(Icons.image_not_supported),
             ),

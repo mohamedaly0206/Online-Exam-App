@@ -23,7 +23,9 @@ class ExamResultLocalDataSource {
   Future<void> saveResult(ExamResultModel result) async {
     final List<ExamResultModel> currentResults = await getResults();
     currentResults.add(result);
-    final String encodedList = json.encode(currentResults.map((e) => e.toJson()).toList());
+    final String encodedList = json.encode(
+      currentResults.map((e) => e.toJson()).toList(),
+    );
     await _storage.write(key: _resultsKey, value: encodedList);
   }
 }

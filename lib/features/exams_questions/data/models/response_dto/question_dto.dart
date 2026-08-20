@@ -16,7 +16,8 @@ class QuestionDto {
 
   final String? question;
   final AnswerKey? correct;
- final Subject? subject;  final ExamDto? exam;
+  final Subject? subject;
+  final ExamDto? exam;
   final DateTime? createdAt;
 
   QuestionDto({

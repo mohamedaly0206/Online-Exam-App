@@ -30,9 +30,11 @@ class ExamResultModel extends ExamResultEntity {
       totalQuestions: json['totalQuestions'] ?? 0,
       completedInMinutes: json['completedInMinutes'] ?? json['duration'] ?? 0,
       submittedAt: json['submittedAt'] ?? '',
-      questions: (json['questions'] as List?)
+      questions:
+          (json['questions'] as List?)
               ?.map((e) => QuestionResultModel.fromJson(e))
-              .toList() ?? [],
+              .toList() ??
+          [],
       subjectIcon: json['subjectIcon'] ?? '',
     );
   }
@@ -92,9 +94,11 @@ class QuestionResultModel extends QuestionResultEntity {
     return QuestionResultModel(
       question: json['question'] ?? '',
       type: json['type'] ?? '',
-      answers: (json['answers'] as List?)
+      answers:
+          (json['answers'] as List?)
               ?.map((e) => AnswerResultModel.fromJson(e))
-              .toList() ?? [],
+              .toList() ??
+          [],
       userAnswerKeys: _readAnswerKeys(
         json['userAnswerKeys'],
         json['userAnswerKey'],

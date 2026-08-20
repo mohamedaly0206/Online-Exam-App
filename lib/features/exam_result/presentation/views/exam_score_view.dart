@@ -47,10 +47,7 @@ class ExamScoreView extends StatelessWidget {
               SizedBox(height: 24),
               Text(
                 'You have completed the exam!',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               SizedBox(height: 8),
               Text(
@@ -67,7 +64,10 @@ class ExamScoreView extends StatelessWidget {
                 height: 48,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.push(AppRouterPaths.kAnswersView, extra: examResult);
+                    context.push(
+                      AppRouterPaths.kAnswersView,
+                      extra: examResult,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
@@ -94,7 +94,10 @@ class ExamScoreView extends StatelessWidget {
                     context.go(AppRouterPaths.kHomeView);
                   },
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Theme.of(context).primaryColor, width: 1),
+                    side: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

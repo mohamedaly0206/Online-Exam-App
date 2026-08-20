@@ -17,17 +17,15 @@ class ExamsQuestionsView extends StatelessWidget {
           onPopInvokedWithResult: (didPop, result) {
             showQuitExamDialog(context);
           },
-          child: SafeArea(
-            child: Scaffold(
-              appBar: CustomAppBar(
-                title: AppStrings.exam,
-                actions: const [ExamTimerWidget()],
-                onBackPressed: () {
-                  showQuitExamDialog(context);
-                },
-              ),
-              body: ExamQuestionsViewBody(examId: examId),
+          child: Scaffold(
+            appBar: CustomAppBar(
+              title: AppStrings.exam,
+              actions: const [ExamTimerWidget()],
+              onBackPressed: () {
+                showQuitExamDialog(context);
+              },
             ),
+            body: ExamQuestionsViewBody(examId: examId),
           ),
         );
       },

@@ -19,13 +19,16 @@ class ResultTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ExamResultCubit>()..handleExamResultsIntent(GetResultsIntent()),
+      create: (context) =>
+          getIt<ExamResultCubit>()..handleExamResultsIntent(GetResultsIntent()),
       child: BlocListener<HomeCubit, HomeStates>(
         listenWhen: (previous, current) =>
             previous.currentIndex != current.currentIndex &&
             current.currentIndex == 1,
         listener: (context, state) {
-          context.read<ExamResultCubit>().handleExamResultsIntent(GetResultsIntent());
+          context.read<ExamResultCubit>().handleExamResultsIntent(
+            GetResultsIntent(),
+          );
         },
         child: SafeArea(
           child: Padding(
@@ -36,94 +39,87 @@ class ResultTab extends StatelessWidget {
                 SizedBox(height: 20),
                 Text(
                   AppStrings.result,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(height: 32),
                 Expanded(
-                  child:
-                      BlocBuilder<
-                        ExamResultCubit,
-                        ExamResultStates
-                      >(
-                        builder: (context, state) {
-                          if (state.gettingResultsState.isLoading) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            );
-                          }
-                          if (state.gettingResultsState.errorMessage != null &&
-                              state.gettingResultsState.errorMessage!.isNotEmpty) {
-                            return Center(child: Text(state.gettingResultsState.errorMessage!));
-                          }
-                          final results = [...(state.gettingResultsState.data ?? [])]..sort(
-                            (a, b) => b.submittedAt.compareTo(a.submittedAt),
-                          );
-                          if (results.isEmpty) {
-                            return const Center(
-                              child: Text(AppStrings.noExamsAvailable),
-                            );
-                          }
+                  child: BlocBuilder<ExamResultCubit, ExamResultStates>(
+                    builder: (context, state) {
+                      if (state.gettingResultsState.isLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      }
+                      if (state.gettingResultsState.errorMessage != null &&
+                          state.gettingResultsState.errorMessage!.isNotEmpty) {
+                        return Center(
+                          child: Text(state.gettingResultsState.errorMessage!),
+                        );
+                      }
+                      final results = [
+                        ...(state.gettingResultsState.data ?? []),
+                      ]..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
+                      if (results.isEmpty) {
+                        return const Center(
+                          child: Text(AppStrings.noExamsAvailable),
+                        );
+                      }
 
-                          final subjects = context
-                              .read<HomeCubit>()
-                              .state
-                              .subjectsListState
-                              .data;
-                          final Map<String, List<ExamResultEntity>>
-                          groupedResults = {};
-                          for (var result in results) {
-                            final subject = _subjectNameFor(result, subjects);
-                            if (!groupedResults.containsKey(subject)) {
-                              groupedResults[subject] = [];
-                            }
-                            groupedResults[subject]!.add(result);
-                          }
+                      final subjects = context
+                          .read<HomeCubit>()
+                          .state
+                          .subjectsListState
+                          .data;
+                      final Map<String, List<ExamResultEntity>> groupedResults =
+                          {};
+                      for (var result in results) {
+                        final subject = _subjectNameFor(result, subjects);
+                        if (!groupedResults.containsKey(subject)) {
+                          groupedResults[subject] = [];
+                        }
+                        groupedResults[subject]!.add(result);
+                      }
 
-                          return ListView.builder(
-                            padding: EdgeInsets.only(bottom: 24),
-                            itemCount: groupedResults.length,
-                            itemBuilder: (context, index) {
-                              final subject = groupedResults.keys.elementAt(
-                                index,
-                              );
-                              final subjectResults = groupedResults[subject]!;
+                      return ListView.builder(
+                        padding: EdgeInsets.only(bottom: 24),
+                        itemCount: groupedResults.length,
+                        itemBuilder: (context, index) {
+                          final subject = groupedResults.keys.elementAt(index);
+                          final subjectResults = groupedResults[subject]!;
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(bottom: 10),
-                                    child: Text(
-                                      subject,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: Text(
+                                  subject,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  ...subjectResults.map((result) {
-                                    return ResultExamCard(
-                                      examResult: result,
-                                      onTap: () {
-                                        context.push(
-                                          AppRouterPaths.kAnswersView,
-                                          extra: result,
-                                        );
-                                      },
+                                ),
+                              ),
+                              ...subjectResults.map((result) {
+                                return ResultExamCard(
+                                  examResult: result,
+                                  onTap: () {
+                                    context.push(
+                                      AppRouterPaths.kAnswersView,
+                                      extra: result,
                                     );
-                                  }),
-                                  SizedBox(height: 28),
-                                ],
-                              );
-                            },
+                                  },
+                                );
+                              }),
+                              SizedBox(height: 28),
+                            ],
                           );
                         },
-                      ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -137,7 +133,9 @@ class ResultTab extends StatelessWidget {
     ExamResultEntity result,
     List<SubjectEntity>? subjects,
   ) {
-    final fallback = result.subjectName.isNotEmpty ? result.subjectName : 'Other';
+    final fallback = result.subjectName.isNotEmpty
+        ? result.subjectName
+        : 'Other';
     if (subjects == null) return fallback;
 
     for (final subject in subjects) {

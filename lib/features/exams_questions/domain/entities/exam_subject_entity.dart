@@ -1,4 +1,4 @@
-class  ExamSubjectEntity {
+class ExamSubjectEntity {
   final String id;
   final String name;
   final String icon;
