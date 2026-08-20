@@ -6,4 +6,8 @@ abstract class LoginLocalDataSourceContract {
   Future<void> saveRememberMe(bool value);
 
   Future<bool> getRememberMe();
+
+  Future<void> saveUserId(String userId);
+
+  Future<String?> getUserId();
 }

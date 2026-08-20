@@ -33,6 +33,9 @@ class LoginRepoImp implements LoginRepoContract {
           // local can throw exception, so there is try-catch
           await loginLocalDataSource.saveToken(response.data.token!);
           await loginLocalDataSource.saveRememberMe(rememberMe);
+          if (response.data.user?.id != null) {
+            await loginLocalDataSource.saveUserId(response.data.user!.id!);
+          }
 
           return SuccessBaseResponse<UserEntity>(
             // send UserDto to (toDomain)
@@ -74,6 +77,9 @@ class LoginRepoImp implements LoginRepoContract {
 
         switch (response) {
           case SuccessBaseResponse<LoginResponse>():
+            if (response.data.user?.id != null) {
+              await loginLocalDataSource.saveUserId(response.data.user!.id!);
+            }
             return SuccessBaseResponse<UserEntity>(
               data: response.data.user!.toDomain(),
             );

@@ -5,6 +5,7 @@ abstract class AppStrings {
   static const String email = 'Email';
   static const String emailKey = 'email';
   static const String tokenKey = 'user_token';
+  static const String userIdKey = 'user_id';
   static const String token = 'token';
   static const String hintEmailText = 'Enter your email';
   static const String password = 'Password';
@@ -113,7 +114,7 @@ abstract class AppStrings {
       '''1- Read each question thoroughly before answering.
 2- Manage your time wisely.
 3- Once you submit the exam, you cannot retake it.''';
-  static const String noExamsAvailable = 'No Exams Available';
+  static const String noExamsAvailable = 'No Exams Result Available';
   static const String cacheStorageError = "Storage Error";
   static const String examId = 'examId';
 

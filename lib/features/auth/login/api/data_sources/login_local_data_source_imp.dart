@@ -54,4 +54,26 @@ class LoginLocalDataSourceImp implements LoginLocalDataSourceContract {
       );
     }
   }
+
+  @override
+  Future<void> saveUserId(String userId) async {
+    try {
+      await _securityStorage.setSecuredString(AppStrings.userIdKey, userId);
+    } catch (e) {
+      throw const CacheException(
+        errorMessage: AppStrings.storeCacheExceptionMessage,
+      );
+    }
+  }
+
+  @override
+  Future<String?> getUserId() async {
+    try {
+      return await _securityStorage.getSecuredString(AppStrings.userIdKey);
+    } catch (e) {
+      throw const CacheException(
+        errorMessage: AppStrings.getCacheExceptionMessage,
+      );
+    }
+  }
 }

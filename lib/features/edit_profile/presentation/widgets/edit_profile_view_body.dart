@@ -99,7 +99,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
             showSnackBar(
               context: context,
               message: AppStrings.profileUpdatedSuccessfully,
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.primary,
             );
             _checkInputs();
           }

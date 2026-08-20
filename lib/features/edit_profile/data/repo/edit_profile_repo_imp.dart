@@ -90,6 +90,7 @@ class EditProfileRepoImp implements EditProfileRepoContract {
       switch (response) {
         case SuccessBaseResponse<LogoutResponse>():
           await _securityStorage.deleteSecuredString(AppStrings.token);
+          await _securityStorage.deleteSecuredString(AppStrings.userIdKey);
 
           return SuccessBaseResponse<LogoutEntity>(
             data: response.data.toDomain(),
